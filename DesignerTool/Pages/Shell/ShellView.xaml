@@ -1,0 +1,127 @@
+﻿<m:MetroWindow x:Class="DesignerTool.Pages.Shell.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ctrls="clr-namespace:DesignerTool.Controls;assembly=DesignerTool.Controls"
+        xmlns:vm="clr-namespace:DesignerTool.Pages.Shell"
+        xmlns:svc="clr-namespace:DesignerTool.Common.Mvvm.Services;assembly=DesignerTool.Common"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:cmd="clr-namespace:DesignerTool.Common.Mvvm.Triggers;assembly=DesignerTool.Common"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:m="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        svc:DialogService.IsRegisteredView="True" 
+        WindowState="Maximized"
+        svc:DialogService.DialogResult="{Binding DialogResult}" 
+        Title="Designer Tool" Height="768" Width="1024"
+        IsEnabled="{Binding IsEnabled}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <cmd:EventToCommand Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.DataContext>
+        <vm:ShellViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="1" Visibility="{Binding IsSaveShow, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
+            <StackPanel>
+                <TextBlock Text="{Binding SaveMessageHeader, Mode=OneWay}"/>
+                <TextBlock Text="{Binding SaveMessage, Mode=OneWay}"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" Visibility="{Binding IsErrorShow, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
+            <StackPanel>
+                <TextBlock Text="{Binding ErrorMessageHeader, Mode=OneWay}"/>
+                <TextBlock Text="{Binding ErrorMessage, Mode=OneWay}"/>
+            </StackPanel>
+        </Border>
+
+        <Grid x:Name="grdTop" Margin="20,30,20,0" RenderTransformOrigin="0.5,0.5">
+            <TextBlock Text="Designer Tool" Style="{StaticResource TbHeading}" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button
+                    Height="60" Width="60" Style="{DynamicResource MetroCircleButtonStyle}"
+                    Command="{Binding HomeCommand}">
+                    <Button.Content>
+                        <Path Style="{StaticResource vcHome}" Margin="10"/>
+                    </Button.Content>
+                </Button>
+                <Button
+                    Height="60" Width="60" Style="{DynamicResource MetroCircleButtonStyle}"
+                    Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}, ConverterParameter=True}" Command="{Binding ShowMenuCommand}">
+                    <Button.Content>
+                        <Path Style="{StaticResource vcList}" Margin="10"/>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+
+
+
+        <!--<ctrls:LoadingLabel Visibility="{Binding IsLoading, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}" LoadingMessage="{Binding LoadingMessage}" Grid.RowSpan="3" />-->
+
+
+
+
+        <!--<Border Grid.Column="1" Width="280" Grid.RowSpan="3" Background="White" BorderBrush="Black" BorderThickness="1,0,0,0" Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}" >
+            <StackPanel Orientation="Vertical">
+                <Border Padding="10,22" BorderBrush="Transparent">
+                    <StackPanel Orientation="Horizontal">
+                        <Button ToolTip="Hide Menu" Height="40" Margin="0,5,40,0" Command="{Binding HideMenuCommand}" />
+                        <TextBlock Text="Menu" />
+                    </StackPanel>
+                </Border>
+                <StackPanel Orientation="Vertical" Margin="15,5">
+    
+                </StackPanel>
+            </StackPanel>
+        </Border>-->
+
+        <!--Command Bar-->
+        <Border Grid.Row="2" />
+
+        <!-- Content - Pages are loaded into this content control -->
+        <m:TransitioningContentControl x:Name="contentMain" Grid.Row="1" Grid.RowSpan="2"
+                                       Content="{Binding Path=CurrentViewModel, Mode=TwoWay, NotifyOnTargetUpdated=True}"
+                                       Transition="RightReplace" />
+
+
+        <!-- Flyout Menu -->
+        <m:Flyout Header="Menu" Position="Right" Width="200" IsOpen="{Binding IsMenuVisible,Mode=TwoWay}" Theme="Accent" Grid.Row="1" Grid.RowSpan="2">
+            <StackPanel Orientation="Vertical" Margin="15,5">
+                <!-- User Module -->
+                <TextBlock Text="User Module" Foreground="Beige" />
+                <Button Command="{Binding UsersCommand}" Content="System users" />
+                <Button Command="{Binding PeopleCommand}" Content="People" />
+                <Button Command="{Binding UserGroupCommand}" Content="User Groups" />
+                <Button Command="{Binding Dummy}" Content="Test" />
+                <Button Command="{Binding Dummy}" Content="Calculator" />
+
+            </StackPanel>
+        </m:Flyout>
+
+        <!-- Loading Bar -->
+        <Grid Background="Transparent" Grid.RowSpan="3" Visibility="{Binding IsLoading, Converter={StaticResource boolToVisibilityConverter}, Mode=TwoWay}">
+            <Grid Opacity="0.1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Black"/>
+            <Border Width="300" Height="150" BorderThickness="1.5" BorderBrush="#D0D7E4" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <m:ProgressRing Foreground="{DynamicResource AccentColorBrush}" Height="100" Width="100" IsActive="True"/>
+                    <TextBlock  Text="{Binding LoadingMessage}" Style="{StaticResource TbSubHeading}" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+    </Grid>
+</m:MetroWindow>

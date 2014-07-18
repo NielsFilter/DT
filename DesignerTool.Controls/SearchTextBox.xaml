@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="DesignerTool.Controls.SearchTextBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             x:Name="this">
+    <Grid Height="30" Width="300" Background="White" DataContext="{Binding ElementName=this}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox Name="txtMain" Style="{StaticResource TxtTransparent}" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,3,3,3">
+            <!-- Search -->
+            <Button Name="btnSearch" IsDefault="True"
+                    VerticalAlignment="Center" 
+                    Style="{StaticResource BtnSearchIcon}"
+                    Foreground="{StaticResource brush_SysColours1}"
+                    Click="Search_Click" />
+            
+            <Rectangle Width="2" Stroke="Silver" Fill="Silver" Margin="4,0" />
+            
+            <!-- Clear Search-->
+            <Button Name="btnClear" IsEnabled="False"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center" 
+                    Style="{StaticResource BtnClearSearchIcon}"
+                    Foreground="{StaticResource brush_SysColours1}"
+                    Click="ClearSearch_Click" />
+        </StackPanel>
+    </Grid>
+</UserControl>

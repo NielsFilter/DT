@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="DesignerTool.Controls.LoadingLabel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Storyboard x:Key="Rotate" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="label">
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00.0700000" Value="36"/>
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00.1400000" Value="72"/>
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00.2100000" Value="108"/>
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00.2800000" Value="144"/>
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00.3500000" Value="180"/>
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00.4200000" Value="216"/>
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00.4900000" Value="252"/>
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00.5600000" Value="288"/>
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00.6300000" Value="324"/>
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00.7000000" Value="360"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid Background="Transparent">
+        <Grid Opacity="0.2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White" />
+        <Border Width="300" Height="150" BorderThickness="1.5" BorderBrush="#D0D7E4" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                <Label x:Name="label" Height="40" RenderTransformOrigin="0.5,0.5">
+                    <Label.Style>
+                        <Style TargetType="Label">
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Viewbox Stretch="Uniform">
+                                            <Canvas Width="64" Height="64">
+                                                <Canvas>
+                                                    <Canvas>
+                                                        <Canvas.RenderTransform>
+                                                            <MatrixTransform Matrix="1.4214876 0 0 1.4293356 -646.25265 -659.49943"/>
+                                                        </Canvas.RenderTransform>
+
+                                                        <Path Fill="{TemplateBinding Foreground}" Opacity="0.5">
+                                                            <Path.Data>
+                                                                <PathGeometry Figures="m 477.15886 505.81209 c -0.331 0 -0.661 -0.007 -0.991 -0.022 -1.382 -0.062 -2.755 -0.251 -4.082 -0.563 l 1.574 -6.697 c 0.913 0.215 1.858 0.345 2.811 0.388 1.595 0.074 3.191 -0.107 4.718 -0.532 l 1.838 6.63 c -1.907 0.53 -3.881 0.796 -5.868 0.796 z" FillRule="NonZero"/>
+                                                            </Path.Data>
+                                                        </Path>
+                                                        <Path Fill="{TemplateBinding Foreground}" Opacity="0.5">
+                                                            <Path.Data>
+                                                                <PathGeometry Figures="m 469.43586 504.42409 c -3.456 -1.29 -6.56 -3.454 -8.979 -6.261 l 5.211 -4.49 c 1.665 1.933 3.801 3.422 6.174 4.308 l -2.406 6.443 z" FillRule="NonZero"/>
+                                                            </Path.Data>
+                                                        </Path>
+                                                        <Path Fill="{TemplateBinding Foreground}" Opacity="0.5">
+                                                            <Path.Data>
+                                                                <PathGeometry Figures="m 485.64286 504.11109 -2.659 -6.342 c 2.342 -0.983 4.421 -2.554 6.01 -4.547 l 5.376 4.29 c -2.308 2.89 -5.325 5.172 -8.727 6.599 z" FillRule="NonZero"/>
+                                                            </Path.Data>
+                                                        </Path>
+                                                        <Path Fill="{TemplateBinding Foreground}" Opacity="0.5">
+                                                            <Path.Data>
+                                                                <PathGeometry Figures="m 458.78886 495.96309 c -2.051 -3.087 -3.293 -6.667 -3.595 -10.35 l 6.858 -0.561 c 0.205 2.527 1.059 4.985 2.465 7.103 l -5.728 3.808 z" FillRule="NonZero"/>
+                                                            </Path.Data>
+                                                        </Path>
+                                                        <Path Fill="{TemplateBinding Foreground}" Opacity="0.5">
+                                                            <Path.Data>
+                                                                <PathGeometry Figures="m 495.95486 495.24509 -5.873 -3.582 c 1.32 -2.16 2.076 -4.65 2.189 -7.2 l 3.438 0.08 3.434 0.228 c -0.166 3.704 -1.267 7.327 -3.188 10.474 z" FillRule="NonZero"/>
+                                                            </Path.Data>
+                                                        </Path>
+                                                        <Path Fill="{TemplateBinding Foreground}" Opacity="0.7">
+                                                            <Path.Data>
+                                                                <PathGeometry Figures="m 462.01486 483.11809 -3.437 -0.118 -3.435 -0.185 c 0.166 -3.693 1.26 -7.302 3.164 -10.441 l 5.88 3.569 c -1.309 2.154 -2.06 4.634 -2.172 7.175 z" FillRule="NonZero"/>
+                                                            </Path.Data>
+                                                        </Path>
+                                                        <Path Fill="{TemplateBinding Foreground}" Opacity="0.5">
+                                                            <Path.Data>
+                                                                <PathGeometry Figures="m 492.23386 482.49909 c -0.211 -2.529 -1.069 -4.983 -2.482 -7.101 l 5.721 -3.816 c 2.056 3.081 3.306 6.657 3.614 10.339 l -6.853 0.578 z" FillRule="NonZero"/>
+                                                            </Path.Data>
+                                                        </Path>
+                                                        <Path Fill="{TemplateBinding Foreground}" Opacity="0.88">
+                                                            <Path.Data>
+                                                                <PathGeometry Figures="m 465.27486 474.38209 -5.387 -4.277 c 2.3 -2.897 5.314 -5.184 8.717 -6.618 l 2.669 6.338 c -2.34 0.987 -4.416 2.561 -5.999 4.557 z" FillRule="NonZero"/>
+                                                            </Path.Data>
+                                                        </Path>
+                                                        <Path Fill="{TemplateBinding Foreground}" Opacity="0.5">
+                                                            <Path.Data>
+                                                                <PathGeometry Figures="m 488.59786 473.88409 c -1.67 -1.93 -3.807 -3.415 -6.184 -4.295 l 2.393 -6.449 c 3.458 1.281 6.566 3.441 8.992 6.243 l -5.201 4.501 z" FillRule="NonZero"/>
+                                                            </Path.Data>
+                                                        </Path>
+                                                        <Path Fill="{TemplateBinding Foreground}">
+                                                            <Path.Data>
+                                                                <PathGeometry Figures="m 473.06586 469.20109 -1.849 -6.624 c 2.235 -0.624 4.557 -0.887 6.902 -0.787 1.364 0.061 2.721 0.246 4.037 0.554 l -1.557 6.699 c -0.906 -0.211 -1.843 -0.339 -2.783 -0.381 -1.603 -0.075 -3.213 0.11 -4.75 0.539 z" FillRule="NonZero"/>
+                                                            </Path.Data>
+                                                        </Path>
+                                                    </Canvas>
+                                                </Canvas>
+                                            </Canvas>
+                                        </Viewbox>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Label.Style>
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <TextBlock VerticalAlignment="Center" Margin="16,0,0,0" Text="{Binding LoadingMessage}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</UserControl>
