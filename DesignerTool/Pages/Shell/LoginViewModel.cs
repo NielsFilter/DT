@@ -11,7 +11,7 @@ using System.Text;
 
 namespace DesignerTool.Pages.Shell
 {
-    public class LoginViewModel : PageViewModel
+    public class LoginViewModel : PageViewModel, INotifyDataErrorInfo
     {
         #region Properties
 
@@ -29,7 +29,6 @@ namespace DesignerTool.Pages.Shell
         }
 
         private string _username;
-        [Required(ErrorMessage = "Username is required.")]
         public string Username
         {
             get
@@ -41,13 +40,13 @@ namespace DesignerTool.Pages.Shell
                 if (value != this._username)
                 {
                     this._username = value;
+                    this.validate("Username");
                     base.NotifyPropertyChanged("Username");
                 }
             }
         }
 
         private string _password;
-        [Required(ErrorMessage = "Password is required.")]
         public string Password
         {
             get
@@ -58,7 +57,9 @@ namespace DesignerTool.Pages.Shell
             {
                 if (value != this._password)
                 {
+
                     this._password = value;
+                    this.validate("Password");
                     base.NotifyPropertyChanged("Password");
                 }
             }
@@ -83,6 +84,7 @@ namespace DesignerTool.Pages.Shell
 
         private void login()
         {
+            validate(null);
 
             base.ShowLoading(() =>
                 {
@@ -109,6 +111,77 @@ namespace DesignerTool.Pages.Shell
                 }, "Logging in...");
         }
 
+        #endregion
+
+        #region Validation
+
+        private void validate(string propertyName)
+        {
+            if (propertyName != null)
+            {
+                this._validationErrors.Remove(propertyName);
+            }
+
+            // Username
+            if (propertyName == "Username")
+            {
+                List<string> errors = new List<string>();
+
+                if (string.IsNullOrEmpty(this.Username))
+                {
+                    errors.Add("Username is required");
+                }
+
+                this._validationErrors.Add(propertyName, errors);
+                this.NotifyErrorsChanged(propertyName);
+            }
+
+            // Password
+            if (propertyName == "Password")
+            {
+                List<string> errors = new List<string>();
+                if (string.IsNullOrEmpty(this.Password))
+                {
+                    errors.Add("Password is required");
+                }
+
+                if (this.Password.Length < 6)
+                {
+                    errors.Add("Password must be greater than 6 characters");
+                }
+
+                this._validationErrors.Add(propertyName, errors);
+            }
+        }
+
+        #endregion
+
+        #region INotifyDataErrorInfo members
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
+        private void NotifyErrorsChanged(string propertyName)
+        {
+            if (this.ErrorsChanged != null)
+            {
+                this.ErrorsChanged(this, new DataErrorsChangedEventArgs(propertyName));
+            }
+        }
+
+        private readonly Dictionary<string, ICollection<string>> _validationErrors = new Dictionary<string, ICollection<string>>();
+        public System.Collections.IEnumerable GetErrors(string propertyName)
+        {
+            if (string.IsNullOrEmpty(propertyName) || !this._validationErrors.ContainsKey(propertyName))
+            {
+                return null;
+            }
+
+            return this._validationErrors[propertyName];
+        }
+
+        public bool HasErrors
+        {
+            get { return this._validationErrors.Count > 0; }
+        }
         #endregion
     }
 }

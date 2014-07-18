@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="DesignerToolDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+<Schema Namespace="DesignerToolDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="DesignerToolDbModelStoreContainer">
-    <EntitySet Name="Person" EntityType="DesignerToolDbModel.Store.Person" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Role" EntityType="DesignerToolDbModel.Store.Role" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="User" EntityType="DesignerToolDbModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Person" EntityType="DesignerToolDbModel.Store.Person" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="Role" EntityType="DesignerToolDbModel.Store.Role" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="User" EntityType="DesignerToolDbModel.Store.User" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
     <AssociationSet Name="FK_Person_User" Association="DesignerToolDbModel.Store.FK_Person_User">
       <End Role="User" EntitySet="User" />
       <End Role="Person" EntitySet="Person" />

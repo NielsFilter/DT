@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\obj\Debug\
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\
 DesignerTool.Controls
 none
 false
@@ -12,8 +12,8 @@ DEBUG;TRACE
 
 3-259055874
 
-131609117746
-13-1711966964
+161076177219
+131625939625
 LoadingLabel.xaml;Paging.xaml;SearchTextBox.xaml;
 
 False

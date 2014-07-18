@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -15,5 +16,15 @@ namespace DesignerTool.Common.Enums
         ERROR,
         [Notification(caption: "Please Note", message: "Please Note")]
         NOTIFICATION
+    }
+
+    public enum Periods
+    {
+        [Description("Year")]
+        YEAR,
+        [Description("Month")]
+        MONTH,
+        [Description("Day")]
+        DAY
     }
 }

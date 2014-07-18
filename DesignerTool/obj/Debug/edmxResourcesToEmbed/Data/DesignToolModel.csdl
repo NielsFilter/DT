@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="DesignerToolDbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-  <EntityContainer Name="DesignerDbEntities" annotation:LazyLoadingEnabled="true">
+<Schema Namespace="DesignerToolDbModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DesignerDbEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
     <EntitySet Name="People" EntityType="DesignerToolDbModel.Person" />
     <EntitySet Name="Roles" EntityType="DesignerToolDbModel.Role" />
     <EntitySet Name="Users" EntityType="DesignerToolDbModel.User" />
@@ -17,7 +17,7 @@
     <Key>
       <PropertyRef Name="PersonID" />
     </Key>
-    <Property Type="Int64" Name="PersonID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="PersonID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
     <Property Type="String" Name="FirstNames" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="LastName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Type="Int64" Name="UserID" Nullable="false" />
@@ -28,7 +28,7 @@
     <Key>
       <PropertyRef Name="RoleID" />
     </Key>
-    <Property Type="Int64" Name="RoleID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="RoleID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="Boolean" Name="IsActive" Nullable="false" />
@@ -38,7 +38,7 @@
     <Key>
       <PropertyRef Name="UserID" />
     </Key>
-    <Property Type="Int64" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
     <Property Type="String" Name="Username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="Password" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="Int64" Name="RoleID" Nullable="false" />

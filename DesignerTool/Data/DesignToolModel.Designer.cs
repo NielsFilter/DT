@@ -187,7 +187,7 @@ namespace DesignerTool.Data
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -206,7 +206,7 @@ namespace DesignerTool.Data
                 {
                     OnPersonIDChanging(value);
                     ReportPropertyChanging("PersonID");
-                    _PersonID = StructuralObject.SetValidValue(value);
+                    _PersonID = StructuralObject.SetValidValue(value, "PersonID");
                     ReportPropertyChanged("PersonID");
                     OnPersonIDChanged();
                 }
@@ -231,7 +231,7 @@ namespace DesignerTool.Data
             {
                 OnFirstNamesChanging(value);
                 ReportPropertyChanging("FirstNames");
-                _FirstNames = StructuralObject.SetValidValue(value, false);
+                _FirstNames = StructuralObject.SetValidValue(value, false, "FirstNames");
                 ReportPropertyChanged("FirstNames");
                 OnFirstNamesChanged();
             }
@@ -255,7 +255,7 @@ namespace DesignerTool.Data
             {
                 OnLastNameChanging(value);
                 ReportPropertyChanging("LastName");
-                _LastName = StructuralObject.SetValidValue(value, false);
+                _LastName = StructuralObject.SetValidValue(value, false, "LastName");
                 ReportPropertyChanged("LastName");
                 OnLastNameChanged();
             }
@@ -279,7 +279,7 @@ namespace DesignerTool.Data
             {
                 OnUserIDChanging(value);
                 ReportPropertyChanging("UserID");
-                _UserID = StructuralObject.SetValidValue(value);
+                _UserID = StructuralObject.SetValidValue(value, "UserID");
                 ReportPropertyChanged("UserID");
                 OnUserIDChanged();
             }
@@ -303,7 +303,7 @@ namespace DesignerTool.Data
             {
                 OnIsActiveChanging(value);
                 ReportPropertyChanging("IsActive");
-                _IsActive = StructuralObject.SetValidValue(value);
+                _IsActive = StructuralObject.SetValidValue(value, "IsActive");
                 ReportPropertyChanged("IsActive");
                 OnIsActiveChanged();
             }
@@ -314,7 +314,6 @@ namespace DesignerTool.Data
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -386,7 +385,7 @@ namespace DesignerTool.Data
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -405,7 +404,7 @@ namespace DesignerTool.Data
                 {
                     OnRoleIDChanging(value);
                     ReportPropertyChanging("RoleID");
-                    _RoleID = StructuralObject.SetValidValue(value);
+                    _RoleID = StructuralObject.SetValidValue(value, "RoleID");
                     ReportPropertyChanged("RoleID");
                     OnRoleIDChanged();
                 }
@@ -430,7 +429,7 @@ namespace DesignerTool.Data
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -454,7 +453,7 @@ namespace DesignerTool.Data
             {
                 OnDescriptionChanging(value);
                 ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, true);
+                _Description = StructuralObject.SetValidValue(value, true, "Description");
                 ReportPropertyChanged("Description");
                 OnDescriptionChanged();
             }
@@ -478,7 +477,7 @@ namespace DesignerTool.Data
             {
                 OnIsActiveChanging(value);
                 ReportPropertyChanging("IsActive");
-                _IsActive = StructuralObject.SetValidValue(value);
+                _IsActive = StructuralObject.SetValidValue(value, "IsActive");
                 ReportPropertyChanged("IsActive");
                 OnIsActiveChanged();
             }
@@ -489,7 +488,6 @@ namespace DesignerTool.Data
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -549,7 +547,7 @@ namespace DesignerTool.Data
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -568,7 +566,7 @@ namespace DesignerTool.Data
                 {
                     OnUserIDChanging(value);
                     ReportPropertyChanging("UserID");
-                    _UserID = StructuralObject.SetValidValue(value);
+                    _UserID = StructuralObject.SetValidValue(value, "UserID");
                     ReportPropertyChanged("UserID");
                     OnUserIDChanged();
                 }
@@ -593,7 +591,7 @@ namespace DesignerTool.Data
             {
                 OnUsernameChanging(value);
                 ReportPropertyChanging("Username");
-                _Username = StructuralObject.SetValidValue(value, false);
+                _Username = StructuralObject.SetValidValue(value, false, "Username");
                 ReportPropertyChanged("Username");
                 OnUsernameChanged();
             }
@@ -617,7 +615,7 @@ namespace DesignerTool.Data
             {
                 OnPasswordChanging(value);
                 ReportPropertyChanging("Password");
-                _Password = StructuralObject.SetValidValue(value, false);
+                _Password = StructuralObject.SetValidValue(value, false, "Password");
                 ReportPropertyChanged("Password");
                 OnPasswordChanged();
             }
@@ -641,7 +639,7 @@ namespace DesignerTool.Data
             {
                 OnRoleIDChanging(value);
                 ReportPropertyChanging("RoleID");
-                _RoleID = StructuralObject.SetValidValue(value);
+                _RoleID = StructuralObject.SetValidValue(value, "RoleID");
                 ReportPropertyChanged("RoleID");
                 OnRoleIDChanged();
             }
@@ -665,7 +663,7 @@ namespace DesignerTool.Data
             {
                 OnIsActiveChanging(value);
                 ReportPropertyChanging("IsActive");
-                _IsActive = StructuralObject.SetValidValue(value);
+                _IsActive = StructuralObject.SetValidValue(value, "IsActive");
                 ReportPropertyChanged("IsActive");
                 OnIsActiveChanged();
             }
@@ -676,7 +674,6 @@ namespace DesignerTool.Data
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -745,5 +742,4 @@ namespace DesignerTool.Data
 
     #endregion
 
-    
 }
