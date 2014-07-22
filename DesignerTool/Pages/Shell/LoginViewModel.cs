@@ -11,7 +11,7 @@ using System.Text;
 
 namespace DesignerTool.Pages.Shell
 {
-    public class LoginViewModel : PageViewModel, INotifyDataErrorInfo
+    public class LoginViewModel : PageViewModel
     {
         #region Properties
 
@@ -98,8 +98,6 @@ namespace DesignerTool.Pages.Shell
                         }
                     }
 
-                    System.Threading.Thread.Sleep(8000);
-
                     if (validLogin)
                     {
                         base.ChangeViewModel(new HomeViewModel());
@@ -117,23 +115,18 @@ namespace DesignerTool.Pages.Shell
 
         private void validate(string propertyName)
         {
-            if (propertyName != null)
-            {
-                this._validationErrors.Remove(propertyName);
-            }
+            base.ClearValidationErrors(propertyName);
 
             // Username
             if (propertyName == "Username")
             {
                 List<string> errors = new List<string>();
-
                 if (string.IsNullOrEmpty(this.Username))
                 {
                     errors.Add("Username is required");
                 }
 
-                this._validationErrors.Add(propertyName, errors);
-                this.NotifyErrorsChanged(propertyName);
+                base.AddValidationError(propertyName, errors);
             }
 
             // Password
@@ -150,38 +143,10 @@ namespace DesignerTool.Pages.Shell
                     errors.Add("Password must be greater than 6 characters");
                 }
 
-                this._validationErrors.Add(propertyName, errors);
+                base.AddValidationError(propertyName, errors);
             }
         }
 
-        #endregion
-
-        #region INotifyDataErrorInfo members
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-
-        private void NotifyErrorsChanged(string propertyName)
-        {
-            if (this.ErrorsChanged != null)
-            {
-                this.ErrorsChanged(this, new DataErrorsChangedEventArgs(propertyName));
-            }
-        }
-
-        private readonly Dictionary<string, ICollection<string>> _validationErrors = new Dictionary<string, ICollection<string>>();
-        public System.Collections.IEnumerable GetErrors(string propertyName)
-        {
-            if (string.IsNullOrEmpty(propertyName) || !this._validationErrors.ContainsKey(propertyName))
-            {
-                return null;
-            }
-
-            return this._validationErrors[propertyName];
-        }
-
-        public bool HasErrors
-        {
-            get { return this._validationErrors.Count > 0; }
-        }
         #endregion
     }
 }

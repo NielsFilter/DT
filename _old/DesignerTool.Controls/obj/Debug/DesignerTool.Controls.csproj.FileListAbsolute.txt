@@ -1,0 +1,54 @@
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\bin\Debug\DesignerTool.Controls.dll
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\bin\Debug\DesignerTool.Controls.pdb
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\bin\Debug\DesignerTool.Common.dll
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\bin\Debug\DesignerTool.Common.pdb
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.csprojResolveAssemblyReference.cache
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\obj\Debug\LoadingLabel.baml
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\obj\Debug\Paging.baml
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\obj\Debug\SearchTextBox.baml
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\obj\Debug\LoadingLabel.g.cs
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\obj\Debug\Paging.g.cs
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\obj\Debug\SearchTextBox.g.cs
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\obj\Debug\DesignerTool.Controls_MarkupCompile.cache
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.g.resources
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.Properties.Resources.resources
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.csproj.GenerateResource.Cache
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.dll
+C:\Users\nfilter\Documents\Visual Studio 2012\Projects\DesignerTool\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.pdb
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\bin\Debug\DesignerTool.Controls.dll
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\bin\Debug\DesignerTool.Controls.pdb
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\bin\Debug\DesignerTool.Common.dll
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\bin\Debug\System.Windows.Interactivity.dll
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\bin\Debug\DesignerTool.Common.pdb
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.csprojResolveAssemblyReference.cache
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\obj\Debug\LoadingLabel.baml
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\obj\Debug\Paging.baml
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\obj\Debug\SearchTextBox.baml
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\obj\Debug\LoadingLabel.g.cs
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\obj\Debug\Paging.g.cs
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\obj\Debug\SearchTextBox.g.cs
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\obj\Debug\DesignerTool.Controls_MarkupCompile.cache
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.g.resources
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.Properties.Resources.resources
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.csproj.GenerateResource.Cache
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.dll
+C:\Personal\Dev\DesignerTool\DesignerTool\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\bin\Debug\DesignerTool.Controls.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\bin\Debug\DesignerTool.Controls.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\bin\Debug\DesignerTool.Common.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\bin\Debug\DesignerTool.Common.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.csprojResolveAssemblyReference.cache
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\LoadingLabel.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\Paging.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\SearchTextBox.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\LoadingLabel.g.cs
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\Paging.g.cs
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\SearchTextBox.g.cs
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerTool.Controls_MarkupCompile.cache
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.g.resources
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.Properties.Resources.resources
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.csproj.GenerateResource.Cache
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.pdb

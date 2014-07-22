@@ -29,7 +29,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
@@ -50,20 +50,9 @@
         <Grid x:Name="grdTop" Margin="20,30,20,0" RenderTransformOrigin="0.5,0.5">
             <TextBlock Text="Designer Tool" Style="{StaticResource TbHeading}" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button
-                    Height="60" Width="60" Style="{DynamicResource MetroCircleButtonStyle}"
-                    Command="{Binding HomeCommand}">
-                    <Button.Content>
-                        <Path Style="{StaticResource vcHome}" Margin="10"/>
-                    </Button.Content>
-                </Button>
-                <Button
-                    Height="60" Width="60" Style="{DynamicResource MetroCircleButtonStyle}"
-                    Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}, ConverterParameter=True}" Command="{Binding ShowMenuCommand}">
-                    <Button.Content>
-                        <Path Style="{StaticResource vcList}" Margin="10"/>
-                    </Button.Content>
-                </Button>
+                <Button Style="{DynamicResource BtnHome}" Command="{Binding HomeCommand}"/>
+                <Button Style="{StaticResource BtnMenu}"
+                        Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}, ConverterParameter=True}" Command="{Binding ShowMenuCommand}" />
             </StackPanel>
         </Grid>
 
@@ -99,8 +88,13 @@
 
 
         <!-- Flyout Menu -->
-        <m:Flyout Header="Menu" Position="Right" Width="200" IsOpen="{Binding IsMenuVisible,Mode=TwoWay}" Theme="Accent" Grid.Row="1" Grid.RowSpan="2">
-            <StackPanel Orientation="Vertical" Margin="15,5">
+        <m:Flyout Grid.Row="0" Grid.Column="1" Grid.RowSpan="3"
+                  Header="Menu" Position="Right" Theme="Accent"
+                  IsOpen="{Binding IsMenuVisible, Mode=TwoWay}">
+            
+            <StackPanel Orientation="Vertical" Width="200" Margin="15,5"
+                        Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
+                
                 <!-- User Module -->
                 <TextBlock Text="User Module" Foreground="Beige" />
                 <Button Command="{Binding UsersCommand}" Content="System users" />

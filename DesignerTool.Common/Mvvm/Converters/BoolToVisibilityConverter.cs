@@ -45,7 +45,22 @@ namespace DesignerTool.Common.Mvvm.Converters
         /// </summary>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            bool invert = false;
+            if (parameter != null)
+            {
+                bool.TryParse(parameter.ToString(), out invert);
+            }
+
+            if (invert)
+            {
+                // Inverted - True = "Collapsed" and False = "Visible"
+                return Visibility.Collapsed;
+            }
+            else
+            {
+                // Normal (Not inverted) - True = "Visible" and False = "Collapsed"
+                return Visibility.Visible;
+            }
         }
     }
 

@@ -20,8 +20,8 @@
                 <ResourceDictionary Source="ResourceDictionaries/VectorResources.xaml"/>
                 <ResourceDictionary Source="ResourceDictionaries/TextBlockResources.xaml"/>
                 <ResourceDictionary Source="ResourceDictionaries/ButtonResources.xaml"/>
-                <!--<ResourceDictionary Source="ResourceDictionaries/TextBoxResources.xaml"/>
-                <ResourceDictionary Source="ResourceDictionaries/GeneralResources.xaml"/>-->
+                <!--<ResourceDictionary Source="ResourceDictionaries/TextBoxResources.xaml"/>-->
+                <ResourceDictionary Source="ResourceDictionaries/GeneralResources.xaml"/>
 
                 <!--<ResourceDictionary Source="ResourceDictionaries/ComboBoxResources.xaml"/>
                 <ResourceDictionary Source="ResourceDictionaries/DateTimeResources.xaml"/>

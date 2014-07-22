@@ -1,6 +1,8 @@
 ﻿using DesignerTool.Common.Global;
+using DesignerTool.Common.Licensing;
 using DesignerTool.Common.Logging;
 using DesignerTool.Common.Mvvm;
+using DesignerTool.Common.Utils;
 using DesignerTool.Data;
 using System;
 using System.Collections.Generic;
@@ -19,8 +21,19 @@ namespace DesignerTool
         private bool _isStartUp = true;
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            using (DesignerDbEntities ctx = new DesignerDbEntities())
+            {
+                var lic = ctx.Licenses.First();
+                if (!lic.Validate())
+                {
+                    // TODO: Do something more elegant
+                    MessageBox.Show("Invalid license");
+                    Application.Current.Shutdown();
+                }
+            }
+
             MvvmBootstrap.BootStrapApplication(new ViewMapper());
-            PathContext.CreateAppDirectories();            
+            PathContext.CreateAppDirectories();
 
             this._isStartUp = false;
         }

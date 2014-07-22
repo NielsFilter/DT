@@ -6,4 +6,89 @@
         <Setter Property="Width" Value="200" />
     </Style>
 
+    <Style x:Key="BtnCircle" TargetType="Button" BasedOn="{StaticResource MetroCircleButtonStyle}">
+        <Setter Property="Height" Value="60" />
+        <Setter Property="Width" Value="60" />
+    </Style>
+
+    <Style x:Key="BtnHome" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Path Style="{StaticResource vcHome}" Margin="10"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BtnMenu" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Path Style="{StaticResource vcList}" Margin="10"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BtnPrev" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Path Style="{StaticResource vcPrev}" Margin="10"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="BtnNext" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Path Style="{StaticResource vcNext}" Margin="10"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="BtnFirst" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Path Style="{StaticResource vcFirst}" Margin="10"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="BtnLast" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Path Style="{StaticResource vcLast}" Margin="10"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--<Style x:Key="BtnPrev" TargetType="Button" BasedOn="{StaticResource BtnVectorIconHoverDefault}" x:Shared="false">
+        <Setter Property="ToolTip" Value="Previous" />
+        <Setter Property="Margin" Value="10,0" />
+        <Setter Property="Content">
+            <Setter.Value>
+                <Path Style="{StaticResource vcPrev}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="BtnNext" TargetType="Button" BasedOn="{StaticResource BtnVectorIconHoverDefault}" x:Shared="false">
+        <Setter Property="ToolTip" Value="Previous" />
+        <Setter Property="Margin" Value="10,0" />
+        <Setter Property="Content">
+            <Setter.Value>
+                <Path Style="{StaticResource vcNext}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="BtnFirst" TargetType="Button" BasedOn="{StaticResource BtnVectorIconHoverDefault}" x:Shared="false">
+        <Setter Property="ToolTip" Value="First" />
+        <Setter Property="Margin" Value="10,0" />
+        <Setter Property="Content">
+            <Setter.Value>
+                <Path Style="{StaticResource vcFirst}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="BtnLast" TargetType="Button" BasedOn="{StaticResource BtnVectorIconHoverDefault}" x:Shared="false">
+        <Setter Property="ToolTip" Value="Last" />
+        <Setter Property="Margin" Value="10,0" />
+        <Setter Property="Content">
+            <Setter.Value>
+                <Path Style="{StaticResource vcLast}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" />
+            </Setter.Value>
+        </Setter>
+    </Style>-->
 </ResourceDictionary>

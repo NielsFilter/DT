@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DesignerToolDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="DesignerToolDbModelStoreContainer" />
+  <!--Errors Found During Generation:
+      warning 6013: The table/view 'DesignerToolDb.dbo.User' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="User">
+        <Property Name="UserID" Type="bigint" />
+        <Property Name="Username" Type="nvarchar" MaxLength="100" />
+        <Property Name="Password" Type="nvarchar" MaxLength="100" />
+      </EntityType>-->
+</Schema>

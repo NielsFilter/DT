@@ -1,4 +1,5 @@
-﻿using DesignerTool.Common.Mvvm.Commands;
+﻿using DesignerTool.Common.Enums;
+using DesignerTool.Common.Mvvm.Commands;
 using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Data;
 using System;
@@ -10,12 +11,14 @@ namespace DesignerTool.Pages.Admin
 {
     public class UserDetailViewModel : PageViewModel
     {
+        DesignerDbEntities ctx;
+
         #region Constructors
 
         public UserDetailViewModel()
             : base(false)
         {
-
+            ctx = new DesignerDbEntities();
         }
 
         public UserDetailViewModel(long id)
@@ -59,8 +62,8 @@ namespace DesignerTool.Pages.Admin
             }
         }
 
-        private IEnumerable<Role> _roles;
-        public IEnumerable<Role> Roles
+        private IEnumerable<string> _roles;
+        public IEnumerable<string> Roles
         {
             get { return this._roles; }
             set
@@ -95,21 +98,22 @@ namespace DesignerTool.Pages.Admin
         /// </summary>
         public override void OnLoaded()
         {
-            using (DesignerDbEntities ctx = new DesignerDbEntities())
-            {
-                Roles = ctx.Roles.ToList();
+            base.ShowLoading(() =>
+                {
+                    this.Roles = Enum.GetNames(typeof(RoleTypes));
 
-                if (this.ID.HasValue)
-                {
-                    // Get item
-                    this.Model = ctx.Users.FirstOrDefault(u => u.UserID == this.ID.Value);
-                }
-                else
-                {
-                    // New record. Set defaults
-                    this.Model = new User();
-                }
-            }
+                    if (this.ID.HasValue)
+                    {
+                        // Get item
+                        this.Model = ctx.Users.FirstOrDefault(u => u.UserID == this.ID.Value);
+                    }
+                    else
+                    {
+                        // New record. Set defaults
+                        this.Model = new User();
+                        this.Model.Role = RoleTypes.User.ToString();
+                    }
+                }, "Retrieving user details...");
         }
 
         #endregion
@@ -127,24 +131,21 @@ namespace DesignerTool.Pages.Admin
                 {
                     try
                     {
-                        using (DesignerDbEntities ctx = new DesignerDbEntities())
+                        if (!this.ID.HasValue)
                         {
-                            if (this.ID.HasValue)
-                            {
-                                // Update
-                                ctx.Users.Attach(ctx.Users.First(u => u.UserID == this.Model.UserID));
-                                ctx.Users.ApplyCurrentValues(this.Model);
-                            }
-                            else
-                            {
-                                // New Insert
-                                ctx.Users.AddObject(this.Model);
-                            }
-                            ctx.SaveChanges();
-
-                            // Save successful
-                            this.ID = this.Model.UserID;
+                            //// Update
+                            //ctx.Users.Attach(ctx.Users.First(u => u.UserID == this.Model.UserID));
+                            //ctx.Users.ApplyCurrentValues(this.Model);
+                            //}
+                            //else
+                            //{
+                            // New Insert
+                            ctx.Users.AddObject(this.Model);
                         }
+                        ctx.SaveChanges();
+
+                        // Save successful
+                        this.ID = this.Model.UserID;
 
                         base.ShowSave();
                     }

@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0591927b2f1d4cabb054480eb2dcc82c" Name="Diagram1" ZoomLevel="100">
-        <EntityTypeShape EntityType="DesignerToolDbModel.Person" Width="1.5" PointX="17.25" PointY="1" />
-        <EntityTypeShape EntityType="DesignerToolDbModel.Role" Width="1.5" PointX="12" PointY="1.25" />
-        <EntityTypeShape EntityType="DesignerToolDbModel.User" Width="1.5" PointX="14.75" PointY="1" />
+      <Diagram DiagramId="0591927b2f1d4cabb054480eb2dcc82c" Name="Diagram1" ZoomLevel="61">
+        <EntityTypeShape EntityType="DesignerToolDbModel.Person" Width="1.5" PointX="3.375" PointY="2.5" />
+        <EntityTypeShape EntityType="DesignerToolDbModel.SystemSetting" Width="1.5" PointX="10.5" PointY="2.75" />
+        <EntityTypeShape EntityType="DesignerToolDbModel.User" Width="1.5" PointX="7.375" PointY="2.625" />
         <AssociationConnector Association="DesignerToolDbModel.FK_Person_User" />
-        <AssociationConnector Association="DesignerToolDbModel.FK_User_Role" />
+        <EntityTypeShape EntityType="DesignerToolDbModel.License" Width="1.5" PointX="0.5" PointY="2.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

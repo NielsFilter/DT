@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DesignerToolDbModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DesignerDbEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+    <EntitySet Name="People" EntityType="DesignerToolDbModel.Person" />
+    <EntitySet Name="Roles" EntityType="DesignerToolDbModel.Role" />
+    <EntitySet Name="Users" EntityType="DesignerToolDbModel.User" />
+    <AssociationSet Name="FK_Person_User" Association="DesignerToolDbModel.FK_Person_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Person" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="DesignerToolDbModel.FK_User_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Type="Int64" Name="PersonID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="FirstNames" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="UserID" Nullable="false" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="DesignerToolDbModel.FK_Person_User" FromRole="Person" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Type="Int64" Name="RoleID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="DesignerToolDbModel.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Type="Int64" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="RoleID" Nullable="false" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <NavigationProperty Name="People" Relationship="DesignerToolDbModel.FK_Person_User" FromRole="User" ToRole="Person" />
+    <NavigationProperty Name="Role" Relationship="DesignerToolDbModel.FK_User_Role" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_Person_User">
+    <End Type="DesignerToolDbModel.User" Role="User" Multiplicity="1" />
+    <End Type="DesignerToolDbModel.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Type="DesignerToolDbModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="DesignerToolDbModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

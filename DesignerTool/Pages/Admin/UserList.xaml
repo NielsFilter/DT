@@ -9,16 +9,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid Style="{StaticResource GrdContent}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <DataGrid   Grid.Row="0"
-                    Style="{StaticResource DgDefault}"
-                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                    ItemsSource="{Binding ListPaged}">
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <Button Content="Refresh" Style="{StaticResource BtnDefault}" Command="{Binding RefreshCommand}" />
+            <Button Content="Add New" Style="{StaticResource BtnDefault}" Command="{Binding AddNewCommand}" />
+            <Button Content="Edit" Style="{StaticResource BtnDefault}" Command="{Binding EditCommand}" />
+            <Button Content="Delete" Style="{StaticResource BtnDefault}" Command="{Binding DeleteCommand}" />
+        </StackPanel>
+        
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False"
+                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                  ItemsSource="{Binding ListPaged}">
 
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
@@ -32,13 +39,6 @@
         </DataGrid>
 
         <!-- Paging -->
-        <ctrls:Paging Pager="{Binding Pager}" HorizontalAlignment="Center" Margin="20" Grid.Row="1"  />
-        
-        <StackPanel Grid.Row="2">
-            <Button Content="Refresh" Command="{Binding RefreshCommand}" />
-            <Button Content="Add New" Command="{Binding AddNewCommand}" />
-            <Button Content="Edit" Command="{Binding EditCommand}" />
-            <Button Content="Delete" Command="{Binding DeleteCommand}" />
-        </StackPanel>
+        <ctrls:Paging Pager="{Binding Pager}" HorizontalAlignment="Center" Margin="20" Grid.Row="2"  />
     </Grid>
 </v:BaseView>

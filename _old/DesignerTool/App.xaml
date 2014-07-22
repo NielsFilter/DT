@@ -1,0 +1,39 @@
+﻿<Application x:Class="DesignerTool.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="Pages\Shell\ShellView.xaml"
+             ShutdownMode="OnMainWindowClose"
+			 Startup="Application_Startup"
+			 DispatcherUnhandledException="Application_DispatcherUnhandledException">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourceDictionaries/ConverterResources.xaml"/>
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+
+                <!--<ResourceDictionary Source="ResourceDictionaries/ColorResources.xaml"/>-->
+                <ResourceDictionary Source="ResourceDictionaries/VectorResources.xaml"/>
+                <ResourceDictionary Source="ResourceDictionaries/TextBlockResources.xaml"/>
+                <ResourceDictionary Source="ResourceDictionaries/ButtonResources.xaml"/>
+                <!--<ResourceDictionary Source="ResourceDictionaries/TextBoxResources.xaml"/>
+                <ResourceDictionary Source="ResourceDictionaries/GeneralResources.xaml"/>-->
+
+                <!--<ResourceDictionary Source="ResourceDictionaries/ComboBoxResources.xaml"/>
+                <ResourceDictionary Source="ResourceDictionaries/DateTimeResources.xaml"/>
+                <ResourceDictionary Source="ResourceDictionaries/DataGridResources.xaml"/>
+                <ResourceDictionary Source="ResourceDictionaries/ImageResources.xaml"/>
+                <ResourceDictionary Source="ResourceDictionaries/LayoutControlResources.xaml"/>
+                <ResourceDictionary Source="ResourceDictionaries/ListViewResources.xaml"/>
+                <ResourceDictionary Source="ResourceDictionaries/PanoramaResources.xaml"/>
+                <ResourceDictionary Source="ResourceDictionaries/ScrollResources.xaml"/>
+                <ResourceDictionary Source="ResourceDictionaries/TabControlResources.xaml"/>
+                <ResourceDictionary Source="ResourceDictionaries/ToggleResources.xaml"/>-->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

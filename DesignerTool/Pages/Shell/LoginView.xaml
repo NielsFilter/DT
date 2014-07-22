@@ -3,57 +3,45 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:m="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:ap="clr-namespace:DesignerTool.Common.Mvvm.AttachedProperties;assembly=DesignerTool.Common">
-    <Grid>
+    <Grid Style="{StaticResource GrdContent}">
         <Grid.RowDefinitions>
             <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-
-            <!-- Username -->
-            <TextBlock Grid.Column="1" Grid.Row="1" Text="User" Margin="10" />
-            <TextBox Grid.Column="2" Grid.Row="1" Margin="10"
+        <!-- Username -->
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="User" Margin="10" />
+        <TextBox Grid.Column="2" Grid.Row="1" Margin="10"
                      m:TextboxHelper.Watermark="Username" 
                      Text="{Binding Username, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
 
-            <!-- Password -->
-            <TextBlock Grid.Column="1" Grid.Row="2" Text="Password" Margin="10"/>
-            <PasswordBox Grid.Column="2" Grid.Row="2" Margin="10"
+        <!-- Password -->
+        <TextBlock Grid.Column="1" Grid.Row="2" Text="Password" Margin="10"/>
+        <PasswordBox Grid.Column="2" Grid.Row="2" Margin="10"
                          m:TextboxHelper.Watermark="Password" 
                          ap:PasswordBoxAttached.IsPasswordTextBindable="True"
                          ap:PasswordBoxAttached.PasswordText="{Binding Password, Mode=OneWayToSource}" />
 
-            <Button  Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right"
+        <Button  Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right"
                      Content="Login" IsDefault="True"
                      Style="{StaticResource BtnDefault}"
                      Command="{Binding LoginCommand}" />
 
-        </Grid>
+        <!-- Left -->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="4" VerticalAlignment="Bottom">
+            <Path Style="{StaticResource vcLock}" />
+            <TextBlock Text="Login" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                       Style="{StaticResource TbHeading}" Margin="30,10"/>
+        </StackPanel>
 
-        <!-- Command Section at the bottom -->
-        <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-
-            <!-- Left -->
-            <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Path Style="{StaticResource vcLock}" Margin="20,0,5,0" Width="70"/>
-                <TextBlock Text="Login" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            </StackPanel>
-
-            <!-- Right -->
-
-        </Grid>
     </Grid>
 </UserControl>

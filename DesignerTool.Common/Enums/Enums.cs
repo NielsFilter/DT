@@ -18,6 +18,13 @@ namespace DesignerTool.Common.Enums
         NOTIFICATION
     }
 
+    public enum RoleTypes
+    {
+        Admin,
+        User,
+        Internal
+    }
+
     public enum Periods
     {
         [Description("Year")]

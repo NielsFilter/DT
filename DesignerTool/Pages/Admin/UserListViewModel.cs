@@ -11,11 +11,14 @@ namespace DesignerTool.Pages.Admin
 {
     public class UserListViewModel : PageViewModel
     {
+        DesignerDbEntities ctx;
+
         #region Constructors
 
         public UserListViewModel()
             : base()
         {
+            ctx = new DesignerDbEntities();
         }
 
         #endregion
@@ -141,8 +144,6 @@ namespace DesignerTool.Pages.Admin
         {
             base.ShowLoading(() =>
             {
-                using (DesignerDbEntities ctx = new DesignerDbEntities())
-                {
                     string searchText = base.Pager.SearchText;
 
                     var data = ctx.Users.Where(u => u.Username.Contains(searchText))
@@ -155,7 +156,6 @@ namespace DesignerTool.Pages.Admin
                         base.Pager.TotalRecords = ctx.Users.Count();
                         this.List = data.ToObservableCollection();
                     }
-                }
             }, "Loading list of users");
         }
 
@@ -185,11 +185,10 @@ namespace DesignerTool.Pages.Admin
         {
             if (this.SelectedItem != null)
             {
-                var response = base.DialogService.ShowMessageBox(this, string.Format("Are you sure you want to delete the Person '{0}'?", this.SelectedItem), "Confirm delete", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Question);
+                var response = base.DialogService.ShowMessageBox(this, string.Format("Are you sure you want to delete the user '{0}'?", this.SelectedItem), "Confirm delete", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Question);
                 if (response == System.Windows.MessageBoxResult.Yes)
                 {
-                    // Person confirmed delete
-                    //TODO: Delete base.Facade.Delete(this.SelectedItem.ID);
+                    ctx.DeleteObject(this.SelectedItem);
                     this.ShowSave("Successfully deleted");
                     this.refresh();
                 }

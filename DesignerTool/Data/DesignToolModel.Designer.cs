@@ -20,7 +20,6 @@ using System.Xml.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("DesignerToolDbModel", "FK_Person_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DesignerTool.Data.User), "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DesignerTool.Data.Person), true)]
-[assembly: EdmRelationshipAttribute("DesignerToolDbModel", "FK_User_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DesignerTool.Data.Role), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DesignerTool.Data.User), true)]
 
 #endregion
 
@@ -91,18 +90,18 @@ namespace DesignerTool.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Role> Roles
+        public ObjectSet<SystemSetting> SystemSettings
         {
             get
             {
-                if ((_Roles == null))
+                if ((_SystemSettings == null))
                 {
-                    _Roles = base.CreateObjectSet<Role>("Roles");
+                    _SystemSettings = base.CreateObjectSet<SystemSetting>("SystemSettings");
                 }
-                return _Roles;
+                return _SystemSettings;
             }
         }
-        private ObjectSet<Role> _Roles;
+        private ObjectSet<SystemSetting> _SystemSettings;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -119,6 +118,22 @@ namespace DesignerTool.Data
             }
         }
         private ObjectSet<User> _Users;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<License> Licenses
+        {
+            get
+            {
+                if ((_Licenses == null))
+                {
+                    _Licenses = base.CreateObjectSet<License>("Licenses");
+                }
+                return _Licenses;
+            }
+        }
+        private ObjectSet<License> _Licenses;
 
         #endregion
 
@@ -133,11 +148,11 @@ namespace DesignerTool.Data
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Roles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the SystemSettings EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToRoles(Role role)
+        public void AddToSystemSettings(SystemSetting systemSetting)
         {
-            base.AddObject("Roles", role);
+            base.AddObject("SystemSettings", systemSetting);
         }
     
         /// <summary>
@@ -147,6 +162,14 @@ namespace DesignerTool.Data
         {
             base.AddObject("Users", user);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Licenses EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToLicenses(License license)
+        {
+            base.AddObject("Licenses", license);
+        }
 
         #endregion
 
@@ -155,6 +178,114 @@ namespace DesignerTool.Data
     #endregion
 
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DesignerToolDbModel", Name="License")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class License : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new License object.
+        /// </summary>
+        /// <param name="licenseID">Initial value of the LicenseID property.</param>
+        /// <param name="code">Initial value of the Code property.</param>
+        /// <param name="isActive">Initial value of the IsActive property.</param>
+        public static License CreateLicense(global::System.Int64 licenseID, global::System.String code, global::System.Boolean isActive)
+        {
+            License license = new License();
+            license.LicenseID = licenseID;
+            license.Code = code;
+            license.IsActive = isActive;
+            return license;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 LicenseID
+        {
+            get
+            {
+                return _LicenseID;
+            }
+            set
+            {
+                if (_LicenseID != value)
+                {
+                    OnLicenseIDChanging(value);
+                    ReportPropertyChanging("LicenseID");
+                    _LicenseID = StructuralObject.SetValidValue(value, "LicenseID");
+                    ReportPropertyChanged("LicenseID");
+                    OnLicenseIDChanged();
+                }
+            }
+        }
+        private global::System.Int64 _LicenseID;
+        partial void OnLicenseIDChanging(global::System.Int64 value);
+        partial void OnLicenseIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Code
+        {
+            get
+            {
+                return _Code;
+            }
+            set
+            {
+                OnCodeChanging(value);
+                ReportPropertyChanging("Code");
+                _Code = StructuralObject.SetValidValue(value, false, "Code");
+                ReportPropertyChanged("Code");
+                OnCodeChanged();
+            }
+        }
+        private global::System.String _Code;
+        partial void OnCodeChanging(global::System.String value);
+        partial void OnCodeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsActive
+        {
+            get
+            {
+                return _IsActive;
+            }
+            set
+            {
+                OnIsActiveChanging(value);
+                ReportPropertyChanging("IsActive");
+                _IsActive = StructuralObject.SetValidValue(value, "IsActive");
+                ReportPropertyChanged("IsActive");
+                OnIsActiveChanged();
+            }
+        }
+        private global::System.Boolean _IsActive;
+        partial void OnIsActiveChanging(global::System.Boolean value);
+        partial void OnIsActiveChanged();
+
+        #endregion
+
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -361,26 +492,26 @@ namespace DesignerTool.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="DesignerToolDbModel", Name="Role")]
+    [EdmEntityTypeAttribute(NamespaceName="DesignerToolDbModel", Name="SystemSetting")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Role : EntityObject
+    public partial class SystemSetting : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Role object.
+        /// Create a new SystemSetting object.
         /// </summary>
-        /// <param name="roleID">Initial value of the RoleID property.</param>
-        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="systemSettingID">Initial value of the SystemSettingID property.</param>
+        /// <param name="setting">Initial value of the Setting property.</param>
         /// <param name="isActive">Initial value of the IsActive property.</param>
-        public static Role CreateRole(global::System.Int64 roleID, global::System.String name, global::System.Boolean isActive)
+        public static SystemSetting CreateSystemSetting(global::System.Int64 systemSettingID, global::System.String setting, global::System.Boolean isActive)
         {
-            Role role = new Role();
-            role.RoleID = roleID;
-            role.Name = name;
-            role.IsActive = isActive;
-            return role;
+            SystemSetting systemSetting = new SystemSetting();
+            systemSetting.SystemSettingID = systemSettingID;
+            systemSetting.Setting = setting;
+            systemSetting.IsActive = isActive;
+            return systemSetting;
         }
 
         #endregion
@@ -392,51 +523,51 @@ namespace DesignerTool.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 RoleID
+        public global::System.Int64 SystemSettingID
         {
             get
             {
-                return _RoleID;
+                return _SystemSettingID;
             }
             set
             {
-                if (_RoleID != value)
+                if (_SystemSettingID != value)
                 {
-                    OnRoleIDChanging(value);
-                    ReportPropertyChanging("RoleID");
-                    _RoleID = StructuralObject.SetValidValue(value, "RoleID");
-                    ReportPropertyChanged("RoleID");
-                    OnRoleIDChanged();
+                    OnSystemSettingIDChanging(value);
+                    ReportPropertyChanging("SystemSettingID");
+                    _SystemSettingID = StructuralObject.SetValidValue(value, "SystemSettingID");
+                    ReportPropertyChanged("SystemSettingID");
+                    OnSystemSettingIDChanged();
                 }
             }
         }
-        private global::System.Int64 _RoleID;
-        partial void OnRoleIDChanging(global::System.Int64 value);
-        partial void OnRoleIDChanged();
+        private global::System.Int64 _SystemSettingID;
+        partial void OnSystemSettingIDChanging(global::System.Int64 value);
+        partial void OnSystemSettingIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Name
+        public global::System.String Setting
         {
             get
             {
-                return _Name;
+                return _Setting;
             }
             set
             {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false, "Name");
-                ReportPropertyChanged("Name");
-                OnNameChanged();
+                OnSettingChanging(value);
+                ReportPropertyChanging("Setting");
+                _Setting = StructuralObject.SetValidValue(value, false, "Setting");
+                ReportPropertyChanged("Setting");
+                OnSettingChanged();
             }
         }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
+        private global::System.String _Setting;
+        partial void OnSettingChanging(global::System.String value);
+        partial void OnSettingChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -465,6 +596,30 @@ namespace DesignerTool.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Value
+        {
+            get
+            {
+                return _Value;
+            }
+            set
+            {
+                OnValueChanging(value);
+                ReportPropertyChanging("Value");
+                _Value = StructuralObject.SetValidValue(value, true, "Value");
+                ReportPropertyChanged("Value");
+                OnValueChanged();
+            }
+        }
+        private global::System.String _Value;
+        partial void OnValueChanging(global::System.String value);
+        partial void OnValueChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Boolean IsActive
@@ -488,32 +643,6 @@ namespace DesignerTool.Data
 
         #endregion
 
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("DesignerToolDbModel", "FK_User_Role", "User")]
-        public EntityCollection<User> Users
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User>("DesignerToolDbModel.FK_User_Role", "User");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("DesignerToolDbModel.FK_User_Role", "User", value);
-                }
-            }
-        }
-
-        #endregion
-
     }
     
     /// <summary>
@@ -532,15 +661,15 @@ namespace DesignerTool.Data
         /// <param name="userID">Initial value of the UserID property.</param>
         /// <param name="username">Initial value of the Username property.</param>
         /// <param name="password">Initial value of the Password property.</param>
-        /// <param name="roleID">Initial value of the RoleID property.</param>
+        /// <param name="role">Initial value of the Role property.</param>
         /// <param name="isActive">Initial value of the IsActive property.</param>
-        public static User CreateUser(global::System.Int64 userID, global::System.String username, global::System.String password, global::System.Int64 roleID, global::System.Boolean isActive)
+        public static User CreateUser(global::System.Int64 userID, global::System.String username, global::System.String password, global::System.String role, global::System.Boolean isActive)
         {
             User user = new User();
             user.UserID = userID;
             user.Username = username;
             user.Password = password;
-            user.RoleID = roleID;
+            user.Role = role;
             user.IsActive = isActive;
             return user;
         }
@@ -629,24 +758,24 @@ namespace DesignerTool.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 RoleID
+        public global::System.String Role
         {
             get
             {
-                return _RoleID;
+                return _Role;
             }
             set
             {
-                OnRoleIDChanging(value);
-                ReportPropertyChanging("RoleID");
-                _RoleID = StructuralObject.SetValidValue(value, "RoleID");
-                ReportPropertyChanged("RoleID");
-                OnRoleIDChanged();
+                OnRoleChanging(value);
+                ReportPropertyChanging("Role");
+                _Role = StructuralObject.SetValidValue(value, false, "Role");
+                ReportPropertyChanged("Role");
+                OnRoleChanged();
             }
         }
-        private global::System.Int64 _RoleID;
-        partial void OnRoleIDChanging(global::System.Int64 value);
-        partial void OnRoleIDChanged();
+        private global::System.String _Role;
+        partial void OnRoleChanging(global::System.String value);
+        partial void OnRoleChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -694,44 +823,6 @@ namespace DesignerTool.Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Person>("DesignerToolDbModel.FK_Person_User", "Person", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("DesignerToolDbModel", "FK_User_Role", "Role")]
-        public Role Role
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("DesignerToolDbModel.FK_User_Role", "Role").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("DesignerToolDbModel.FK_User_Role", "Role").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Role> RoleReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("DesignerToolDbModel.FK_User_Role", "Role");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Role>("DesignerToolDbModel.FK_User_Role", "Role", value);
                 }
             }
         }

@@ -11,6 +11,15 @@ namespace DesignerTool.Data
 {
     public partial class User : IValidatable
     {
+        #region Constructors
+
+        public User()
+        {
+            this.IsActive = true;
+        }
+
+        #endregion
+
         #region Password
 
         private const int MIN_PASSWORD_LENGTH = 6;
@@ -43,9 +52,9 @@ namespace DesignerTool.Data
 
         public void Validate(System.Data.EntityState entityState)
         {
-            if (this.Password.Length < 20)
+            if (string.IsNullOrEmpty(this.Password))
             {
-                throw new ValidationException("Password must be atleast 20 chars");
+                throw new ValidationException("A Password is required.");
             }
         }
     }

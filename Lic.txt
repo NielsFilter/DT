@@ -1,0 +1,6 @@
+<License>
+<Date>123123123123</Date>
+<Mode>Expiry</Mode>
+<Value>123123</Value>
+</License>
+	

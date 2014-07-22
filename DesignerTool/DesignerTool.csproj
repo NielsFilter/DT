@@ -80,8 +80,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DesignToolModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Data\License.partial.cs" />
     <Compile Include="Data\Person.partial.cs" />
-    <Compile Include="Data\Role.partial.cs" />
     <Compile Include="Data\Utils\IValidatable.cs" />
     <Compile Include="Data\User.partial.cs" />
     <Compile Include="Pages\Admin\UserDetail.xaml.cs">
@@ -103,6 +103,7 @@
     </Compile>
     <Compile Include="ViewMapper.cs" />
     <Compile Include="Pages\Shell\HomeViewModel.cs" />
+    <Compile Include="ViewModels\PageViewModel.cs" />
     <Compile Include="ViewModels\PanoramaTileViewModel.cs" />
     <Compile Include="ViewModels\ShellBase.cs" />
     <Compile Include="Pages\Shell\ShellPopupViewModel.cs" />
@@ -140,13 +141,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ResourceDictionaries\ControlTemplates\ExpanderTemplates.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="ResourceDictionaries\ConverterResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionaries\GeneralResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceDictionaries\PanoramaResources.xaml">
       <Generator>MSBuild:Compile</Generator>

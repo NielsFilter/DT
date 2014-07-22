@@ -7,8 +7,9 @@
              xmlns:v="clr-namespace:DesignerTool.Common.Mvvm.Views;assembly=DesignerTool.Common"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid Style="{StaticResource GrdContent}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -20,22 +21,25 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Username" />
-        <TextBlock Grid.Row="1" Text="Password" />
-        <TextBlock Grid.Row="2"  Text="Role" />
-
         <TextBox Grid.Column="1" Text="{Binding Model.Username, Mode=TwoWay}"/>
-        
+
+        <TextBlock Grid.Row="1" Text="Password" />
         <PasswordBox Grid.Column="1" Grid.Row="1" 
                      ap:PasswordBoxAttached.IsPasswordTextBindable="True"
                      ap:PasswordBoxAttached.PasswordText="{Binding Model.Password, Mode=TwoWay, Converter={StaticResource stringToDecryptConverter}}"/>
 
+        <TextBlock Grid.Row="2"  Text="Role" />
         <ComboBox Grid.Column="1" Grid.Row="2"
-                  ItemsSource="{Binding Roles, Mode=OneTime}"
-                  SelectedItem="{Binding Model.Role, Mode=TwoWay}"
-                  DisplayMemberPath="Name" />
+                  ItemsSource="{Binding Roles, Mode=OneWay}"
+                  SelectedItem="{Binding Model.Role, Mode=TwoWay}" />
 
-        <StackPanel Grid.Column="1" Grid.Row="3">
-            <Button Content="Save" Command="{Binding SaveCommand}" Click="Button_Click" />
-        </StackPanel>
+        <TextBlock Grid.Row="3"  Text="Is Active" />
+        <CheckBox Grid.Column="1" Grid.Row="3"
+                  IsChecked="{Binding Model.IsActive, Mode=TwoWay}" />
+
+        <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" Content="Save" IsDefault="True"
+                Style="{StaticResource BtnDefault}"                    
+                Command="{Binding SaveCommand}" />
+
     </Grid>
 </v:BaseView>

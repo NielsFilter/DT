@@ -12,13 +12,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Roles">
-      <EntityTypeMapping TypeName="DesignerToolDbModel.Role">
-        <MappingFragment StoreEntitySet="Role">
+    <EntitySetMapping Name="SystemSettings">
+      <EntityTypeMapping TypeName="DesignerToolDbModel.SystemSetting">
+        <MappingFragment StoreEntitySet="SystemSetting">
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Setting" ColumnName="Setting" />
+          <ScalarProperty Name="SystemSettingID" ColumnName="SystemSettingID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -26,10 +27,19 @@
       <EntityTypeMapping TypeName="DesignerToolDbModel.User">
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Licenses">
+      <EntityTypeMapping TypeName="DesignerToolDbModel.License">
+        <MappingFragment StoreEntitySet="License">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="LicenseID" ColumnName="LicenseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

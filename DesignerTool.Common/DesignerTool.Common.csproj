@@ -99,14 +99,17 @@
     <Compile Include="Mvvm\Services\IDialogService.cs" />
     <Compile Include="Mvvm\Services\ServiceLocator.cs" />
     <Compile Include="Mvvm\Triggers\EventToCommand.cs" />
-    <Compile Include="Mvvm\ViewModels\PageViewModel.cs" />
     <Compile Include="Mvvm\ViewModels\ViewModelBase.cs" />
     <Compile Include="Mvvm\Views\BaseView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Encryption.cs" />
+    <Compile Include="Utils\XML.cs" />
+    <Compile Include="Licensing\AppLicense.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Attributes\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Xml\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
