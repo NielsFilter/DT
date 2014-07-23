@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesignerTool.Common.Mvvm.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace DesignerTool.Pages.Tools
     /// <summary>
     /// Interaction logic for ActivationKeyGenerator.xaml
     /// </summary>
-    public partial class ActivationKeyGenerator : UserControl
+    public partial class ActivationKeyGenerator : BaseView
     {
         public ActivationKeyGenerator()
         {

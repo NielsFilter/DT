@@ -19,7 +19,7 @@ namespace DesignerTool.Common.Enums
 
         #region Public Static Methods
 
-        public static NotificationAttribute GetAttribute(UserMessageTypes type)
+        public static NotificationAttribute GetAttribute(UserMessageType type)
         {
             var mi = type.GetType().GetMember(type.ToString());
             if (mi != null && mi.Length > 0)
@@ -33,7 +33,7 @@ namespace DesignerTool.Common.Enums
             return null;
         }
 
-        public static string GetCaption(UserMessageTypes type)
+        public static string GetCaption(UserMessageType type)
         {
             var attr = GetAttribute(type);
 
@@ -47,7 +47,7 @@ namespace DesignerTool.Common.Enums
             }
         }
 
-        public static string GetMessage(UserMessageTypes type)
+        public static string GetMessage(UserMessageType type)
         {
             var attr = GetAttribute(type);
 

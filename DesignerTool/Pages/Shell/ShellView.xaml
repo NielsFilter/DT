@@ -98,7 +98,7 @@
                 <!-- User Module -->
                 <TextBlock Text="User Module" Foreground="Beige" />
                 <Button Command="{Binding UsersCommand}" Content="System users" />
-                <Button Command="{Binding PeopleCommand}" Content="People" />
+                <Button Command="{Binding ActivationKeyCommand}" Content="Activation key" />
                 <Button Command="{Binding UserGroupCommand}" Content="User Groups" />
                 <Button Command="{Binding Dummy}" Content="Test" />
                 <Button Command="{Binding Dummy}" Content="Calculator" />

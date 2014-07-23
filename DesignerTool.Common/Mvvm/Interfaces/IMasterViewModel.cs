@@ -64,11 +64,11 @@ namespace DesignerTool.Common.Mvvm.Interfaces
         IDialogService DialogService { get; }
 
         /// <summary>
-        /// Shows the user a message. The way that this message is displayed depends on the shell implementation and the <see cref="DesignerTool.Common.Enums.UserMessageTypes"/>
+        /// Shows the user a message. The way that this message is displayed depends on the shell implementation and the <see cref="DesignerTool.Common.Enums.UserMessageType"/>
         /// </summary>
-        /// <param name="msgType">Type of message from the <see cref="DesignerTool.Common.Enums.UserMessageTypes"/> enum</param>
+        /// <param name="msgType">Type of message from the <see cref="DesignerTool.Common.Enums.UserMessageType"/> enum</param>
         /// <param name="message">Message text</param>
         /// <param name="caption">Message caption / title</param>
-        void ShowUserMessage(UserMessageTypes msgType, string message, string caption);
+        void ShowUserMessage(UserMessageType msgType, string message, string caption);
     }
 }

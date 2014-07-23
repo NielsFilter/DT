@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DesignerTool.Common.Licensing;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -69,7 +71,7 @@ namespace DesignerTool.Common.Utils
         /// <summary>
         /// Hashes the given key using secure hashing and then returns the relevant number of characters only (as a byte array)
         /// </summary>
-        public static byte[] TruncateHash(string key, int length)
+        public static byte[] TruncateHash(this string key, int length)
         {
             SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider();
 
@@ -79,7 +81,7 @@ namespace DesignerTool.Common.Utils
             return hash;
         }
 
-        public static string HashString(string str)
+        public static string HashString(this string str)
         {
             if (string.IsNullOrWhiteSpace(str))
             {
@@ -94,6 +96,34 @@ namespace DesignerTool.Common.Utils
 
             //'Return the encrypted string
             return Convert.ToBase64String(encBytes);
+        }
+
+        public static string CreateCode(this ActivationCode activation)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                ActivationCodeFormatter formatter = new ActivationCodeFormatter();
+                formatter.Serialize(ms, activation);
+                ms.Position = 0;
+                using (var sr = new StreamReader(ms))
+                {
+                    return sr.ReadToEnd();
+                }
+            }
+        }
+
+        public static ActivationCode ReadCode(this string code)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (StreamWriter sw = new StreamWriter(ms))
+                {
+                    sw.Write(code);
+                    sw.Flush();
+                    ActivationCodeFormatter formatter = new ActivationCodeFormatter();
+                    return formatter.Deserialize(ms) as ActivationCode;
+                }
+            }
         }
     }
 }

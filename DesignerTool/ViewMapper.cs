@@ -1,6 +1,7 @@
 ﻿using DesignerTool.Common.Mvvm.Mapping;
 using DesignerTool.Pages.Admin;
 using DesignerTool.Pages.Shell;
+using DesignerTool.Pages.Tools;
 using DesignerTool.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace DesignerTool
                 mapShell(ref views);
                 mapAdmin(ref views);
                 mapCore(ref views);
+                mapTools(ref views);
 
                 return views;
             }
@@ -53,7 +55,7 @@ namespace DesignerTool
         #region Core Module
 
         private void mapCore(ref IDictionary<Type, Type> views)
-        { 
+        {
             //// User
             //views.Add(typeof(UserListViewModel), typeof(UserListView));
             //views.Add(typeof(UserDetailViewModel), typeof(UserDetailView));
@@ -72,6 +74,16 @@ namespace DesignerTool
             ////views.Add(typeof(UserGroupPermissionListViewModel), typeof(UserGroupPermissionListView));
             //views.Add(typeof(UserGroupPermissionDetailViewModel), typeof(UserGroupPermissionDetailView));
             //views.Add(typeof(UserGroupPermissionSearchViewModel), typeof(UserGroupPermissionSearchView));
+        }
+
+        #endregion
+
+        #region Tools Module
+
+        private void mapTools(ref IDictionary<Type, Type> views)
+        {
+            // Activation Key Generator (Licensing)
+            views.Add(typeof(ActivationKeyGeneratorViewModel), typeof(ActivationKeyGenerator));
         }
 
         #endregion

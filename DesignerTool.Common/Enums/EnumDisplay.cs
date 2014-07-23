@@ -23,5 +23,14 @@ namespace DesignerTool.Common.Enums
         public string Display { get; set; }
 
         #endregion
+
+        #region Overrides
+
+        public override string ToString()
+        {
+            return this.Display;
+        }
+
+        #endregion
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DesignerTool.Common.Enums
 {
-    public enum UserMessageTypes
+    public enum UserMessageType
     {
         [Notification(caption: "Success", message: "Save Successful")]
         SUCCESS,
@@ -18,20 +18,20 @@ namespace DesignerTool.Common.Enums
         NOTIFICATION
     }
 
-    public enum RoleTypes
+    public enum RoleType
     {
         Admin,
         User,
         Internal
     }
 
-    public enum Periods
+    public enum PeriodType
     {
-        [Description("Year")]
-        YEAR,
-        [Description("Month")]
-        MONTH,
-        [Description("Day")]
-        DAY
+        [Description("Years")]
+        Year,
+        [Description("Months")]
+        Month,
+        [Description("Days")]
+        Day
     }
 }

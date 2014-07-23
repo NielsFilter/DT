@@ -268,12 +268,12 @@ namespace DesignerTool.Common.Mvvm.ViewModels
 
         public void ShowSave(string text = null)
         {
-            this.CurrentMaster.ShowUserMessage(UserMessageTypes.SUCCESS, text, null);
+            this.CurrentMaster.ShowUserMessage(UserMessageType.SUCCESS, text, null);
         }
 
         public void ShowError(string caption = null, string text = null)
         {
-            this.CurrentMaster.ShowUserMessage(UserMessageTypes.ERROR, text, caption);
+            this.CurrentMaster.ShowUserMessage(UserMessageType.ERROR, text, caption);
         }
 
         public void RefreshParent()

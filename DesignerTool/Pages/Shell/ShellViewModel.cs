@@ -1,6 +1,7 @@
 ﻿using DesignerTool.Common.Mvvm.Commands;
 using DesignerTool.Common.Mvvm.Interfaces;
 using DesignerTool.Pages.Admin;
+using DesignerTool.Pages.Tools;
 using DesignerTool.ViewModels;
 
 namespace DesignerTool.Pages.Shell
@@ -61,6 +62,7 @@ namespace DesignerTool.Pages.Shell
 
         public Command HomeCommand { get; set; }
         public Command UsersCommand { get; set; }
+        public Command ActivationKeyCommand { get; set; }
 
         public override void OnWireCommands()
         {
@@ -72,6 +74,7 @@ namespace DesignerTool.Pages.Shell
 
             this.HomeCommand = new Command(this.home, this.canGoHome);
             this.UsersCommand = new Command(this.users, this.canGoUsers);
+            this.ActivationKeyCommand = new Command(this.activataionKey, this.canGoActivationKey);
         }
 
         #endregion
@@ -98,7 +101,7 @@ namespace DesignerTool.Pages.Shell
 
         #endregion
 
-        #region MenuHideMenuCommand
+        #region Menu
 
         private void showMenu()
         {
@@ -154,6 +157,21 @@ namespace DesignerTool.Pages.Shell
             base.ChangeViewModel(new UserListViewModel());
         }
 
+        #endregion
+
+        #region Activation
+
+        private bool canGoActivationKey()
+        {
+            return true;
+        }
+
+        private void activataionKey()
+        {
+            base.ChangeViewModel(new ActivationKeyGeneratorViewModel());
+        }
+
+        
         #endregion
 
         #endregion

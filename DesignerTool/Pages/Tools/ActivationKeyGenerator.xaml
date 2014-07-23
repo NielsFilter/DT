@@ -1,9 +1,10 @@
-﻿<UserControl x:Class="DesignerTool.Pages.Tools.ActivationKeyGenerator"
+﻿<v:BaseView x:Class="DesignerTool.Pages.Tools.ActivationKeyGenerator"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:m="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:v="clr-namespace:DesignerTool.Common.Mvvm.Views;assembly=DesignerTool.Common"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -14,7 +15,8 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition />
@@ -26,31 +28,45 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="1" Grid.Row="1" Text="User" />
-            <TextBox Grid.Column="2" Grid.Row="1"
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="User" />
+            <TextBox Grid.Column="2" Grid.Row="0"
                      m:TextboxHelper.Watermark="Client Code" 
-                     Text="{Binding ClientCode, Mode=OneWayToSource}" />
+                     Text="{Binding Activation.ClientCode, Mode=TwoWay}" />
 
-            <TextBlock Grid.Column="1" Grid.Row="2" Text="Extension Period" />
-            <StackPanel Grid.Column="2" Grid.Row="2">
-            <m:NumericUpDown
-                Minimum="1"
-                Maximum="1000000"
-                Value="{Binding Extension, Mode=OneWayToSource}" />
-            <ComboBox Grid.Column="2" Grid.Row="1" Margin="10"
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="Extension Type" />
+            <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1">
+                <RadioButton x:Name="rbExpiry" Content="Expiry Date" IsChecked="{Binding Activation.IsExpiryMode, Mode=TwoWay}" GroupName="ExtensionType" />
+                <RadioButton Content="Extension" GroupName="ExtensionType" />
+            </StackPanel>
+
+            <!-- Expiry Mode -->
+            <TextBlock Grid.Column="1" Grid.Row="2" Text="Expiry Date" Visibility="{Binding Activation.IsExpiryMode, Converter={StaticResource boolToVisibilityConverter}}" />
+            <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Horizontal" Visibility="{Binding Activation.IsExpiryMode, Converter={StaticResource boolToVisibilityConverter}}" >
+                <DatePicker SelectedDate="{Binding Activation.ExpiryDate, Mode=TwoWay}" />
+            </StackPanel>
+
+            <!-- Extension Mode -->
+            <TextBlock Grid.Column="1" Grid.Row="2" Text="Extension Period" Visibility="{Binding Activation.IsExpiryMode, Converter={StaticResource boolToVisibilityConverter}, ConverterParameter=true}" />
+            <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Horizontal" Visibility="{Binding Activation.IsExpiryMode, Converter={StaticResource boolToVisibilityConverter}, ConverterParameter=true}" >
+                <m:NumericUpDown
+                    Minimum="1"
+                    Maximum="1000000"
+                    Value="{Binding Activation.Extension, Mode=TwoWay}" />
+                <ComboBox 
                       m:TextboxHelper.Watermark="Extension Period"
-                      ItemsSource="{Binding Periods}"
-                      SelectedItem="{Binding ExtensionPeriod, Mode=OneWayToSource}" />
+                      SelectedValuePath="Value"
+                      ItemsSource="{Binding Periods, Mode=OneWay}"
+                      SelectedValue="{Binding Activation.ExtensionPeriod, Mode=TwoWay}" />
             </StackPanel>
 
             <!-- Password -->
-            <TextBlock Grid.Column="1" Grid.Row="2" Text="Activation Key" Margin="10"/>
-            <TextBlock Grid.Column="2" Grid.Row="2" Margin="10" Text="{Binding ActivationKey}" />
+            <TextBlock Grid.Column="1" Grid.Row="3" Text="Activation Key" />
+            <Label Grid.Column="2" Grid.Row="3" Margin="10" Content="{Binding ActivationKey}" />
 
-            <Button  Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right"
-                     Content="Login" IsDefault="True"
+            <Button  Grid.Column="2" Grid.Row="4" HorizontalAlignment="Right"
+                     Content="Generate Code" IsDefault="True"
                      Style="{StaticResource BtnDefault}"
-                     Command="{Binding LoginCommand}" />
+                     Command="{Binding GenerateCommand}" />
 
         </Grid>
 
@@ -67,4 +83,4 @@
 
         </Grid>
     </Grid>
-</UserControl>
+</v:BaseView>

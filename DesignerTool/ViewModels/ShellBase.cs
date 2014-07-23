@@ -254,7 +254,7 @@ namespace DesignerTool.ViewModels
             return this.PreviousViewModel != null;
         }
 
-        public void ShowUserMessage(UserMessageTypes msgType, string message, string caption)
+        public void ShowUserMessage(UserMessageType msgType, string message, string caption)
         {
             this.hideNotification();
 
@@ -268,14 +268,14 @@ namespace DesignerTool.ViewModels
                 message = NotificationAttribute.GetMessage(msgType);
             }
 
-            if (msgType == UserMessageTypes.SUCCESS)
+            if (msgType == UserMessageType.SUCCESS)
             {
                 // Saved
                 this.SaveMessageHeader = caption;
                 this.SaveMessage = string.Format("{0} - {1}", message, DateTime.Now.ToString("HH:mm:ss"));
                 this.IsSaveShow = true;
             }
-            else if (msgType == UserMessageTypes.ERROR)
+            else if (msgType == UserMessageType.ERROR)
             {
                 // Error
                 this.ErrorMessageHeader = caption;

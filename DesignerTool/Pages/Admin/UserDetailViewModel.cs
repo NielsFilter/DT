@@ -100,7 +100,7 @@ namespace DesignerTool.Pages.Admin
         {
             base.ShowLoading(() =>
                 {
-                    this.Roles = Enum.GetNames(typeof(RoleTypes));
+                    this.Roles = Enum.GetNames(typeof(RoleType));
 
                     if (this.ID.HasValue)
                     {
@@ -111,7 +111,7 @@ namespace DesignerTool.Pages.Admin
                     {
                         // New record. Set defaults
                         this.Model = new User();
-                        this.Model.Role = RoleTypes.User.ToString();
+                        this.Model.Role = RoleType.User.ToString();
                     }
                 }, "Retrieving user details...");
         }
