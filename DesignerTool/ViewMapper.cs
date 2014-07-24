@@ -35,8 +35,9 @@ namespace DesignerTool
             views.Add(typeof(LoginViewModel), typeof(LoginView));
             views.Add(typeof(ShellViewModel), typeof(ShellView));
             views.Add(typeof(ShellPopupViewModel), typeof(ShellPopupView));
-            // Home screen
+
             views.Add(typeof(HomeViewModel), typeof(HomeView));
+            views.Add(typeof(UserActivationViewModel), typeof(UserActivation));
         }
 
         #endregion

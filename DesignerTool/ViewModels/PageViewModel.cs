@@ -33,7 +33,15 @@ namespace DesignerTool.Common.Mvvm.ViewModels
         private DesignerDbEntities _db;
         public DesignerDbEntities Db
         {
-            get { return _db; }
+            get
+            {
+                if (this._db == null)
+                {
+                    this._db = new DesignerDbEntities();
+                }
+
+                return this._db;
+            }
         }
 
         public IDialogService DialogService

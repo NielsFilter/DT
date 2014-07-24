@@ -9,6 +9,7 @@
       <End Role="Person" EntitySet="People" />
     </AssociationSet>
     <EntitySet Name="Licenses" EntityType="DesignerToolDbModel.License" />
+    <EntitySet Name="ActiveLicenses" EntityType="DesignerToolDbModel.ActiveLicense" />
   </EntityContainer>
   <EntityType Name="Person">
     <Key>
@@ -61,5 +62,13 @@
     <Property Type="Int64" Name="LicenseID" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
     <Property Type="String" Name="Code" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="Boolean" Name="IsActive" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ActiveLicense">
+    <Key>
+      <PropertyRef Name="ActiveLicenseID" />
+    </Key>
+    <Property Type="Int64" Name="ActiveLicenseID" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Type="DateTime" Name="AppliedDate" Nullable="false" Precision="3" />
+    <Property Type="String" Name="Code" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

@@ -27,11 +27,11 @@ namespace DesignerTool.Common.Enums
 
     public enum PeriodType
     {
-        [Description("Years")]
+        [PeriodInfo("Year", "Years", "AddYears")]
         Year,
-        [Description("Months")]
+        [PeriodInfo("Month", "Months", "AddMonths")]
         Month,
-        [Description("Days")]
+        [PeriodInfo("Day", "Days", "AddDays")]
         Day
     }
 }

@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="DesignerToolDbModel.User" Width="1.5" PointX="7.375" PointY="2.625" />
         <AssociationConnector Association="DesignerToolDbModel.FK_Person_User" />
         <EntityTypeShape EntityType="DesignerToolDbModel.License" Width="1.5" PointX="0.5" PointY="2.5" />
+        <EntityTypeShape EntityType="DesignerToolDbModel.ActiveLicense" Width="1.5" PointX="13.25" PointY="3.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

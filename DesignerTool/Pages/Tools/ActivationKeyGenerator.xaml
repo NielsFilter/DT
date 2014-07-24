@@ -54,14 +54,17 @@
                     Value="{Binding Activation.Extension, Mode=TwoWay}" />
                 <ComboBox 
                       m:TextboxHelper.Watermark="Extension Period"
-                      SelectedValuePath="Value"
                       ItemsSource="{Binding Periods, Mode=OneWay}"
                       SelectedValue="{Binding Activation.ExtensionPeriod, Mode=TwoWay}" />
             </StackPanel>
 
-            <!-- Password -->
+
             <TextBlock Grid.Column="1" Grid.Row="3" Text="Activation Key" />
-            <Label Grid.Column="2" Grid.Row="3" Margin="10" Content="{Binding ActivationKey}" />
+            <TextBox Grid.Column="2" Grid.Row="3" Margin="10" 
+                     Background="Transparent"
+                     IsReadOnly="True"
+                     BorderThickness="0"
+                     Text="{Binding ActivationKey, Mode=OneWay}" />
 
             <Button  Grid.Column="2" Grid.Row="4" HorizontalAlignment="Right"
                      Content="Generate Code" IsDefault="True"

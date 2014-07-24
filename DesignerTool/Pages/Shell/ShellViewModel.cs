@@ -63,6 +63,7 @@ namespace DesignerTool.Pages.Shell
         public Command HomeCommand { get; set; }
         public Command UsersCommand { get; set; }
         public Command ActivationKeyCommand { get; set; }
+        public Command LicenseActivationCommand { get; set; }        
 
         public override void OnWireCommands()
         {
@@ -74,7 +75,8 @@ namespace DesignerTool.Pages.Shell
 
             this.HomeCommand = new Command(this.home, this.canGoHome);
             this.UsersCommand = new Command(this.users, this.canGoUsers);
-            this.ActivationKeyCommand = new Command(this.activataionKey, this.canGoActivationKey);
+            this.ActivationKeyCommand = new Command(this.generateLicenseKey, this.canGenerateLicenseKey);
+            this.LicenseActivationCommand = new Command(this.licenseActivate);
         }
 
         #endregion
@@ -161,16 +163,20 @@ namespace DesignerTool.Pages.Shell
 
         #region Activation
 
-        private bool canGoActivationKey()
+        private bool canGenerateLicenseKey()
         {
             return true;
         }
 
-        private void activataionKey()
+        private void generateLicenseKey()
         {
             base.ChangeViewModel(new ActivationKeyGeneratorViewModel());
         }
 
+        private void licenseActivate()
+        {
+            base.ChangeViewModel(new UserActivationViewModel());
+        }
         
         #endregion
 

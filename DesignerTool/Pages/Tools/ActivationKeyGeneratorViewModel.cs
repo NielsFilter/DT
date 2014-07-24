@@ -60,8 +60,8 @@ namespace DesignerTool.Pages.Tools
             }
         }
 
-        private IEnumerable<EnumDisplay<PeriodType>> _periods;
-        public IEnumerable<EnumDisplay<PeriodType>> Periods
+        private IEnumerable<PeriodType> _periods;
+        public IEnumerable<PeriodType> Periods
         {
             get
             {
@@ -99,7 +99,7 @@ namespace DesignerTool.Pages.Tools
             base.OnLoaded();
 
             this.Activation = new ActivationCode();
-            this.Periods = EnumHelper.GetDisplayCollection<PeriodType>();
+            this.Periods = Enum.GetValues(typeof(PeriodType)).Cast<PeriodType>();
         }
 
         #endregion

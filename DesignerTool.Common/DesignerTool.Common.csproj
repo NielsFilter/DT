@@ -55,6 +55,7 @@
     <Compile Include="Enums\EnumHelper.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\NotificationAttribute.cs" />
+    <Compile Include="Enums\PeriodInfoAttribute.cs" />
     <Compile Include="Licensing\ActivationCode.cs" />
     <Compile Include="Licensing\ActivationCodeFormatter.cs" />
     <Compile Include="Mvvm\AttachedProperties\PasswordBoxAttached.cs" />

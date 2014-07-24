@@ -186,3 +186,5 @@ C:\Personal\Dev\DesignerTool\DesignerTool\obj\Debug\DesignerTool.Properties.Reso
 C:\Personal\Dev\DesignerTool\DesignerTool\obj\Debug\DesignerTool.csproj.GenerateResource.Cache
 C:\Personal\Dev\DesignerTool\DesignerTool\obj\Debug\ResourceDictionaries\GeneralResources.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\ResourceDictionaries\GeneralResources.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\UserActivation.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\UserActivation.g.cs

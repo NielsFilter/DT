@@ -134,6 +134,22 @@ namespace DesignerTool.Data
             }
         }
         private ObjectSet<License> _Licenses;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ActiveLicense> ActiveLicenses
+        {
+            get
+            {
+                if ((_ActiveLicenses == null))
+                {
+                    _ActiveLicenses = base.CreateObjectSet<ActiveLicense>("ActiveLicenses");
+                }
+                return _ActiveLicenses;
+            }
+        }
+        private ObjectSet<ActiveLicense> _ActiveLicenses;
 
         #endregion
 
@@ -170,6 +186,14 @@ namespace DesignerTool.Data
         {
             base.AddObject("Licenses", license);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ActiveLicenses EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToActiveLicenses(ActiveLicense activeLicense)
+        {
+            base.AddObject("ActiveLicenses", activeLicense);
+        }
 
         #endregion
 
@@ -178,6 +202,114 @@ namespace DesignerTool.Data
     #endregion
 
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DesignerToolDbModel", Name="ActiveLicense")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ActiveLicense : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ActiveLicense object.
+        /// </summary>
+        /// <param name="activeLicenseID">Initial value of the ActiveLicenseID property.</param>
+        /// <param name="appliedDate">Initial value of the AppliedDate property.</param>
+        /// <param name="code">Initial value of the Code property.</param>
+        public static ActiveLicense CreateActiveLicense(global::System.Int64 activeLicenseID, global::System.DateTime appliedDate, global::System.String code)
+        {
+            ActiveLicense activeLicense = new ActiveLicense();
+            activeLicense.ActiveLicenseID = activeLicenseID;
+            activeLicense.AppliedDate = appliedDate;
+            activeLicense.Code = code;
+            return activeLicense;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 ActiveLicenseID
+        {
+            get
+            {
+                return _ActiveLicenseID;
+            }
+            set
+            {
+                if (_ActiveLicenseID != value)
+                {
+                    OnActiveLicenseIDChanging(value);
+                    ReportPropertyChanging("ActiveLicenseID");
+                    _ActiveLicenseID = StructuralObject.SetValidValue(value, "ActiveLicenseID");
+                    ReportPropertyChanged("ActiveLicenseID");
+                    OnActiveLicenseIDChanged();
+                }
+            }
+        }
+        private global::System.Int64 _ActiveLicenseID;
+        partial void OnActiveLicenseIDChanging(global::System.Int64 value);
+        partial void OnActiveLicenseIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime AppliedDate
+        {
+            get
+            {
+                return _AppliedDate;
+            }
+            set
+            {
+                OnAppliedDateChanging(value);
+                ReportPropertyChanging("AppliedDate");
+                _AppliedDate = StructuralObject.SetValidValue(value, "AppliedDate");
+                ReportPropertyChanged("AppliedDate");
+                OnAppliedDateChanged();
+            }
+        }
+        private global::System.DateTime _AppliedDate;
+        partial void OnAppliedDateChanging(global::System.DateTime value);
+        partial void OnAppliedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Code
+        {
+            get
+            {
+                return _Code;
+            }
+            set
+            {
+                OnCodeChanging(value);
+                ReportPropertyChanging("Code");
+                _Code = StructuralObject.SetValidValue(value, false, "Code");
+                ReportPropertyChanged("Code");
+                OnCodeChanged();
+            }
+        }
+        private global::System.String _Code;
+        partial void OnCodeChanging(global::System.String value);
+        partial void OnCodeChanged();
+
+        #endregion
+
+    }
     
     /// <summary>
     /// No Metadata Documentation available.

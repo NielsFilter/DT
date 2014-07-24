@@ -93,6 +93,10 @@
     </Compile>
     <Compile Include="Pages\Admin\UserListViewModel.cs" />
     <Compile Include="Pages\Shell\LoginViewModel.cs" />
+    <Compile Include="Pages\Shell\UserActivation.xaml.cs">
+      <DependentUpon>UserActivation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shell\UserActivationViewModel.cs" />
     <Compile Include="Pages\Tools\ActivationKeyGenerator.xaml.cs">
       <DependentUpon>ActivationKeyGenerator.xaml</DependentUpon>
     </Compile>
@@ -130,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Shell\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Shell\UserActivation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

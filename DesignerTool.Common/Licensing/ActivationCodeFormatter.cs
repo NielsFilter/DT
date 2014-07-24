@@ -64,8 +64,8 @@ namespace DesignerTool.Common.Licensing
             }
             else
             {
-                activationCode.ExtensionPeriod = (PeriodType)Enum.Parse(typeof(PeriodType), items[1][0].ToString()); // First char is enum representation
-                activationCode.Extension = Int32.Parse(items[1].Substring(1)); // Rest is the extension value
+                activationCode.ExtensionPeriod = (PeriodType)Enum.Parse(typeof(PeriodType), items[1][3].ToString()); // Fourth char is enum representation (first 3 are dummy)
+                activationCode.Extension = Int32.Parse(items[1].Substring(4)); // Rest is the extension value
             }
 
             // Return the deserialized activation code.
@@ -97,7 +97,8 @@ namespace DesignerTool.Common.Licensing
                 else
                 {
                     mode = r.Next(MODE_MID, MODE_HIGH);
-                    sbExpiryValue.Append(string.Format("{0}{1}", (int)activationCode.ExtensionPeriod, activationCode.Extension));
+                    // Add 3 random alpha values. The next digit is the enum, the remaining number is the extension amount.
+                    sbExpiryValue.Append(string.Format("{0}{1}{2}{3}{4}", (char)r.Next(66, 72), (char)r.Next(73, 80), (char)r.Next(81, 89), (int)activationCode.ExtensionPeriod, activationCode.Extension));
                 }
 
                 StreamWriter sw = new StreamWriter(serializationStream);

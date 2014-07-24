@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DesignerToolDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="DesignerToolDbModelStoreContainer">
+    <EntitySet Name="ActiveLicense" EntityType="DesignerToolDbModel.Store.ActiveLicense" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="License" EntityType="DesignerToolDbModel.Store.License" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Person" EntityType="DesignerToolDbModel.Store.Person" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SystemSetting" EntityType="DesignerToolDbModel.Store.SystemSetting" store:Type="Tables" Schema="dbo" />
@@ -10,6 +11,14 @@
       <End Role="Person" EntitySet="Person" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="ActiveLicense">
+    <Key>
+      <PropertyRef Name="ActiveLicenseID" />
+    </Key>
+    <Property Name="ActiveLicenseID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AppliedDate" Type="datetime" Nullable="false" />
+    <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
   <EntityType Name="License">
     <Key>
       <PropertyRef Name="LicenseID" />
