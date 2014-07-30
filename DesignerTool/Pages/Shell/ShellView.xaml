@@ -100,7 +100,7 @@
                 <Button Command="{Binding UsersCommand}" Content="System users" />
                 <Button Command="{Binding ActivationKeyCommand}" Content="Generate Activation key" />
                 <Button Command="{Binding LicenseActivationCommand}" Content="License Activation code" />
-                <Button Command="{Binding Dummy}" Content="Test" />
+                <Button Command="{Binding BestFitCalculatorCommand}" Content="Best Fit Calculator" />
                 <Button Command="{Binding Dummy}" Content="Calculator" />
 
             </StackPanel>

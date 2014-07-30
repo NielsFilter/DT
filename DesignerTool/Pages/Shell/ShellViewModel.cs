@@ -1,6 +1,7 @@
 ﻿using DesignerTool.Common.Mvvm.Commands;
 using DesignerTool.Common.Mvvm.Interfaces;
 using DesignerTool.Pages.Admin;
+using DesignerTool.Pages.Core;
 using DesignerTool.Pages.Tools;
 using DesignerTool.ViewModels;
 
@@ -63,8 +64,9 @@ namespace DesignerTool.Pages.Shell
         public Command HomeCommand { get; set; }
         public Command UsersCommand { get; set; }
         public Command ActivationKeyCommand { get; set; }
-        public Command LicenseActivationCommand { get; set; }        
-
+        public Command LicenseActivationCommand { get; set; }
+        public Command BestFitCalculatorCommand { get; set; }        
+        
         public override void OnWireCommands()
         {
             base.OnWireCommands();
@@ -77,6 +79,7 @@ namespace DesignerTool.Pages.Shell
             this.UsersCommand = new Command(this.users, this.canGoUsers);
             this.ActivationKeyCommand = new Command(this.generateLicenseKey, this.canGenerateLicenseKey);
             this.LicenseActivationCommand = new Command(this.licenseActivate);
+            this.BestFitCalculatorCommand = new Command(this.bestFitCalculator, this.canGoBestFitCalculator);
         }
 
         #endregion
@@ -178,6 +181,22 @@ namespace DesignerTool.Pages.Shell
             base.ChangeViewModel(new UserActivationViewModel());
         }
         
+        #endregion
+
+        #region Best Fit Calculator
+
+        private bool canGoBestFitCalculator()
+        {
+            return true;
+        }
+
+        private void bestFitCalculator()
+        {
+            base.ChangeViewModel(new BestFitCalculatorViewModel());
+        }
+
+        
+
         #endregion
 
         #endregion

@@ -14,9 +14,28 @@ namespace DesignerTool
 
         #region Properties
 
+        #region User
+
         public static User LoggedInUser { get; set; }
 
+        #endregion
+
+        #region License and Activation
+
         public static DateTime? LicenseExpiry { get; set; }
+
+        public static bool IsValidLicense
+        {
+            get
+            {
+                if (!SessionContext.LicenseExpiry.HasValue)
+                {
+                    return false;
+                }
+
+                return SessionContext.LicenseExpiry.Value >= DateTime.Today;
+            }
+        }
 
         private static string _clientCode = null;
         public static string ClientCode
@@ -28,12 +47,20 @@ namespace DesignerTool
                     var cc = Microsoft.Win32.Registry.GetValue(REGISTRY_PATH, CLIENT_CODE_VALUE, null);
                     if (cc != null)
                     {
-                        _clientCode = cc.ToString();
+                        var clientCode = cc.ToString();
+                        if (!clientCode.StartsWith("CL"))
+                        {
+                            //TODO: Logging - Invalid client code.
+                            _clientCode = null;
+                        }
+                        _clientCode = clientCode;
                     }
                 }
                 return _clientCode;
             }
         }
+
+        #endregion
 
         #endregion
     }

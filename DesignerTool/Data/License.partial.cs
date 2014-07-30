@@ -86,7 +86,7 @@ namespace DesignerTool.Data
 
         public bool Validate()
         {
-            if (!validClientCode())
+            if (!string.IsNullOrEmpty(SessionContext.ClientCode))
             {
                 // Invalid client code
                 return false;
@@ -104,32 +104,6 @@ namespace DesignerTool.Data
         #region Private Methods
 
         /// <summary>
-        /// Validates the Registry matches the installed Client Code.
-        /// </summary>
-        /// <returns>True = valid client Code & registry, False = invalid client code or missing registry</returns>
-        private bool validClientCode()
-        {
-            // TODO: Validate Client Code - Check if we need to do this here?
-            return true;
-            //try
-            //{
-            //    var clientCode = Microsoft.Win32.Registry.GetValue(REGISTRY_PATH, CLIENT_CODE_VALUE, null);
-            //    if (clientCode == null)
-            //    {
-            //        // TODO: Logging
-            //        return false;
-            //    }
-
-            //    return this.ClientCode == clientCode.ToString();
-            //}
-            //catch (Exception)
-            //{
-            //    // TODO: Logging
-            //    return false;
-            //}
-        }
-
-        /// <summary>
         /// Validates that the user did not manipulate the date and time settings to extend licensed functionality.
         /// </summary>
         /// <returns>True = no tampering / manipulation found. False = manipulation found.</returns>
@@ -138,6 +112,8 @@ namespace DesignerTool.Data
             // Check that last login date is before the current date.
             return DateTime.Now > this.LastLoginDate && this.CurrentLicense.CreatedDate <= DateTime.Now; // TODO: CurrentLicense should be cached.
         }
+
+        #region Static Methods
 
         public static AppLicense ApplyLicenseCode(string code)
         {
@@ -178,7 +154,7 @@ namespace DesignerTool.Data
                     if (lic == null || !lic.Validate())
                     {
                         // Invalid license
-                       SessionContext.LicenseExpiry = null;
+                        SessionContext.LicenseExpiry = null;
                     }
                     else
                     {
@@ -193,6 +169,8 @@ namespace DesignerTool.Data
                 SessionContext.LicenseExpiry = null;
             }
         }
+
+        #endregion
 
         #endregion
     }

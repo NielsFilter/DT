@@ -21,6 +21,8 @@ namespace DesignerTool
         private bool _isStartUp = true;
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            //TODO: Validate Database
+
             License.Evaluate();
             MvvmBootstrap.BootStrapApplication(new ViewMapper());
             PathContext.CreateAppDirectories();

@@ -59,6 +59,7 @@
     <Compile Include="Licensing\ActivationCode.cs" />
     <Compile Include="Licensing\ActivationCodeFormatter.cs" />
     <Compile Include="Mvvm\AttachedProperties\PasswordBoxAttached.cs" />
+    <Compile Include="Mvvm\ViewModels\NotifyPropertyChangedBase.cs" />
     <Compile Include="Utils\LINQExtensions.cs" />
     <Compile Include="Global\GlobalContext.cs" />
     <Compile Include="Global\PathContext.cs" />

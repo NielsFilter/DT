@@ -1,5 +1,6 @@
 ﻿using DesignerTool.Common.Mvvm.Mapping;
 using DesignerTool.Pages.Admin;
+using DesignerTool.Pages.Core;
 using DesignerTool.Pages.Shell;
 using DesignerTool.Pages.Tools;
 using DesignerTool.ViewModels;
@@ -57,24 +58,8 @@ namespace DesignerTool
 
         private void mapCore(ref IDictionary<Type, Type> views)
         {
-            //// User
-            //views.Add(typeof(UserListViewModel), typeof(UserListView));
-            //views.Add(typeof(UserDetailViewModel), typeof(UserDetailView));
-
-            //// Person
-            //views.Add(typeof(PersonListViewModel), typeof(PersonListView));
-            //views.Add(typeof(PersonDetailViewModel), typeof(PersonDetailView));
-            //views.Add(typeof(PersonSearchViewModel), typeof(PersonSearchView));
-
-            //// User Groups
-            //views.Add(typeof(UserGroupListViewModel), typeof(UserGroupListView));
-            //views.Add(typeof(UserGroupDetailViewModel), typeof(UserGroupDetailView));
-            //views.Add(typeof(UserGroupSearchViewModel), typeof(UserGroupSearchView));
-
-            //// User Group Permission
-            ////views.Add(typeof(UserGroupPermissionListViewModel), typeof(UserGroupPermissionListView));
-            //views.Add(typeof(UserGroupPermissionDetailViewModel), typeof(UserGroupPermissionDetailView));
-            //views.Add(typeof(UserGroupPermissionSearchViewModel), typeof(UserGroupPermissionSearchView));
+            // Best Fit Calculator
+            views.Add(typeof(BestFitCalculatorViewModel), typeof(BestFitCalculator));
         }
 
         #endregion

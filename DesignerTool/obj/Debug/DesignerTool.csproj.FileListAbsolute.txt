@@ -188,3 +188,5 @@ C:\Personal\Dev\DesignerTool\DesignerTool\obj\Debug\ResourceDictionaries\General
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\ResourceDictionaries\GeneralResources.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\UserActivation.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\UserActivation.g.cs
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Core\BestFitCalculator.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Core\BestFitCalculator.g.cs

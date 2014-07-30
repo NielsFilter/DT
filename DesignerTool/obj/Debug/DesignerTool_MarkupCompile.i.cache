@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\App.xaml
-141317100813
+151093421259
 
-35456554797
+382129198324
 23-1650148079
-Pages\Admin\UserDetail.xaml;Pages\Admin\UserList.xaml;Pages\Shell\LoginView.xaml;Pages\Shell\UserActivation.xaml;Pages\Tools\ActivationKeyGenerator.xaml;ResourceDictionaries\ButtonResources.xaml;ResourceDictionaries\ConverterResources.xaml;ResourceDictionaries\GeneralResources.xaml;ResourceDictionaries\PanoramaResources.xaml;ResourceDictionaries\TextBlockResources.xaml;ResourceDictionaries\VectorResources.xaml;Pages\Shell\HomeView.xaml;Pages\Shell\ShellPopupView.xaml;Pages\Shell\ShellView.xaml;
+Pages\Admin\UserDetail.xaml;Pages\Admin\UserList.xaml;Pages\Core\BestFitCalculator.xaml;Pages\Shell\LoginView.xaml;Pages\Shell\UserActivation.xaml;Pages\Tools\ActivationKeyGenerator.xaml;ResourceDictionaries\ButtonResources.xaml;ResourceDictionaries\ConverterResources.xaml;ResourceDictionaries\GeneralResources.xaml;ResourceDictionaries\PanoramaResources.xaml;ResourceDictionaries\TextBlockResources.xaml;ResourceDictionaries\VectorResources.xaml;Pages\Shell\HomeView.xaml;Pages\Shell\ShellPopupView.xaml;Pages\Shell\ShellView.xaml;
 
 False
 

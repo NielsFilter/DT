@@ -92,6 +92,11 @@
       <DependentUpon>UserList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\UserListViewModel.cs" />
+    <Compile Include="Pages\Core\BestFitCalculator.xaml.cs">
+      <DependentUpon>BestFitCalculator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Core\BestFitCalculatorViewModel.cs" />
+    <Compile Include="Classes\Board.cs" />
     <Compile Include="Pages\Shell\LoginViewModel.cs" />
     <Compile Include="Pages\Shell\UserActivation.xaml.cs">
       <DependentUpon>UserActivation.xaml</DependentUpon>
@@ -130,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Admin\UserList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Core\BestFitCalculator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -225,9 +234,7 @@
       <Name>DesignerTool.Controls</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\Core\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
