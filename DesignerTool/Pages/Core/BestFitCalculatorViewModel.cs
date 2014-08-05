@@ -1,6 +1,7 @@
 ﻿using DesignerTool.Classes;
 using DesignerTool.Common.Mvvm.Commands;
 using DesignerTool.Common.Mvvm.ViewModels;
+using Mapper;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -73,7 +74,6 @@ namespace DesignerTool.Pages.Core
 
         private void caclulate()
         {
-            
         }
 
         #endregion

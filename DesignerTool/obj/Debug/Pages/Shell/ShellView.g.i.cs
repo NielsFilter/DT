@@ -12,9 +12,7 @@
 using DesignerTool.Common.Mvvm.Services;
 using DesignerTool.Common.Mvvm.Triggers;
 using DesignerTool.Controls;
-using DesignerTool.Controls.Panorama;
 using DesignerTool.Pages.Shell;
-using DesignerTool.ViewModels;
 using MahApps.Metro.Controls;
 using System;
 using System.Diagnostics;

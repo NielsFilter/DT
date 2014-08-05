@@ -2,6 +2,7 @@
 using DesignerTool.Common.Mvvm.Services;
 using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Data;
+using DesignerTool.Pages.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -100,7 +101,7 @@ namespace DesignerTool.Pages.Shell
 
                     if (validLogin)
                     {
-                        base.ChangeViewModel(new HomeViewModel());
+                        base.ChangeViewModel(new BestFitCalculatorViewModel());
                     }
                     else
                     {

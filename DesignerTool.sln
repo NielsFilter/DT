@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_References", "_References"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignerTool.Controls", "DesignerTool.Controls\DesignerTool.Controls.csproj", "{7794A439-E865-4C76-B907-6F7D64025C38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignerTool.Packing", "DesignerTool.Packing\DesignerTool.Packing.csproj", "{8BD2146A-8C48-42E3-8163-E5B2C96E0B33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{7794A439-E865-4C76-B907-6F7D64025C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7794A439-E865-4C76-B907-6F7D64025C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7794A439-E865-4C76-B907-6F7D64025C38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BD2146A-8C48-42E3-8163-E5B2C96E0B33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BD2146A-8C48-42E3-8163-E5B2C96E0B33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BD2146A-8C48-42E3-8163-E5B2C96E0B33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BD2146A-8C48-42E3-8163-E5B2C96E0B33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -190,3 +190,5 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\UserActi
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\UserActivation.g.cs
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Core\BestFitCalculator.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Core\BestFitCalculator.g.cs
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\DesignerTool.Packing.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\DesignerTool.Packing.pdb

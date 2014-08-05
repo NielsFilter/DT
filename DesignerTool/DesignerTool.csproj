@@ -74,6 +74,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\ImageInfo.cs" />
+    <Compile Include="Classes\Sprite.cs" />
     <Compile Include="Data\DesignerDbEntities.partial.cs" />
     <Compile Include="Data\DesignToolModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -232,6 +234,10 @@
     <ProjectReference Include="..\DesignerTool.Controls\DesignerTool.Controls.csproj">
       <Project>{7794a439-e865-4c76-b907-6f7d64025c38}</Project>
       <Name>DesignerTool.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DesignerTool.Packing\DesignerTool.Packing.csproj">
+      <Project>{8bd2146a-8c48-42e3-8163-e5b2c96e0b33}</Project>
+      <Name>DesignerTool.Packing</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
