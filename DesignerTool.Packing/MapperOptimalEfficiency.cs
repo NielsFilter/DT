@@ -7,8 +7,14 @@ using System.Drawing;
 
 namespace Mapper
 {
-    public class MapperOptimalEfficiency<S> : MapperOptimalEfficiency_Base<S> where S : class, ISprite, new()
+    public class MapperOptimalEfficiency<S> where S : class, ISheet, new()
     {
+        private ICanvas _canvas = null;
+        protected ICanvas Canvas { get { return _canvas; } }
+
+        protected float CutoffEfficiency { get; private set; }
+        protected int MaxNbrCandidateSprites { get; private set; }
+
         /// <summary>
         /// See MapperIterative_Base
         /// </summary>
@@ -16,7 +22,7 @@ namespace Mapper
         /// Canvas to be used by the Mapping method.
         /// </param>
         public MapperOptimalEfficiency(ICanvas canvas)
-            : base(canvas)
+            : this(canvas, 1.0f, Int32.MaxValue)
         {
         }
 
@@ -35,8 +41,10 @@ namespace Mapper
         /// candidate sprites.
         /// </param>
         public MapperOptimalEfficiency(ICanvas canvas, float cutoffEfficiency, int maxNbrCandidateSprites)
-            : base(canvas, cutoffEfficiency, maxNbrCandidateSprites)
         {
+            _canvas = canvas;
+            CutoffEfficiency = cutoffEfficiency;
+            MaxNbrCandidateSprites = maxNbrCandidateSprites;
         }
 
         /// <summary>
@@ -44,46 +52,108 @@ namespace Mapper
         /// </summary>
         /// <param name="images"></param>
         /// <returns></returns>
-        public override IEnumerable<S> Mapping(IEnumerable<IImageInfo> images, IMapperStats mapperStats)
+        public IEnumerable<S> Mapping(IEnumerable<IBoard> images)
         {
-            int candidateSpriteFails = 0;
-            int candidateSpritesGenerated = 0;
-            int canvasRectangleAddAttempts = 0;
-            int canvasNbrCellsGenerated = 0;
-
             // Sort the images by height descending
-            IOrderedEnumerable<IImageInfo> imageInfosHighestFirst = images.OrderByDescending(p => p.Height);
+            IOrderedEnumerable<IBoard> imageInfosHighestFirst = images.OrderByDescending(p => p.Height);
 
             int totalAreaAllImages = imageInfosHighestFirst.Sum(a => a.Width * a.Height);
             int widthWidestImage = imageInfosHighestFirst.Max(a => a.Width);
             int heightHighestImage = imageInfosHighestFirst.First().Height;
 
-            int canvasMaxWidth = 600;//Canvas.UnlimitedSize;
-            int canvasMaxHeight = 300;//TODO: Get from canvas height heightHighestImage;
-
-            return MappingRestrictedBox(imageInfosHighestFirst, canvasMaxWidth, canvasMaxHeight);
+            return MappingRestrictedBox(imageInfosHighestFirst);
         }
 
         /// <summary>
-        /// Works out whether there is any point in trying to fit the images on a canvas
-        /// with the given width and height.
+        /// Produces a mapping to a sprite that has given maximum dimensions.
+        /// If the mapping can not be done inside those dimensions, returns null.
         /// </summary>
-        /// <param name="canvasMaxWidth">Candidate canvas width</param>
-        /// <param name="canvasMaxHeight">Candidate canvas height</param>
-        /// <param name="bestSpriteArea">Area of the smallest sprite produces so far</param>
-        /// <param name="totalAreaAllImages">Total area of all images</param>
-        /// <param name="candidateBiggerThanBestSprite">true if the candidate canvas is bigger than the best sprite so far</param>
-        /// <param name="candidateSmallerThanCombinedImages">true if the candidate canvas is smaller than the combined images</param>
-        /// <returns></returns>
-        protected virtual bool CandidateCanvasFeasable(
-            int canvasMaxWidth, int canvasMaxHeight, int bestSpriteArea, int totalAreaAllImages,
-            out bool candidateBiggerThanBestSprite, out bool candidateSmallerThanCombinedImages)
+        /// <param name="images">
+        /// List of image infos. 
+        /// 
+        /// This method will not sort this list. 
+        /// All images in this collection will be used, regardless of size.
+        /// </param>
+        /// <param name="maxWidth">
+        /// The sprite won't be wider than this.
+        /// </param>
+        /// <param name="maxHeight">
+        /// The generated sprite won't be higher than this.
+        /// </param>
+        /// <param name="canvasStats">
+        /// The statistics produced by the canvas. These numbers are since the last call to its SetCanvasDimensions method.
+        /// </param>
+        /// <param name="lowestFreeHeightDeficitTallestRightFlushedImage">
+        /// The lowest free height deficit for the images up to and including the tallest rectangle whose right hand border sits furthest to the right
+        /// of all images.
+        /// 
+        /// This is the minimum amount by which the height of the canvas needs to be increased to accommodate that rectangle.
+        /// if the width of the canvas is decreased to one less than the width now taken by images.
+        /// 
+        /// Note that providing the additional height might get some other (not right flushed) image to be placed higher, thereby
+        /// making room for the flushed right image.
+        /// 
+        /// This will be set to Int32.MaxValue if there was never any free height deficit.
+        /// </param>
+        /// <returns>
+        /// The generated sprite.
+        /// 
+        /// null if not all the images could be placed within the size limitations.
+        /// </returns>
+        protected virtual IEnumerable<S> MappingRestrictedBox(IEnumerable<IBoard> images)
         {
-            int candidateArea = canvasMaxWidth * canvasMaxHeight;
-            candidateBiggerThanBestSprite = (candidateArea > bestSpriteArea);
-            candidateSmallerThanCombinedImages = (candidateArea < totalAreaAllImages);
+            List<S> lstSprites = new List<S>();
+            List<IBoard> unfittedImages;
 
-            return !(candidateBiggerThanBestSprite || candidateSmallerThanCombinedImages);
+            int maxWidth = Canvas.Width;
+            int maxHeight = Canvas.Height;
+
+            do
+            {
+                _canvas.ClearCanvas();
+                _canvas.SetCanvasDimensions(maxWidth, maxHeight);
+                int heightHighestRightFlushedImage = 0;
+                int furthestRightEdge = 0;
+
+                S spriteInfo = new S();
+                unfittedImages = new List<IBoard>();
+
+                foreach (IBoard image in images)
+                {
+                    int xOffset;
+                    int yOffset;
+                    int lowestFreeHeightDeficit;
+
+                    if (!_canvas.AddRectangle(image.Width, image.Height, out xOffset, out yOffset, out lowestFreeHeightDeficit))
+                    {
+                        // Not enough room on the canvas to place the rectangle
+                        unfittedImages.Add(image);
+                        continue;
+                        //spriteInfo = null;
+                        //break;
+                    }
+
+                    MappedBoard imageLocation = new MappedBoard(xOffset, yOffset, image);
+                    spriteInfo.AddMappedImage(imageLocation);
+
+                    // Update the lowestFreeHeightDeficitTallestRightFlushedImage
+                    int rightEdge = image.Width + xOffset;
+                    if ((rightEdge > furthestRightEdge) ||
+                        ((rightEdge == furthestRightEdge) && (image.Height > heightHighestRightFlushedImage)))
+                    {
+                        // The image is flushed the furthest right of all images, or it is flushed equally far to the right
+                        // as the furthest flushed image but it is taller. 
+                        heightHighestRightFlushedImage = image.Height;
+                        furthestRightEdge = rightEdge;
+                    }
+                }
+
+                lstSprites.Add(spriteInfo);
+                images = unfittedImages.ToList();
+            }
+            while (unfittedImages.Count() > 0);
+
+            return lstSprites;
         }
     }
 }

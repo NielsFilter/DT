@@ -5,17 +5,17 @@ using System.Text;
 
 namespace Mapper
 {
-    public class MappedImageInfo : IMappedImageInfo
+    public class MappedBoard : IMappedBoard
     {
         public int X { get; private set; }
         public int Y { get; private set; }
-        public IImageInfo ImageInfo { get; private set; }
+        public IBoard Board { get; private set; }
 
-        public MappedImageInfo(int x, int y, IImageInfo imageInfo)
+        public MappedBoard(int x, int y, IBoard imageInfo)
         {
             X = x;
             Y = y;
-            ImageInfo = imageInfo;
+            Board = imageInfo;
         }
     }
 }

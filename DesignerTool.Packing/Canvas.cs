@@ -22,31 +22,21 @@ namespace Mapper
             public override string ToString() { return occupied ? "x" : "."; }
         }
 
-        private DynamicTwoDimensionalArray<CanvasCell> _canvasCells =
-            new DynamicTwoDimensionalArray<CanvasCell>();
+        private DynamicTwoDimensionalArray<CanvasCell> _canvasCells;
 
         // Make _canvasCells available to canvas classes derived from this class.
         protected DynamicTwoDimensionalArray<CanvasCell> CanvasCells { get { return _canvasCells; } }
 
-        private int _nbrRectangleAddAttempts = 0;
-        public int NbrRectangleAddAttempts { get { return _nbrRectangleAddAttempts; } }
-
-        private int _canvasWidth = 0;
-        private int _canvasHeight = 0;
+        public int Width { get; private set; }
+        public int Height { get; private set; }
 
         // Lowest free height deficit found since the last call to SetCanvasDimension
-        private int _lowestFreeHeightDeficitSinceLastRedim = Int32.MaxValue;
-
-        private int _nbrCellsGenerated = 0;
+        private int _lowestFreeHeightDeficitSinceLastRedim;
 
         public Canvas()
         {
+            this.ClearCanvas();
         }
-
-        /// <summary>
-        /// See ICanvas
-        /// </summary>
-        public int UnlimitedSize { get { return short.MaxValue; } }
 
         /// <summary>
         /// See ICanvas
@@ -61,12 +51,10 @@ namespace Mapper
             // Initially, there is one free cell, which covers the entire canvas.
             _canvasCells.Initialize(initialCapacityX, initialCapacityY, canvasWidth, canvasHeight, new CanvasCell(false));
 
-            _nbrCellsGenerated = 0;
-            _nbrRectangleAddAttempts = 0;
             _lowestFreeHeightDeficitSinceLastRedim = Int32.MaxValue;
 
-            _canvasWidth = canvasWidth;
-            _canvasHeight = canvasHeight;
+            Width = canvasWidth;
+            Height = canvasHeight;
         }
 
         /// <summary>
@@ -82,8 +70,6 @@ namespace Mapper
 
             int requiredWidth = rectangleWidth;
             int requiredHeight = rectangleHeight;
-
-            _nbrRectangleAddAttempts++;
 
             int x = 0;
             int y = 0;
@@ -114,7 +100,7 @@ namespace Mapper
                 // If we found an unoccupied cell, than see if we can place a rectangle there.
                 // If not, than y popped out of the top of the canvas.
 
-                if ((y < nbrRows) && (FreeHeightDeficit(_canvasHeight, offsetY, requiredHeight) <= 0))
+                if ((y < nbrRows) && (FreeHeightDeficit(Height, offsetY, requiredHeight) <= 0))
                 {
                     if (IsAvailable(
                         x, y, requiredWidth, requiredHeight,
@@ -142,7 +128,7 @@ namespace Mapper
                 // rectangle, go to the next column. This automatically also checks whether we've popped out of the top
                 // of the canvas (in that case, _canvasHeight == offsetY).
 
-                int freeHeightDeficit = FreeHeightDeficit(_canvasHeight, offsetY, requiredHeight);
+                int freeHeightDeficit = FreeHeightDeficit(Height, offsetY, requiredHeight);
                 if (freeHeightDeficit > 0)
                 {
                     offsetY = 0;
@@ -163,7 +149,7 @@ namespace Mapper
 
                 // If we've come so close to the right edge of the canvas that there is no space for
                 // the rectangle, return false now.
-                if ((_canvasWidth - offsetX) < requiredWidth)
+                if ((Width - offsetX) < requiredWidth)
                 {
                     rectangleWasPlaced = false;
                     break;
@@ -193,7 +179,6 @@ namespace Mapper
 
             return freeHeightDeficit;
         }
-
 
         /// <summary>
         /// Sets the cell at x,y to occupied, and also its top and right neighbours, as needed
@@ -228,16 +213,12 @@ namespace Mapper
 
             if (leftOverWidth > 0)
             {
-                _nbrCellsGenerated += _canvasCells.NbrRows;
-
                 int xFarRightColumn = x + nbrRequiredCellsHorizontally - 1;
                 _canvasCells.InsertColumn(xFarRightColumn, leftOverWidth);
             }
 
             if (leftOverHeight > 0)
             {
-                _nbrCellsGenerated += _canvasCells.NbrColumns;
-
                 int yFarBottomColumn = y + nbrRequiredCellsVertically - 1;
                 _canvasCells.InsertRow(yFarBottomColumn, leftOverHeight);
             }
@@ -327,15 +308,16 @@ namespace Mapper
             return true;
         }
 
-        /// <summary>
-        /// See ICanvas
-        /// </summary>
-        /// <param name="canvasStats"></param>
-        public void GetStatistics(ICanvasStats canvasStats)
+
+        public void ClearCanvas()
         {
-            canvasStats.NbrCellsGenerated = _nbrCellsGenerated;
-            canvasStats.RectangleAddAttempts = _nbrRectangleAddAttempts;
-            canvasStats.LowestFreeHeightDeficit = _lowestFreeHeightDeficitSinceLastRedim;
+            Width = 0;
+            Height = 0;
+
+            _lowestFreeHeightDeficitSinceLastRedim = Int32.MaxValue;
+
+            _canvasCells = new DynamicTwoDimensionalArray<CanvasCell>();
+            
         }
     }
 }

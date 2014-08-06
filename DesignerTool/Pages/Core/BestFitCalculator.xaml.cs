@@ -1,5 +1,4 @@
-﻿using DesignerTool.Classes;
-using DesignerTool.Common.Mvvm.Views;
+﻿using DesignerTool.Common.Mvvm.Views;
 using Mapper;
 using System;
 using System.Collections.Generic;
@@ -32,39 +31,41 @@ namespace DesignerTool.Pages.Core
 
         private void Test_Click(object sender, RoutedEventArgs e)
         {
-            int canvasHeight = 300;
-            int canvasWidth = 600;
+            stackBoards.Children.Clear();
 
-            var rectangles = new List<IImageInfo>()
+            int canvasHeight = 600;
+            int canvasWidth = 300;
+
+            var rectangles = new List<IBoard>()
             {
-                new ImageInfo(100, 200),
-                new ImageInfo(200, 200),
-                new ImageInfo(300, 200),
-                new ImageInfo(100, 300),
-                new ImageInfo(10, 30),
-                new ImageInfo(30, 45),
-                new ImageInfo(10, 10),
-                new ImageInfo(10, 30),
-                new ImageInfo(70, 100),
-                new ImageInfo(80, 40),
-                new ImageInfo(100, 100),
-                new ImageInfo(100, 200),
-                new ImageInfo(200, 200),
-                new ImageInfo(300, 200),
-                new ImageInfo(100, 300),
-                new ImageInfo(10, 30),
-                new ImageInfo(30, 45),
-                new ImageInfo(10, 10),
-                new ImageInfo(10, 30),
-                new ImageInfo(70, 100),
-                new ImageInfo(80, 40),
-                new ImageInfo(100, 100)
+                new Board(100, 200, true),
+                new Board(200, 200, true),
+                new Board(300, 200, true),
+                new Board(100, 300, true),
+                new Board(10, 30, true),
+                new Board(30, 45, true),
+                new Board(10, 10, true),
+                new Board(10, 30, true),
+                new Board(70, 100, true),
+                new Board(80, 40, true),
+                new Board(100, 100, true),
+                new Board(100, 200, true),
+                new Board(200, 200, true),
+                new Board(300, 200, true),
+                new Board(100, 300, true),
+                new Board(10, 30, true),
+                new Board(30, 45, true),
+                new Board(10, 10, true),
+                new Board(10, 30, true),
+                new Board(70, 100, true),
+                new Board(80, 40, true),
+                new Board(100, 100, true)
             };
 
             Mapper.Canvas _canvas = new Mapper.Canvas();
             _canvas.SetCanvasDimensions(canvasWidth, canvasHeight);
             
-            MapperOptimalEfficiency<Sprite> mapper = new MapperOptimalEfficiency<Sprite>(_canvas);
+            MapperOptimalEfficiency<Sheet> mapper = new MapperOptimalEfficiency<Sheet>(_canvas);
 
             var sprites = mapper.Mapping(rectangles);
 
@@ -109,8 +110,8 @@ namespace DesignerTool.Pages.Core
                     int index = sprite.MappedImages.IndexOf(item);
 
                     Rectangle r = new Rectangle();
-                    r.Height = item.ImageInfo.Height;
-                    r.Width = item.ImageInfo.Width;
+                    r.Height = item.Board.Height;
+                    r.Width = item.Board.Width;
                     r.ToolTip = index + 1;
                     r.Fill = new SolidColorBrush(colours[index]);
 

@@ -6,12 +6,12 @@ using System.Text;
 namespace Mapper
 {
     /// <summary>
-    /// Defines an image that has been mapped to a specific location, for example within a sprite.
+    /// Defines an board that has been mapped to a specific location, for example onto a sheet.
     /// </summary>
-    public interface IMappedImageInfo
+    public interface IMappedBoard
     {
         int X { get; }
         int Y { get; }
-        IImageInfo ImageInfo { get; }
+        IBoard Board { get; }
     }
 }

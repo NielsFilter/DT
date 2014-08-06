@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DesignerTool.Classes
+namespace DesignerTool
 {
-    public class Board : NotifyPropertyChangedBase
+    //TODO: Where must this go
+    public class Boardx : NotifyPropertyChangedBase
     {
         #region Constructors
 
-        public Board()
+        public Boardx()
         {
             // Defaults
             this.Height = 0D;

@@ -12,18 +12,17 @@ namespace Mapper
     /// 
     /// This object does not create the sprite image itself. It only figures out how it needs to be constructed.
     /// </summary>
-    public interface IMapper<S> where S : class, ISprite, new()
+    public interface IMapper<S> where S : class, ISheet, new()
     {
         /// <summary>
         /// Works out how to map a series of images into a sprite.
         /// </summary>
-        /// <param name="images">
-        /// The list of images to place into the sprite.
+        /// <param name="boards">
+        /// The list of board to place onto sheets
         /// </param>
         /// <returns>
-        /// A SpriteInfo object. This describes the locations of the images within the sprite,
-        /// and the dimensions of the sprite.
+        /// A List of sheets with the boards mapped onto these sheets.
         /// </returns>
-        IEnumerable<S> Mapping(IEnumerable<IImageInfo> images);
+        IEnumerable<S> Mapping(IEnumerable<IBoard> boards);
     }
 }

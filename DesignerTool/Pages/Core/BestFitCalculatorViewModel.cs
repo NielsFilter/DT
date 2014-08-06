@@ -1,5 +1,4 @@
-﻿using DesignerTool.Classes;
-using DesignerTool.Common.Mvvm.Commands;
+﻿using DesignerTool.Common.Mvvm.Commands;
 using DesignerTool.Common.Mvvm.ViewModels;
 using Mapper;
 using System;

@@ -74,8 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\ImageInfo.cs" />
-    <Compile Include="Classes\Sprite.cs" />
+    <Compile Include="Board.cs" />
     <Compile Include="Data\DesignerDbEntities.partial.cs" />
     <Compile Include="Data\DesignToolModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -98,7 +97,6 @@
       <DependentUpon>BestFitCalculator.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Core\BestFitCalculatorViewModel.cs" />
-    <Compile Include="Classes\Board.cs" />
     <Compile Include="Pages\Shell\LoginViewModel.cs" />
     <Compile Include="Pages\Shell\UserActivation.xaml.cs">
       <DependentUpon>UserActivation.xaml</DependentUpon>

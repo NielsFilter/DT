@@ -12,10 +12,8 @@ namespace Mapper
     /// </summary>
     public interface ICanvas
     {
-        /// <summary>
-        /// Value denoting an unlimited width or height. You would pass this in to SetCanvasDimensions.
-        /// </summary>
-        int UnlimitedSize { get; }
+        int Width { get; }
+        int Height { get; }
 
         /// <summary>
         /// Sets the dimensions of the canvas.
@@ -48,18 +46,8 @@ namespace Mapper
             out int lowestFreeHeightDeficit);
 
         /// <summary>
-        /// The canvas keeps statistics, on for example the number of times a FreeAreas is generated.
-        /// Use this method to fill an object that implements ICanvasStats with these statistics.
-        /// 
-        /// Note that calling SetCanvasDimensions resets all counters.
+        /// Clears the canvas, removing all currently places items.
         /// </summary>
-        /// <param name="canvasStats">
-        /// Reference to object to be filled.
-        /// 
-        /// If this is null, nothing happens (so there is no exception).
-        /// </param>
-        void GetStatistics(ICanvasStats canvasStats);
-
-
+        void ClearCanvas();
     }
 }
