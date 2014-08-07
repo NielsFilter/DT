@@ -29,14 +29,37 @@ namespace Mapper
 
         public int Width { get; private set; }
         public int Height { get; private set; }
+        public bool HasGrain { get; private set; }
 
         // Lowest free height deficit found since the last call to SetCanvasDimension
         private int _lowestFreeHeightDeficitSinceLastRedim;
+
+        #region Constructors
 
         public Canvas()
         {
             this.ClearCanvas();
         }
+
+        public Canvas(bool hasGrain)
+            : this()
+        {
+            this.HasGrain = hasGrain;
+        }
+
+        public Canvas(int height, int width, bool hasGrain)
+            : this(hasGrain)
+        {
+            this.SetCanvasDimensions(height, width);
+        }
+
+        public Canvas(int height, int width)
+            : this(height, width, false)
+        {
+
+        }
+
+        #endregion
 
         /// <summary>
         /// See ICanvas
@@ -144,7 +167,7 @@ namespace Mapper
                     //
                     // However, checking for sufficient horizontal width takes a lot of CPU ticks. Tests have shown that this
                     // far outstrips the gains through having fewer failed sprite generations.
-                    if (_lowestFreeHeightDeficitSinceLastRedim > freeHeightDeficit) { _lowestFreeHeightDeficitSinceLastRedim = freeHeightDeficit;  }
+                    if (_lowestFreeHeightDeficitSinceLastRedim > freeHeightDeficit) { _lowestFreeHeightDeficitSinceLastRedim = freeHeightDeficit; }
                 }
 
                 // If we've come so close to the right edge of the canvas that there is no space for
@@ -203,7 +226,7 @@ namespace Mapper
         /// The amount of vertical space left in the bottom most cells that could be used for the rectangle
         /// </param>
         private void PlaceRectangle(
-            int x, int y, 
+            int x, int y,
             int requiredWidth, int requiredHeight,
             int nbrRequiredCellsHorizontally, int nbrRequiredCellsVertically,
             int leftOverWidth,
@@ -258,7 +281,7 @@ namespace Mapper
         /// </param>
         /// <returns></returns>
         private bool IsAvailable(
-            int x, int y, int requiredWidth, int requiredHeight, 
+            int x, int y, int requiredWidth, int requiredHeight,
             out int nbrRequiredCellsHorizontally,
             out int nbrRequiredCellsVertically,
             out int leftOverWidth,
@@ -317,7 +340,7 @@ namespace Mapper
             _lowestFreeHeightDeficitSinceLastRedim = Int32.MaxValue;
 
             _canvasCells = new DynamicTwoDimensionalArray<CanvasCell>();
-            
+
         }
     }
 }

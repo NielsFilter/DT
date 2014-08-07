@@ -54,14 +54,49 @@ namespace Mapper
         /// <returns></returns>
         public IEnumerable<S> Mapping(IEnumerable<IBoard> images)
         {
-            // Sort the images by height descending
-            IOrderedEnumerable<IBoard> imageInfosHighestFirst = images.OrderByDescending(p => p.Height);
+            List<S> lstSpritesHeight = new List<S>();
+            List<S> lstSpritesWidth = new List<S>();
 
-            int totalAreaAllImages = imageInfosHighestFirst.Sum(a => a.Width * a.Height);
-            int widthWidestImage = imageInfosHighestFirst.Max(a => a.Width);
-            int heightHighestImage = imageInfosHighestFirst.First().Height;
+            images.OrderByDescending(b => b.Height);
 
-            return MappingRestrictedBox(imageInfosHighestFirst);
+            List<IBoard> unfittedImages;
+
+            //TODO:CONTINUE_HERE Move bottom into a method. Run by height, then by width.
+            bool isByHeight = true;
+
+            int maxWidth = Canvas.Width;
+            int maxHeight = Canvas.Height;
+            bool hasGrain = Canvas.HasGrain;
+
+            do
+            {
+                _canvas.ClearCanvas();
+                _canvas.SetCanvasDimensions(maxWidth, maxHeight);
+
+                int heightHighestRightFlushedImage = 0;
+                int furthestRightEdge = 0;
+
+                S spriteInfo = new S();
+                unfittedImages = new List<IBoard>();
+
+                foreach (IBoard image in images)
+                {
+                    tryFit(spriteInfo, image, ref unfittedImages, ref furthestRightEdge, ref heightHighestRightFlushedImage);
+                }
+
+                if (isByHeight)
+                {
+                    lstSpritesHeight.Add(spriteInfo);
+                }
+                else
+                {
+                    lstSpritesWidth.Add(spriteInfo);
+                }
+                images = unfittedImages.ToList();
+            }
+            while (unfittedImages.Count() > 0);
+
+            return lstSprites;
         }
 
         /// <summary>
@@ -102,58 +137,35 @@ namespace Mapper
         /// </returns>
         protected virtual IEnumerable<S> MappingRestrictedBox(IEnumerable<IBoard> images)
         {
-            List<S> lstSprites = new List<S>();
-            List<IBoard> unfittedImages;
+            
+        }
 
-            int maxWidth = Canvas.Width;
-            int maxHeight = Canvas.Height;
+        private void tryFit(S spriteInfo, IBoard image, ref List<IBoard> unfittedImages, ref int furthestRightEdge, ref int heightHighestRightFlushedImage)
+        {
+            int xOffset;
+            int yOffset;
+            int lowestFreeHeightDeficit;
 
-            do
+            if (!_canvas.AddRectangle(image.Width, image.Height, out xOffset, out yOffset, out lowestFreeHeightDeficit))
             {
-                _canvas.ClearCanvas();
-                _canvas.SetCanvasDimensions(maxWidth, maxHeight);
-                int heightHighestRightFlushedImage = 0;
-                int furthestRightEdge = 0;
-
-                S spriteInfo = new S();
-                unfittedImages = new List<IBoard>();
-
-                foreach (IBoard image in images)
-                {
-                    int xOffset;
-                    int yOffset;
-                    int lowestFreeHeightDeficit;
-
-                    if (!_canvas.AddRectangle(image.Width, image.Height, out xOffset, out yOffset, out lowestFreeHeightDeficit))
-                    {
-                        // Not enough room on the canvas to place the rectangle
-                        unfittedImages.Add(image);
-                        continue;
-                        //spriteInfo = null;
-                        //break;
-                    }
-
-                    MappedBoard imageLocation = new MappedBoard(xOffset, yOffset, image);
-                    spriteInfo.AddMappedImage(imageLocation);
-
-                    // Update the lowestFreeHeightDeficitTallestRightFlushedImage
-                    int rightEdge = image.Width + xOffset;
-                    if ((rightEdge > furthestRightEdge) ||
-                        ((rightEdge == furthestRightEdge) && (image.Height > heightHighestRightFlushedImage)))
-                    {
-                        // The image is flushed the furthest right of all images, or it is flushed equally far to the right
-                        // as the furthest flushed image but it is taller. 
-                        heightHighestRightFlushedImage = image.Height;
-                        furthestRightEdge = rightEdge;
-                    }
-                }
-
-                lstSprites.Add(spriteInfo);
-                images = unfittedImages.ToList();
+                // Not enough room on the canvas to place the rectangle
+                unfittedImages.Add(image);
+                return;
             }
-            while (unfittedImages.Count() > 0);
 
-            return lstSprites;
+            MappedBoard imageLocation = new MappedBoard(xOffset, yOffset, image);
+            spriteInfo.AddMappedImage(imageLocation);
+
+            // Update the lowestFreeHeightDeficitTallestRightFlushedImage
+            int rightEdge = image.Width + xOffset;
+            if ((rightEdge > furthestRightEdge) ||
+                ((rightEdge == furthestRightEdge) && (image.Height > heightHighestRightFlushedImage)))
+            {
+                // The image is flushed the furthest right of all images, or it is flushed equally far to the right
+                // as the furthest flushed image but it is taller. 
+                heightHighestRightFlushedImage = image.Height;
+                furthestRightEdge = rightEdge;
+            }
         }
     }
 }

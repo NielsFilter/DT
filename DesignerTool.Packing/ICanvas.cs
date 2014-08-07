@@ -14,6 +14,7 @@ namespace Mapper
     {
         int Width { get; }
         int Height { get; }
+        bool HasGrain { get; }
 
         /// <summary>
         /// Sets the dimensions of the canvas.

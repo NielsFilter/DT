@@ -12,6 +12,8 @@ namespace Mapper
     {
         int Width { get; }
         int Height { get; }
+
+        void FlipBoard();
     }
 }
 

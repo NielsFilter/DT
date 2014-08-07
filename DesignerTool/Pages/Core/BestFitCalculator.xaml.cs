@@ -33,33 +33,33 @@ namespace DesignerTool.Pages.Core
         {
             stackBoards.Children.Clear();
 
-            int canvasHeight = 600;
-            int canvasWidth = 300;
+            int canvasHeight = 300;
+            int canvasWidth = 600;
 
             var rectangles = new List<IBoard>()
             {
-                new Board(100, 200, true),
-                new Board(200, 200, true),
-                new Board(300, 200, true),
-                new Board(100, 300, true),
-                new Board(10, 30, true),
-                new Board(30, 45, true),
-                new Board(10, 10, true),
-                new Board(10, 30, true),
-                new Board(70, 100, true),
-                new Board(80, 40, true),
-                new Board(100, 100, true),
-                new Board(100, 200, true),
-                new Board(200, 200, true),
-                new Board(300, 200, true),
-                new Board(100, 300, true),
-                new Board(10, 30, true),
-                new Board(30, 45, true),
-                new Board(10, 10, true),
-                new Board(10, 30, true),
-                new Board(70, 100, true),
-                new Board(80, 40, true),
-                new Board(100, 100, true)
+                new Board(100, 200),
+                new Board(200, 200),
+                new Board(300, 200),
+                new Board(100, 300),
+                new Board(10, 30),
+                new Board(30, 45),
+                new Board(10, 10),
+                new Board(10, 30),
+                new Board(70, 100),
+                new Board(80, 40),
+                new Board(100, 100),
+                new Board(100, 200),
+                new Board(200, 200),
+                new Board(300, 200),
+                new Board(100, 300),
+                new Board(10, 30),
+                new Board(30, 45),
+                new Board(10, 10),
+                new Board(10, 30),
+                new Board(70, 100),
+                new Board(80, 40),
+                new Board(100, 100)
             };
 
             Mapper.Canvas _canvas = new Mapper.Canvas();

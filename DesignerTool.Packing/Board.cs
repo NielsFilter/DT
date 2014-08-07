@@ -10,18 +10,20 @@ namespace Mapper
     {
         public int Width { get; private set; }
         public int Height { get; private set; }
-        public bool CanFlip { get; private set; }
 
         public Board(int width, int height)
-            : this(width, height, false)
-        {
-        }
-
-        public Board(int width, int height, bool canFlip)
         {
             Width = width;
             Height = height;
-            CanFlip = canFlip;
+        }
+
+        public void FlipBoard()
+        {
+            int width = this.Width;
+            int height = this.Height;
+
+            this.Height = width;
+            this.Width = height;
         }
     }
 }
