@@ -53,18 +53,25 @@ namespace DesignerTool.Pages.Core
                 new Board(200, 200),
                 new Board(300, 200),
                 new Board(100, 300),
+                new Board(300, 100),
+                new Board(300, 100),
+                new Board(300, 100),
+                new Board(300, 100),
+                new Board(300, 100),
+                new Board(300, 100),
                 new Board(10, 30),
                 new Board(30, 45),
                 new Board(10, 10),
                 new Board(10, 30),
                 new Board(70, 100),
                 new Board(80, 40),
-                new Board(100, 100)
+                new Board(100, 100),                
+                new Board(100, 50),
             };
 
-            Mapper.Canvas _canvas = new Mapper.Canvas();
+            Mapper.Canvas _canvas = new Mapper.Canvas(true);
             _canvas.SetCanvasDimensions(canvasWidth, canvasHeight);
-            
+
             MapperOptimalEfficiency<Sheet> mapper = new MapperOptimalEfficiency<Sheet>(_canvas);
 
             var sprites = mapper.Mapping(rectangles);

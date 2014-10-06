@@ -54,49 +54,9 @@ namespace Mapper
         /// <returns></returns>
         public IEnumerable<S> Mapping(IEnumerable<IBoard> images)
         {
-            List<S> lstSpritesHeight = new List<S>();
-            List<S> lstSpritesWidth = new List<S>();
+            var lstBoards = MappingRestrictedBox(images);
 
-            images.OrderByDescending(b => b.Height);
-
-            List<IBoard> unfittedImages;
-
-            //TODO:CONTINUE_HERE Move bottom into a method. Run by height, then by width.
-            bool isByHeight = true;
-
-            int maxWidth = Canvas.Width;
-            int maxHeight = Canvas.Height;
-            bool hasGrain = Canvas.HasGrain;
-
-            do
-            {
-                _canvas.ClearCanvas();
-                _canvas.SetCanvasDimensions(maxWidth, maxHeight);
-
-                int heightHighestRightFlushedImage = 0;
-                int furthestRightEdge = 0;
-
-                S spriteInfo = new S();
-                unfittedImages = new List<IBoard>();
-
-                foreach (IBoard image in images)
-                {
-                    tryFit(spriteInfo, image, ref unfittedImages, ref furthestRightEdge, ref heightHighestRightFlushedImage);
-                }
-
-                if (isByHeight)
-                {
-                    lstSpritesHeight.Add(spriteInfo);
-                }
-                else
-                {
-                    lstSpritesWidth.Add(spriteInfo);
-                }
-                images = unfittedImages.ToList();
-            }
-            while (unfittedImages.Count() > 0);
-
-            return lstSprites;
+            return lstBoards;
         }
 
         /// <summary>
@@ -135,9 +95,67 @@ namespace Mapper
         /// 
         /// null if not all the images could be placed within the size limitations.
         /// </returns>
-        protected virtual IEnumerable<S> MappingRestrictedBox(IEnumerable<IBoard> images)
+        protected virtual IEnumerable<S> MappingRestrictedBox(IEnumerable<IBoard> unorderedImages)
         {
-            
+            int maxWidth = Canvas.Width;
+            int maxHeight = Canvas.Height;
+
+            List<S> lstBoards = new List<S>();
+            List<IBoard> unfittedImages = new List<IBoard>();
+
+            List<IBoard> orderedImages = unorderedImages
+                .OrderByDescending(b => b.Height)
+                .ThenByDescending(b => b.Width)
+                .ToList();
+
+            do
+            {
+                _canvas.ClearCanvas();
+                _canvas.SetCanvasDimensions(maxWidth, maxHeight);
+
+                int heightHighestRightFlushedImage = 0;
+                int furthestRightEdge = 0;
+
+                S spriteInfo = new S();
+
+                unfittedImages = new List<IBoard>();
+
+                foreach (IBoard board in orderedImages)
+                {
+                    tryFit(spriteInfo, board, ref unfittedImages, ref furthestRightEdge, ref heightHighestRightFlushedImage);
+                }
+
+                if (!Canvas.HasGrain)
+                {
+                    // We can flip the blocks since the Canvas has no grain.
+                    // It is possible to fit in a few more boards this way.
+                    var flippedBoards = unfittedImages.ToList();
+                    flippedBoards.ForEach(b => flipBoard(b));
+
+                    // Clear the unfitted list as it will be rebuilt again in this "fitting session"
+                    unfittedImages = new List<IBoard>();
+                    foreach (IBoard board in flippedBoards)
+                    {
+                        tryFit(spriteInfo, board, ref unfittedImages, ref furthestRightEdge, ref heightHighestRightFlushedImage);
+                    }
+                }
+
+                lstBoards.Add(spriteInfo);
+                orderedImages = unfittedImages;
+            }
+            while (unfittedImages.Count() > 0);
+
+            return lstBoards;
+        }
+
+        private IBoard flipBoard(IBoard board)
+        {
+            if (board.Width <= Canvas.Height && board.Height <= board.Width)
+            {
+                board.FlipBoard();
+            }
+
+            return board;
         }
 
         private void tryFit(S spriteInfo, IBoard image, ref List<IBoard> unfittedImages, ref int furthestRightEdge, ref int heightHighestRightFlushedImage)
