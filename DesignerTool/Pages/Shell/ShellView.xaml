@@ -48,38 +48,23 @@
         </Border>
 
         <Grid x:Name="grdTop" Margin="20,30,20,0" RenderTransformOrigin="0.5,0.5">
-            <TextBlock Text="Designer Tool" Style="{StaticResource TbHeading}" />
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Designer Tool" Style="{StaticResource TbHeading}" VerticalAlignment="Top" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
                 <Button Style="{DynamicResource BtnHome}" Command="{Binding HomeCommand}"/>
-                <Button Style="{StaticResource BtnMenu}"
-                        Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}, ConverterParameter=True}" Command="{Binding ShowMenuCommand}" />
+                <Button Style="{StaticResource BtnMenu}" Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}, ConverterParameter=True}" Command="{Binding ShowMenuCommand}" />
             </StackPanel>
         </Grid>
-
-
 
 
         <!--<ctrls:LoadingLabel Visibility="{Binding IsLoading, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}" LoadingMessage="{Binding LoadingMessage}" Grid.RowSpan="3" />-->
 
 
-
-
-        <!--<Border Grid.Column="1" Width="280" Grid.RowSpan="3" Background="White" BorderBrush="Black" BorderThickness="1,0,0,0" Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}" >
-            <StackPanel Orientation="Vertical">
-                <Border Padding="10,22" BorderBrush="Transparent">
-                    <StackPanel Orientation="Horizontal">
-                        <Button ToolTip="Hide Menu" Height="40" Margin="0,5,40,0" Command="{Binding HideMenuCommand}" />
-                        <TextBlock Text="Menu" />
-                    </StackPanel>
-                </Border>
-                <StackPanel Orientation="Vertical" Margin="15,5">
-    
-                </StackPanel>
-            </StackPanel>
-        </Border>-->
-
         <!--Command Bar-->
-        <Border Grid.Row="2" />
+        <!--<Border Grid.Row="2" />-->
 
         <!-- Content - Pages are loaded into this content control -->
         <m:TransitioningContentControl x:Name="contentMain" Grid.Row="1" Grid.RowSpan="2"
@@ -87,24 +72,6 @@
                                        Transition="RightReplace" />
 
 
-        <!-- Flyout Menu -->
-        <m:Flyout Grid.Row="0" Grid.Column="1" Grid.RowSpan="3"
-                  Header="Menu" Position="Right" Theme="Accent"
-                  IsOpen="{Binding IsMenuVisible, Mode=TwoWay}">
-            
-            <StackPanel Orientation="Vertical" Width="200" Margin="15,5"
-                        Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
-                
-                <!-- User Module -->
-                <TextBlock Text="User Module" Foreground="Beige" />
-                <Button Command="{Binding UsersCommand}" Content="System users" />
-                <Button Command="{Binding ActivationKeyCommand}" Content="Generate Activation key" />
-                <Button Command="{Binding LicenseActivationCommand}" Content="License Activation code" />
-                <Button Command="{Binding BestFitCalculatorCommand}" Content="Best Fit Calculator" />
-                <Button Command="{Binding Dummy}" Content="Calculator" />
-
-            </StackPanel>
-        </m:Flyout>
 
         <!-- Loading Bar -->
         <Grid Background="Transparent" Grid.RowSpan="3" Visibility="{Binding IsLoading, Converter={StaticResource boolToVisibilityConverter}, Mode=TwoWay}">
@@ -117,5 +84,29 @@
             </Border>
         </Grid>
 
+        <!--Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}"-->
+        <!-- Flyout Menu -->
+        <Grid Grid.RowSpan="3" Grid.Column="1" Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
+            <m:Flyout BorderBrush="Transparent" AnimateOnPositionChange="True" 
+                  Header="Menu" Position="Right" Theme="Accent"
+                  
+                  IsOpen="{Binding IsMenuVisible, Mode=TwoWay}">
+                <!--IsOpen="{Binding IsMenuVisible, Mode=TwoWay}"-->
+
+                <StackPanel Orientation="Vertical" Width="200" Margin="15,5"
+                        Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
+
+                    <!-- User Module -->
+                    <TextBlock Text="User Module" Foreground="Beige" />
+                    <Button Command="{Binding UsersCommand}" Content="System users" />
+                    <Button Command="{Binding ActivationKeyCommand}" Content="Generate Activation key" />
+                    <Button Command="{Binding LicenseActivationCommand}" Content="License Activation code" />
+                    <Button Command="{Binding BestFitCalculatorCommand}" Content="Best Fit Calculator" />
+                    <Button Command="{Binding Dummy}" Content="Calculator" />
+
+                </StackPanel>
+
+            </m:Flyout>
+        </Grid>
     </Grid>
 </m:MetroWindow>

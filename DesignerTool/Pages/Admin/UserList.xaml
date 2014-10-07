@@ -16,14 +16,14 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-            <Button Content="Refresh" Style="{StaticResource BtnDefault}" Command="{Binding RefreshCommand}" />
-            <Button Content="Add New" Style="{StaticResource BtnDefault}" Command="{Binding AddNewCommand}" />
-            <Button Content="Edit" Style="{StaticResource BtnDefault}" Command="{Binding EditCommand}" />
-            <Button Content="Delete" Style="{StaticResource BtnDefault}" Command="{Binding DeleteCommand}" />
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,10">
+            <Button Content="Refresh" Style="{StaticResource BtnDefault}" Command="{Binding RefreshCommand}" Padding="10,0" />
+            <Button Content="Add New" Style="{StaticResource BtnDefault}" Command="{Binding AddNewCommand}" Padding="10,0" />
+            <Button Content="Edit" Style="{StaticResource BtnDefault}" Command="{Binding EditCommand}" Padding="10,0" />
+            <Button Content="Delete" Style="{StaticResource BtnDefault}" Command="{Binding DeleteCommand}" Padding="10,0" />
         </StackPanel>
-        
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False"
+
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" Style="{StaticResource dgDefault}"
                   SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                   ItemsSource="{Binding ListPaged}">
 
