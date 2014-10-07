@@ -22,7 +22,10 @@
         </DataGrid>
 
         <!--<Button Grid.Row="1" Content="Calculate" Command="{Binding CalculateCommand}" />-->
-        <Button Grid.Row="1" Content="TEST" Click="Test_Click" />
+        <StackPanel Grid.Row="1" >
+            <CheckBox x:Name="chkHasGrain" Content="Sheet Has Grain?" />
+        <Button Content="Refresh" Click="Test_Click" />
+        </StackPanel>
 
         <WrapPanel x:Name="stackBoards" Margin="10" Grid.Row="2" Orientation="Vertical" />
         <!--<Canvas Grid.Row="2" x:Name="cSheet" Height="300" Width="400" Background="Gray" />

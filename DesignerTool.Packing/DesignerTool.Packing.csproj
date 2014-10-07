@@ -40,18 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Canvas.cs" />
+    <Compile Include="Sheet\Sheet.cs" />
     <Compile Include="DynamicTwoDimensionalArray.cs" />
-    <Compile Include="ICanvas.cs" />
-    <Compile Include="IBoard.cs" />
-    <Compile Include="Board.cs" />
-    <Compile Include="IMappedBoard.cs" />
-    <Compile Include="IMapper.cs" />
-    <Compile Include="ISheet.cs" />
-    <Compile Include="MappedBoard.cs" />
-    <Compile Include="MapperOptimalEfficiency.cs" />
+    <Compile Include="Sheet\ISheet.cs" />
+    <Compile Include="Board\IBoard.cs" />
+    <Compile Include="Board\Board.cs" />
+    <Compile Include="Board\IMappedBoard.cs" />
+    <Compile Include="Board\MappedBoard.cs" />
+    <Compile Include="Sheet\SheetMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sheet.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

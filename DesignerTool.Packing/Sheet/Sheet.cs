@@ -11,15 +11,21 @@ namespace Mapper
     /// If there is a choice between locations with the same X, it will pick the one with the 
     /// lowest Y.
     /// </summary>
-    public class Canvas : ICanvas
+    public class Sheet : ISheet
     {
         public struct CanvasCell
         {
-            public bool occupied;
+            public bool Occupied;
 
-            public CanvasCell(bool occupied) { this.occupied = occupied; }
+            public CanvasCell(bool occupied)
+            {
+                this.Occupied = occupied;
+            }
 
-            public override string ToString() { return occupied ? "x" : "."; }
+            public override string ToString()
+            {
+                return Occupied ? "x" : ".";
+            }
         }
 
         private DynamicTwoDimensionalArray<CanvasCell> _canvasCells;
@@ -29,31 +35,48 @@ namespace Mapper
 
         public int Width { get; private set; }
         public int Height { get; private set; }
+        public bool IsFlipped { get; private set; }
         public bool HasGrain { get; private set; }
+
+        private List<IMappedBoard> _mappedImages = null;
+        /// <summary>
+        /// Holds the locations of all the individual images within the sprite image.
+        /// </summary>
+        public List<IMappedBoard> MappedImages
+        {
+            get
+            {
+                if (this._mappedImages == null)
+                {
+                    this._mappedImages = new List<IMappedBoard>();
+                }
+                return this._mappedImages;
+            }
+        }
 
         // Lowest free height deficit found since the last call to SetCanvasDimension
         private int _lowestFreeHeightDeficitSinceLastRedim;
 
         #region Constructors
 
-        public Canvas()
+        public Sheet()
         {
             this.ClearCanvas();
         }
 
-        public Canvas(bool hasGrain)
+        public Sheet(bool hasGrain)
             : this()
         {
             this.HasGrain = hasGrain;
         }
 
-        public Canvas(int height, int width, bool hasGrain)
+        public Sheet(int height, int width, bool hasGrain)
             : this(hasGrain)
         {
             this.SetCanvasDimensions(height, width);
         }
 
-        public Canvas(int height, int width)
+        public Sheet(int height, int width)
             : this(height, width, false)
         {
 
@@ -80,25 +103,30 @@ namespace Mapper
             Height = canvasHeight;
         }
 
+        public void Initialize(int canvasWidth, int canvasHeight, bool hasGrain, bool isFlipped)
+        {
+            this.ClearCanvas();
+            this.SetCanvasDimensions(canvasWidth, canvasHeight);
+            this.HasGrain = hasGrain;
+            this.IsFlipped = isFlipped;
+        }
+
         /// <summary>
         /// See ICanvas.
         /// </summary>
-        public virtual bool AddRectangle(
-            int rectangleWidth, int rectangleHeight, out int rectangleXOffset, out int rectangleYOffset,
-            out int lowestFreeHeightDeficit)
+        public virtual bool AddBoard(int boardWidth, int boardHeight, out int boardXOffset, out int boardYOffset)
         {
-            rectangleXOffset = 0;
-            rectangleYOffset = 0;
-            lowestFreeHeightDeficit = Int32.MaxValue;
+            boardXOffset = 0;
+            boardYOffset = 0;
 
-            int requiredWidth = rectangleWidth;
-            int requiredHeight = rectangleHeight;
+            int requiredWidth = boardWidth;
+            int requiredHeight = boardHeight;
 
             int x = 0;
             int y = 0;
             int offsetX = 0;
             int offsetY = 0;
-            bool rectangleWasPlaced = false;
+            bool boardWasPlaced = false;
             int nbrRows = _canvasCells.NbrRows;
 
             do
@@ -114,13 +142,13 @@ namespace Mapper
                 // the lowest free height deficit. This must be taken from the top of the highest 
                 // occupied cell.
 
-                while ((y < nbrRows) && (_canvasCells.Item(x, y).occupied))
+                while ((y < nbrRows) && (_canvasCells.Item(x, y).Occupied))
                 {
                     offsetY += _canvasCells.RowHeight(y);
                     y += 1;
                 }
 
-                // If we found an unoccupied cell, than see if we can place a rectangle there.
+                // If we found an unoccupied cell, than see if we can place a board there.
                 // If not, than y popped out of the top of the canvas.
 
                 if ((y < nbrRows) && (FreeHeightDeficit(Height, offsetY, requiredHeight) <= 0))
@@ -130,15 +158,15 @@ namespace Mapper
                         out nbrRequiredCellsHorizontally, out nbrRequiredCellsVertically,
                         out leftOverWidth, out leftOverHeight))
                     {
-                        PlaceRectangle(
+                        PlaceBoard(
                             x, y, requiredWidth, requiredHeight,
                             nbrRequiredCellsHorizontally, nbrRequiredCellsVertically,
                             leftOverWidth, leftOverHeight);
 
-                        rectangleXOffset = offsetX;
-                        rectangleYOffset = offsetY;
+                        boardXOffset = offsetX;
+                        boardYOffset = offsetY;
 
-                        rectangleWasPlaced = true;
+                        boardWasPlaced = true;
                         break;
                     }
 
@@ -148,7 +176,7 @@ namespace Mapper
                 }
 
                 // If we've come so close to the top of the canvas that there is no space for the
-                // rectangle, go to the next column. This automatically also checks whether we've popped out of the top
+                // board, go to the next column. This automatically also checks whether we've popped out of the top
                 // of the canvas (in that case, _canvasHeight == offsetY).
 
                 int freeHeightDeficit = FreeHeightDeficit(Height, offsetY, requiredHeight);
@@ -160,10 +188,10 @@ namespace Mapper
                     offsetX += _canvasCells.ColumnWidth(x);
                     x += 1;
 
-                    // This update is far from perfect, because if the rectangle could not be placed at this column
+                    // This update is far from perfect, because if the board could not be placed at this column
                     // because of insufficient horizontal space, than this update should not be made (because it may lower
                     // _lowestFreeHeightDeficitSinceLastRedim while in raising the height of the canvas by this lowered amount
-                    // may not result in the rectangle being placed here after all.
+                    // may not result in the board being placed here after all.
                     //
                     // However, checking for sufficient horizontal width takes a lot of CPU ticks. Tests have shown that this
                     // far outstrips the gains through having fewer failed sprite generations.
@@ -171,16 +199,15 @@ namespace Mapper
                 }
 
                 // If we've come so close to the right edge of the canvas that there is no space for
-                // the rectangle, return false now.
+                // the board, return false now.
                 if ((Width - offsetX) < requiredWidth)
                 {
-                    rectangleWasPlaced = false;
+                    boardWasPlaced = false;
                     break;
                 }
             } while (true);
 
-            lowestFreeHeightDeficit = _lowestFreeHeightDeficitSinceLastRedim;
-            return rectangleWasPlaced;
+            return boardWasPlaced;
         }
 
         /// <summary>
@@ -225,7 +252,7 @@ namespace Mapper
         /// <param name="leftOverHeight">
         /// The amount of vertical space left in the bottom most cells that could be used for the rectangle
         /// </param>
-        private void PlaceRectangle(
+        private void PlaceBoard(
             int x, int y,
             int requiredWidth, int requiredHeight,
             int nbrRequiredCellsHorizontally, int nbrRequiredCellsVertically,
@@ -306,7 +333,7 @@ namespace Mapper
 
                 while (foundWidth < requiredWidth)
                 {
-                    if (_canvasCells.Item(trialX, trialY).occupied)
+                    if (_canvasCells.Item(trialX, trialY).Occupied)
                     {
                         return false;
                     }
@@ -331,7 +358,6 @@ namespace Mapper
             return true;
         }
 
-
         public void ClearCanvas()
         {
             Width = 0;
@@ -340,7 +366,35 @@ namespace Mapper
             _lowestFreeHeightDeficitSinceLastRedim = Int32.MaxValue;
 
             _canvasCells = new DynamicTwoDimensionalArray<CanvasCell>();
+        }
 
+        /// <summary>
+        /// Adds a Rectangle to the SpriteInfo, and updates the width and height of the SpriteInfo.
+        /// </summary>
+        /// <param name="imageLocation"></param>
+        public void AddMappedBoard(IMappedBoard imageLocation)
+        {
+            this.MappedImages.Add(imageLocation);
+
+            IBoard newImage = imageLocation.Board;
+
+            int highestY = imageLocation.Y + newImage.Height;
+            int rightMostX = imageLocation.X + newImage.Width;
+
+            if (this.Height < highestY) { this.Height = highestY; }
+            if (this.Width < rightMostX) { this.Width = rightMostX; }
+        }
+
+        public void Flip()
+        {
+            if (!this.HasGrain)
+            {
+                int height = this.Height;
+                int width = this.Width;
+
+                this.SetCanvasDimensions(height, width);
+                this.IsFlipped = !this.IsFlipped;
+            }
         }
     }
 }
