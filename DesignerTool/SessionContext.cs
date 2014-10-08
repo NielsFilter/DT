@@ -1,14 +1,29 @@
-﻿using DesignerTool.Common.Logging;
+﻿using DesignerTool.Common.Base;
+using DesignerTool.Common.Logging;
 using DesignerTool.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
 namespace DesignerTool
 {
-    public static class SessionContext
+    public class SessionContext : NotifyPropertyChangedBase
     {
+        private static SessionContext _current;
+        public static SessionContext Current
+        {
+            get
+            {
+                if (_current == null)
+                {
+                    _current = new SessionContext();
+                }
+                return _current;
+            }
+        }
+
         private const string CLIENT_CODE_VALUE = "ClientCode";
         private const string REGISTRY_PATH = "HKEY_LOCAL_MACHINE\\Software\\DT";
 
@@ -16,33 +31,48 @@ namespace DesignerTool
 
         #region User
 
-        public static User LoggedInUser { get; set; }
+        private User _loggedInUser;
+        public User LoggedInUser
+        {
+            get
+            {
+                return this._loggedInUser;
+            }
+            set
+            {
+                if (value != this._loggedInUser)
+                {
+                    this._loggedInUser = value;
+                    base.NotifyPropertyChanged("LoggedInUser");
+                }
+            }
+        }
 
         #endregion
 
         #region License and Activation
 
-        public static DateTime? LicenseExpiry { get; set; }
+        public DateTime? LicenseExpiry { get; set; }
 
-        public static bool IsValidLicense
+        public bool IsValidLicense
         {
             get
             {
-                if (!SessionContext.LicenseExpiry.HasValue)
+                if (!this.LicenseExpiry.HasValue)
                 {
                     return false;
                 }
 
-                return SessionContext.LicenseExpiry.Value >= DateTime.Today;
+                return this.LicenseExpiry.Value >= DateTime.Today;
             }
         }
 
-        private static string _clientCode = null;
-        public static string ClientCode
+        private string _clientCode = null;
+        public string ClientCode
         {
             get
             {
-                if (String.IsNullOrEmpty(_clientCode))
+                if (String.IsNullOrEmpty(this._clientCode))
                 {
                     var cc = Microsoft.Win32.Registry.GetValue(REGISTRY_PATH, CLIENT_CODE_VALUE, null);
                     if (cc != null)
@@ -51,12 +81,12 @@ namespace DesignerTool
                         if (!clientCode.StartsWith("CL"))
                         {
                             //TODO: Logging - Invalid client code.
-                            _clientCode = null;
+                            this._clientCode = null;
                         }
-                        _clientCode = clientCode;
+                        this._clientCode = clientCode;
                     }
                 }
-                return _clientCode;
+                return this._clientCode;
             }
         }
 

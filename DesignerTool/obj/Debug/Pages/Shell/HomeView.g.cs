@@ -12,6 +12,7 @@
 using DesignerTool.Common.Mvvm.Converters;
 using DesignerTool.Controls.Panorama;
 using DesignerTool.ViewModels;
+using MahApps.Metro.Controls;
 using System;
 using System.Diagnostics;
 using System.Windows;

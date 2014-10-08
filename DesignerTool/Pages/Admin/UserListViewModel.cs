@@ -69,22 +69,22 @@ namespace DesignerTool.Pages.Admin
             get { return System.Windows.Data.CollectionViewSource.GetDefaultView(this.List); }
         }
 
-        private string _searchText;
-        public string SearchText
-        {
-            get
-            {
-                return this._searchText;
-            }
-            set
-            {
-                if (value != this._searchText)
-                {
-                    this._searchText = value;
-                    base.NotifyPropertyChanged("SearchText");
-                }
-            }
-        }
+        //private string _searchText;
+        //public string SearchText
+        //{
+        //    get
+        //    {
+        //        return this._searchText;
+        //    }
+        //    set
+        //    {
+        //        if (value != this._searchText)
+        //        {
+        //            this._searchText = value;
+        //            base.NotifyPropertyChanged("SearchText");
+        //        }
+        //    }
+        //}
 
         #endregion
 
@@ -164,7 +164,7 @@ namespace DesignerTool.Pages.Admin
         /// </summary>
         private void clearSearch()
         {
-            this.SearchText = string.Empty;
+            base.Pager.SearchText = string.Empty;
             this.refresh();
         }
 

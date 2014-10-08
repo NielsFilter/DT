@@ -17,7 +17,7 @@ namespace DesignerTool.Data
             {
                 try
                 {
-                    var xmlCode = Security.Decrypt(this.Code, SessionContext.ClientCode);
+                    var xmlCode = Security.Decrypt(this.Code, SessionContext.Current.ClientCode);
                     return XML.Deserialize<AppLicense>(xmlCode);
                 }
                 catch (Exception)
@@ -86,7 +86,7 @@ namespace DesignerTool.Data
 
         public bool Validate()
         {
-            if (!string.IsNullOrEmpty(SessionContext.ClientCode))
+            if (!string.IsNullOrEmpty(SessionContext.Current.ClientCode))
             {
                 // Invalid client code
                 return false;
@@ -134,7 +134,7 @@ namespace DesignerTool.Data
             else
             {
                 var extPeriodAttr = PeriodInfoAttribute.GetAttribute(activationCode.ExtensionPeriod);
-                var currentExpiry = SessionContext.LicenseExpiry.Value > DateTime.Today ? SessionContext.LicenseExpiry.Value : DateTime.Today;
+                var currentExpiry = SessionContext.Current.LicenseExpiry.Value > DateTime.Today ? SessionContext.Current.LicenseExpiry.Value : DateTime.Today;
 
                 updatedLicense.ExpiryDate_Ticks = ((DateTime)typeof(DateTime).GetMethod(extPeriodAttr.AddPeriodMethod) // Get the add period method from the enum 
                     .Invoke(
@@ -154,19 +154,19 @@ namespace DesignerTool.Data
                     if (lic == null || !lic.Validate())
                     {
                         // Invalid license
-                        SessionContext.LicenseExpiry = null;
+                        SessionContext.Current.LicenseExpiry = null;
                     }
                     else
                     {
                         // Valid license
-                        SessionContext.LicenseExpiry = lic.ExpiryDate;
+                        SessionContext.Current.LicenseExpiry = lic.ExpiryDate;
                     }
                 }
             }
             catch (Exception)
             {
                 // TODO: Logging
-                SessionContext.LicenseExpiry = null;
+                SessionContext.Current.LicenseExpiry = null;
             }
         }
 

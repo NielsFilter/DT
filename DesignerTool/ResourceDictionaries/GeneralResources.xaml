@@ -7,7 +7,7 @@
 
 
     <Style x:Key="dgDefault" TargetType="DataGrid" BasedOn="{StaticResource MetroDataGrid}">
-        <Setter Property="BorderBrush" Value="Pink" />
+        <Setter Property="BorderBrush" Value="#FF383838" />
         <Setter Property="BorderThickness" Value="1" />
     </Style>
 </ResourceDictionary>

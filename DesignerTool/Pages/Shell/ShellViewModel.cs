@@ -13,7 +13,8 @@ namespace DesignerTool.Pages.Shell
 
         public ShellViewModel()
             : base()
-        {            
+        {
+            this.IsMenuVisible = true;
         }
 
         #endregion
@@ -94,7 +95,7 @@ namespace DesignerTool.Pages.Shell
 
         private void load()
         {
-            if (SessionContext.LoggedInUser == null)
+            if (SessionContext.Current.LoggedInUser == null)
             {
                 base.ChangeViewModel(new LoginViewModel()); // Log in window
             }

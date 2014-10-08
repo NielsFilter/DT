@@ -6,39 +6,91 @@
              xmlns:cmd="clr-namespace:DesignerTool.Common.Mvvm.Triggers;assembly=DesignerTool.Common"
              xmlns:v="clr-namespace:DesignerTool.Common.Mvvm.Views;assembly=DesignerTool.Common"
              xmlns:ctrls="clr-namespace:DesignerTool.Controls;assembly=DesignerTool.Controls"
+             xmlns:m="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Style="{StaticResource GrdContent}">
+             d:DesignHeight="800" d:DesignWidth="1024">
+    <Grid Style="{StaticResource GrdContent}" x:Name="Root">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,10">
-            <Button Content="Refresh" Style="{StaticResource BtnDefault}" Command="{Binding RefreshCommand}" Padding="10,0" />
-            <Button Content="Add New" Style="{StaticResource BtnDefault}" Command="{Binding AddNewCommand}" Padding="10,0" />
-            <Button Content="Edit" Style="{StaticResource BtnDefault}" Command="{Binding EditCommand}" Padding="10,0" />
-            <Button Content="Delete" Style="{StaticResource BtnDefault}" Command="{Binding DeleteCommand}" Padding="10,0" />
+            <!--<Button Style="{StaticResource BtnRefresh}" ToolTip="Refresh" Command="{Binding RefreshCommand}" />-->
+            <Button Style="{StaticResource BtnAdd}" ToolTip="Add New" Command="{Binding AddNewCommand}" />
         </StackPanel>
 
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" Style="{StaticResource dgDefault}"
+        <TextBox Grid.Row="0" Style="{StaticResource TxtDefault}" Width="300" FontSize="16"
+                 HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                 m:TextboxHelper.Watermark="Type to search..."
+                 Text="{Binding Pager.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="TextChanged">
+                    <cmd:EventToCommand Command="{Binding RefreshCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="{StaticResource InfoBarHeight}" />
+            </Grid.RowDefinitions>
+            <!-- List -->
+            <DataGrid Grid.Row="0" x:Name="dgList" AutoGenerateColumns="False" Style="{StaticResource dgDefault}"
                   SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                   ItemsSource="{Binding ListPaged}">
 
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseDoubleClick">
-                    <cmd:EventToCommand Command="{Binding EditCommand}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <cmd:EventToCommand Command="{Binding EditCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
 
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Username}" Header="Username" />
-            </DataGrid.Columns>
-        </DataGrid>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Username}" Header="Username" />
+                    <DataGridTextColumn Binding="{Binding Role}" Header="Role" />
+                    <DataGridTextColumn Binding="{Binding IsActive, Converter={StaticResource boolToCustomTextConverter}, ConverterParameter='Active|Inactive'}" Header="Status" />
+                </DataGrid.Columns>
+            </DataGrid>
 
-        <!-- Paging -->
-        <ctrls:Paging Pager="{Binding Pager}" HorizontalAlignment="Center" Margin="20" Grid.Row="2"  />
+            <!-- Paging -->
+            <ctrls:Paging Pager="{Binding Pager}" HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Bottom"  />
+
+            <!-- Info Panel -->
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Height="1" />
+            <Border Grid.Row="2"  Padding="10" Background="#FF303030">
+                <Grid>
+                    <TextBlock Style="{StaticResource TbInfo1}"
+                               Text="{StaticResource NoSelection}"
+                               Foreground="{StaticResource TextDisabledBrush}"
+                               Visibility="{Binding SelectedItem, ElementName=dgList, Converter={StaticResource hasValueToVisibilityConverter}, ConverterParameter=True}" />
+
+                    <Grid DataContext="{Binding SelectedItem, ElementName=dgList}"
+                          Visibility="{Binding SelectedItem, ElementName=dgList, Converter={StaticResource hasValueToVisibilityConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Username}" Style="{StaticResource TbInfo1}" Foreground="#FF74B8D4" />
+                            <TextBlock Text="{Binding Role}" Style="{StaticResource TbInfo6}" Foreground="White" />
+                        </StackPanel>
+
+                        <TextBlock Grid.Column="1" Style="{StaticResource TbInfo6}" HorizontalAlignment="Right"
+                                   Text="{Binding IsActive, Converter={StaticResource boolToCustomTextConverter}, ConverterParameter='Active|Inactive'}"  />
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" DataContext="{Binding DataContext, ElementName=Root}">
+                            <Button Style="{StaticResource BtnDelete}" ToolTip="Delete" Foreground="White" Command="{Binding DeleteCommand}" />
+                            <Button Style="{StaticResource BtnEdit}" ToolTip="Edit" Foreground="White" Command="{Binding EditCommand}" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+
     </Grid>
 </v:BaseView>

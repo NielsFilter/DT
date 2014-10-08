@@ -51,6 +51,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\NotifyPropertyChangedBase.cs" />
     <Compile Include="Enums\EnumDisplay.cs" />
     <Compile Include="Enums\EnumHelper.cs" />
     <Compile Include="Enums\Enums.cs" />
@@ -59,6 +60,8 @@
     <Compile Include="Licensing\ActivationCode.cs" />
     <Compile Include="Licensing\ActivationCodeFormatter.cs" />
     <Compile Include="Mvvm\AttachedProperties\PasswordBoxAttached.cs" />
+    <Compile Include="Mvvm\Converters\BoolToCustomTextConverter.cs" />
+    <Compile Include="Mvvm\Converters\HasValueToVisibilityConverter.cs" />
     <Compile Include="Mvvm\ViewModels\NotifyPropertyChangedBase.cs" />
     <Compile Include="Utils\LINQExtensions.cs" />
     <Compile Include="Global\GlobalContext.cs" />

@@ -96,17 +96,16 @@ namespace DesignerTool.Pages.Shell
                         if (user != null)
                         {
                             validLogin = user.ValidatePassword(this.Password);
+                            if (validLogin)
+                            {
+                                SessionContext.Current.LoggedInUser = user;
+                                base.ChangeViewModel(new BestFitCalculatorViewModel());
+                                return;
+                            }
                         }
                     }
 
-                    if (validLogin)
-                    {
-                        base.ChangeViewModel(new BestFitCalculatorViewModel());
-                    }
-                    else
-                    {
-                        this.DialogService.ShowMessageBox(this, "Invalid username or password", "Login failed", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
-                    }
+                    this.DialogService.ShowMessageBox(this, "Invalid username or password", "Login failed", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 }, "Logging in...");
         }
 

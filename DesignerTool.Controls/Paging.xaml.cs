@@ -40,6 +40,30 @@ namespace DesignerTool.Controls
 
         #endregion
 
+        #region Height
+
+        public double PagerHeight
+        {
+            get { return (double)GetValue(PagerHeightProperty); }
+            set { SetValue(PagerHeightProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Height.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PagerHeightProperty =
+            DependencyProperty.Register("PagerHeight", typeof(double), typeof(Paging), new PropertyMetadata(PagerHeightChanged));
+
+        private static void PagerHeightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            double height = (double)e.NewValue;
+            if (d != null && d is Paging && height > 0)
+            {
+                Paging currentCtrl = (Paging)d;
+                currentCtrl.vbRoot.Height = (double)e.NewValue;
+            }
+        }
+
+        #endregion
+
         #endregion
     }
 }

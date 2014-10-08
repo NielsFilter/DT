@@ -13,5 +13,9 @@
     <conv:StringToDecryptConverter x:Key="stringToDecryptConverter" />
     <conv:BoolToYesNoPathStyleConverter x:Key="boolToYesNoPathStyleConverter" />
     <conv:BoolToYesNoButtonStyleConverter x:Key="boolToYesNoButtonStyleConverter" />
+    <conv:BoolToCustomTextConverter x:Key="boolToCustomTextConverter" />
+    <conv:HasValueToVisibilityConverter x:Key="hasValueToVisibilityConverter" />
+
     
+
 </ResourceDictionary>

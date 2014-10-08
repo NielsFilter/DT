@@ -192,3 +192,6 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Core\BestFitCa
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Core\BestFitCalculator.g.cs
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\DesignerTool.Packing.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\DesignerTool.Packing.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\ResourceDictionaries\StaticValueResources.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\ResourceDictionaries\ColourResources.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\ResourceDictionaries\TextBoxResources.baml

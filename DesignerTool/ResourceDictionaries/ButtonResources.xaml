@@ -14,7 +14,7 @@
     <Style x:Key="BtnHome" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
         <Setter Property="Content">
             <Setter.Value>
-                <Path Style="{StaticResource vcHome}" Margin="10"/>
+                <Path Style="{StaticResource vcHome}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10"/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -22,7 +22,7 @@
     <Style x:Key="BtnMenu" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
         <Setter Property="Content">
             <Setter.Value>
-                <Path Style="{StaticResource vcList}" Margin="10"/>
+                <Path Style="{StaticResource vcList}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10"/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -30,65 +30,62 @@
     <Style x:Key="BtnPrev" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
         <Setter Property="Content">
             <Setter.Value>
-                <Path Style="{StaticResource vcPrev}" Margin="10"/>
+                <Path Style="{StaticResource vcPrev}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10"/>
             </Setter.Value>
         </Setter>
     </Style>
     <Style x:Key="BtnNext" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
         <Setter Property="Content">
             <Setter.Value>
-                <Path Style="{StaticResource vcNext}" Margin="10"/>
+                <Path Style="{StaticResource vcNext}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10"/>
             </Setter.Value>
         </Setter>
     </Style>
     <Style x:Key="BtnFirst" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
         <Setter Property="Content">
             <Setter.Value>
-                <Path Style="{StaticResource vcFirst}" Margin="10"/>
+                <Path Style="{StaticResource vcFirst}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10"/>
             </Setter.Value>
         </Setter>
     </Style>
     <Style x:Key="BtnLast" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
         <Setter Property="Content">
             <Setter.Value>
-                <Path Style="{StaticResource vcLast}" Margin="10"/>
+                <Path Style="{StaticResource vcLast}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10"/>
             </Setter.Value>
         </Setter>
     </Style>
-    <!--<Style x:Key="BtnPrev" TargetType="Button" BasedOn="{StaticResource BtnVectorIconHoverDefault}" x:Shared="false">
-        <Setter Property="ToolTip" Value="Previous" />
-        <Setter Property="Margin" Value="10,0" />
+
+    <Style x:Key="BtnRefresh" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
+        <Setter Property="Padding" Value="5" />
         <Setter Property="Content">
             <Setter.Value>
-                <Path Style="{StaticResource vcPrev}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" />
+                <Path Style="{StaticResource vcRefresh}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10"/>
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="BtnNext" TargetType="Button" BasedOn="{StaticResource BtnVectorIconHoverDefault}" x:Shared="false">
-        <Setter Property="ToolTip" Value="Previous" />
-        <Setter Property="Margin" Value="10,0" />
+    <Style x:Key="BtnAdd" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
+        <Setter Property="Padding" Value="5" />
         <Setter Property="Content">
             <Setter.Value>
-                <Path Style="{StaticResource vcNext}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" />
+                <Path Style="{StaticResource vcAdd}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10"/>
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="BtnFirst" TargetType="Button" BasedOn="{StaticResource BtnVectorIconHoverDefault}" x:Shared="false">
-        <Setter Property="ToolTip" Value="First" />
-        <Setter Property="Margin" Value="10,0" />
+    <Style x:Key="BtnEdit" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
+        <Setter Property="Padding" Value="5" />
         <Setter Property="Content">
             <Setter.Value>
-                <Path Style="{StaticResource vcFirst}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" />
+                <Path Style="{StaticResource vcEdit}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10"/>
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="BtnLast" TargetType="Button" BasedOn="{StaticResource BtnVectorIconHoverDefault}" x:Shared="false">
-        <Setter Property="ToolTip" Value="Last" />
-        <Setter Property="Margin" Value="10,0" />
+    <Style x:Key="BtnDelete" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
+        <Setter Property="Padding" Value="5" />
         <Setter Property="Content">
             <Setter.Value>
-                <Path Style="{StaticResource vcLast}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" />
+                <Path Style="{StaticResource vcBin}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10"/>
             </Setter.Value>
         </Setter>
-    </Style>-->
+    </Style>
 </ResourceDictionary>

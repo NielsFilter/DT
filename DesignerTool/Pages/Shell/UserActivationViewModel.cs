@@ -129,7 +129,7 @@ namespace DesignerTool.Pages.Shell
                     lic = new Data.License();
                 }
 
-                lic.Code = Security.Encrypt(xml, SessionContext.ClientCode);
+                lic.Code = Security.Encrypt(xml, SessionContext.Current.ClientCode);
                 lic.IsActive = true;
 
                 var usedLic = new ActiveLicense();

@@ -9,6 +9,7 @@
         xmlns:cmd="clr-namespace:DesignerTool.Common.Mvvm.Triggers;assembly=DesignerTool.Common"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:m="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:DesignerTool"
         svc:DialogService.IsRegisteredView="True" 
         WindowState="Maximized"
         svc:DialogService.DialogResult="{Binding DialogResult}" 
@@ -53,9 +54,10 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TextBlock Text="Designer Tool" Style="{StaticResource TbHeading}" VerticalAlignment="Top" />
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
-                <Button Style="{DynamicResource BtnHome}" Command="{Binding HomeCommand}"/>
-                <Button Style="{StaticResource BtnMenu}" Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}, ConverterParameter=True}" Command="{Binding ShowMenuCommand}" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1"
+                        Visibility="{Binding LoggedInUser, Source={x:Static local:SessionContext.Current}, Mode=OneWay, Converter={StaticResource hasValueToVisibilityConverter}}" >
+                <Button Style="{DynamicResource BtnHome}" ToolTip="Go to Home Page" Command="{Binding HomeCommand}"/>
+                <Button Style="{StaticResource BtnMenu}" ToolTip="Open Menu" Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}, ConverterParameter=True}" Command="{Binding ShowMenuCommand}" />
             </StackPanel>
         </Grid>
 
@@ -86,27 +88,28 @@
 
         <!--Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}"-->
         <!-- Flyout Menu -->
-        <Grid Grid.RowSpan="3" Grid.Column="1" Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
-            <m:Flyout BorderBrush="Transparent" AnimateOnPositionChange="True" 
+        <Grid Grid.RowSpan="3" Grid.Column="1"  Visibility="{Binding LoggedInUser, Source={x:Static local:SessionContext.Current}, Mode=OneWay, Converter={StaticResource hasValueToVisibilityConverter}}">
+            <Grid Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
+                <m:Flyout BorderBrush="Transparent" AnimateOnPositionChange="True" 
                   Header="Menu" Position="Right" Theme="Accent"
-                  
                   IsOpen="{Binding IsMenuVisible, Mode=TwoWay}">
-                <!--IsOpen="{Binding IsMenuVisible, Mode=TwoWay}"-->
+                    <!--IsOpen="{Binding IsMenuVisible, Mode=TwoWay}"-->
 
-                <StackPanel Orientation="Vertical" Width="200" Margin="15,5"
+                    <StackPanel Orientation="Vertical" Width="200" Margin="15,5"
                         Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
 
-                    <!-- User Module -->
-                    <TextBlock Text="User Module" Foreground="Beige" />
-                    <Button Command="{Binding UsersCommand}" Content="System users" />
-                    <Button Command="{Binding ActivationKeyCommand}" Content="Generate Activation key" />
-                    <Button Command="{Binding LicenseActivationCommand}" Content="License Activation code" />
-                    <Button Command="{Binding BestFitCalculatorCommand}" Content="Best Fit Calculator" />
-                    <Button Command="{Binding Dummy}" Content="Calculator" />
+                        <!-- User Module -->
+                        <TextBlock Text="User Module" Foreground="Beige" />
+                        <Button Command="{Binding UsersCommand}" Content="System users" />
+                        <Button Command="{Binding ActivationKeyCommand}" Content="Generate Activation key" />
+                        <Button Command="{Binding LicenseActivationCommand}" Content="License Activation code" />
+                        <Button Command="{Binding BestFitCalculatorCommand}" Content="Best Fit Calculator" />
+                        <Button Command="{Binding Dummy}" Content="Calculator" />
 
-                </StackPanel>
+                    </StackPanel>
 
-            </m:Flyout>
+                </m:Flyout>
+            </Grid>
         </Grid>
     </Grid>
 </m:MetroWindow>
