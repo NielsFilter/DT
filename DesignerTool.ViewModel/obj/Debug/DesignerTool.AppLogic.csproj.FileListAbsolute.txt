@@ -1,0 +1,14 @@
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\obj\Debug\DesignerTool.AppLogic.csprojResolveAssemblyReference.cache
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\DesignerTool.AppLogic.dll.config
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\DesignerTool.AppLogic.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\DesignerTool.AppLogic.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\DesignerTool.Common.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\DesignerTool.Packing.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\EntityFramework.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\DesignerTool.Common.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\DesignerTool.Packing.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\EntityFramework.xml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\obj\Debug\DesignerTool.AppLogic.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\obj\Debug\DesignerTool.AppLogic.pdb

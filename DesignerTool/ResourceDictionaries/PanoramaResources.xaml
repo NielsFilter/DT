@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:pan="clr-namespace:DesignerTool.Controls.Panorama;assembly=DesignerTool.Controls"
-                    xmlns:vm="clr-namespace:DesignerTool.ViewModels"
+                    xmlns:vm="clr-namespace:DesignerTool.AppLogic.ViewModels.Panorama;assembly=DesignerTool.AppLogic"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
@@ -32,9 +32,9 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    
-    <DataTemplate DataType="{x:Type pan:PanoramaGroup}">
+
+
+    <DataTemplate DataType="{x:Type vm:PanoramaGroup}">
         <DataTemplate.Resources>
             <Style x:Key="transparentListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
                 <Style.Resources>
@@ -69,7 +69,7 @@
         </DockPanel>
     </DataTemplate>
 
-    
+
     <DataTemplate DataType="{x:Type vm:PanoramaTileViewModel}">
         <Border x:Name="bord"
                     BorderThickness="2"
@@ -77,39 +77,39 @@
                     BorderBrush="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Background}"
                     Margin="0">
             <Border.Triggers>
-                    <EventTrigger RoutedEvent="Border.MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grdSide1">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-                                </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grdSide2">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-                                </DoubleAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
+                <EventTrigger RoutedEvent="Border.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grdSide1">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grdSide2">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
                 <EventTrigger RoutedEvent="Border.MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grdSide1">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
-                                    <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="1"/>
-                                </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grdSide2">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="1"/>
-                                    <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0"/>
-                                </DoubleAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grdSide1">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="1"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grdSide2">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="1"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
             </Border.Triggers>
             <Grid Name="grdContent" Margin="2">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                
+
                 <Grid Name="grdSide1">
                     <Grid Height="100" HorizontalAlignment="Center" VerticalAlignment="Top">
                         <Path Name="pathVector" Style="{Binding VectorStyleName, Converter={StaticResource stringToStyleConverter}}" Margin="10" Height="Auto" />

@@ -1,0 +1,30 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/DesignerTool.Styles.Wpf;component/Styles/Colors.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/DesignerTool.Styles.Wpf;component/Styles/Fonts.xaml" />
+
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/DropDownButton.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/Glow.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/FlipView.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/Flyout.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/FlyoutsControl.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/MetroContentControl.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/MetroProgressBar.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/MetroWindow.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/NumericUpDown.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/Pivot.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/ProgressRing.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/RangeSlider.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/SplitButton.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/MetroAnimatedTabControl.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/MetroAnimatedSingleRowTabControl.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/MetroTabControl.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/MetroTabItem.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/Tile.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/ToggleSwitch.xaml" />
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/TransitioningContentControl.xaml" />
+
+        <ResourceDictionary Source="/DesignerTool.Styles.Wpf;component/Themes/Dialogs/BaseMetroDialog.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

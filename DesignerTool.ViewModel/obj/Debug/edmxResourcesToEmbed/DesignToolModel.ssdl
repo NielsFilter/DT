@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DesignerToolDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="DesignerToolDbModelStoreContainer">
+    <EntitySet Name="ActiveLicense" EntityType="DesignerToolDbModel.Store.ActiveLicense" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="License" EntityType="DesignerToolDbModel.Store.License" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Person" EntityType="DesignerToolDbModel.Store.Person" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SystemSetting" EntityType="DesignerToolDbModel.Store.SystemSetting" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="DesignerToolDbModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Person_User" Association="DesignerToolDbModel.Store.FK_Person_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ActiveLicense">
+    <Key>
+      <PropertyRef Name="ActiveLicenseID" />
+    </Key>
+    <Property Name="ActiveLicenseID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AppliedDate" Type="datetime" Nullable="false" />
+    <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="License">
+    <Key>
+      <PropertyRef Name="LicenseID" />
+    </Key>
+    <Property Name="LicenseID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FirstNames" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="UserID" Type="bigint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SystemSetting">
+    <Key>
+      <PropertyRef Name="SystemSettingID" />
+    </Key>
+    <Property Name="SystemSettingID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Setting" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="Value" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Person_User">
+    <End Role="User" Type="DesignerToolDbModel.Store.User" Multiplicity="1" />
+    <End Role="Person" Type="DesignerToolDbModel.Store.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

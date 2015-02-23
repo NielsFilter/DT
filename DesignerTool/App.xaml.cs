@@ -1,9 +1,9 @@
-﻿using DesignerTool.Common.Global;
+﻿using DesignerTool.AppLogic;
+using DesignerTool.Common.Global;
 using DesignerTool.Common.Licensing;
 using DesignerTool.Common.Logging;
 using DesignerTool.Common.Mvvm;
 using DesignerTool.Common.Utils;
-using DesignerTool.Data;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -21,10 +21,11 @@ namespace DesignerTool
         private bool _isStartUp = true;
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            new WpfContext();
             //TODO: Validate Database
 
-            License.Evaluate();
-            MvvmBootstrap.BootStrapApplication(new ViewMapper());
+            //TODO: License.Evaluate();
+
             PathContext.CreateAppDirectories();
 
             this._isStartUp = false;

@@ -20,9 +20,39 @@ namespace DesignerTool.Pages.Admin
     /// </summary>
     public partial class UserDetail : BaseView
     {
+        #region ViewModel
+
+        private UserDetailViewModel ViewModel
+        {
+            get
+            {
+                if (this.DataContext == null || !(this.DataContext is UserDetailViewModel))
+                {
+                    return null;
+                }
+                return (UserDetailViewModel)this.DataContext;
+            }
+        }
+
+        #endregion
+
+        #region Load
+
         public UserDetail()
         {
             InitializeComponent();
+        }
+
+        private void UserDetail_Load(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.Load();
+        }
+
+        #endregion
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.Save();
         }
     }
 }

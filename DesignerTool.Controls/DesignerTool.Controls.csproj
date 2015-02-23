@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DesignerTool.Controls</RootNamespace>
     <AssemblyName>DesignerTool.Controls</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -41,12 +41,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -79,9 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Panorama\GridPanel.cs" />
-    <Compile Include="Panorama\IPanoramaTile.cs" />
     <Compile Include="Panorama\Panorama.cs" />
-    <Compile Include="Panorama\PanoramaGroup.cs" />
     <Compile Include="Panorama\PanoramaGroupWidthConverter.cs" />
     <Compile Include="Panorama\TreeHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -111,6 +107,10 @@
     <ProjectReference Include="..\DesignerTool.Common\DesignerTool.Common.csproj">
       <Project>{3a07b822-d3e9-4665-9ef9-b8adfce69e75}</Project>
       <Name>DesignerTool.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DesignerTool.ViewModel\DesignerTool.AppLogic.csproj">
+      <Project>{b1b00085-3b52-4e33-9e4a-d4486d1b06cb}</Project>
+      <Name>DesignerTool.AppLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

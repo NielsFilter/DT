@@ -1,0 +1,12 @@
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\obj\Debug\DesignerTool.BusinessLogic.csprojResolveAssemblyReference.cache
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\DesignerTool.ViewModel.dll.config
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\DesignerTool.ViewModel.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\DesignerTool.ViewModel.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\DesignerTool.Common.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\DesignerTool.Packing.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\EntityFramework.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\DesignerTool.Common.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\DesignerTool.Packing.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\EntityFramework.xml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\obj\Debug\DesignerTool.ViewModel.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\obj\Debug\DesignerTool.ViewModel.pdb

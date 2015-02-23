@@ -20,9 +20,68 @@ namespace DesignerTool.Pages.Admin
     /// </summary>
     public partial class UserList : BaseView
     {
+        #region ViewModel
+
+        private UserListViewModel ViewModel
+        {
+            get
+            {
+                if (this.DataContext == null || !(this.DataContext is UserListViewModel))
+                {
+                    return null;
+                }
+                return (UserListViewModel)this.DataContext;
+            }
+        }
+
+        #endregion
+
+        #region Load
+
         public UserList()
         {
             InitializeComponent();
         }
+
+        private void UserList_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.Load();
+        }
+
+        #endregion
+
+        #region Add, Edit, Delete, Refresh
+
+        private void AddNew_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.AddNew();
+        }
+
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.Refresh();
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.Delete();
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.Edit();
+        }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            this.ViewModel.Refresh();
+        }
+
+        private void dgList_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this.ViewModel.Edit();
+        }
+
+        #endregion
     }
 }

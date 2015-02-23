@@ -21,6 +21,22 @@ namespace DesignerTool.Pages.Shell
     /// </summary>
     public partial class UserActivation : BaseView
     {
+        #region VM
+
+        private UserActivationViewModel VM
+        {
+            get
+            {
+                if (this.DataContext == null || !(this.DataContext is UserActivationViewModel))
+                {
+                    return null;
+                }
+                return (UserActivationViewModel)this.DataContext;
+            }
+        }
+
+        #endregion
+
         public UserActivation()
         {
             InitializeComponent();

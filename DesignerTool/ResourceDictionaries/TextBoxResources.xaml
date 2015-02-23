@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                    
-                    xmlns:m="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    xmlns:m="clr-namespace:DesignerTool.Styles.Wpf.Controls;assembly=DesignerTool.Styles.Wpf"
                     xmlns:ap="clr-namespace:DesignerTool.Common.Mvvm.AttachedProperties;assembly=DesignerTool.Common">
 
     <Style x:Key="TxtDefault" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">

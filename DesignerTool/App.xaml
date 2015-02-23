@@ -9,13 +9,19 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
 
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/DesignerTool.Styles.Wpf;component/Styles/Converters.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/DesignerTool.Styles.Wpf;component/Styles/StaticValues.xaml" />
 
-                <ResourceDictionary Source="ResourceDictionaries/StaticValueResources.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/DesignerTool.Styles.Wpf;component/Styles/Vectors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/DesignerTool.Styles.Wpf;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/DesignerTool.Styles.Wpf;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/DesignerTool.Styles.Wpf;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/DesignerTool.Styles.Wpf;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/DesignerTool.Styles.Wpf;component/Styles/Accents/BaseLight.xaml" />
+
+                <ResourceDictionary Source="pack://application:,,,/DesignerTool.Styles.Wpf;component/Styles/General.xaml" />
+
+                <!--<ResourceDictionary Source="ResourceDictionaries/StaticValueResources.xaml"/>
                 <ResourceDictionary Source="ResourceDictionaries/ConverterResources.xaml"/>
                 
                 <ResourceDictionary Source="ResourceDictionaries/ColourResources.xaml"/>
@@ -23,7 +29,7 @@
                 <ResourceDictionary Source="ResourceDictionaries/TextBlockResources.xaml"/>
                 <ResourceDictionary Source="ResourceDictionaries/ButtonResources.xaml"/>
                 <ResourceDictionary Source="ResourceDictionaries/TextBoxResources.xaml"/>
-                <ResourceDictionary Source="ResourceDictionaries/GeneralResources.xaml"/>
+                <ResourceDictionary Source="ResourceDictionaries/GeneralResources.xaml"/>-->
 
                 <!--<ResourceDictionary Source="ResourceDictionaries/ComboBoxResources.xaml"/>
                 <ResourceDictionary Source="ResourceDictionaries/DateTimeResources.xaml"/>

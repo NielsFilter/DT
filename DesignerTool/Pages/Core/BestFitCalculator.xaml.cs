@@ -22,6 +22,22 @@ namespace DesignerTool.Pages.Core
     /// </summary>
     public partial class BestFitCalculator : BaseView
     {
+        #region VM
+
+        private BestFitCalculatorViewModel VM
+        {
+            get
+            {
+                if (this.DataContext == null || !(this.DataContext is BestFitCalculatorViewModel))
+                {
+                    return null;
+                }
+                return (BestFitCalculatorViewModel)this.DataContext;
+            }
+        }
+
+        #endregion
+
         private List<Color> colours = new List<Color>()
         {
             Colors.Blue,

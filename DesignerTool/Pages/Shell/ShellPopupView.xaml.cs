@@ -18,6 +18,22 @@ namespace DesignerTool.Pages.Shell
     /// </summary>
     public partial class ShellPopupView : Window
     {
+        #region VM
+
+        private ShellPopupViewModel VM
+        {
+            get
+            {
+                if (this.DataContext == null || !(this.DataContext is ShellPopupViewModel))
+                {
+                    return null;
+                }
+                return (ShellPopupViewModel)this.DataContext;
+            }
+        }
+
+        #endregion
+
         public ShellPopupView()
         {
             InitializeComponent();

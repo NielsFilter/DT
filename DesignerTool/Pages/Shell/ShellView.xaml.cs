@@ -1,4 +1,6 @@
-﻿using MahApps.Metro.Controls;
+﻿using DesignerTool.AppLogic.ViewModels.Home;
+using DesignerTool.Styles.Wpf;
+using DesignerTool.Styles.Wpf.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,16 +21,69 @@ namespace DesignerTool.Pages.Shell
     /// </summary>
     public partial class ShellView : MetroWindow
     {
+        #region ViewModel
+
+        private ShellViewModel ViewModel
+        {
+            get
+            {
+                if (this.DataContext == null || !(this.DataContext is ShellViewModel))
+                {
+                    return null;
+                }
+                return (ShellViewModel)this.DataContext;
+            }
+        }
+
+        #endregion
+
         public ShellView()
         {
             InitializeComponent();
 
-            this.Loaded += ShellView_Loaded;
+            //TODO: TEMP: Testing THEMES
+            WpfContext.Current.MainContent = this.contentMain;
+
+            var themes = new[] { "BaseLight", "BaseDark" };
+            var accents = new[] {
+                                    "Red", "Green", "Blue", "Purple", "Orange", "Lime", "Emerald", "Teal", "Cyan", "Cobalt",
+                                    "Indigo", "Violet", "Pink", "Magenta", "Crimson", "Amber", "Yellow", "Brown", "Olive", "Steel", "Mauve", "Taupe", "Sienna"
+                               };
+
+            var rnd = new Random();
+
+            var randomTheme = themes[rnd.Next(0, themes.Length)];
+            var randomAccent = accents[rnd.Next(0, accents.Length)];
+
+            var theme = ThemeManager.GetAppTheme(randomTheme);
+            var accent = ThemeManager.GetAccent(randomAccent);
+
+            ThemeManager.ChangeAppStyle(Application.Current, accent, theme);
         }
 
-        void ShellView_Loaded(object sender, RoutedEventArgs e)
+        private void ShellView_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            this.ViewModel.Load();
+        }
+
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.GoHome();
+        }
+
+        private void ShowMenu_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.ShowMenu();
+        }
+
+        private void Users_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.GoUsers();
+        }
+
+        private void GenerateActivationKey_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.GoGenerateLicenseKey();
         }
     }
 }

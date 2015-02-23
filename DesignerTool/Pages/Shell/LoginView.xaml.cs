@@ -1,5 +1,4 @@
 ﻿using DesignerTool.Common.Mvvm;
-using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +19,35 @@ namespace DesignerTool.Pages.Shell
     /// </summary>
     public partial class LoginView : UserControl
     {
+        #region VM
+
+        private LoginViewModel ViewModel
+        {
+            get
+            {
+                if (this.DataContext == null || !(this.DataContext is LoginViewModel))
+                {
+                    return null;
+                }
+                return (LoginViewModel)this.DataContext;
+            }
+        }
+
+        #endregion
+
         public LoginView()
         {
             InitializeComponent();
+        }
+
+        private void LoginView_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.OnLoad();
+        }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.Login();
         }
     }
 }

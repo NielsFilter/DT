@@ -19,6 +19,22 @@ namespace DesignerTool.Pages.Shell
     /// </summary>
     public partial class HomeView : UserControl
     {
+        #region VM
+
+        private HomeViewModel VM
+        {
+            get
+            {
+                if (this.DataContext == null || !(this.DataContext is HomeViewModel))
+                {
+                    return null;
+                }
+                return (HomeViewModel)this.DataContext;
+            }
+        }
+
+        #endregion
+
         public HomeView()
         {
             InitializeComponent();

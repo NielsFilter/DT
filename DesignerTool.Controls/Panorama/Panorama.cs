@@ -8,6 +8,7 @@ using System.Windows.Threading;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Media;
+using DesignerTool.AppLogic.ViewModels.Panorama;
 
 namespace DesignerTool.Controls.Panorama
 {
