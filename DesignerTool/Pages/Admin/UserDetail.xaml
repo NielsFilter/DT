@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Username" Style="{StaticResource TbDefault}" />
-        <TextBox Grid.Column="1" Text="{Binding Model.Username, Mode=TwoWay,ValidatesOnExceptions=True}"/>
+        <TextBox Grid.Column="1" Text="{Binding Model.Username, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
 
         <TextBlock Grid.Row="1" Text="Password" Style="{StaticResource TbDefault}" />
         <PasswordBox Grid.Column="1" Grid.Row="1" 

@@ -1,4 +1,5 @@
 ﻿using DesignerTool.AppLogic;
+using DesignerTool.AppLogic.Data;
 using DesignerTool.Common.Global;
 using DesignerTool.Common.Mvvm.Paging;
 using DesignerTool.Common.Mvvm.ViewModels;

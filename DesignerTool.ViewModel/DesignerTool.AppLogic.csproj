@@ -55,6 +55,7 @@
     <Compile Include="Data\ActiveLicense.cs">
       <DependentUpon>DesignerToolModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\BaseModel.cs" />
     <Compile Include="Data\DesignerToolDbEntities.partial.cs" />
     <Compile Include="Data\DesignerToolModel.Context.cs">
       <AutoGen>True</AutoGen>

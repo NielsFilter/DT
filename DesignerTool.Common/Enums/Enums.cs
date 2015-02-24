@@ -8,14 +8,31 @@ namespace DesignerTool.Common.Enums
 {
     public enum UserMessageType
     {
-        [Notification(caption: "Success", message: "Save Successful")]
-        SUCCESS,
-        [Notification(caption: "Warning", message: "Warning")]
-        WARNING,
-        [Notification(caption: "Error", message: "An error has occurred")]
-        ERROR,
-        [Notification(caption: "Please Note", message: "Please Note")]
-        NOTIFICATION
+        [Notification(caption: "Success", message: "Save Successful.")]
+        Success,
+        [Notification(caption: "Warning", message: "Warning.")]
+        Warning,
+        [Notification(caption: "Error", message: "An error has occurred.")]
+        Error,
+        [Notification(caption: "Please Note", message: "Please Note.")]
+        Information
+    }
+
+    public enum UserMessageButtons
+    {
+        OK,
+        OKCancel,
+        YesNo,
+        YesNoCancel
+    }
+
+    public enum UserMessageResults
+    {
+        Cancel,
+        No,
+        None,
+        OK,
+        Yes
     }
 
     public enum RoleType

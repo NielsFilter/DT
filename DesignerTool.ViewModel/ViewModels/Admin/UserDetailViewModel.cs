@@ -98,6 +98,7 @@ namespace DesignerTool.Pages.Admin
                     {
                         // Get item
                         this.Model = ctx.Users.FirstOrDefault(u => u.UserID == this.ID.Value);
+                        this.Model.IsValidate = true;
                     }
                     else
                     {
@@ -117,6 +118,7 @@ namespace DesignerTool.Pages.Admin
         /// </summary>
         public void Save()
         {
+            this.toggleValidation(true); // Turn on validation.
             base.ShowLoading(() =>
             {
                 if (this.Model != null)
@@ -138,11 +140,20 @@ namespace DesignerTool.Pages.Admin
                     }
                     catch (Exception ex)
                     {
-                        SessionContext.Current.ShowError("Save Failed", ex.Message);
+                        SessionContext.Current.ShowError(ex.Message, "Save Failed");
                         //TODO: base.ShowError("Save failed", ex.Message);
                     }
                 }
             }, "Saving user details");
+        }
+
+        private void toggleValidation(bool isValidateEnabled)
+        {
+            if (this.Model.IsValidate != isValidateEnabled)
+            {
+                this.Model.IsValidate = isValidateEnabled;
+                base.NotifyPropertyChanged("Model"); // Tells the UI to re-evaluate the Validation Conditions.
+            }
         }
 
         #endregion

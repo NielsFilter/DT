@@ -9,7 +9,7 @@ using System.Text;
 
 namespace DesignerTool.AppLogic.Data
 {
-    public partial class User : IDataErrorInfo
+    public partial class User : BaseModel
     {
         #region Password
 
@@ -41,45 +41,33 @@ namespace DesignerTool.AppLogic.Data
 
         #endregion
 
-        public void Validate()
+        #region Validation
+
+        public override string Validation(string columnName)
         {
-            if (string.IsNullOrEmpty(this.Password))
+            switch (columnName)
             {
-                throw new ValidationException("A Password is required.");
+                case "Username":
+                    if (string.IsNullOrWhiteSpace(this.Username))
+                    {
+                        return "A username is required.";
+                    }
+                    break;
+                case "Password":
+                    if (string.IsNullOrEmpty(this.Password))
+                    {
+                        return "A password is required.";
+                    }
+                    else if (this.Password.Length < 5)
+                    {
+                        return "The password must be at least 5 characters long.";
+                    }
+                    break;
             }
+
+            return string.Empty; // No validation exceptions
         }
 
-        public string Error
-        {
-            get { return null; }
-        }
-
-        public string this[string columnName]
-        {
-            get
-            {
-                switch (columnName)
-                {
-                    case "Username":
-                        if (string.IsNullOrWhiteSpace(this.Username))
-                        {
-                            return "A username is required.";
-                        }
-                        break;
-                    case "Password":
-                        if (string.IsNullOrEmpty(this.Password))
-                        {
-                            return "A password is required.";
-                        }
-                        else if (this.Password.Length < 5)
-                        {
-                            return "The password must be at least 5 characters long.";
-                        }
-                        break;
-                }
-
-                return string.Empty; // No validation exceptions
-            }
-        }
+        #endregion
     }
 }

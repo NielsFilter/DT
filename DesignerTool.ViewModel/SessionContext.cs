@@ -1,4 +1,5 @@
 ﻿using DesignerTool.AppLogic.Data;
+using DesignerTool.Common.Enums;
 using DesignerTool.Common.Logging;
 using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Common.ViewModels;
@@ -104,8 +105,10 @@ namespace DesignerTool.AppLogic
 
         #endregion
 
-        //TODO: Create a generic method for all.
-        public abstract void ShowError(string errorMessage, string caption = "Error");
-        public abstract void ShowMessage(string message, string caption = "Information");
+        #region Dialogs & Messages
+
+        public abstract UserMessageResults ShowMessage(string message, string caption = null, UserMessageType msgType = UserMessageType.Information, UserMessageButtons buttons = UserMessageButtons.OK);
+
+        #endregion
     }
 }

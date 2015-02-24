@@ -1,4 +1,5 @@
 ﻿using DesignerTool.AppLogic;
+using DesignerTool.Common.Enums;
 using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Pages.Admin;
 using DesignerTool.Pages.Core;
@@ -104,17 +105,81 @@ namespace DesignerTool
 
         #endregion
 
-        //TODO:
-        #region Dialogs, Messages...
+        #region Dialogs & Messages
 
-        public override void ShowError(string errorMessage, string caption = "Error")
+        public override UserMessageResults ShowMessage(string message, string caption = null, UserMessageType msgType = UserMessageType.Information, UserMessageButtons buttons = UserMessageButtons.OK)
         {
-            MessageBox.Show(errorMessage, caption, MessageBoxButton.OK, MessageBoxImage.Error);
-        }
+            // Message
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                message = NotificationAttribute.GetCaption(msgType);
+            }
 
-        public override void ShowMessage(string message, string caption = "Information")
-        {
-            MessageBox.Show(message, caption, MessageBoxButton.OK, MessageBoxImage.Information);
+            // Caption
+            if (string.IsNullOrWhiteSpace(caption))
+            {
+                caption = NotificationAttribute.GetCaption(msgType);
+            }
+
+            // Buttons
+            MessageBoxButton msgBoxBtn = MessageBoxButton.OK;
+            switch (buttons)
+            {
+                case UserMessageButtons.OK:
+                    msgBoxBtn = MessageBoxButton.OK;
+                    break;
+                case UserMessageButtons.OKCancel:
+                    msgBoxBtn = MessageBoxButton.OK;
+                    break;
+                case UserMessageButtons.YesNo:
+                    break;
+                case UserMessageButtons.YesNoCancel:
+                    break;
+            }
+
+            // Images
+            MessageBoxImage msgBoxImg = MessageBoxImage.Information;
+            switch (msgType)
+            {
+                case UserMessageType.Error:
+                    msgBoxImg = MessageBoxImage.Error;
+                    break;
+                case UserMessageType.Information:
+                    msgBoxImg = MessageBoxImage.Information;
+                    break;
+                case UserMessageType.Success:
+                    msgBoxImg = MessageBoxImage.Information;
+                    break;
+                case UserMessageType.Warning:
+                    msgBoxImg = MessageBoxImage.Exclamation;
+                    break;
+            }
+
+            // Show the message
+            MessageBoxResult res = MessageBox.Show(message, caption, msgBoxBtn, msgBoxImg);
+
+            // Return result
+            UserMessageResults usrMsgResult = UserMessageResults.None;
+            switch (res)
+            {
+                case MessageBoxResult.Cancel:
+                    usrMsgResult = UserMessageResults.Cancel;
+                    break;
+                case MessageBoxResult.No:
+                    usrMsgResult = UserMessageResults.No;
+                    break;
+                case MessageBoxResult.None:
+                    usrMsgResult = UserMessageResults.None;
+                    break;
+                case MessageBoxResult.OK:
+                    usrMsgResult = UserMessageResults.OK;
+                    break;
+                case MessageBoxResult.Yes:
+                    usrMsgResult = UserMessageResults.Yes;
+                    break;
+            }
+
+            return usrMsgResult;
         }
 
         //public override void ShowMessage(string message, string caption, Common.Enums.UserMessageType messageType)
