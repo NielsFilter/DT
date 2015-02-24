@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              Loaded="UserList_Loaded"
              d:DesignHeight="800" d:DesignWidth="1024">
-    <Grid Style="{StaticResource GrdContent}" x:Name="Root">
+    <Grid x:Name="Root" Style="{StaticResource GrdContent}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -23,7 +23,7 @@
         </StackPanel>
 
         <TextBox Grid.Row="0" Style="{StaticResource TxtDefault}" Width="300" FontSize="16"
-                 HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                 HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5"
                  m:TextboxHelper.Watermark="Type to search..."
                  TextChanged="Search_TextChanged"
                  Text="{Binding Pager.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">

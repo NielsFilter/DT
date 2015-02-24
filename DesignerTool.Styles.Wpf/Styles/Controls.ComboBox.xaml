@@ -468,7 +468,6 @@
 
     <!--*** Custom Styles ***-->
     <Style x:Key="CmbDefault" TargetType="ComboBox" BasedOn="{StaticResource MetroComboBox}">
-        <Setter Property="Margin" Value="10" />
     </Style>
 
 </ResourceDictionary>

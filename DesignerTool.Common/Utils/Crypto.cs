@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DesignerTool.Common.Utils
 {
-    public static class Security
+    public static class Crypto
     {
         /// <summary>
         /// Encrypts the given plain text using fast encryption

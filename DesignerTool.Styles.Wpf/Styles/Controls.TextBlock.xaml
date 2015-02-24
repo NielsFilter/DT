@@ -13,7 +13,6 @@
 
     <!--*** Custom Styles ***-->
     <Style x:Key="TbDefault" TargetType="TextBlock">
-        <Setter Property="Margin" Value="10" />
         <Setter Property="Foreground" Value="{DynamicResource LabelTextBrush}" />
     </Style>
 

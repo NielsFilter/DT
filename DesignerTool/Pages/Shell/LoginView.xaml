@@ -20,19 +20,19 @@
         </Grid.ColumnDefinitions>
 
         <!-- Username -->
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="User" Style="{StaticResource TbDefault}" />
-        <TextBox Grid.Column="2" Grid.Row="1"
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="User" Style="{StaticResource TbDefault}" Margin="{StaticResource DetailMargins}" />
+        <TextBox Grid.Column="2" Grid.Row="1" Margin="{StaticResource DetailMargins}"
                  Style="{StaticResource TxtDefault}"
                  m:TextboxHelper.Watermark="Username"
                  Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <!-- Password -->
-        <TextBlock Grid.Column="1" Grid.Row="2" Text="Password" Style="{StaticResource TbDefault}"/>
-        <PasswordBox Grid.Column="2" Grid.Row="2"
+        <TextBlock Grid.Column="1" Grid.Row="2" Text="Password" Style="{StaticResource TbDefault}" Margin="{StaticResource DetailMargins}"/>
+        <PasswordBox Grid.Column="2" Grid.Row="2" Margin="{StaticResource DetailMargins}"
                      Style="{StaticResource PwdDeafult}"
                      ap:PasswordBoxAttached.PasswordText="{Binding Password, Mode=OneWayToSource}" />
 
-        <Button Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right"
+        <Button Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" 
                 Content="Login" IsDefault="True"
                 Style="{StaticResource BtnDefault}"
                 IsEnabled="{Binding CanLogin, Mode=OneWay}"

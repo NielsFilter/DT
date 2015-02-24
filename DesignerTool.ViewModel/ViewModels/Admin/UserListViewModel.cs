@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using DesignerTool.AppLogic;
+using System.Security.Authentication;
 
 namespace DesignerTool.Pages.Admin
 {
@@ -20,6 +21,10 @@ namespace DesignerTool.Pages.Admin
         public UserListViewModel()
             : base()
         {
+            if (!base.PagePermissions.CanRead)
+            {
+                throw new AuthenticationException();
+            }
             ctx = new DesignerToolDbEntities();
         }
 
@@ -92,12 +97,16 @@ namespace DesignerTool.Pages.Admin
 
         public bool CanDelete
         {
-            get { return this.SelectedItem != null; }
+            get { return base.PagePermissions.CanDelete && this.SelectedItem != null; }
         }
 
         public bool CanEdit
         {
-            get { return this.SelectedItem != null; }
+            get
+            {
+                return this.SelectedItem != null &&
+                    (this.PagePermissions.CanModify || this.PagePermissions.CanRead);
+            }
         }
 
         #endregion

@@ -24,7 +24,7 @@ namespace DesignerTool.AppLogic.Data
 
         //public void Validate()
         //{
-        //    var entriesToValidate = ObjectStateManager.GetObjectStateEntries(
+        //    var entriesToValidate = System.Data.Objects.ObjectStateManager.GetObjectStateEntries(
         //                                System.Data.EntityState.Added |
         //                                System.Data.EntityState.Modified |
         //                                System.Data.EntityState.Deleted)
@@ -35,6 +35,16 @@ namespace DesignerTool.AppLogic.Data
         //        var entity = entry.Entity as IValidatable;
         //        entity.Validate(entry.State);
         //    }
+        //}
+
+        //public override int SaveChanges()
+        //{
+        //    return base.SaveChanges();
+        //}
+
+        //protected override System.Data.Entity.Validation.DbEntityValidationResult ValidateEntity(System.Data.Entity.Infrastructure.DbEntityEntry entityEntry, IDictionary<object, object> items)
+        //{
+        //    return base.ValidateEntity(entityEntry, items);
         //}
     }
 }

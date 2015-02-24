@@ -20,7 +20,7 @@ namespace DesignerTool.AppLogic.Data
             try
             {
                 // Decrypt and validate
-                string userPwd = Security.Decrypt(this.Password, "filterniels");
+                string userPwd = Crypto.Decrypt(this.Password, "filterniels");
                 return userPwd.CompareTo(password) == 0;
             }
             catch (Exception)
@@ -36,7 +36,7 @@ namespace DesignerTool.AppLogic.Data
                 throw new ValidationException(String.Format("Password must be at least {0} chars", MIN_PASSWORD_LENGTH));
             }
             // Encrypt the password
-            this.Password = Security.Encrypt(pwd, "filterniels");
+            this.Password = Crypto.Encrypt(pwd, "filterniels");
         }
 
         #endregion

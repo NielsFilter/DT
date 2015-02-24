@@ -740,7 +740,6 @@
 
     <!--*** Custom Styles ***-->
     <Style x:Key="TxtDefault" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
-        <Setter Property="Margin" Value="10" />
         <Setter Property="m:TextboxHelper.ClearTextButton" Value="True"/>
     </Style>
 

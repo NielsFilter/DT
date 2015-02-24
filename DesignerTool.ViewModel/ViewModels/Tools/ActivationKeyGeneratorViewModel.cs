@@ -125,9 +125,9 @@ namespace DesignerTool.Pages.Tools
         private void generate()
         {
             //TODO: Continue HERE - Add Apply license functionality
-            this.ActivationKey = Security.CreateCode(this.Activation);
+            this.ActivationKey = Crypto.CreateCode(this.Activation);
 
-            var test = Security.ReadCode(this.ActivationKey);
+            var test = Crypto.ReadCode(this.ActivationKey);
         }
 
         #endregion

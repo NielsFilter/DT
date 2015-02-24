@@ -43,6 +43,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xaml" />
@@ -88,6 +89,9 @@
     </Compile>
     <Compile Include="Data\User.partial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\IPermission.cs" />
+    <Compile Include="Security\Permission.cs" />
+    <Compile Include="Security\PermissionChecker.cs" />
     <Compile Include="SessionContext.cs" />
     <Compile Include="Validation\IValidatable.cs" />
     <Compile Include="ViewModels\Admin\UserDetailViewModel.cs" />

@@ -8,38 +8,66 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
             Loaded="UserDetail_Load">
-    <Grid Style="{StaticResource GrdContent}">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Username" Style="{StaticResource TbDefault}" />
-        <TextBox Grid.Column="1" Text="{Binding Model.Username, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+        <Border Grid.ColumnSpan="10" Style="{StaticResource BrdSuccessNotification}" Visibility="{Binding IsShowSuccess, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
+            <Grid>
+                <TextBlock Text="{Binding SuccessText}" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
 
-        <TextBlock Grid.Row="1" Text="Password" Style="{StaticResource TbDefault}" />
-        <PasswordBox Grid.Column="1" Grid.Row="1" 
+        <Border Grid.ColumnSpan="10" Style="{StaticResource BrdErrorNotification}" Visibility="{Binding IsShowError, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
+            <Grid>
+                <TextBlock Text="{Binding ErrorText}" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.ColumnSpan="10" Style="{StaticResource BrdWarningNotification}" Visibility="{Binding IsShowWarning, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
+            <Grid>
+                <TextBlock Text="{Binding WarningText}" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <Grid Style="{StaticResource GrdContent}" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Username" Style="{StaticResource TbDefault}" Margin="{StaticResource DetailMargins}" />
+            <TextBox Grid.Column="1" Text="{Binding Model.Username, Mode=TwoWay, ValidatesOnDataErrors=True}" Margin="{StaticResource DetailMargins}"/>
+
+            <TextBlock Grid.Row="1" Text="Password" Style="{StaticResource TbDefault}" Margin="{StaticResource DetailMargins}"/>
+            <PasswordBox Grid.Column="1" Grid.Row="1" Margin="{StaticResource DetailMargins}"
                      ap:PasswordBoxAttached.IsPasswordTextBindable="True"
                      ap:PasswordBoxAttached.PasswordText="{Binding Model.Password, Mode=TwoWay, ValidatesOnDataErrors=True, Converter={StaticResource stringToDecryptConverter}}"/>
 
-        <TextBlock Grid.Row="2"  Text="Role" Style="{StaticResource TbDefault}" />
-        <ComboBox Grid.Column="1" Grid.Row="2" 
+            <TextBlock Grid.Row="2"  Text="Role" Style="{StaticResource TbDefault}" Margin="{StaticResource DetailMargins}"/>
+            <ComboBox Grid.Column="1" Grid.Row="2" Margin="{StaticResource DetailMargins}"
                   ItemsSource="{Binding Roles, Mode=OneWay}"
                   SelectedItem="{Binding Model.Role, Mode=TwoWay}"/>
-        <TextBlock Grid.Row="3"  Text="Is Active" Style="{StaticResource TbDefault}" />
-        <CheckBox Grid.Column="1" Grid.Row="3" Margin="10"
+            <TextBlock Grid.Row="3"  Text="Is Active" Style="{StaticResource TbDefault}" Margin="{StaticResource DetailMargins}"/>
+            <CheckBox Grid.Column="1" Grid.Row="3" Margin="{StaticResource DetailMargins}"
                   IsChecked="{Binding Model.IsActive, Mode=TwoWay}" />
 
-        <Button Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" Content="Save" IsDefault="True"
+            <StackPanel Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Content="Save" IsDefault="True"
                 Style="{StaticResource BtnDefault}"                    
-                Click="Save_Click" />
+                Click="Save_Click"
+                IsEnabled="{Binding CanSave, Mode=OneWay}"/>
+            </StackPanel>
 
+        </Grid>
     </Grid>
 </v:BaseView>

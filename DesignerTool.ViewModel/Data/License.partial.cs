@@ -18,7 +18,7 @@ namespace DesignerTool.AppLogic.Data
             {
                 try
                 {
-                    var xmlCode = Security.Decrypt(this.Code, SessionContext.Current.ClientCode);
+                    var xmlCode = Crypto.Decrypt(this.Code, SessionContext.Current.ClientCode);
                     return XML.Deserialize<AppLicense>(xmlCode);
                 }
                 catch (Exception)
@@ -118,7 +118,7 @@ namespace DesignerTool.AppLogic.Data
 
         public static AppLicense ApplyLicenseCode(string code)
         {
-            var activationCode = Security.ReadCode(code);
+            var activationCode = Crypto.ReadCode(code);
             if (activationCode == null)
             {
                 return null;

@@ -262,14 +262,14 @@ namespace DesignerTool.ViewModels
                 message = NotificationAttribute.GetMessage(msgType);
             }
 
-            if (msgType == UserMessageType.SUCCESS)
+            if (msgType == UserMessageType.Success)
             {
                 // Saved
                 this.SaveMessageHeader = caption;
                 this.SaveMessage = string.Format("{0} - {1}", message, DateTime.Now.ToString("HH:mm:ss"));
                 this.IsSaveShow = true;
             }
-            else if (msgType == UserMessageType.ERROR)
+            else if (msgType == UserMessageType.Error)
             {
                 // Error
                 this.ErrorMessageHeader = caption;

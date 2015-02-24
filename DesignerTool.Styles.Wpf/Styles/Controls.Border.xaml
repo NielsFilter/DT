@@ -11,5 +11,19 @@
         <Setter Property="BorderThickness"
                 Value="1" />
     </Style>
-    
+
+
+    <Style TargetType="{x:Type Border}" x:Key="BrdNotificationBase">
+        <Setter Property="Padding" Value="5,0" />
+    </Style>
+    <Style TargetType="{x:Type Border}" x:Key="BrdSuccessNotification" BasedOn="{StaticResource BrdNotificationBase}">
+        <Setter Property="Background" Value="{DynamicResource SuccessBrush}" />
+    </Style>
+    <Style TargetType="{x:Type Border}" x:Key="BrdErrorNotification" BasedOn="{StaticResource BrdNotificationBase}">
+        <Setter Property="Background" Value="{DynamicResource ErrorBrush}" />
+    </Style>
+    <Style TargetType="{x:Type Border}" x:Key="BrdWarningNotification" BasedOn="{StaticResource BrdNotificationBase}">
+        <Setter Property="Background" Value="{DynamicResource WarningBrush}" />
+    </Style>
+
 </ResourceDictionary>

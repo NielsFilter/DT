@@ -7,6 +7,7 @@ using DesignerTool.Common.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Authentication;
 using System.Text;
 
 namespace DesignerTool.Pages.Admin
@@ -20,6 +21,10 @@ namespace DesignerTool.Pages.Admin
         public UserDetailViewModel()
             : base()
         {
+            if (!base.PagePermissions.CanRead)
+            {
+                throw new AuthenticationException();
+            }
             ctx = new DesignerToolDbEntities();
         }
 
@@ -78,6 +83,11 @@ namespace DesignerTool.Pages.Admin
             }
         }
 
+        public bool CanSave
+        {
+            get { return base.PagePermissions.CanModify; }
+        }
+
         #endregion
 
         #region Load & Refresh
@@ -104,6 +114,7 @@ namespace DesignerTool.Pages.Admin
                     {
                         // New record. Set defaults
                         this.Model = new User();
+                        this.Model.IsActive = true;
                         this.Model.Role = RoleType.User.ToString();
                     }
                 }, "Retrieving user details...");
@@ -134,14 +145,11 @@ namespace DesignerTool.Pages.Admin
 
                         // Save successful
                         this.ID = this.Model.UserID;
-
-                        //TODO: Implement better "saved succesful"
-                        SessionContext.Current.ShowMessage("Saved successful!", "Saved successful");
+                        base.ShowSaved();
                     }
                     catch (Exception ex)
                     {
-                        SessionContext.Current.ShowError(ex.Message, "Save Failed");
-                        //TODO: base.ShowError("Save failed", ex.Message);
+                        SessionContext.Current.ShowMessage(ex.Message, "Save Failed", UserMessageType.Error);
                     }
                 }
             }, "Saving user details");
@@ -149,11 +157,11 @@ namespace DesignerTool.Pages.Admin
 
         private void toggleValidation(bool isValidateEnabled)
         {
-            if (this.Model.IsValidate != isValidateEnabled)
-            {
+            //if (this.Model.IsValidate != isValidateEnabled)
+            //{
                 this.Model.IsValidate = isValidateEnabled;
                 base.NotifyPropertyChanged("Model"); // Tells the UI to re-evaluate the Validation Conditions.
-            }
+            //}
         }
 
         #endregion

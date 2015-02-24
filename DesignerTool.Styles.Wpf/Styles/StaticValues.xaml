@@ -3,6 +3,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <GridLength x:Key="InfoBarHeight">120</GridLength>
-    
+
     <sys:String x:Key="NoSelection">No item selected...</sys:String>
+
+    <Thickness x:Key="DetailMargins" Left="5" Top="5" Right="5" Bottom="5" />
 </ResourceDictionary>

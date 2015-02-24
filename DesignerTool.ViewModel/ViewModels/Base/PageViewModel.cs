@@ -1,5 +1,6 @@
 ﻿using DesignerTool.AppLogic;
 using DesignerTool.AppLogic.Data;
+using DesignerTool.AppLogic.Security;
 using DesignerTool.Common.Global;
 using DesignerTool.Common.Mvvm.Paging;
 using DesignerTool.Common.Mvvm.ViewModels;
@@ -21,6 +22,7 @@ namespace DesignerTool.Common.ViewModels
         public PageViewModel()
             : base()
         {
+            this.SetPagePermissions();
             if (SessionContext.Current.ParentViewModel != null)
             {
                 SessionContext.Current.ParentViewModel.IsLoading = false;
@@ -39,70 +41,6 @@ namespace DesignerTool.Common.ViewModels
         #endregion
 
         #region Validation
-
-        //private readonly Dictionary<string, IEnumerable<string>> _validationErrors = new Dictionary<string, IEnumerable<string>>();
-        //public void AddValidationError(string propertyName, ICollection<string> errors, bool notifyErrorOccurred = true)
-        //{
-        //    if (_validationErrors == null || string.IsNullOrEmpty(propertyName))
-        //    {
-        //        return;
-        //    }
-
-        //    if (this._validationErrors.ContainsKey(propertyName))
-        //    {
-        //        _validationErrors[propertyName] = _validationErrors[propertyName].Union(errors);
-        //    }
-        //    else
-        //    {
-        //        _validationErrors.Add(propertyName, errors);
-        //    }
-
-        //    if (notifyErrorOccurred)
-        //    {
-        //        this.NotifyErrorsChanged(propertyName);
-        //    }
-        //}
-
-        //public void ClearValidationErrors(string propertyName = null)
-        //{
-        //    if (propertyName == null)
-        //    {
-        //        _validationErrors.Clear();
-        //    }
-        //    else
-        //    {
-        //        _validationErrors.Remove(propertyName);
-        //    }
-        //}
-
-        //private void NotifyErrorsChanged(string propertyName)
-        //{
-        //    if (this.ErrorsChanged != null)
-        //    {
-        //        this.ErrorsChanged(this, new DataErrorsChangedEventArgs(propertyName));
-        //    }
-        //}
-
-        //#region INotifyDataErrorInfo Members
-
-        //public bool HasErrors
-        //{
-        //    get { return this._validationErrors.Count > 0; }
-        //}
-
-        //public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-
-        //public System.Collections.IEnumerable GetErrors(string propertyName)
-        //{
-        //    if (string.IsNullOrEmpty(propertyName) || !this._validationErrors.ContainsKey(propertyName))
-        //    {
-        //        return null;
-        //    }
-
-        //    return this._validationErrors[propertyName];
-        //}
-
-        //#endregion
 
         #endregion
 
@@ -223,6 +161,167 @@ namespace DesignerTool.Common.ViewModels
                     base.NotifyPropertyChanged("Pager");
                 }
             }
+        }
+
+        #endregion
+
+        #region Notifications
+
+        private string _successText;
+        public string SuccessText
+        {
+            get
+            {
+                return this._successText;
+            }
+            set
+            {
+                if (value != this._successText)
+                {
+                    this._successText = value;
+                    base.NotifyPropertyChanged("SuccessText");
+                }
+            }
+        }
+
+        private bool _isShowSuccess = false;
+        public bool IsShowSuccess
+        {
+            get
+            {
+                return this._isShowSuccess;
+            }
+            set
+            {
+                if (value != this._isShowSuccess)
+                {
+                    if (value)
+                    {
+                        this.IsShowError = false;
+                        this.IsShowWarning = false;
+                    }
+
+                    this._isShowSuccess = value;
+                    base.NotifyPropertyChanged("IsShowSuccess");
+                }
+            }
+        }
+
+        private string _warningText;
+        public string WarningText
+        {
+            get
+            {
+                return this._warningText;
+            }
+            set
+            {
+                if (value != this._warningText)
+                {
+                    this._warningText = value;
+                    base.NotifyPropertyChanged("WarningText");
+                }
+            }
+        }
+
+        private bool _isShowWarning;
+        public bool IsShowWarning
+        {
+            get
+            {
+                return this._isShowWarning;
+            }
+            set
+            {
+                if (value != this._isShowWarning)
+                {
+                    if(value)
+                    {
+                        this.IsShowSuccess = false;
+                        this.IsShowError = false;
+                    }
+
+                    this._isShowWarning = value;
+                    base.NotifyPropertyChanged("IsShowWarning");
+                }
+            }
+        }
+
+        private string _errorText;
+        public string ErrorText
+        {
+            get
+            {
+                return this._errorText;
+            }
+            set
+            {
+                if (value != this._errorText)
+                {
+                    this._errorText = value;
+                    base.NotifyPropertyChanged("ErrorText");
+                }
+            }
+        }
+
+        private bool _isShowError;
+        public bool IsShowError
+        {
+            get
+            {
+                return this._isShowError;
+            }
+            set
+            {
+                if (value != this._isShowError)
+                {
+                    if (value)
+                    {
+                        this.IsShowSuccess = false;
+                        this.IsShowWarning = false;
+                    }
+
+                    this._isShowError = value;
+                    base.NotifyPropertyChanged("IsShowError");
+                }
+            }
+        }
+
+        public void ShowSaved(string savedText = null)
+        {
+            if (string.IsNullOrWhiteSpace(savedText))
+            {
+                savedText = String.Format("Saved Successful {0:HH:mm}", DateTime.Now);
+            }
+
+            this.SuccessText = savedText;
+            this.IsShowSuccess = true;
+        }
+
+        #endregion
+
+        #region Permissions
+
+        private IPermission _pagePermissions;
+        public IPermission PagePermissions
+        {
+            get
+            {
+                return this._pagePermissions;
+            }
+            set
+            {
+                if (value != this._pagePermissions)
+                {
+                    this._pagePermissions = value;
+                    base.NotifyPropertyChanged("PagePermissions");
+                }
+            }
+        }
+
+        public void SetPagePermissions()
+        {
+            this.PagePermissions = PermissionChecker.GetPermission(this.GetType());
         }
 
         #endregion

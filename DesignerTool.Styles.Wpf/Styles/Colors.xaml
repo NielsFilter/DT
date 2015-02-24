@@ -39,11 +39,11 @@
     <Color x:Key="ProgressIndeterminateColor3">#4C000000</Color>
     <Color x:Key="ProgressIndeterminateColor4">#4C000000</Color>
 
-    <Color x:Key="SuccessColor">#FF5A9C5A</Color>
-    <Color x:Key="WarningColor">#FFB0A24A</Color>
-    <Color x:Key="ErrorColor">#FFB04A4A</Color>
+    <Color x:Key="SuccessColor">#FF7BA17B</Color>
+    <Color x:Key="WarningColor">#FFA99F61</Color>
+    <Color x:Key="ErrorColor">#FF9D5F5F</Color>
 
-        <!-- *************BRUSHES START************* -->
+    <!-- *************BRUSHES START************* -->
     <!--PROJECT TEMPLATE BRUSHES -->
 
     <!-- UNIVERSAL CONTROL BRUSHES -->
@@ -81,7 +81,8 @@
     <SolidColorBrush x:Key="GrayBrush10" Color="{DynamicResource Gray10}"/>
 
     <SolidColorBrush x:Key="SuccessBrush" Color="{DynamicResource SuccessColor}"/>
-    <SolidColorBrush x:Key="WarningBrush" Color="{DynamicResource WarningColor}"/>
+    <SolidColorBrush x:Key="WarningBrush" Color="#FFA99F61"/>
+    <SolidColorBrush x:Key="ErrorBrush" Color="{DynamicResource ErrorColor}"/>
 
     
     <SolidColorBrush x:Key="TextBoxBorderBrush" Color="{DynamicResource Gray6}" />

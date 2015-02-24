@@ -18,9 +18,9 @@ namespace DesignerTool.Pages.Shell
     /// </summary>
     public partial class ShellPopupView : Window
     {
-        #region VM
+        #region ViewModel
 
-        private ShellPopupViewModel VM
+        private ShellPopupViewModel ViewModel
         {
             get
             {
