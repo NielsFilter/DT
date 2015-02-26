@@ -1,4 +1,5 @@
-﻿using DesignerTool.Common.Mvvm.ViewModels;
+﻿using DesignerTool.Common.Data;
+using DesignerTool.Common.Mvvm.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace DesignerTool.AppLogic.Data
 {
-    public class BaseModel : NotifyPropertyChangedBase, IDataErrorInfo
+    public class BaseModel : NotifyPropertyChangedBase, IValidatable
     {
         private bool _isValidate;
         public bool IsValidate
@@ -32,6 +33,14 @@ namespace DesignerTool.AppLogic.Data
             return String.Empty;
         }
 
+        public void Validate()
+        {
+            //foreach(var prop in this.GetType().GetProperties())
+            //{
+            //    this[]
+            //}
+        }
+
         #region IDataErrorInfo
 
         public string Error
@@ -43,12 +52,13 @@ namespace DesignerTool.AppLogic.Data
         {
             get
             {
-                if (!this.IsValidate)
-                {
-                    return String.Empty;
-                }
+                //TODO:
+                //if (!this.IsValidate)
+                //{
+                //    return String.Empty;
+                //}
 
-                return Validation(columnName);   
+                return Validation(columnName);
             }
         }
 

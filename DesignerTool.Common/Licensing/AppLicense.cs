@@ -7,9 +7,9 @@ using System.Xml.Serialization;
 
 namespace DesignerTool.Common.Licensing
 {
-    [XmlRoot("AppLicense")]
+    [XmlRoot("LicenseInfo")]
     [Serializable]
-    public class AppLicense
+    public class LicenseInfoXml
     {
         #region CreatedDate
 

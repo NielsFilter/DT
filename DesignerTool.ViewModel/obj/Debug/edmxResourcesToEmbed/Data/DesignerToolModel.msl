@@ -37,7 +37,6 @@
           <ScalarProperty Name="Setting" ColumnName="Setting" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Value" ColumnName="Value" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

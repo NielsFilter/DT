@@ -141,6 +141,7 @@ namespace DesignerTool.Pages.Admin
                             // New Insert
                             ctx.Users.Add(this.Model);
                         }
+                        ctx.Entry(this.Model).State = System.Data.Entity.EntityState.Modified; // Needed to force validations again.
                         ctx.SaveChanges();
 
                         // Save successful

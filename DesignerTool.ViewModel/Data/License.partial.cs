@@ -12,14 +12,19 @@ namespace DesignerTool.AppLogic.Data
 {
     public partial class License
     {
-        public AppLicense CurrentLicense
+        private LicenseInfoXml _currentLicense;
+        public LicenseInfoXml CurrentLicense
         {
             get
             {
                 try
                 {
-                    var xmlCode = Crypto.Decrypt(this.Code, SessionContext.Current.ClientCode);
-                    return XML.Deserialize<AppLicense>(xmlCode);
+                    if (this._currentLicense == null)
+                    {
+                        var xmlCode = Crypto.Decrypt(this.Code, SessionContext.Current.ClientCode.ToString());
+                        this._currentLicense = XML.Deserialize<LicenseInfoXml>(xmlCode);
+                    }
+                    return this._currentLicense;
                 }
                 catch (Exception)
                 {
@@ -85,9 +90,11 @@ namespace DesignerTool.AppLogic.Data
             }
         }
 
+        #region Validate License
+
         public bool Validate()
         {
-            if (!string.IsNullOrEmpty(SessionContext.Current.ClientCode))
+            if (SessionContext.Current.ClientCode == 0)
             {
                 // Invalid client code
                 return false;
@@ -102,8 +109,6 @@ namespace DesignerTool.AppLogic.Data
             return this.ExpiryDate >= DateTime.Today;
         }
 
-        #region Private Methods
-
         /// <summary>
         /// Validates that the user did not manipulate the date and time settings to extend licensed functionality.
         /// </summary>
@@ -111,67 +116,8 @@ namespace DesignerTool.AppLogic.Data
         private bool validateTimeManipulation()
         {
             // Check that last login date is before the current date.
-            return DateTime.Now > this.LastLoginDate && this.CurrentLicense.CreatedDate <= DateTime.Now; // TODO: CurrentLicense should be cached.
+            return DateTime.Now > this.LastLoginDate && this.CurrentLicense.CreatedDate <= DateTime.Now;
         }
-
-        #region Static Methods
-
-        public static AppLicense ApplyLicenseCode(string code)
-        {
-            var activationCode = Crypto.ReadCode(code);
-            if (activationCode == null)
-            {
-                return null;
-            }
-
-            AppLicense updatedLicense = new AppLicense();
-            updatedLicense.CreatedDate_Ticks = DateTime.Now.Ticks;
-
-            if (activationCode.IsExpiryMode)
-            {
-                // Set explicit expiry date
-                updatedLicense.ExpiryDate_Ticks = activationCode.ExpiryDate.Ticks;
-            }
-            else
-            {
-                var extPeriodAttr = PeriodInfoAttribute.GetAttribute(activationCode.ExtensionPeriod);
-                var currentExpiry = SessionContext.Current.LicenseExpiry.Value > DateTime.Today ? SessionContext.Current.LicenseExpiry.Value : DateTime.Today;
-
-                updatedLicense.ExpiryDate_Ticks = ((DateTime)typeof(DateTime).GetMethod(extPeriodAttr.AddPeriodMethod) // Get the add period method from the enum 
-                    .Invoke(
-                        currentExpiry, new object[] { activationCode.Extension })).Ticks; // Invoke the add method, adding a period amount onto the current license expiry date
-            }
-
-            return updatedLicense;
-        }
-
-        public static void Evaluate()
-        {
-            try
-            {
-                using (DesignerToolDbEntities ctx = new DesignerToolDbEntities())
-                {
-                    var lic = ctx.Licenses.FirstOrDefault();
-                    if (lic == null || !lic.Validate())
-                    {
-                        // Invalid license
-                        SessionContext.Current.LicenseExpiry = null;
-                    }
-                    else
-                    {
-                        // Valid license
-                        SessionContext.Current.LicenseExpiry = lic.ExpiryDate;
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                // TODO: Logging
-                SessionContext.Current.LicenseExpiry = null;
-            }
-        }
-
-        #endregion
 
         #endregion
     }

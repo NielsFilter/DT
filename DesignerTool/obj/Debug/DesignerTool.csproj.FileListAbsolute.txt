@@ -178,7 +178,6 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\LoginVie
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\UserActivation.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Tools\ActivationKeyGenerator.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\HomeView.baml
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\ShellPopupView.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\ShellView.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\App.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Admin\UserDetail.g.cs
@@ -188,7 +187,6 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\LoginVie
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\UserActivation.g.cs
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Tools\ActivationKeyGenerator.g.cs
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\HomeView.g.cs
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\ShellPopupView.g.cs
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\ShellView.g.cs
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\App.g.cs
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\DesignerTool_MarkupCompile.cache

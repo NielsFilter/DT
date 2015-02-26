@@ -8,7 +8,7 @@ using DesignerTool.ViewModels;
 
 namespace DesignerTool.AppLogic.ViewModels.Home
 {
-    public class ShellViewModel : ShellBase, IParentViewModel
+    public class ShellViewModel : ShellBase
     {
         #region Constructors
 

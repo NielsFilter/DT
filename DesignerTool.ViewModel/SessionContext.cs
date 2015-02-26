@@ -78,23 +78,24 @@ namespace DesignerTool.AppLogic
             }
         }
 
-        private string _clientCode = null;
-        public string ClientCode
+        private int _clientCode = 0;
+        public int ClientCode
         {
             get
             {
-                if (String.IsNullOrEmpty(this._clientCode))
+                if (this._clientCode == 0)
                 {
-                    var cc = Microsoft.Win32.Registry.GetValue(REGISTRY_PATH, CLIENT_CODE_VALUE, null);
-                    if (cc != null)
+                    using (DesignerToolDbEntities ctx = new DesignerToolDbEntities())
                     {
-                        var clientCode = cc.ToString();
-                        if (!clientCode.StartsWith("CL"))
+                        int clientCode;
+                        if (Int32.TryParse(ctx.SystemSettings.First(ss => ss.Setting == "ClientCode").Value, out clientCode))
                         {
-                            //TODO: Logging - Invalid client code.
-                            this._clientCode = null;
+                            this._clientCode = clientCode;
                         }
-                        this._clientCode = clientCode;
+                        else
+                        {
+                            this._clientCode = 0;
+                        }
                     }
                 }
                 return this._clientCode;

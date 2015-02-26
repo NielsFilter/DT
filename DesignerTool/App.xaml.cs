@@ -1,4 +1,5 @@
 ﻿using DesignerTool.AppLogic;
+using DesignerTool.AppLogic.Security;
 using DesignerTool.Common.Global;
 using DesignerTool.Common.Licensing;
 using DesignerTool.Common.Logging;
@@ -24,7 +25,7 @@ namespace DesignerTool
             new WpfContext();
             //TODO: Validate Database
 
-            //TODO: License.Evaluate();
+            LicenseManager.Evaluate();
 
             PathContext.CreateAppDirectories();
 
