@@ -13,7 +13,7 @@ namespace DesignerTool.Common.Logging
         {
             get
             {
-                return Path.Combine(PathContext.Log, String.Format("{0:yyyyMMdd}.log", DateTime.Today));
+                return Path.Combine(ApplicationPaths.Log, String.Format("{0:yyyyMMdd}.log", DateTime.Today));
             }
         }
 
@@ -27,6 +27,36 @@ namespace DesignerTool.Common.Logging
             {
                 // TODO: Event Log
             }
+        }
+
+        public override void Log(Exception ex)
+        {
+            this.Log(String.Empty, ex);
+        }
+
+        public override void Log(string message, Exception ex)
+        {
+            if(!string.IsNullOrWhiteSpace(message))
+            {
+                message += ": ";
+            }
+
+            // Exception Message
+            StringBuilder exceptionBuilder = new StringBuilder();
+            exceptionBuilder.AppendLine(String.Format("<Exception>{0}: {1}</Exception>", message, ex.Message));
+
+            // Inner Exceptions
+            Exception innerEx = ex.InnerException;
+            int count = 1;
+            while (innerEx != null && count < 5)
+            {
+                exceptionBuilder.AppendLine(String.Format("<InnerException{0}>{1}</InnerException{0}>", count++, innerEx.Message));
+                innerEx = innerEx.InnerException;
+            }
+
+            exceptionBuilder.AppendLine(String.Format("<StackTrace>{0}</StackTrace>", ex.StackTrace));
+
+            this.Log(exceptionBuilder.ToString());
         }
     }
 }

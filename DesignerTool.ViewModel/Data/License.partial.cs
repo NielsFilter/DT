@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DesignerTool.AppLogic.Data
 {
-    public partial class License
+    public partial class License : BaseModel
     {
         private LicenseInfoXml _currentLicense;
         public LicenseInfoXml CurrentLicense

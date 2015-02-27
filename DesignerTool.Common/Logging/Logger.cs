@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DesignerTool.Common.Global
+namespace DesignerTool.Common.Logging
 {
     public static class Logger
     {
@@ -24,6 +24,16 @@ namespace DesignerTool.Common.Global
         public static void Log(string message)
         {
             CurrentLogger.Log(message);
+        }
+
+        public static void Log(string message, Exception ex)
+        {
+            CurrentLogger.Log(message, ex);
+        }
+
+        public static void Log(Exception ex)
+        {
+            CurrentLogger.Log(ex);
         }
 
         private static ILogger createLogger()

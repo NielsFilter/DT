@@ -10,6 +10,8 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using DesignerTool.AppLogic.ViewModels.Home;
+using DesignerTool.Common.Settings;
 
 namespace DesignerTool.Pages.Shell
 {
@@ -71,6 +73,8 @@ namespace DesignerTool.Pages.Shell
         public override void OnLoad()
         {
             base.OnLoad();
+
+            this.Username = LocalSettings.Current.LastLoggedInUsername;
         }
 
         public override void OnRefresh()
@@ -97,6 +101,7 @@ namespace DesignerTool.Pages.Shell
                             validLogin = user.ValidatePassword(this.Password);
                             if (validLogin)
                             {
+                                LocalSettings.Current.LastLoggedInUsername = user.Username;
                                 SessionContext.Current.LoggedInUser = user;
                                 SessionContext.Current.Navigate(new HomeViewModel());
                                 return;

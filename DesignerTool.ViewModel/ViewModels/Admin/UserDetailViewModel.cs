@@ -141,8 +141,7 @@ namespace DesignerTool.Pages.Admin
                             // New Insert
                             ctx.Users.Add(this.Model);
                         }
-                        ctx.Entry(this.Model).State = System.Data.Entity.EntityState.Modified; // Needed to force validations again.
-                        ctx.SaveChanges();
+                        ctx.ValidateAndSave();
 
                         // Save successful
                         this.ID = this.Model.UserID;
@@ -160,8 +159,8 @@ namespace DesignerTool.Pages.Admin
         {
             //if (this.Model.IsValidate != isValidateEnabled)
             //{
-                this.Model.IsValidate = isValidateEnabled;
-                base.NotifyPropertyChanged("Model"); // Tells the UI to re-evaluate the Validation Conditions.
+            this.Model.IsValidate = isValidateEnabled;
+            base.NotifyPropertyChanged("Model"); // Tells the UI to re-evaluate the Validation Conditions.
             //}
         }
 

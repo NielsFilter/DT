@@ -11,6 +11,8 @@ namespace DesignerTool.AppLogic.Data
 {
     public class BaseModel : NotifyPropertyChangedBase, IValidatable
     {
+        #region Validation
+
         private bool _isValidate;
         public bool IsValidate
         {
@@ -33,12 +35,21 @@ namespace DesignerTool.AppLogic.Data
             return String.Empty;
         }
 
-        public void Validate()
+        public List<string> ValidateAll()
         {
-            //foreach(var prop in this.GetType().GetProperties())
-            //{
-            //    this[]
-            //}
+            List<string> validationErrors = new List<string>();
+            if (!this.IsValidate)
+            {
+                foreach (var prop in this.GetType().GetProperties())
+                {
+                    string valResult = this[prop.Name];
+                    if (!string.IsNullOrEmpty(valResult))
+                    {
+                        validationErrors.Add(valResult);
+                    }
+                }
+            }
+            return validationErrors;
         }
 
         #region IDataErrorInfo
@@ -52,15 +63,16 @@ namespace DesignerTool.AppLogic.Data
         {
             get
             {
-                //TODO:
-                //if (!this.IsValidate)
-                //{
-                //    return String.Empty;
-                //}
+                if (!this.IsValidate)
+                {
+                    return String.Empty;
+                }
 
                 return Validation(columnName);
             }
         }
+
+        #endregion
 
         #endregion
     }

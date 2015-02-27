@@ -1,0 +1,11 @@
+Functionality:
+- LocalDB Detach (Investigate how EF does it / can do it)
+- Validation of Save
+
+
+
+
+Cleanup:
+- Clear Compiler Warnings
+- Remove unneccassary ResourceDictionaries
+- Work through all the TODOs

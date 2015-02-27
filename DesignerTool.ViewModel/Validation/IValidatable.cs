@@ -9,6 +9,6 @@ namespace DesignerTool.Common.Data
 {
     public interface IValidatable : IDataErrorInfo
     {
-        void Validate();
+        List<string> ValidateAll();
     }
 }

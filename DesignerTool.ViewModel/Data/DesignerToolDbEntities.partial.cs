@@ -1,6 +1,8 @@
 ﻿using DesignerTool.Common.Data;
+using DesignerTool.Common.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 
@@ -8,43 +10,30 @@ namespace DesignerTool.AppLogic.Data
 {
     public partial class DesignerToolDbEntities
     {
-        //TODO:
-        ///// <summary>
-        ///// Override the SaveChanges method to add a validation check.
-        ///// </summary>
-        ///// <param name="options">Specifies the behavior of the object context when the System.Data.Objects.ObjectContext.SaveChanges(System.Data.Objects.SaveOptions) method is called</param>
-        ///// <returns>
-        ///// The number of objects in an System.Data.EntityState.Added, System.Data.EntityState.Modified, or System.Data.EntityState.Deleted state
-        ///// when System.Data.Objects.ObjectContext.SaveChanges() was called.</returns>
-        //public override int SaveChanges(System.Data.Objects.SaveOptions options)
-        //{
-        //    this.Validate();
-        //    return base.SaveChanges(options);
-        //}
+        public int ValidateAndSave()
+        {
+            this.ChangeTracker.DetectChanges();
+            var validationExceptions = ((IObjectContextAdapter)this).ObjectContext.ObjectStateManager.GetObjectStateEntries(
+                                                                                                        System.Data.Entity.EntityState.Added |
+                                                                                                        System.Data.Entity.EntityState.Modified |
+                                                                                                        System.Data.Entity.EntityState.Deleted)
+                                            .Where(x => x.Entity is IValidatable)
+                                            .Select(x => ((IValidatable)x.Entity).ValidateAll());
 
-        //public void Validate()
-        //{
-        //    var entriesToValidate = System.Data.Objects.ObjectStateManager.GetObjectStateEntries(
-        //                                System.Data.EntityState.Added |
-        //                                System.Data.EntityState.Modified |
-        //                                System.Data.EntityState.Deleted)
-        //                                    .Where(x => x.Entity is IValidatable);
 
-        //    foreach (var entry in entriesToValidate)
-        //    {
-        //        var entity = entry.Entity as IValidatable;
-        //        entity.Validate(entry.State);
-        //    }
-        //}
 
-        //public override int SaveChanges()
-        //{
-        //    return base.SaveChanges();
-        //}
+            if (validationExceptions.Any(e => e.Count > 0))
+            {
+                // Bundle validation exceptions and throw it.
+                ModelValidationExceptions ex = new ModelValidationExceptions();
+                ex.ValidationExceptions = new List<string>();
+                validationExceptions.ToList().ForEach(v => ex.ValidationExceptions.AddRange(v));
 
-        //protected override System.Data.Entity.Validation.DbEntityValidationResult ValidateEntity(System.Data.Entity.Infrastructure.DbEntityEntry entityEntry, IDictionary<object, object> items)
-        //{
-        //    return base.ValidateEntity(entityEntry, items);
-        //}
+                throw ex;
+            }
+
+            // Done with validation. Save changes.
+            return base.SaveChanges();
+        }
     }
 }

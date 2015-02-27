@@ -1,9 +1,11 @@
 ﻿using DesignerTool.AppLogic;
+using DesignerTool.AppLogic.Data;
 using DesignerTool.AppLogic.Security;
 using DesignerTool.Common.Global;
 using DesignerTool.Common.Licensing;
 using DesignerTool.Common.Logging;
 using DesignerTool.Common.Mvvm;
+using DesignerTool.Common.Settings;
 using DesignerTool.Common.Utils;
 using System;
 using System.Collections.Generic;
@@ -22,18 +24,47 @@ namespace DesignerTool
         private bool _isStartUp = true;
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            // Need to start up the Context used in this Session.
             new WpfContext();
-            //TODO: Validate Database
+
+            ApplicationPaths.CreateAppDirectories();
+
+            // Test database connection
+            if(!this.testDatabaseConnection())
+            {
+                SessionContext.Current.ShowMessage("Could not establish database connection.", "Database connection failed", Common.Enums.UserMessageType.Error);
+            }
 
             LicenseManager.Evaluate();
-
-            PathContext.CreateAppDirectories();
 
             this._isStartUp = false;
         }
 
+        private bool testDatabaseConnection()
+        {            
+            try
+            {
+                using (DesignerToolDbEntities ctx = new DesignerToolDbEntities())
+                {
+                    var test = ctx.SystemSettings.FirstOrDefault();
+                    return test != null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(String.Format("Database Test Connection Failed. " + ex.Message));
+                return false;
+            }
+        }
+
+        #region Unhandled Exceptions
+
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
+            // Log the exception
+            Logger.Log(e.Exception.Message);
+
+            // TODO: What's the right thing to do here.
             // Unhandled exception
             string message = e.Exception.Message;
             if (e.Exception.InnerException != null)
@@ -60,5 +91,19 @@ namespace DesignerTool
 
             e.Handled = true;
         }
+
+        #endregion
+
+        #region Exit
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            // Save settings to local XML file.
+            LocalSettings.Current.saveToFile();
+
+            //TODO: LocalDB detach?
+        }
+
+        #endregion
     }
 }

@@ -6,21 +6,7 @@ using System.Text;
 
 namespace DesignerTool.AppLogic.Data
 {
-    public partial class Person : IValidatable
+    public partial class Person : BaseModel
     {
-        public void Validate()
-        {
-            
-        }
-
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public string this[string columnName]
-        {
-            get { throw new NotImplementedException(); }
-        }
     }
 }

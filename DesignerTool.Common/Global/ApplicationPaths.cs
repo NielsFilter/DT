@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DesignerTool.Common.Global
 {
-    public static class PathContext
+    public static class ApplicationPaths
     {
         public static string ProgramData
         {
@@ -20,17 +20,16 @@ namespace DesignerTool.Common.Global
         {
             get
             {
-                return Path.Combine(PathContext.ProgramData, "Log");
+                return Path.Combine(ApplicationPaths.ProgramData, "Log");
             }
         }
-
 
         public static void CreateAppDirectories()
         {
             // Log
-            if (!Directory.Exists(PathContext.Log))
+            if (!Directory.Exists(ApplicationPaths.Log))
             {
-                Directory.CreateDirectory(PathContext.Log);
+                Directory.CreateDirectory(ApplicationPaths.Log);
             }
         }
     }
