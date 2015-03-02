@@ -75,3 +75,5 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerToo
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.csproj.GenerateResource.Cache
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\NotificationPanel.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\NotificationPanel.g.cs

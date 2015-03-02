@@ -1,6 +1,7 @@
 ﻿using DesignerTool.AppLogic;
 using DesignerTool.AppLogic.Data;
 using DesignerTool.AppLogic.Security;
+using DesignerTool.Common.Enums;
 using DesignerTool.Common.Global;
 using DesignerTool.Common.Mvvm.Paging;
 using DesignerTool.Common.Mvvm.ViewModels;
@@ -165,138 +166,127 @@ namespace DesignerTool.Common.ViewModels
 
         #endregion
 
-        #region Notifications
+        #region Notification Panel
 
-        private string _successText;
-        public string SuccessText
+        #region Properties
+
+        private string _notificationText;
+        public string NotificationText
         {
             get
             {
-                return this._successText;
+                return this._notificationText;
             }
             set
             {
-                if (value != this._successText)
+                if (value != this._notificationText)
                 {
-                    this._successText = value;
-                    base.NotifyPropertyChanged("SuccessText");
+                    this._notificationText = value;
+                    base.NotifyPropertyChanged("NotificationText");
                 }
             }
         }
 
-        private bool _isShowSuccess = false;
-        public bool IsShowSuccess
+        private string _notificationExtra;
+        public string NotificationExtra
         {
             get
             {
-                return this._isShowSuccess;
+                return this._notificationExtra;
             }
             set
             {
-                if (value != this._isShowSuccess)
+                if (value != this._notificationExtra)
                 {
-                    if (value)
-                    {
-                        this.IsShowError = false;
-                        this.IsShowWarning = false;
-                    }
-
-                    this._isShowSuccess = value;
-                    base.NotifyPropertyChanged("IsShowSuccess");
+                    this._notificationExtra = value;
+                    base.NotifyPropertyChanged("NotificationExtra");
                 }
             }
         }
 
-        private string _warningText;
-        public string WarningText
+        private UserMessageType _notificationType;
+        public UserMessageType NotificationType
         {
             get
             {
-                return this._warningText;
+                return this._notificationType;
             }
             set
             {
-                if (value != this._warningText)
+                if (value != this._notificationType)
                 {
-                    this._warningText = value;
-                    base.NotifyPropertyChanged("WarningText");
+                    this._notificationType = value;
+                    base.NotifyPropertyChanged("NotificationType");
                 }
             }
         }
 
-        private bool _isShowWarning;
-        public bool IsShowWarning
+        private bool _isShowNotification = false;
+        public bool IsShowNotification
         {
             get
             {
-                return this._isShowWarning;
+                return this._isShowNotification;
             }
             set
             {
-                if (value != this._isShowWarning)
+                if (value != this._isShowNotification)
                 {
-                    if(value)
-                    {
-                        this.IsShowSuccess = false;
-                        this.IsShowError = false;
-                    }
-
-                    this._isShowWarning = value;
-                    base.NotifyPropertyChanged("IsShowWarning");
+                    this._isShowNotification = value;
+                    base.NotifyPropertyChanged("IsShowNotification");
                 }
             }
         }
 
-        private string _errorText;
-        public string ErrorText
+        #endregion
+
+        #region Show & Hide methods
+
+        public void ShowSaved()
         {
-            get
+            this.ShowNotification(String.Format("Saved Successful {0:HH:mm}", DateTime.Now), null, UserMessageType.Success);
+        }
+
+        public void ShowErrors(string errorMsg, List<string> lstErrors)
+        {
+            if (lstErrors == null)
             {
-                return this._errorText;
+                // No extra error info
+                this.ShowError(errorMsg, null);
             }
-            set
+            else
             {
-                if (value != this._errorText)
-                {
-                    this._errorText = value;
-                    base.NotifyPropertyChanged("ErrorText");
-                }
+                // Multiple extra info
+                StringBuilder extraInfo = new StringBuilder();
+                lstErrors.ForEach(err => extraInfo.AppendLine(String.Format(" - {0}", err)));
+                this.ShowError(errorMsg, extraInfo.ToString());
             }
         }
 
-        private bool _isShowError;
-        public bool IsShowError
+        public void ShowError(string errorMsg, string extraInfo = null)
         {
-            get
+            if (String.IsNullOrWhiteSpace(errorMsg))
             {
-                return this._isShowError;
+                errorMsg = "An error has occurred.";
             }
-            set
-            {
-                if (value != this._isShowError)
-                {
-                    if (value)
-                    {
-                        this.IsShowSuccess = false;
-                        this.IsShowWarning = false;
-                    }
 
-                    this._isShowError = value;
-                    base.NotifyPropertyChanged("IsShowError");
-                }
-            }
+            this.ShowNotification(errorMsg, extraInfo, UserMessageType.Error);
         }
 
-        public void ShowSaved(string savedText = null)
+        public void ShowNotification(string heading, string extraText, UserMessageType msgType = UserMessageType.Information)
         {
-            if (string.IsNullOrWhiteSpace(savedText))
-            {
-                savedText = String.Format("Saved Successful {0:HH:mm}", DateTime.Now);
-            }
-
-            this.SuccessText = savedText;
-            this.IsShowSuccess = true;
+            this.NotificationText = heading;
+            this.NotificationExtra = extraText;
+            this.NotificationType = msgType;
+            this.IsShowNotification = true;
         }
+
+        public void HideNotification()
+        {
+            this.IsShowNotification = false;
+        }
+
+        #endregion
 
         #endregion
 

@@ -56,6 +56,9 @@
     <Compile Include="LoadingLabel.xaml.cs">
       <DependentUpon>LoadingLabel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NotificationPanel.xaml.cs">
+      <DependentUpon>NotificationPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paging.xaml.cs">
       <DependentUpon>Paging.xaml</DependentUpon>
     </Compile>
@@ -65,6 +68,10 @@
     <Page Include="LoadingLabel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NotificationPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Paging.xaml">
       <Generator>MSBuild:Compile</Generator>

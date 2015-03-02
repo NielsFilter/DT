@@ -5,32 +5,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:ap="clr-namespace:DesignerTool.Common.Mvvm.AttachedProperties;assembly=DesignerTool.Common"
              xmlns:v="clr-namespace:DesignerTool.Common.Mvvm.Views;assembly=DesignerTool.Common"
+             xmlns:ctrls="clr-namespace:DesignerTool.Controls;assembly=DesignerTool.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
             Loaded="UserDetail_Load">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Border Grid.ColumnSpan="10" Style="{StaticResource BrdSuccessNotification}" Visibility="{Binding IsShowSuccess, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
-            <Grid>
-                <TextBlock Text="{Binding SuccessText}" VerticalAlignment="Center"/>
-            </Grid>
+        <ctrls:NotificationPanel MainText="{Binding NotificationText}" ExtraInfo="{Binding NotificationExtra}" NotificationType="{Binding NotificationType}" IsPanelShow="{Binding IsShowNotification, Mode=TwoWay}"/>
+        
+        <!--<Border Grid.ColumnSpan="10" Style="{StaticResource BrdSuccessNotification}" Visibility="{Binding IsShowSuccess, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
+            <StackPanel>
+                <TextBlock Text="{Binding SuccessText}" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding SuccessExtra}" Visibility="{Binding IsShowSuccessExtra}" VerticalAlignment="Center" />
+            </StackPanel>
         </Border>
 
         <Border Grid.ColumnSpan="10" Style="{StaticResource BrdErrorNotification}" Visibility="{Binding IsShowError, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
-            <Grid>
+            <StackPanel>
                 <TextBlock Text="{Binding ErrorText}" VerticalAlignment="Center"/>
-            </Grid>
+            </StackPanel>
         </Border>
 
         <Border Grid.ColumnSpan="10" Style="{StaticResource BrdWarningNotification}" Visibility="{Binding IsShowWarning, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
-            <Grid>
+            <StackPanel>
                 <TextBlock Text="{Binding WarningText}" VerticalAlignment="Center"/>
-            </Grid>
-        </Border>
+            </StackPanel>
+        </Border>-->
 
         <Grid Style="{StaticResource GrdContent}" Grid.Row="1">
             <Grid.RowDefinitions>

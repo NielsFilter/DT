@@ -38,7 +38,7 @@ namespace DesignerTool.AppLogic.Data
         public List<string> ValidateAll()
         {
             List<string> validationErrors = new List<string>();
-            if (!this.IsValidate)
+            if (this.IsValidate)
             {
                 foreach (var prop in this.GetType().GetProperties())
                 {

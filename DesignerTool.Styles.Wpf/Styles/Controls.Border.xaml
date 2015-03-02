@@ -25,5 +25,8 @@
     <Style TargetType="{x:Type Border}" x:Key="BrdWarningNotification" BasedOn="{StaticResource BrdNotificationBase}">
         <Setter Property="Background" Value="{DynamicResource WarningBrush}" />
     </Style>
+    <Style TargetType="{x:Type Border}" x:Key="BrdInformationNotification" BasedOn="{StaticResource BrdNotificationBase}">
+        <Setter Property="Background" Value="{DynamicResource WhiteBrush}" />
+    </Style>
 
 </ResourceDictionary>

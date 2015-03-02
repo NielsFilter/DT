@@ -1,8 +1,5 @@
 Functionality:
-- LocalDB Detach (Investigate how EF does it / can do it)
-- Validation of Save
-
-
+- LOW: LocalDB Detach (Investigate how EF does it / can do it)
 
 
 Cleanup:

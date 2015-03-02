@@ -1,6 +1,7 @@
 ﻿using DesignerTool.AppLogic;
 using DesignerTool.AppLogic.Data;
 using DesignerTool.Common.Enums;
+using DesignerTool.Common.Exceptions;
 using DesignerTool.Common.Mvvm.Commands;
 using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Common.ViewModels;
@@ -147,9 +148,13 @@ namespace DesignerTool.Pages.Admin
                         this.ID = this.Model.UserID;
                         base.ShowSaved();
                     }
+                    catch (ModelValidationExceptions mvEx)
+                    {
+                        base.ShowErrors("Please correct the indicated fields and try again.", mvEx.ValidationExceptions);
+                    }
                     catch (Exception ex)
                     {
-                        SessionContext.Current.ShowMessage(ex.Message, "Save Failed", UserMessageType.Error);
+                        base.ShowError("Save Failed. " + ex.Message);
                     }
                 }
             }, "Saving user details");
