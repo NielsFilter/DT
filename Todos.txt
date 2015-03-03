@@ -7,7 +7,6 @@ Functionality:
 
 Refactor:
 - Update Namespaces
-- Change BgWorker (ShowLoading) to Task.
 - Clear Compiler Warnings
 - Remove unneccassary ResourceDictionaries
 - Work through all the TODOs

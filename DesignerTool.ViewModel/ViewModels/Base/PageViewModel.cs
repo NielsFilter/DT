@@ -9,7 +9,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Timers;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DesignerTool.Common.ViewModels
 {
@@ -66,6 +67,7 @@ namespace DesignerTool.Common.ViewModels
         {
             if (AppSession.Current.ParentViewModel != null)
             {
+                // This is the default Loading Visibility code. Set the IsLoading property on the ParentViewModel (ShellViewModel)
                 Action<bool> setLoadingVisibility = (isVisible) =>
                 {
                     if (AppSession.Current.ParentViewModel != null)
@@ -74,6 +76,7 @@ namespace DesignerTool.Common.ViewModels
                     }
                 };
 
+                // Set the loading message.
                 AppSession.Current.ParentViewModel.LoadingMessage = loadingMessage;
 
                 this.ShowLoading(setLoadingVisibility, action, loadingDelay);
@@ -99,43 +102,26 @@ namespace DesignerTool.Common.ViewModels
         /// <param name="action">The work that needs to be done while loading is shown.</param>
         public void ShowLoading(Action<bool> controlLoadDel, Action action, double loadingDelay = 400)
         {
-            Timer loadingDelayTimer = null;
-            if (loadingDelay <= 0)
+            CancellationTokenSource delayCts = new CancellationTokenSource();
+            List<Task> runningTasks = new List<Task>();
+
+            // Check if we need to delay the Loading message.
+            if (loadingDelay > 0)
             {
-                controlLoadDel(true);
-            }
-            else
-            {
-                // Shows "loading" after a delay
-                loadingDelayTimer = new Timer(loadingDelay);
-                loadingDelayTimer.Elapsed += (s, e) =>
-                {
-                    loadingDelayTimer.Stop();
-                    controlLoadDel(true);
-                };
-                loadingDelayTimer.Start();
+                runningTasks.Add(
+                    // This task is simply to provide a delay for the loading message.
+                    Task.Factory.StartNew(() => Thread.Sleep((int)loadingDelay), delayCts.Token) // Delay for a period
+                        .ContinueWith((prevTask) => controlLoadDel(true), delayCts.Token, TaskContinuationOptions.None, TaskScheduler.FromCurrentSynchronizationContext())); // Once the delay is over, show the loading
             }
 
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += (o, e) => action.Invoke(); // Invokes your work to be done on a background thread.
-            worker.RunWorkerCompleted += (o, e) =>
-            {
-                // Work is complete. Hides Loading again. This will even be called when the work throws an exception.
-                controlLoadDel(false);
+            runningTasks.Add(
+                // This task executes the actual work.
+                Task.Factory.StartNew(action) // Do the actual work on a separate thread.
+                    .ContinueWith((prevTask) => delayCts.Cancel())); // We're done, cancel the delay timer incase it's running on a LOOOONG delay (no need to wait for it anymore).
 
-                if (loadingDelayTimer != null)
-                {
-                    loadingDelayTimer.Stop();
-                    loadingDelayTimer.Dispose();
-                }
-
-                if (e.Error != null)
-                {
-                    throw e.Error;
-                }
-            };
-
-            worker.RunWorkerAsync();
+            // We wait for all our tasks to be done, then we make sure the loading is hidden again.
+            // This approach is easier than trying to coordinate between tasks if 1 has run an the other not yet etc.
+            Task.Factory.ContinueWhenAll(runningTasks.ToArray(), (tsks) => controlLoadDel(false));
         }
 
         #endregion

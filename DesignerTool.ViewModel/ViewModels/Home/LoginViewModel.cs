@@ -103,6 +103,7 @@ namespace DesignerTool.Pages.Shell
                 {
                     try
                     {
+                        System.Threading.Thread.Sleep(1000);
                         User user = this.rep.LoginUser(this.Username, this.Password);
                         if (user != null)
                         {
