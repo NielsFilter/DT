@@ -136,7 +136,7 @@ namespace DesignerTool.Pages.Shell
                     var vm = Activator.CreateInstance(type) as ViewModelBase;
                     if (vm != null)
                     {
-                        SessionContext.Current.Navigate(context as ViewModelBase);
+                        AppSession.Current.Navigate(context as ViewModelBase);
                     }
                 }
             }

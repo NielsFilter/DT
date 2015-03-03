@@ -1,5 +1,4 @@
 ﻿using DesignerTool.AppLogic;
-using DesignerTool.AppLogic.Data;
 using DesignerTool.AppLogic.Security;
 using DesignerTool.Common.Global;
 using DesignerTool.Common.Licensing;
@@ -25,14 +24,14 @@ namespace DesignerTool
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             // Need to start up the Context used in this Session.
-            new WpfContext();
+            new WpfSession();
 
             ApplicationPaths.CreateAppDirectories();
 
             // Test database connection
             if(!this.testDatabaseConnection())
             {
-                SessionContext.Current.ShowMessage("Could not establish database connection.", "Database connection failed", Common.Enums.UserMessageType.Error);
+                AppSession.Current.ShowMessage("Could not establish database connection.", "Database connection failed", Common.Enums.UserMessageType.Error);
             }
 
             LicenseManager.Evaluate();
@@ -41,20 +40,23 @@ namespace DesignerTool
         }
 
         private bool testDatabaseConnection()
-        {            
-            try
-            {
-                using (DesignerToolDbEntities ctx = new DesignerToolDbEntities())
-                {
-                    var test = ctx.SystemSettings.FirstOrDefault();
-                    return test != null;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(String.Format("Database Test Connection Failed. " + ex.Message));
-                return false;
-            }
+        {      
+            //TODO: TEST CONNECTION
+            //try
+            //{
+            //    using (DesignerTool.DataAccess.Data.DesignerToolDbEntities ctx = new DesignerTool.DataAccess.Data.DesignerToolDbEntities())
+            //    {
+            //        var test = ctx.SystemSettings.FirstOrDefault();
+            //        return test != null;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Logger.Log(String.Format("Database Test Connection Failed. " + ex.Message));
+            //    return false;
+            //}
+
+            return true;
         }
 
         #region Unhandled Exceptions

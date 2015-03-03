@@ -42,7 +42,7 @@ namespace DesignerTool.Pages.Shell
             InitializeComponent();
 
             //TODO: TEMP: Testing THEMES
-            WpfContext.Current.MainContent = this.contentMain;
+            WpfSession.Current.MainContent = this.contentMain;
 
             var themes = new[] { "BaseLight", "BaseDark" };
             var accents = new[] {

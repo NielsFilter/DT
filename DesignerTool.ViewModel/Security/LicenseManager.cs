@@ -1,7 +1,8 @@
-﻿using DesignerTool.AppLogic.Data;
-using DesignerTool.Common.Enums;
+﻿using DesignerTool.Common.Enums;
+using DesignerTool.Common.Global;
 using DesignerTool.Common.Licensing;
 using DesignerTool.Common.Utils;
+using DesignerTool.DataAccess.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace DesignerTool.AppLogic.Security
                         // Get the license.
                         lic = ctx.Licenses.FirstOrDefault((l) => l.IsActive);
 
-                        if (lic == null && SessionContext.Current.ClientCode == 0)
+                        if (lic == null && ClientInfo.Code == 0)
                         {
                             //This is a new Installation. So we need to create a new license (demo license).
                             // 1. Create and Save a ClientCode for the new user.
@@ -64,18 +65,18 @@ namespace DesignerTool.AppLogic.Security
                 if (lic == null || !lic.Validate())
                 {
                     // Invalid license
-                    SessionContext.Current.LicenseExpiry = null;
+                    AppSession.Current.LicenseExpiry = null;
                 }
                 else
                 {
                     // Valid license
-                    SessionContext.Current.LicenseExpiry = lic.ExpiryDate;
+                    AppSession.Current.LicenseExpiry = lic.ExpiryDate;
                 }
             }
             catch (Exception)
             {
                 // TODO: Logging
-                SessionContext.Current.LicenseExpiry = null;
+                AppSession.Current.LicenseExpiry = null;
             }
         }
 
@@ -120,7 +121,7 @@ namespace DesignerTool.AppLogic.Security
             {
                 // "Extension period mode" - Adds period to existing Expiry date.
                 var extPeriodAttr = PeriodInfoAttribute.GetAttribute(activationCode.ExtensionPeriod);
-                var currentExpiry = SessionContext.Current.LicenseExpiry.Value > DateTime.Today ? SessionContext.Current.LicenseExpiry.Value : DateTime.Today;
+                var currentExpiry = AppSession.Current.LicenseExpiry.Value > DateTime.Today ? AppSession.Current.LicenseExpiry.Value : DateTime.Today;
 
                 updatedLicense.ExpiryDate_Ticks = ((DateTime)typeof(DateTime).GetMethod(extPeriodAttr.AddPeriodMethod) // Get the add period method from the enum 
                     .Invoke(

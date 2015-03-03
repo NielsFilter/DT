@@ -1,7 +1,6 @@
 ﻿using DesignerTool.Common.Mvvm.Commands;
 using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Common.ViewModels;
-using DesignerTool.AppLogic.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,23 +8,26 @@ using System.Linq;
 using System.Text;
 using DesignerTool.AppLogic;
 using System.Security.Authentication;
+using DesignerTool.DataAccess.Data;
+using DesignerTool.DataAccess.Repositories;
+using DesignerTool.Common.Enums;
 
 namespace DesignerTool.Pages.Admin
 {
     public class UserListViewModel : PageViewModel
     {
-        DesignerToolDbEntities ctx;
+        private UserRepository rep;
 
         #region Constructors
 
-        public UserListViewModel()
+        public UserListViewModel(IDesignerToolContext ctx)
             : base()
         {
             if (!base.PagePermissions.CanRead)
             {
                 throw new AuthenticationException();
             }
-            ctx = new DesignerToolDbEntities();
+            rep = new UserRepository(ctx);
         }
 
         #endregion
@@ -134,14 +136,10 @@ namespace DesignerTool.Pages.Admin
             {
                 string searchText = base.Pager.SearchText;
 
-                var data = ctx.Users.Where(u => u.Username.Contains(searchText))
-                    .OrderBy(u => u.Username)
-                    .Skip(base.Pager.CurrentPageStartIndex)
-                    .Take(base.Pager.PageSize);
-
+                var data = rep.Search_Paged(base.Pager.SearchText, base.Pager.CurrentPageStartIndex, base.Pager.PageSize);
                 if (data != null)
                 {
-                    base.Pager.TotalRecords = ctx.Users.Count();
+                    base.Pager.TotalRecords = this.rep.ListAll().Count();
                     this.List = data.ToObservableCollection();
                 }
             }, "Loading list of users");
@@ -162,14 +160,14 @@ namespace DesignerTool.Pages.Admin
 
         public void AddNew()
         {
-            SessionContext.Current.Navigate(new UserDetailViewModel());
+            AppSession.Current.Navigate(new UserDetailViewModel(AppSession.Current.CreateContext()));
         }
 
         public void Edit()
         {
             if (this.SelectedItem != null)
             {
-                SessionContext.Current.Navigate(new UserDetailViewModel(this.SelectedItem.UserID));
+                AppSession.Current.Navigate(new UserDetailViewModel(AppSession.Current.CreateContext(), this.SelectedItem.UserID));
             }
         }
 
@@ -177,14 +175,18 @@ namespace DesignerTool.Pages.Admin
         {
             if (this.SelectedItem != null)
             {
-                //TODO:
-                //var response = base.DialogService.ShowMessageBox(this, string.Format("Are you sure you want to delete the user '{0}'?", this.SelectedItem), "Confirm delete", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Question);
-                //if (response == System.Windows.MessageBoxResult.Yes)
-                //{
-                //    ctx.DeleteObject(this.SelectedItem);
-                //    this.ShowSave("Successfully deleted");
-                //    this.refresh();
-                //}
+                var response = AppSession.Current.ShowMessage(
+                    string.Format("Are you sure you want to delete the user '{0}'?", this.SelectedItem),
+                    "Confirm delete",
+                    UserMessageType.Information,
+                    UserMessageButtons.YesNo);
+
+                if (response == UserMessageResults.Yes)
+                {
+                    this.rep.Delete(this.SelectedItem);
+                    base.ShowSaved(String.Format("Successfully deleted"));
+                    this.OnRefresh();
+                }
             }
         }
 

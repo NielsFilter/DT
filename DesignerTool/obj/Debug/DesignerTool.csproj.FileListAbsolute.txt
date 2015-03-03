@@ -151,7 +151,10 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\DesignerTool.Packing
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\DesignerTool.Styles.Wpf.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\EntityFramework.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\Microsoft.Expression.Controls.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\DesignerTool.DataAccess.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\Microsoft.Expression.Drawing.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\DesignerTool.Common.pdb
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\DesignerTool.Controls.pdb
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\DesignerTool.Packing.pdb
@@ -160,7 +163,10 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\DesignerTool.Styles.
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\DesignerTool.AppLogic.pdb
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\EntityFramework.xml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\Microsoft.Expression.Controls.xml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\DesignerTool.DataAccess.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\Microsoft.Expression.Drawing.xml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\de\System.Windows.Interactivity.resources.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\en\System.Windows.Interactivity.resources.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\es\System.Windows.Interactivity.resources.dll
@@ -195,7 +201,3 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\DesignerTool.Propert
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\DesignerTool.csproj.GenerateResource.Cache
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\DesignerTool.exe
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\DesignerTool.pdb
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\Microsoft.Expression.Controls.dll
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\Microsoft.Expression.Drawing.dll
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\Microsoft.Expression.Controls.xml
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\Microsoft.Expression.Drawing.xml

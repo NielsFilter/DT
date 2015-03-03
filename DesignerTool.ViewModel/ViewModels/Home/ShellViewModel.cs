@@ -1,5 +1,6 @@
 ﻿using DesignerTool.Common.Mvvm.Commands;
 using DesignerTool.Common.ViewModels;
+using DesignerTool.DataAccess.Data;
 using DesignerTool.Pages.Admin;
 using DesignerTool.Pages.Core;
 using DesignerTool.Pages.Shell;
@@ -59,7 +60,7 @@ namespace DesignerTool.AppLogic.ViewModels.Home
         {
             get
             {
-                if (SessionContext.Current == null || SessionContext.Current.LoggedInUser == null)
+                if (AppSession.Current == null || AppSession.Current.LoggedInUser == null)
                 {
                     return false;
                 }
@@ -80,9 +81,9 @@ namespace DesignerTool.AppLogic.ViewModels.Home
         {
             base.OnLoad();
 
-            SessionContext.Current.ParentViewModel = this;
+            AppSession.Current.ParentViewModel = this;
 
-            if (SessionContext.Current.LoggedInUser == null)
+            if (AppSession.Current.LoggedInUser == null)
             {
                 this.GoLogin();
             }
@@ -91,7 +92,7 @@ namespace DesignerTool.AppLogic.ViewModels.Home
                 this.GoHome();
             }
 
-            using (DesignerTool.AppLogic.Data.DesignerToolDbEntities ctx = new DesignerTool.AppLogic.Data.DesignerToolDbEntities())
+            using (DesignerTool.DataAccess.Data.DesignerToolDbEntities ctx = new DesignerTool.DataAccess.Data.DesignerToolDbEntities())
             {
                 var abc = ctx.Users.Local;
             }
@@ -124,7 +125,7 @@ namespace DesignerTool.AppLogic.ViewModels.Home
 
         public void GoHome()
         {
-            SessionContext.Current.Navigate(this.HomeViewModel);
+            AppSession.Current.Navigate(this.HomeViewModel);
         }
 
         #endregion
@@ -133,7 +134,7 @@ namespace DesignerTool.AppLogic.ViewModels.Home
 
         public void GoLogin()
         {
-            SessionContext.Current.Navigate(new LoginViewModel());
+            AppSession.Current.Navigate(new LoginViewModel(AppSession.Current.CreateContext()));
         }
 
         #endregion
@@ -142,7 +143,7 @@ namespace DesignerTool.AppLogic.ViewModels.Home
 
         public void GoUsers()
         {
-            SessionContext.Current.Navigate(new UserListViewModel());
+            AppSession.Current.Navigate(new UserListViewModel(AppSession.Current.CreateContext()));
         }
 
         #endregion
@@ -151,12 +152,12 @@ namespace DesignerTool.AppLogic.ViewModels.Home
 
         public void GoGenerateLicenseKey()
         {
-            SessionContext.Current.Navigate(new ActivationKeyGeneratorViewModel());
+            AppSession.Current.Navigate(new ActivationKeyGeneratorViewModel());
         }
 
         public void GoLicenseActivate()
         {
-            SessionContext.Current.Navigate(new UserActivationViewModel());
+            AppSession.Current.Navigate(new UserActivationViewModel());
         }
 
         #endregion
@@ -165,7 +166,7 @@ namespace DesignerTool.AppLogic.ViewModels.Home
 
         public void GoBestFitCalculator()
         {
-            SessionContext.Current.Navigate(new BestFitCalculatorViewModel());
+            AppSession.Current.Navigate(new BestFitCalculatorViewModel());
         }
 
         #endregion

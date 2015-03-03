@@ -56,7 +56,7 @@
 
             <!--<TextBlock Text="Backup System" Style="{StaticResource TbHeading}" VerticalAlignment="Top" />-->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1"
-                        Visibility="{Binding LoggedInUser, Source={x:Static vm:SessionContext.Current}, Mode=OneWay, Converter={StaticResource hasValueToVisibilityConverter}}" >
+                        Visibility="{Binding LoggedInUser, Source={x:Static vm:AppSession.Current}, Mode=OneWay, Converter={StaticResource hasValueToVisibilityConverter}}" >
                 <Button Style="{DynamicResource BtnHome}"  ToolTip="Go to Home Page" 
                         IsEnabled="{Binding CanGoHome, Mode=OneWay}"
                         Click="Home_Click"/>
@@ -80,7 +80,7 @@
         </Grid>
 
         <!-- Flyout Menu -->
-        <Grid Grid.RowSpan="4" Grid.Column="1" Visibility="{Binding LoggedInUser, Source={x:Static vm:SessionContext.Current}, Mode=OneWay, Converter={StaticResource hasValueToVisibilityConverter}}">
+        <Grid Grid.RowSpan="4" Grid.Column="1" Visibility="{Binding LoggedInUser, Source={x:Static vm:AppSession.Current}, Mode=OneWay, Converter={StaticResource hasValueToVisibilityConverter}}">
             <Grid Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
                 <m:Flyout BorderBrush="Transparent" AnimateOnPositionChange="True" 
                   Header="Menu" Position="Right" Theme="Accent"

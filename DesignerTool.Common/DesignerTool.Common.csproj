@@ -55,6 +55,7 @@
     <Compile Include="Enums\NotificationAttribute.cs" />
     <Compile Include="Enums\PeriodInfoAttribute.cs" />
     <Compile Include="Exceptions\ModelValidationExceptions.cs" />
+    <Compile Include="Global\ClientInfo.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Licensing\ActivationCode.cs" />
     <Compile Include="Licensing\ActivationCodeFormatter.cs" />

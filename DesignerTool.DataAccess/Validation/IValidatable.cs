@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 
-namespace DesignerTool.Common.Data
+namespace DesignerTool.DataAccess.Validation
 {
     public interface IValidatable : IDataErrorInfo
     {

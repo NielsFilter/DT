@@ -1,10 +1,11 @@
 ﻿using DesignerTool.AppLogic;
-using DesignerTool.AppLogic.Data;
 using DesignerTool.Common.Enums;
 using DesignerTool.Common.Exceptions;
 using DesignerTool.Common.Mvvm.Commands;
 using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Common.ViewModels;
+using DesignerTool.DataAccess.Data;
+using DesignerTool.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,22 +16,22 @@ namespace DesignerTool.Pages.Admin
 {
     public class UserDetailViewModel : PageViewModel
     {
-        DesignerToolDbEntities ctx;
+        private UserRepository rep;
 
         #region Constructors
 
-        public UserDetailViewModel()
+        public UserDetailViewModel(IDesignerToolContext ctx)
             : base()
         {
             if (!base.PagePermissions.CanRead)
             {
                 throw new AuthenticationException();
             }
-            ctx = new DesignerToolDbEntities();
+            this.rep = new UserRepository(ctx);
         }
 
-        public UserDetailViewModel(long id)
-            : this()
+        public UserDetailViewModel(IDesignerToolContext ctx, long id)
+            : this(ctx)
         {
             this.ID = id;
         }
@@ -102,21 +103,18 @@ namespace DesignerTool.Pages.Admin
 
             base.ShowLoading(() =>
                 {
-                    //TODO:
                     this.Roles = Enum.GetNames(typeof(RoleType));
 
                     if (this.ID.HasValue)
                     {
                         // Get item
-                        this.Model = ctx.Users.FirstOrDefault(u => u.UserID == this.ID.Value);
+                        this.Model = this.rep.GetById(this.ID.Value);
                         this.Model.IsValidate = true;
                     }
                     else
                     {
                         // New record. Set defaults
-                        this.Model = new User();
-                        this.Model.IsActive = true;
-                        this.Model.Role = RoleType.User.ToString();
+                        this.Model = User.New();
                     }
                 }, "Retrieving user details...");
         }
@@ -131,6 +129,7 @@ namespace DesignerTool.Pages.Admin
         public void Save()
         {
             this.toggleValidation(true); // Turn on validation.
+
             base.ShowLoading(() =>
             {
                 if (this.Model != null)
@@ -140,9 +139,9 @@ namespace DesignerTool.Pages.Admin
                         if (!this.ID.HasValue)
                         {
                             // New Insert
-                            ctx.Users.Add(this.Model);
+                            this.rep.AddNew(this.Model);
                         }
-                        ctx.ValidateAndSave();
+                        this.rep.ValidateAndCommit();
 
                         // Save successful
                         this.ID = this.Model.UserID;
@@ -162,11 +161,11 @@ namespace DesignerTool.Pages.Admin
 
         private void toggleValidation(bool isValidateEnabled)
         {
-            //if (this.Model.IsValidate != isValidateEnabled)
-            //{
-            this.Model.IsValidate = isValidateEnabled;
-            base.NotifyPropertyChanged("Model"); // Tells the UI to re-evaluate the Validation Conditions.
-            //}
+            if (this.Model.IsValidate != isValidateEnabled)
+            {
+                this.Model.IsValidate = isValidateEnabled;
+                base.NotifyPropertyChanged("Model"); // Tells the UI to re-evaluate the Validation Conditions.
+            }
         }
 
         #endregion

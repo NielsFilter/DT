@@ -13,18 +13,18 @@ namespace DesignerTool.AppLogic.Security
     {
         public static IPermission GetPermission(Type permissionType)
         {
-            if(SessionContext.Current.LoggedInUser == null)
+            if(AppSession.Current.LoggedInUser == null)
             {
                 // Not logged in = no permissions.
                 return new Permission(permissionType);
             }
 
-            if (SessionContext.Current.LoggedInUser.Role == RoleType.Internal.ToString())
+            if (AppSession.Current.LoggedInUser.Role == RoleType.Internal.ToString())
             {
                 // Internal has ALL permissions
                 return new Permission(permissionType, true, true, true);
             }
-            else if (SessionContext.Current.LoggedInUser.Role == RoleType.Admin.ToString())
+            else if (AppSession.Current.LoggedInUser.Role == RoleType.Admin.ToString())
             {
                 // Admin
                 var adminPermission = AdminPermissions.FirstOrDefault(p => p.PermissionType == permissionType);

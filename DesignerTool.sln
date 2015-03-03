@@ -31,6 +31,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Todos.txt = Todos.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Test Cases", "4. Test Cases", "{440B6100-6B2D-415B-9938-4F85AEA972C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignerTool.DataAccess", "DesignerTool.DataAccess\DesignerTool.DataAccess.csproj", "{F198560E-B8AF-4F5D-81DE-EF6680DA8FBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignerTool.VMTests", "DesignerTool.VMTests\DesignerTool.VMTests.csproj", "{3584F156-3C0E-4D21-880E-64F36520A40A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +67,14 @@ Global
 		{5B1710D2-5DC8-4754-91B2-19165DE49B3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B1710D2-5DC8-4754-91B2-19165DE49B3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B1710D2-5DC8-4754-91B2-19165DE49B3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F198560E-B8AF-4F5D-81DE-EF6680DA8FBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F198560E-B8AF-4F5D-81DE-EF6680DA8FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F198560E-B8AF-4F5D-81DE-EF6680DA8FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F198560E-B8AF-4F5D-81DE-EF6680DA8FBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3584F156-3C0E-4D21-880E-64F36520A40A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3584F156-3C0E-4D21-880E-64F36520A40A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3584F156-3C0E-4D21-880E-64F36520A40A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3584F156-3C0E-4D21-880E-64F36520A40A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,5 +86,7 @@ Global
 		{3A07B822-D3E9-4665-9EF9-B8ADFCE69E75} = {893DE66D-EA6E-4665-9912-41EA9FE48DD7}
 		{B1B00085-3B52-4E33-9E4A-D4486D1B06CB} = {B31E9505-AD7B-4EF6-A8F0-0CD989BCF58F}
 		{8BD2146A-8C48-42E3-8163-E5B2C96E0B33} = {B31E9505-AD7B-4EF6-A8F0-0CD989BCF58F}
+		{F198560E-B8AF-4F5D-81DE-EF6680DA8FBD} = {B31E9505-AD7B-4EF6-A8F0-0CD989BCF58F}
+		{3584F156-3C0E-4D21-880E-64F36520A40A} = {440B6100-6B2D-415B-9938-4F85AEA972C9}
 	EndGlobalSection
 EndGlobal

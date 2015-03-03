@@ -1,5 +1,4 @@
 ﻿using DesignerTool.AppLogic;
-using DesignerTool.AppLogic.Data;
 using DesignerTool.Common.Mvvm.Commands;
 using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Common.ViewModels;
@@ -12,11 +11,25 @@ using System.Linq;
 using System.Text;
 using DesignerTool.AppLogic.ViewModels.Home;
 using DesignerTool.Common.Settings;
+using DesignerTool.DataAccess.Repositories;
+using DesignerTool.DataAccess.Data;
 
 namespace DesignerTool.Pages.Shell
 {
     public class LoginViewModel : PageViewModel
     {
+        private UserRepository rep;
+
+        #region Constructors
+
+        public LoginViewModel(IDesignerToolContext ctx)
+            : base()
+        {
+            this.rep = new UserRepository(ctx);
+        }
+
+        #endregion
+
         #region Properties
 
         private string _username;
@@ -31,7 +44,6 @@ namespace DesignerTool.Pages.Shell
                 if (value != this._username)
                 {
                     this._username = value;
-                    this.validate("Username");
                     base.NotifyPropertyChanged("Username");
                     base.NotifyPropertyChanged("CanLogin");
                 }
@@ -51,7 +63,6 @@ namespace DesignerTool.Pages.Shell
                 {
 
                     this._password = value;
-                    this.validate("Password");
                     base.NotifyPropertyChanged("Password");
                     base.NotifyPropertyChanged("CanLogin");
                 }
@@ -88,68 +99,27 @@ namespace DesignerTool.Pages.Shell
 
         public void Login()
         {
-            this.validate(null);
-
             base.ShowLoading(() =>
                 {
-                    bool validLogin = false;
-                    using (DesignerToolDbEntities ctx = new DesignerToolDbEntities())
+                    try
                     {
-                        var user = ctx.Users.FirstOrDefault(u => u.Username == this.Username);
+                        User user = this.rep.LoginUser(this.Username, this.Password);
                         if (user != null)
                         {
-                            validLogin = user.ValidatePassword(this.Password);
-                            if (validLogin)
-                            {
-                                LocalSettings.Current.LastLoggedInUsername = user.Username;
-                                SessionContext.Current.LoggedInUser = user;
-                                SessionContext.Current.Navigate(new HomeViewModel());
-                                return;
-                            }
+                            LocalSettings.Current.LastLoggedInUsername = user.Username;
+                            AppSession.Current.LoggedInUser = user;
+                            AppSession.Current.Navigate(new HomeViewModel());
+                        }
+                        else
+                        {
+                            base.ShowError("Login Failed", "Invalid Username or Password");
                         }
                     }
-
-                    //TODO: this.DialogService.ShowMessageBox(this, "Invalid username or password", "Login failed", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    catch (Exception ex)
+                    {
+                        base.ShowError("Login Failed", ex.Message);
+                    }
                 }, "Logging in...");
-        }
-
-        #endregion
-
-        #region Validation
-
-        private void validate(string propertyName)
-        {
-            //TODO:
-            //base.ClearValidationErrors(propertyName);
-
-            //// Username
-            //if (propertyName == "Username")
-            //{
-            //    List<string> errors = new List<string>();
-            //    if (string.IsNullOrEmpty(this.Username))
-            //    {
-            //        errors.Add("Username is required");
-            //    }
-
-            //    base.AddValidationError(propertyName, errors);
-            //}
-
-            //// Password
-            //if (propertyName == "Password")
-            //{
-            //    List<string> errors = new List<string>();
-            //    if (string.IsNullOrEmpty(this.Password))
-            //    {
-            //        errors.Add("Password is required");
-            //    }
-
-            //    if (this.Password.Length < 6)
-            //    {
-            //        errors.Add("Password must be greater than 6 characters");
-            //    }
-
-            //    base.AddValidationError(propertyName, errors);
-            //}
         }
 
         #endregion

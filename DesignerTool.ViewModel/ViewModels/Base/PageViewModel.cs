@@ -1,5 +1,4 @@
 ﻿using DesignerTool.AppLogic;
-using DesignerTool.AppLogic.Data;
 using DesignerTool.AppLogic.Security;
 using DesignerTool.Common.Enums;
 using DesignerTool.Common.Global;
@@ -24,9 +23,9 @@ namespace DesignerTool.Common.ViewModels
             : base()
         {
             this.SetPagePermissions();
-            if (SessionContext.Current.ParentViewModel != null)
+            if (AppSession.Current.ParentViewModel != null)
             {
-                SessionContext.Current.ParentViewModel.IsLoading = false;
+                AppSession.Current.ParentViewModel.IsLoading = false;
             }
         }
 
@@ -36,7 +35,7 @@ namespace DesignerTool.Common.ViewModels
 
         public void Navigate(ViewModelBase viewModel)
         {
-            SessionContext.Current.Navigate(viewModel);
+            AppSession.Current.Navigate(viewModel);
         }
 
         #endregion
@@ -65,17 +64,17 @@ namespace DesignerTool.Common.ViewModels
         /// <param name="action">The work that needs to be done while loading is shown.</param>
         public void ShowLoading(Action action, string loadingMessage = "Loading...", double loadingDelay = 400)
         {
-            if (SessionContext.Current.ParentViewModel != null)
+            if (AppSession.Current.ParentViewModel != null)
             {
                 Action<bool> setLoadingVisibility = (isVisible) =>
                 {
-                    if (SessionContext.Current.ParentViewModel != null)
+                    if (AppSession.Current.ParentViewModel != null)
                     {
-                        SessionContext.Current.ParentViewModel.IsLoading = isVisible;
+                        AppSession.Current.ParentViewModel.IsLoading = isVisible;
                     }
                 };
 
-                SessionContext.Current.ParentViewModel.LoadingMessage = loadingMessage;
+                AppSession.Current.ParentViewModel.LoadingMessage = loadingMessage;
 
                 this.ShowLoading(setLoadingVisibility, action, loadingDelay);
             }
@@ -242,9 +241,14 @@ namespace DesignerTool.Common.ViewModels
 
         #region Show & Hide methods
 
-        public void ShowSaved()
+        public void ShowSaved(string savedMessage = null)
         {
-            this.ShowNotification(String.Format("Saved Successful {0:HH:mm}", DateTime.Now), null, UserMessageType.Success);
+            if (string.IsNullOrWhiteSpace(savedMessage))
+            {
+                savedMessage = "Successfully saved";
+            }
+
+            this.ShowNotification(String.Format("{0} {1:HH:mm}", savedMessage, DateTime.Now), null, UserMessageType.Success);
         }
 
         public void ShowErrors(string errorMsg, List<string> lstErrors)

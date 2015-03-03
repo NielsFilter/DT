@@ -14,27 +14,27 @@ using System.Windows.Threading;
 
 namespace DesignerTool
 {
-    public class WpfContext : SessionContext
+    public class WpfSession : AppSession
     {
-        public WpfContext()
+        public WpfSession()
         {
-            if (SessionContext.Current == null)
+            if (AppSession.Current == null)
             {
-                SessionContext.Current = this;
+                AppSession.Current = this;
             }
         }
 
         #region Singleton
 
-        public static new WpfContext Current
+        public static new WpfSession Current
         {
             get
             {
-                if (SessionContext.Current == null)
+                if (AppSession.Current == null)
                 {
-                    SessionContext.Current = new WpfContext();
+                    AppSession.Current = new WpfSession();
                 }
-                return SessionContext.Current as WpfContext;
+                return AppSession.Current as WpfSession;
             }
         }
 
