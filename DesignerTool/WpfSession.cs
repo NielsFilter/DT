@@ -4,6 +4,7 @@ using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Pages.Admin;
 using DesignerTool.Pages.Core;
 using DesignerTool.Pages.Shell;
+using DesignerTool.Pages.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,6 +59,9 @@ namespace DesignerTool
 
                     // Calculator
                     this._pageLookup.Add(typeof(BestFitCalculatorViewModel), typeof(BestFitCalculator));
+
+                    // Tools
+                    this._pageLookup.Add(typeof(ActivationKeyGeneratorViewModel), typeof(ActivationKeyGenerator));
                 }
                 return this._pageLookup;
             }

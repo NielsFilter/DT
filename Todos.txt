@@ -1,4 +1,5 @@
 Functionality:
+- 1: Activate License VM
 - Back Button
 - LOW: LocalDB Detach (Investigate how EF does it / can do it)
 - LOW: Audit Trail

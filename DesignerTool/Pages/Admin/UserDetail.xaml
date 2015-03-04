@@ -16,25 +16,6 @@
         </Grid.RowDefinitions>
 
         <ctrls:NotificationPanel MainText="{Binding NotificationText}" ExtraInfo="{Binding NotificationExtra}" NotificationType="{Binding NotificationType}" IsPanelShow="{Binding IsShowNotification, Mode=TwoWay}"/>
-        
-        <!--<Border Grid.ColumnSpan="10" Style="{StaticResource BrdSuccessNotification}" Visibility="{Binding IsShowSuccess, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
-            <StackPanel>
-                <TextBlock Text="{Binding SuccessText}" VerticalAlignment="Center" />
-                <TextBlock Text="{Binding SuccessExtra}" Visibility="{Binding IsShowSuccessExtra}" VerticalAlignment="Center" />
-            </StackPanel>
-        </Border>
-
-        <Border Grid.ColumnSpan="10" Style="{StaticResource BrdErrorNotification}" Visibility="{Binding IsShowError, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
-            <StackPanel>
-                <TextBlock Text="{Binding ErrorText}" VerticalAlignment="Center"/>
-            </StackPanel>
-        </Border>
-
-        <Border Grid.ColumnSpan="10" Style="{StaticResource BrdWarningNotification}" Visibility="{Binding IsShowWarning, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
-            <StackPanel>
-                <TextBlock Text="{Binding WarningText}" VerticalAlignment="Center"/>
-            </StackPanel>
-        </Border>-->
 
         <Grid Style="{StaticResource GrdContent}" Grid.Row="1">
             <Grid.RowDefinitions>
@@ -73,5 +54,6 @@
             </StackPanel>
 
         </Grid>
+
     </Grid>
 </v:BaseView>

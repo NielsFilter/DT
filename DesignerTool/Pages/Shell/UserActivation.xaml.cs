@@ -21,9 +21,9 @@ namespace DesignerTool.Pages.Shell
     /// </summary>
     public partial class UserActivation : BaseView
     {
-        #region VM
+        #region ViewModel
 
-        private UserActivationViewModel VM
+        private UserActivationViewModel ViewModel
         {
             get
             {
@@ -37,9 +37,23 @@ namespace DesignerTool.Pages.Shell
 
         #endregion
 
+        #region Load
+
         public UserActivation()
         {
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.Load();
+        }
+
+        #endregion
+
+        private void Activate_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.ActivateLicense();
         }
     }
 }

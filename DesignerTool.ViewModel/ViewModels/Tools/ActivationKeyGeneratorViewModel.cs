@@ -39,10 +39,10 @@ namespace DesignerTool.Pages.Tools
                 {
                     this._activationKey = value;
                     base.NotifyPropertyChanged("ActivationKey");
+                    base.NotifyPropertyChanged("IsActivationKeyGenerated");
                 }
             }
         }
-
 
         private ActivationCode _activation;
         public ActivationCode Activation
@@ -78,56 +78,85 @@ namespace DesignerTool.Pages.Tools
             }
         }
 
+        public bool IsActivationKeyGenerated
+        {
+            get { return !String.IsNullOrWhiteSpace(ActivationKey); }
+        }
+
         #endregion
 
-        //#region Commands
-
-        //public Command GenerateCommand { get; set; }
-
-        //public override void OnWireCommands()
-        //{
-        //    base.OnWireCommands();
-
-        //    this.GenerateCommand = new Command(this.generate, this.canGenerate);
-        //}
-
-        //#endregion
-
-        #region Load
+        #region Load & Refresh
 
         public override void OnLoad()
         {
             base.OnLoad();
 
             this.Activation = new ActivationCode();
+            this.Activation.IsExpiryMode = true;
             this.Periods = Enum.GetValues(typeof(PeriodType)).Cast<PeriodType>();
+        }
+
+        public override void OnRefresh()
+        {
+            base.OnRefresh();
         }
 
         #endregion
 
         #region Generate Key
 
-        private bool canGenerate()
+        public void GenerateCode()
         {
-            if (string.IsNullOrEmpty(this.Activation.ClientCode))
+            if(!this.validate())
+            {
+                return;
+            }
+
+            // Done with validation
+            this.ActivationKey = Crypto.CreateCode(this.Activation);
+            base.ShowSaved("License generated. See code below.");
+
+            //TODO: TESTING PURPOSES - var test = Crypto.ReadCode(this.ActivationKey);
+        }
+
+        private bool validate()
+        {
+            // Validation
+            if (this.Activation == null)
+            {
+                base.ShowError("Could not generate license code.");
                 return false;
+            }
+
+            List<string> validationMsgs = new List<string>();
+            int clientCode;
+            if (String.IsNullOrWhiteSpace(this.Activation.ClientCode) ||
+                !Int32.TryParse(this.Activation.ClientCode.Replace(" ", ""), out clientCode))
+            {
+                validationMsgs.Add("Client code entered is invalid.");
+            }
 
             if (this.Activation.IsExpiryMode)
             {
-                return this.Activation.ExpiryDate > DateTime.Today;
+                if (this.Activation.ExpiryDate < DateTime.Today)
+                {
+                    validationMsgs.Add("The expiry date chosen is in the past. Please select a valid expiry date.");
+                }
             }
             else
             {
-                return this.Activation.Extension > 0;
+                if (this.Activation.Extension <= 0)
+                {
+                    validationMsgs.Add("Please choose an extension amount that is positive.");
+                }
             }
-        }
 
-        private void generate()
-        {
-            //TODO: Continue HERE - Add Apply license functionality
-            this.ActivationKey = Crypto.CreateCode(this.Activation);
-
-            var test = Crypto.ReadCode(this.ActivationKey);
+            if (validationMsgs.Count > 0)
+            {
+                base.ShowErrors("Could not generate license code.", validationMsgs);
+                return false;
+            }
+            return true;
         }
 
         #endregion

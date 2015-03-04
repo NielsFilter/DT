@@ -746,6 +746,12 @@
     <Style x:Key="TxtStrong" TargetType="TextBox" BasedOn="{StaticResource TxtDefault}">
         <Setter Property="FontSize" Value="16" />
     </Style>
+
+    <Style x:Key="TxtTransparent" TargetType="TextBox">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
     <!--*** Custom Styles ***-->
 
 </ResourceDictionary>

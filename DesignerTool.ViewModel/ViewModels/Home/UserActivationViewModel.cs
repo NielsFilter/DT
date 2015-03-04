@@ -16,7 +16,8 @@ namespace DesignerTool.Pages.Shell
     {
         #region Constructors
 
-        public UserActivationViewModel() : base()
+        public UserActivationViewModel()
+            : base()
         {
 
         }
@@ -42,6 +43,7 @@ namespace DesignerTool.Pages.Shell
                 {
                     this._code = value;
                     base.NotifyPropertyChanged("Code");
+                    base.NotifyPropertyChanged("CanActivateLicense");
                 }
             }
         }
@@ -72,20 +74,15 @@ namespace DesignerTool.Pages.Shell
             }
         }
 
+        public bool CanActivateLicense
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(this.Code) && !this.UsedLicenseCodes.Contains(this.Code);
+            }
+        }
+
         #endregion
-
-        //#region Commands
-
-        //public Command ActivateLicenseCommand { get; set; }
-
-        //public override void OnWireCommands()
-        //{
-        //    base.OnWireCommands();
-
-        //    this.ActivateLicenseCommand = new Command(this.activateLicense, this.canActivateLicense);
-        //}
-
-        //#endregion
 
         #region Load
 
@@ -112,13 +109,9 @@ namespace DesignerTool.Pages.Shell
 
         #region Activate License
 
-        private bool canActivateLicense()
+        public void ActivateLicense()
         {
-            return !string.IsNullOrEmpty(this.Code) && !this.UsedLicenseCodes.Contains(this.Code);
-        }
-
-        private void activateLicense()
-        {
+            //TODO:
             //string invalidCodeMsg = "The code you have entered is invalid. Please make sure that you have entered it correctly.";
             //try
             //{

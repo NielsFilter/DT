@@ -3,17 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:m="clr-namespace:DesignerTool.Styles.Wpf.Controls;assembly=DesignerTool.Styles.Wpf"
+             xmlns:ctrls="clr-namespace:DesignerTool.Controls;assembly=DesignerTool.Controls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:v="clr-namespace:DesignerTool.Common.Mvvm.Views;assembly=DesignerTool.Common"
+             Loaded="Page_Loaded"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid>
+        <ctrls:NotificationPanel MainText="{Binding NotificationText}" ExtraInfo="{Binding NotificationExtra}" NotificationType="{Binding NotificationType}" IsPanelShow="{Binding IsShowNotification, Mode=TwoWay}"/>
+
+        <Grid Style="{StaticResource GrdContent}" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -21,39 +25,24 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="120" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="1" Grid.Row="0" Text="Current License" />
-            <TextBlock Grid.Column="2" Grid.Row="0"
-                       Text="{Binding CurrentLicense, Mode=TwoWay}" />
+            <TextBlock Grid.Column="0" Grid.Row="0" Margin="{StaticResource DetailMargins}" Text="Current License"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Margin="{StaticResource DetailMargins}" Text="{Binding CurrentLicense, Mode=TwoWay}" />
 
-            <TextBlock Grid.Column="1" Grid.Row="1" Text="License Code" />
-            <TextBox Grid.Column="2" Grid.Row="1"
+            <TextBlock Grid.Column="0" Grid.Row="1" Margin="{StaticResource DetailMargins}" Text="License Code" />
+            <TextBox Grid.Column="1" Grid.Row="1" Margin="{StaticResource DetailMargins}"
                      m:TextboxHelper.Watermark="Enter License Code" 
                      Text="{Binding Code, Mode=TwoWay}" />
 
-            <Button  Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right"
-                     Content="Activate" IsDefault="True"
-                     Style="{StaticResource BtnDefault}"
-                     Command="{Binding ActivateLicenseCommand}" />
-
-        </Grid>
-
-        <!-- Command Section at the bottom -->
-        <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-
-            <!-- Left -->
-            <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Path Style="{StaticResource vcKey}" Margin="20,0,5,0" Width="70"/>
-                <TextBlock Text="Login" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Content="Activate" IsDefault="True" Margin="{StaticResource DetailMargins}"
+                        Style="{StaticResource BtnDefault}"
+                        Click="Activate_Click" />
             </StackPanel>
-
-            <!-- Right -->
-
+            
         </Grid>
     </Grid>
 </v:BaseView>

@@ -20,9 +20,39 @@ namespace DesignerTool.Pages.Tools
     /// </summary>
     public partial class ActivationKeyGenerator : BaseView
     {
+        #region ViewModel
+
+        private ActivationKeyGeneratorViewModel ViewModel
+        {
+            get
+            {
+                if (this.DataContext == null || !(this.DataContext is ActivationKeyGeneratorViewModel))
+                {
+                    return null;
+                }
+                return (ActivationKeyGeneratorViewModel)this.DataContext;
+            }
+        }
+
+        #endregion
+
+        #region Load
+
         public ActivationKeyGenerator()
         {
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.Load();
+        }
+
+        #endregion
+
+        private void GenerateCode_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.GenerateCode();
         }
     }
 }

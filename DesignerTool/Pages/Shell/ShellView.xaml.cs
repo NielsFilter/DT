@@ -85,5 +85,10 @@ namespace DesignerTool.Pages.Shell
         {
             this.ViewModel.GoGenerateLicenseKey();
         }
+
+        private void ActivateLicense_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.GoLicenseActivate();
+        }
     }
 }

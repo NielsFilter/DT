@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DesignerTool.Common.Mvvm.ViewModels
 {
-    public class NotifyPropertyChangedBase : INotifyPropertyChanged 
+    public class NotifyPropertyChangedBase : INotifyPropertyChanged
     {
         public void NotifyPropertyChanged(string propertyName)
         {
@@ -17,6 +17,7 @@ namespace DesignerTool.Common.Mvvm.ViewModels
             }
         }
 
+        [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

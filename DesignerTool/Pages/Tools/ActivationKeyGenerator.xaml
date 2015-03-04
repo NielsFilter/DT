@@ -5,15 +5,19 @@
              xmlns:m="clr-namespace:DesignerTool.Styles.Wpf.Controls;assembly=DesignerTool.Styles.Wpf"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:v="clr-namespace:DesignerTool.Common.Mvvm.Views;assembly=DesignerTool.Common"
+             xmlns:ctrls="clr-namespace:DesignerTool.Controls;assembly=DesignerTool.Controls"
+             Loaded="Page_Loaded"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid>
+        <ctrls:NotificationPanel MainText="{Binding NotificationText}" ExtraInfo="{Binding NotificationExtra}" NotificationType="{Binding NotificationType}" IsPanelShow="{Binding IsShowNotification, Mode=TwoWay}"/>
+
+        <Grid Style="{StaticResource GrdContent}" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -22,67 +26,63 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="120" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="1" Grid.Row="0" Text="User" />
-            <TextBox Grid.Column="2" Grid.Row="0"
+            <TextBlock Grid.Column="0" Grid.Row="0" Margin="{StaticResource DetailMargins}" Text="User"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Margin="{StaticResource DetailMargins}"
                      m:TextboxHelper.Watermark="Client Code" 
                      Text="{Binding Activation.ClientCode, Mode=TwoWay}" />
 
-            <TextBlock Grid.Column="1" Grid.Row="1" Text="Extension Type" />
-            <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1">
-                <RadioButton x:Name="rbExpiry" Content="Expiry Date" IsChecked="{Binding Activation.IsExpiryMode, Mode=TwoWay}" GroupName="ExtensionType" />
-                <RadioButton Content="Extension" GroupName="ExtensionType" />
+            <TextBlock Grid.Column="0" Grid.Row="1" Margin="{StaticResource DetailMargins}" Text="Extension Type" />
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                <RadioButton Margin="{StaticResource DetailMargins}" GroupName="ExtensionType" Content="Expiry Date" IsChecked="{Binding Activation.IsExpiryMode, Mode=TwoWay}" />
+                <RadioButton Margin="{StaticResource DetailMargins}" GroupName="ExtensionType" Content="Extension" />
             </StackPanel>
 
             <!-- Expiry Mode -->
-            <TextBlock Grid.Column="1" Grid.Row="2" Text="Expiry Date" Visibility="{Binding Activation.IsExpiryMode, Converter={StaticResource boolToVisibilityConverter}}" />
-            <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Horizontal" Visibility="{Binding Activation.IsExpiryMode, Converter={StaticResource boolToVisibilityConverter}}" >
+            <TextBlock Grid.Column="0" Grid.Row="2" Margin="{StaticResource DetailMargins}"
+                       Text="Expiry Date"
+                       Visibility="{Binding Activation.IsExpiryMode, Converter={StaticResource boolToVisibilityConverter}}" />
+            <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="{StaticResource DetailMargins}"
+                        Visibility="{Binding Activation.IsExpiryMode, Converter={StaticResource boolToVisibilityConverter}}" >
                 <DatePicker SelectedDate="{Binding Activation.ExpiryDate, Mode=TwoWay}" />
             </StackPanel>
 
             <!-- Extension Mode -->
-            <TextBlock Grid.Column="1" Grid.Row="2" Text="Extension Period" Visibility="{Binding Activation.IsExpiryMode, Converter={StaticResource boolToVisibilityConverter}, ConverterParameter=true}" />
-            <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Horizontal" Visibility="{Binding Activation.IsExpiryMode, Converter={StaticResource boolToVisibilityConverter}, ConverterParameter=true}" >
+            <TextBlock Grid.Column="0" Grid.Row="2" Margin="{StaticResource DetailMargins}"
+                       Text="Extension Period"
+                       Visibility="{Binding Activation.IsExpiryMode, Converter={StaticResource boolToVisibilityConverter}, ConverterParameter=true}" />
+            <Grid Grid.Column="1" Grid.Row="2"
+                        Visibility="{Binding Activation.IsExpiryMode, Converter={StaticResource boolToVisibilityConverter}, ConverterParameter=true}" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
                 <m:NumericUpDown
+                    Margin="{StaticResource DetailMargins}" Grid.Column="0"
                     Minimum="1"
                     Maximum="1000000"
                     Value="{Binding Activation.Extension, Mode=TwoWay}" />
                 <ComboBox 
-                      m:TextboxHelper.Watermark="Extension Period"
-                      ItemsSource="{Binding Periods, Mode=OneWay}"
-                      SelectedValue="{Binding Activation.ExtensionPeriod, Mode=TwoWay}" />
+                    Margin="{StaticResource DetailMargins}" Grid.Column="1"
+                    m:TextboxHelper.Watermark="Extension Period"
+                    ItemsSource="{Binding Periods, Mode=OneWay}"
+                    SelectedValue="{Binding Activation.ExtensionPeriod, Mode=TwoWay}" />
+            </Grid>
+
+            <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" Orientation="Horizontal" Margin="{StaticResource DetailMargins}">
+                <Button Content="Generate Code" IsDefault="True"
+                        Style="{StaticResource BtnDefault}"
+                        Click="GenerateCode_Click" />
             </StackPanel>
 
-
-            <TextBlock Grid.Column="1" Grid.Row="3" Text="Activation Key" />
-            <TextBox Grid.Column="2" Grid.Row="3" Margin="10" 
-                     Background="Transparent"
-                     IsReadOnly="True"
-                     BorderThickness="0"
-                     Text="{Binding ActivationKey, Mode=OneWay}" />
-
-            <Button  Grid.Column="2" Grid.Row="4" HorizontalAlignment="Right"
-                     Content="Generate Code" IsDefault="True"
-                     Style="{StaticResource BtnDefault}"
-                     Command="{Binding GenerateCommand}" />
-
-        </Grid>
-
-        <!-- Command Section at the bottom -->
-        <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-
-            <!-- Left -->
-            <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Path Style="{StaticResource vcLock}" Margin="20,0,5,0" Width="70"/>
-                <TextBlock Text="Login" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            </StackPanel>
-
-            <!-- Right -->
+            <TextBox Grid.ColumnSpan="2" Grid.Row="4" Margin="30" HorizontalAlignment="Center" VerticalAlignment="Center"
+                     Style="{StaticResource TxtTransparent}"
+                     FontSize="26"
+                     Text="{Binding ActivationKey, Mode=OneWay}"
+                     Visibility="{Binding IsActivationKeyGenerated, Converter={StaticResource boolToVisibilityConverter}}" />
 
         </Grid>
     </Grid>

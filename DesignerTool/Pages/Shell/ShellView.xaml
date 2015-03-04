@@ -93,6 +93,7 @@
                         <TextBlock Text="User Module" Foreground="Beige" />
                         <Button Content="System users" Click="Users_Click" />
                         <Button Content="Generate Activation key" Click="GenerateActivationKey_Click" />
+                        <Button Content="Activate License" Click="ActivateLicense_Click" />
                     </StackPanel>
 
                 </m:Flyout>
