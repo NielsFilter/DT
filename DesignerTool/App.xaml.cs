@@ -1,5 +1,6 @@
 ﻿using DesignerTool.AppLogic;
 using DesignerTool.AppLogic.Security;
+using DesignerTool.AppLogic.ViewModels;
 using DesignerTool.Common.Global;
 using DesignerTool.Common.Licensing;
 using DesignerTool.Common.Logging;
@@ -26,37 +27,10 @@ namespace DesignerTool
             // Need to start up the Context used in this Session.
             new WpfSession();
 
-            ApplicationPaths.CreateAppDirectories();
-
-            // Test database connection
-            if(!this.testDatabaseConnection())
-            {
-                AppSession.Current.ShowMessage("Could not establish database connection.", "Database connection failed", Common.Enums.UserMessageType.Error);
-            }
-
-            LicenseManager.Evaluate();
+            var appVM = new AppViewModel(WpfSession.Current.CreateContext());
+            appVM.Start();
 
             this._isStartUp = false;
-        }
-
-        private bool testDatabaseConnection()
-        {      
-            //TODO: TEST CONNECTION
-            //try
-            //{
-            //    using (DesignerTool.DataAccess.Data.DesignerToolDbEntities ctx = new DesignerTool.DataAccess.Data.DesignerToolDbEntities())
-            //    {
-            //        var test = ctx.SystemSettings.FirstOrDefault();
-            //        return test != null;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Logger.Log(String.Format("Database Test Connection Failed. " + ex.Message));
-            //    return false;
-            //}
-
-            return true;
         }
 
         #region Unhandled Exceptions

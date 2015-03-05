@@ -8,6 +8,7 @@ using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Common.Enums;
 using DesignerTool.Pages.Shell;
 using DesignerTool.Common.ViewModels;
+using DesignerTool.Common.Global;
 
 namespace DesignerTool.ViewModels
 {
@@ -18,6 +19,10 @@ namespace DesignerTool.ViewModels
         public ShellBase()
             : base()
         {
+            if(ClientInfo.Code == 0)
+            {
+
+            }
         }
 
         #endregion

@@ -169,6 +169,10 @@
       <Project>{7794a439-e865-4c76-b907-6f7d64025c38}</Project>
       <Name>DesignerTool.Controls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DesignerTool.DataAccess\DesignerTool.DataAccess.csproj">
+      <Project>{f198560e-b8af-4f5d-81de-ef6680da8fbd}</Project>
+      <Name>DesignerTool.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DesignerTool.Packing\DesignerTool.Packing.csproj">
       <Project>{8bd2146a-8c48-42e3-8163-e5b2c96e0b33}</Project>
       <Name>DesignerTool.Packing</Name>

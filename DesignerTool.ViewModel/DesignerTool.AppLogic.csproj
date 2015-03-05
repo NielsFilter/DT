@@ -61,6 +61,7 @@
     <Compile Include="AppSession.cs" />
     <Compile Include="ViewModels\Admin\UserDetailViewModel.cs" />
     <Compile Include="ViewModels\Admin\UserListViewModel.cs" />
+    <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="ViewModels\Base\PageViewModel.cs" />
     <Compile Include="ViewModels\Core\BestFitCalculatorViewModel.cs" />
     <Compile Include="ViewModels\Panorama\IPanoramaTile.cs" />

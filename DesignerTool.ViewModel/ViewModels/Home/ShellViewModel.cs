@@ -157,7 +157,7 @@ namespace DesignerTool.AppLogic.ViewModels.Home
 
         public void GoLicenseActivate()
         {
-            AppSession.Current.Navigate(new UserActivationViewModel());
+            AppSession.Current.Navigate(new UserActivationViewModel(AppSession.Current.CreateContext()));
         }
 
         #endregion

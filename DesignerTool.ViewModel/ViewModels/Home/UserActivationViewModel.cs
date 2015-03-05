@@ -1,9 +1,14 @@
-﻿using DesignerTool.Common.Enums;
+﻿using DesignerTool.AppLogic.Security;
+using DesignerTool.Common.Enums;
+using DesignerTool.Common.Global;
 using DesignerTool.Common.Licensing;
+using DesignerTool.Common.Logging;
 using DesignerTool.Common.Mvvm.Commands;
 using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Common.Utils;
 using DesignerTool.Common.ViewModels;
+using DesignerTool.DataAccess.Data;
+using DesignerTool.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +19,14 @@ namespace DesignerTool.Pages.Shell
 {
     public class UserActivationViewModel : PageViewModel
     {
+        private LicenseRepository rep;
+
         #region Constructors
 
-        public UserActivationViewModel()
+        public UserActivationViewModel(IDesignerToolContext ctx)
             : base()
         {
-
+            this.rep = new LicenseRepository(ctx);
         }
 
         #endregion
@@ -48,29 +55,51 @@ namespace DesignerTool.Pages.Shell
             }
         }
 
-        private string _currentLicense;
-        public string CurrentLicense
-        {
-            get
-            {
-                return this._currentLicense;
-            }
-            set
-            {
-                if (value != this._currentLicense)
-                {
-                    this._currentLicense = value;
-                    base.NotifyPropertyChanged("CurrentLicense");
-                }
-            }
-        }
-
+        private IEnumerable<string> _usedLicenseCodes;
         public IEnumerable<string> UsedLicenseCodes
         {
             get
             {
-                return null;
-                //TODO:return this.Db.ActiveLicenses.Select(al => al.Code.ToUpper());
+                return this._usedLicenseCodes;
+            }
+            set
+            {
+                if (value != this._usedLicenseCodes)
+                {
+                    this._usedLicenseCodes = value;
+                    base.NotifyPropertyChanged("UsedLicenseCodes");
+                    base.NotifyPropertyChanged("CanActivateLicense");
+                }
+            }
+        }
+
+        private License _myLicense;
+        public License MyLicense
+        {
+            get
+            {
+                return this._myLicense;
+            }
+            set
+            {
+                if (value != this._myLicense)
+                {
+                    this._myLicense = value;
+                    base.NotifyPropertyChanged("MyLicense");
+                    base.NotifyPropertyChanged("CurrentLicenseDisplay");
+                }
+            }
+        }
+
+        public string CurrentLicenseDisplay
+        {
+            get
+            {
+                if (this.MyLicense == null)
+                {
+                    return "No license";
+                }
+                return this.MyLicense.CurrentLicenseText;
             }
         }
 
@@ -84,25 +113,23 @@ namespace DesignerTool.Pages.Shell
 
         #endregion
 
-        #region Load
+        #region Load & Refresh
 
         public override void OnLoad()
         {
             base.OnLoad();
-
-            this.readCurrentLicense();
+            this.Refresh();
         }
 
-        private void readCurrentLicense()
+        public override void OnRefresh()
         {
-            //TODO:
-            //var lic = this.Db.Licenses.FirstOrDefault();
-            //if (lic == null)
-            //{
-            //    this.CurrentLicense = "No license";
-            //}
+            base.OnRefresh();
 
-            //this.CurrentLicense = lic.CurrentLicenseText;
+            // Get current active license
+            this.MyLicense = this.rep.GetFirstActive();
+
+            // Get previously used license codes.
+            this.UsedLicenseCodes = this.rep.GetUsedLicenseCodes();
         }
 
         #endregion
@@ -111,36 +138,36 @@ namespace DesignerTool.Pages.Shell
 
         public void ActivateLicense()
         {
-            //TODO:
-            //string invalidCodeMsg = "The code you have entered is invalid. Please make sure that you have entered it correctly.";
-            //try
-            //{
-            //    var updatedLicense = License.ApplyLicenseCode(this.Code);
-            //    string xml = XML.Serialize(updatedLicense);
+            try
+            {
+                var updatedLicense = XML.Serialize(LicenseManager.ApplyLicenseCode(this.Code));
+                string xml = XML.Serialize(updatedLicense);
 
-            //    var lic = this.Db.Licenses.FirstOrDefault();
-            //    if (lic == null)
-            //    {
-            //        lic = new Data.License();
-            //    }
+                if(this.MyLicense == null)
+                {
+                    this.MyLicense = new License();
+                }
 
-            //    lic.Code = Security.Encrypt(xml, SessionContext.Current.ClientCode);
-            //    lic.IsActive = true;
+                this.MyLicense.Code = Crypto.Encrypt(xml, ClientInfo.Code.ToString());
+                this.MyLicense.IsActive = true;
 
-            //    var usedLic = new ActiveLicense();
-            //    usedLic.AppliedDate = DateTime.Now;
-            //    usedLic.Code = this.Code;
-            //    this.Db.ActiveLicenses.AddObject(usedLic); // Add the license Keys to the used list. Prevents reuse.
-            //    this.Db.SaveChanges();
+                var usedLic = new ActiveLicense();
+                usedLic.AppliedDate = DateTime.Now;
+                usedLic.Code = this.Code;
 
-            //    // License updated successfully
-            //    License.Evaluate();
-            //    readCurrentLicense();
-            //}
-            //catch (Exception)
-            //{
-            //    base.DialogService.ShowMessageBox(this, invalidCodeMsg, "Invalid Code", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
-            //}
+                this.rep.AddUsedLicense(usedLic);
+                this.rep.ValidateAndCommit();
+
+                // License updated successfully
+                LicenseManager.Evaluate();
+                this.Refresh();
+                base.ShowSaved("License successfully applied");
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("Could not apply License code", ex);
+                base.ShowError("Could not apply License code.", "The code you have entered is invalid. Please make sure that you have entered it correctly.");
+            }
         }
 
         #endregion

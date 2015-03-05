@@ -87,6 +87,9 @@
     <Compile Include="Data\User.partial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\DatabaseManagerRepository.cs" />
+    <Compile Include="Repositories\SystemSettingsRepository.cs" />
+    <Compile Include="Repositories\LicenseRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Validation\IValidatable.cs" />
   </ItemGroup>
