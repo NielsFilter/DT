@@ -1,8 +1,11 @@
 ﻿using DesignerTool.Common.Enums;
 using DesignerTool.Common.Global;
 using DesignerTool.Common.Licensing;
+using DesignerTool.Common.Logging;
+using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Common.Utils;
 using DesignerTool.DataAccess.Data;
+using DesignerTool.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,59 +13,55 @@ using System.Text;
 
 namespace DesignerTool.AppLogic.Security
 {
-    public class LicenseManager
+    public class LicenseManager : NotifyPropertyChangedBase
     {
-        private static License _currentLicense;
-        public static License CurrentLicense
+        public static LicenseManager Current { get; set; }
+
+        #region Ctors
+
+        private LicenseRepository repLic;
+        public LicenseManager(IDesignerToolContext ctx)
+        {
+            this.repLic = new LicenseRepository(ctx);
+        }
+
+        #endregion
+
+        #region Properties
+
+        private License _license;
+        public License License
         {
             get
             {
-                if (_currentLicense == null)
+                if(this._license == null)
                 {
-                    License lic = null;
-                    using (DesignerToolDbEntities ctx = new DesignerToolDbEntities())
-                    {
-                        // Get the license.
-                        lic = ctx.Licenses.FirstOrDefault((l) => l.IsActive);
-
-                        if (lic == null && ClientInfo.Code == 0)
-                        {
-                            //This is a new Installation. So we need to create a new license (demo license).
-                            // 1. Create and Save a ClientCode for the new user.
-                            int clientCode = generateNewClientCode();
-                            ctx.SystemSettings.First(ss => ss.Setting == "ClientCode").Value = clientCode.ToString();
-
-                            // 2. Create a new License instance with 30 days trial.
-                            LicenseInfoXml appLicense = new LicenseInfoXml();
-                            appLicense.CreatedDate_Ticks = DateTime.Now.Ticks;
-                            appLicense.ExpiryDate_Ticks = DateTime.Now.AddDays(30).Ticks;
-                            string xml = XML.Serialize(appLicense);
-
-                            // 3. Save the encrypted license in the db.
-                            lic = new License();
-                            lic.Code = Crypto.Encrypt(xml, clientCode.ToString());
-                            lic.IsActive = true;
-                            ctx.Licenses.Add(lic);
-
-                            // Save the client code & license.
-                            ctx.SaveChanges();
-                        }
-                    }
-                    _currentLicense = lic;
+                    this._license = this.repLic.GetFirstActive();
                 }
-
-                return _currentLicense;
+                return this._license;
+            }
+            set
+            {
+                if (value != this._license)
+                {
+                    this._license = value;
+                    base.NotifyPropertyChanged("License");
+                }
             }
         }
 
+        #endregion
+
         #region Evaluate License
 
-        public static void Evaluate()
+        public void Evaluate()
         {
             try
             {
-                var lic = CurrentLicense;
-                if (lic == null || !lic.Validate())
+                // Set this to nothing to force a fresh license instance load from the db.
+                this._license = null;
+
+                if (this.License == null || !this.License.Validate())
                 {
                     // Invalid license
                     AppSession.Current.LicenseExpiry = null;
@@ -70,41 +69,97 @@ namespace DesignerTool.AppLogic.Security
                 else
                 {
                     // Valid license
-                    AppSession.Current.LicenseExpiry = lic.ExpiryDate;
+                    AppSession.Current.LicenseExpiry = this.License.ExpiryDate;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // TODO: Logging
+                Logger.Log("LicenseManager.Evaluate() exception.", ex);
                 AppSession.Current.LicenseExpiry = null;
             }
         }
 
-        private static int generateNewClientCode()
+        #endregion
+
+        #region Used Licenses
+
+        public IEnumerable<string> GetUsedLicenseCodes()
         {
-            // Client code is 9 digits long {000 000 000}
-            return new Random().Next(100000000, 999999999);
+            return this.repLic.GetUsedLicenseCodes();
         }
 
         #endregion
 
-        #region Apply License
+        #region Apply Licenses
 
-        public static LicenseInfoXml ApplyLicenseCode(string code)
+        public void ApplyLicense(string code)
+        {
+            // Apply License from code.
+            this.applyLicense(LicenseManager.TranslateCode(code));
+
+            // Add license code to the "used code" list.
+            this.saveUsedCode(code);
+
+            this.repLic.ValidateAndCommit();
+
+            this.Evaluate();
+        }
+
+        public void ApplyDemoLicense()
+        {
+            // 1. Create a new License instance with 30 days trial and apply it.
+            this.applyLicense(this.createDemoLicense());
+            this.repLic.ValidateAndCommit();
+        }
+
+        private void applyLicense(LicenseInfoXml licToXml)
+        {
+            string xml = XML.Serialize(licToXml);
+
+            if (this.License == null)
+            {
+                this.License = new License();
+                this.repLic.AddNew(this.License);
+            }
+            this.License.Code = Crypto.Encrypt(xml, ClientInfo.Code.ToString());
+            this.License.IsActive = true;
+        }
+
+        private void saveUsedCode(string code)
+        {
+            var usedLic = new ActiveLicense();
+            usedLic.AppliedDate = DateTime.Now;
+            usedLic.Code = code;
+            this.repLic.AddUsedLicense(usedLic);
+        }
+
+        private LicenseInfoXml createDemoLicense()
+        {
+            LicenseInfoXml appLicense = new LicenseInfoXml();
+            appLicense.CreatedDate_Ticks = DateTime.Now.Ticks;
+            appLicense.ExpiryDate_Ticks = DateTime.Now.AddDays(30).Ticks;
+            return appLicense;
+        }
+
+        #endregion
+
+        #region Static Helpers
+
+        public static LicenseInfoXml TranslateCode(string code)
         {
             ActivationCode activationCode;
             try
             {
-                // "Unencrypt" the user entered code into ActivationCode instance which holds license details.
+                // "Un-encrypt" the user entered code into ActivationCode instance which holds license details.
                 activationCode = Crypto.ReadCode(code);
                 if (activationCode == null)
                 {
                     return null;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //TODO: Logging
+                Logger.Log("LicenseManager.ApplyLicenseCode() exception.", ex);
                 return null;
             }
 
@@ -123,9 +178,11 @@ namespace DesignerTool.AppLogic.Security
                 var extPeriodAttr = PeriodInfoAttribute.GetAttribute(activationCode.ExtensionPeriod);
                 var currentExpiry = AppSession.Current.LicenseExpiry.Value > DateTime.Today ? AppSession.Current.LicenseExpiry.Value : DateTime.Today;
 
-                updatedLicense.ExpiryDate_Ticks = ((DateTime)typeof(DateTime).GetMethod(extPeriodAttr.AddPeriodMethod) // Get the add period method from the enum 
-                    .Invoke(
-                        currentExpiry, new object[] { activationCode.Extension })).Ticks; // Invoke the add method, adding a period amount onto the current license expiry date
+                var addPeriodMethod = typeof(DateTime).GetMethod(extPeriodAttr.AddPeriodMethod); // Get the add period method from the enum
+                var newDate = addPeriodMethod.Invoke(currentExpiry, new object[] { activationCode.Extension }); // Invoke the add method, adding a period amount onto the current license expiry date
+
+                // Now we set the updated license expiry date to the new date.
+                updatedLicense.ExpiryDate_Ticks = ((DateTime)newDate).Ticks;
             }
 
             return updatedLicense;

@@ -1,5 +1,6 @@
 Functionality:
 - 1: Activate License VM
+- Investigate why Page_Loaded called when navigating away?
 - Back Button
 - LOW: LocalDB Detach (Investigate how EF does it / can do it)
 - LOW: Audit Trail

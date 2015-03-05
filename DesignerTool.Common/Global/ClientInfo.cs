@@ -7,12 +7,9 @@ namespace DesignerTool.Common.Global
 {
     public static class ClientInfo
     {
-        private static int _code;
-        public static int Code
-        {
-            get { return _code; }
-            set { _code = value; }
-        }
+        public static int Code { get; set; }
+        public static bool IsNewInstallation { get; set; }
+        
 
         /* TODO:
                  private int _clientCode = 0;

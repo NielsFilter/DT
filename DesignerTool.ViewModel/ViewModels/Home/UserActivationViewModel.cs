@@ -19,14 +19,11 @@ namespace DesignerTool.Pages.Shell
 {
     public class UserActivationViewModel : PageViewModel
     {
-        private LicenseRepository rep;
-
         #region Constructors
 
         public UserActivationViewModel(IDesignerToolContext ctx)
             : base()
         {
-            this.rep = new LicenseRepository(ctx);
         }
 
         #endregion
@@ -126,10 +123,10 @@ namespace DesignerTool.Pages.Shell
             base.OnRefresh();
 
             // Get current active license
-            this.MyLicense = this.rep.GetFirstActive();
+            this.MyLicense = LicenseManager.Current.License;
 
             // Get previously used license codes.
-            this.UsedLicenseCodes = this.rep.GetUsedLicenseCodes();
+            this.UsedLicenseCodes = LicenseManager.Current.GetUsedLicenseCodes();
         }
 
         #endregion
@@ -140,7 +137,9 @@ namespace DesignerTool.Pages.Shell
         {
             try
             {
-                var updatedLicense = XML.Serialize(LicenseManager.ApplyLicenseCode(this.Code));
+                LicenseManager.Current.ApplyNewLicense(this.Code);
+
+                var updatedLicense = XML.Serialize(LicenseManager.TranslateCode(this.Code));
                 string xml = XML.Serialize(updatedLicense);
 
                 if(this.MyLicense == null)
@@ -155,11 +154,11 @@ namespace DesignerTool.Pages.Shell
                 usedLic.AppliedDate = DateTime.Now;
                 usedLic.Code = this.Code;
 
-                this.rep.AddUsedLicense(usedLic);
+                LicenseManager.AddUsedLicense(usedLic);
                 this.rep.ValidateAndCommit();
 
                 // License updated successfully
-                LicenseManager.Evaluate();
+                LicenseManager.Current.Evaluate();
                 this.Refresh();
                 base.ShowSaved("License successfully applied");
             }

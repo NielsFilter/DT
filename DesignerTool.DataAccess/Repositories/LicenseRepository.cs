@@ -14,6 +14,15 @@ namespace DesignerTool.DataAccess.Repositories
 
         }
 
+        #region CRUD
+
+        public void AddNew(License license)
+        {
+            base.Context.Licenses.Add(license);
+        }
+
+        #endregion
+
         #region Get
 
         public License GetFirstActive()
