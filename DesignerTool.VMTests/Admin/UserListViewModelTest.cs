@@ -87,7 +87,7 @@ namespace DesignerTool.VMTests.Admin
             vm.Delete();
 
             // Make sure that successfully deleted is shown.
-            Assert.AreEqual(UserMessageType.Success, vm.NotificationType);
+            Assert.AreEqual(ResultType.Success, vm.NotificationType);
             Assert.AreEqual(true, vm.IsShowNotification);
         }
 

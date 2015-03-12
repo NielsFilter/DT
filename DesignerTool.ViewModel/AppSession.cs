@@ -31,7 +31,33 @@ namespace DesignerTool.AppLogic
 
         #region Navigate
 
-        public abstract void Navigate(ViewModelBase viewModel);
+        public event Action<ViewModelBase> ViewModelNavigated;
+
+        private ViewModelBase _currentViewModel;
+        public ViewModelBase CurrentViewModel
+        {
+            get
+            {
+                return _currentViewModel;
+            }
+            set
+            {
+                if (value != this._currentViewModel)
+                {
+                    this._currentViewModel = value;
+                    base.NotifyPropertyChanged("CurrentViewModel");
+                    base.NotifyPropertyChanged("CanGoBack");
+                }
+            }
+        }
+
+        public virtual void Navigate(ViewModelBase viewModel)
+        {
+            if(this.ViewModelNavigated != null)
+            {
+                this.ViewModelNavigated(viewModel);
+            }
+        }
 
         #endregion
 
@@ -81,7 +107,7 @@ namespace DesignerTool.AppLogic
 
         #region Dialogs & Messages
 
-        public abstract UserMessageResults ShowMessage(string message, string caption = null, UserMessageType msgType = UserMessageType.Information, UserMessageButtons buttons = UserMessageButtons.OK);
+        public abstract UserMessageResults ShowMessage(string message, string caption = null, ResultType msgType = ResultType.Information, UserMessageButtons buttons = UserMessageButtons.OK);
 
         #endregion
 

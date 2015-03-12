@@ -36,7 +36,7 @@ namespace DesignerTool.AppLogic.ViewModels
             // 2. Test database connection
             if (!this.repDbMan.TestConnection())
             {
-                AppSession.Current.ShowMessage("Could not establish database connection.", "Database connection failed", UserMessageType.Error);
+                AppSession.Current.ShowMessage("Could not establish database connection.", "Database connection failed", ResultType.Error);
                 return;
             }
 
@@ -76,7 +76,7 @@ namespace DesignerTool.AppLogic.ViewModels
             catch (Exception ex)
             {
                 Logger.Log("Invalid Client Code.", ex);
-                AppSession.Current.ShowMessage("Database does not have a valid Client Code.", "Invalid Client Code.", UserMessageType.Error);
+                AppSession.Current.ShowMessage("Database does not have a valid Client Code.", "Invalid Client Code.", ResultType.Error);
             }
         }
 

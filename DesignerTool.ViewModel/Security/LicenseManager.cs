@@ -1,4 +1,5 @@
 ﻿using DesignerTool.Common.Enums;
+using DesignerTool.Common.Exceptions;
 using DesignerTool.Common.Global;
 using DesignerTool.Common.Licensing;
 using DesignerTool.Common.Logging;
@@ -34,9 +35,10 @@ namespace DesignerTool.AppLogic.Security
         {
             get
             {
-                if(this._license == null)
+                if (this._license == null)
                 {
                     this._license = this.repLic.GetFirstActive();
+                    base.NotifyPropertyChanged("License");
                 }
                 return this._license;
             }
@@ -59,9 +61,11 @@ namespace DesignerTool.AppLogic.Security
             try
             {
                 // Set this to nothing to force a fresh license instance load from the db.
-                this._license = null;
+             //TODO:   this.ClearCache();
 
-                if (this.License == null || !this.License.Validate())
+                bool isDemo = GetUsedLicenseCodes().Count() == 0 || ClientInfo.IsNewInstallation;
+
+                if (this.License == null || !this.License.Validate(isDemo))
                 {
                     // Invalid license
                     AppSession.Current.LicenseExpiry = null;
@@ -94,6 +98,12 @@ namespace DesignerTool.AppLogic.Security
 
         public void ApplyLicense(string code)
         {
+            if(this.GetUsedLicenseCodes().Contains(code))
+            {
+                // Code already been used.
+                throw new LicenseCodeUsedException(String.Format("The license code '{0}' has already been used and activated.", code));
+            }
+
             // Apply License from code.
             this.applyLicense(LicenseManager.TranslateCode(code));
 

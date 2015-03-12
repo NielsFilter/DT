@@ -9,6 +9,7 @@ using DesignerTool.Common.Enums;
 using DesignerTool.Pages.Shell;
 using DesignerTool.Common.ViewModels;
 using DesignerTool.Common.Global;
+using DesignerTool.AppLogic;
 
 namespace DesignerTool.ViewModels
 {
@@ -19,55 +20,11 @@ namespace DesignerTool.ViewModels
         public ShellBase()
             : base()
         {
-            if(ClientInfo.Code == 0)
-            {
-
-            }
         }
 
         #endregion
 
         #region Properties
-
-        private ViewModelBase _currentViewModel;
-        /// <summary>
-        /// The Current View is bound to the frame. So changing by changing this property you can "navigate" between pages.
-        /// </summary>
-        public ViewModelBase CurrentViewModel
-        {
-            get
-            {
-                return _currentViewModel;
-            }
-            set
-            {
-                if (value != this._currentViewModel)
-                {
-                    this._currentViewModel = value;
-                    base.NotifyPropertyChanged("CurrentViewModel");
-                }
-            }
-        }
-
-        private ViewModelBase _previousViewModel;
-        /// <summary>
-        /// The Previous ViewModel that was bound to the "Main frame". This is needed for navigating back and forth.
-        /// </summary>
-        public ViewModelBase PreviousViewModel
-        {
-            get
-            {
-                return this._previousViewModel;
-            }
-            set
-            {
-                if (value != this._previousViewModel)
-                {
-                    this._previousViewModel = value;
-                    base.NotifyPropertyChanged("PreviousViewModel");
-                }
-            }
-        }
 
         private bool _isLoading = false;
         public bool IsLoading
@@ -98,26 +55,6 @@ namespace DesignerTool.ViewModels
                     base.NotifyPropertyChanged("LoadingMessage");
                 }
             }
-        }
-
-        #endregion
-
-        #region Public Methods
-
-        public void GoBack()
-        {
-            if (this.PreviousViewModel != null)
-            {
-                this.CurrentViewModel = this.PreviousViewModel;
-                this.PreviousViewModel = null;
-
-                base.Refresh();
-            }
-        }
-
-        public bool CanGoBack()
-        {
-            return this.PreviousViewModel != null && this.CurrentViewModel != this.PreviousViewModel;
         }
 
         #endregion

@@ -25,6 +25,11 @@ namespace DesignerTool.Pages.Shell
 
         #region Properties
 
+        public override string Heading
+        {
+            get { return "Home"; }
+        }
+
         private List<PanoramaGroup> _panoramaItems;
         public List<PanoramaGroup> PanoramaItems
         {

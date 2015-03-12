@@ -1,13 +1,16 @@
 Functionality:
-- 1: Activate License VM
-- Investigate why Page_Loaded called when navigating away?
-- Back Button
+==============
+- License control (Red / Green / Yellow)
+- Add a Setting for warning expiry period.
+- Database Settings into a file (easier to manage)
+- Copy LocalDB to Application Folder and connect to that DB
+
 - LOW: LocalDB Detach (Investigate how EF does it / can do it)
 - LOW: Audit Trail
-- Unit Tests
-
+- LOW: Unit Tests
 
 Refactor:
+========
 - Update Namespaces
 - Clear Compiler Warnings
 - Remove unneccassary ResourceDictionaries

@@ -10,7 +10,6 @@
 //------------------------------------------------------------------------------
 
 using DesignerTool.Common.Mvvm.AttachedProperties;
-using DesignerTool.Common.Mvvm.Converters;
 using DesignerTool.Styles.Wpf.Behaviours;
 using DesignerTool.Styles.Wpf.Controls;
 using DesignerTool.Styles.Wpf.Controls.Dialogs;

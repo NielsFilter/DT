@@ -84,6 +84,7 @@ namespace DesignerTool
                 // Here's the change page logic. Added it to a delegate, which we'll check for UI Thread access first.
                 Action changePageDel = () => changePage(pageType, viewModel);
 
+
                 if (Application.Current.Dispatcher.CheckAccess())
                 {
                     // Normal call.
@@ -94,6 +95,9 @@ namespace DesignerTool
                     // Invoke UI Thread Dispatcher to do work.
                     Application.Current.Dispatcher.Invoke(changePageDel);
                 }
+
+                base.CurrentViewModel = viewModel;
+                base.Navigate(viewModel);
             }
         }
 
@@ -111,7 +115,7 @@ namespace DesignerTool
 
         #region Dialogs & Messages
 
-        public override UserMessageResults ShowMessage(string message, string caption = null, UserMessageType msgType = UserMessageType.Information, UserMessageButtons buttons = UserMessageButtons.OK)
+        public override UserMessageResults ShowMessage(string message, string caption = null, ResultType msgType = ResultType.Information, UserMessageButtons buttons = UserMessageButtons.OK)
         {
             // Message
             if (string.IsNullOrWhiteSpace(message))
@@ -145,16 +149,16 @@ namespace DesignerTool
             MessageBoxImage msgBoxImg = MessageBoxImage.Information;
             switch (msgType)
             {
-                case UserMessageType.Error:
+                case ResultType.Error:
                     msgBoxImg = MessageBoxImage.Error;
                     break;
-                case UserMessageType.Information:
+                case ResultType.Information:
                     msgBoxImg = MessageBoxImage.Information;
                     break;
-                case UserMessageType.Success:
+                case ResultType.Success:
                     msgBoxImg = MessageBoxImage.Information;
                     break;
-                case UserMessageType.Warning:
+                case ResultType.Warning:
                     msgBoxImg = MessageBoxImage.Exclamation;
                     break;
             }

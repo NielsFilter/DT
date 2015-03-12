@@ -65,10 +65,12 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\bin\Debug\DesignerToo
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\bin\Debug\DesignerTool.Packing.pdb
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\bin\Debug\EntityFramework.xml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.csprojResolveAssemblyReference.cache
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\LicenseIndicator.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\LoadingLabel.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\NotificationPanel.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\Paging.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\SearchTextBox.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\LicenseIndicator.g.cs
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\LoadingLabel.g.cs
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\NotificationPanel.g.cs
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\Paging.g.cs

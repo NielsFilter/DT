@@ -37,9 +37,9 @@ namespace DesignerTool.VMTests
 
         public string ShowMessage_Message { get; set; }
         public string ShowMessage_Caption { get; set; }
-        public UserMessageType ShowMessage_MessageType { get; set; }
+        public ResultType ShowMessage_MessageType { get; set; }
         public UserMessageButtons ShowMessage_Button { get; set; }
-        public override UserMessageResults ShowMessage(string message, string caption = null, UserMessageType msgType = UserMessageType.Information, UserMessageButtons buttons = UserMessageButtons.OK)
+        public override UserMessageResults ShowMessage(string message, string caption = null, ResultType msgType = ResultType.Information, UserMessageButtons buttons = UserMessageButtons.OK)
         {
             this.ShowMessage_Message = message;
             this.ShowMessage_Caption = caption;

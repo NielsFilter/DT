@@ -43,8 +43,9 @@ namespace DesignerTool.Pages.Admin
             InitializeComponent();
         }
 
-        private void UserDetail_Load(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            this.Loaded -= this.Page_Loaded;
             this.ViewModel.Load();
         }
 

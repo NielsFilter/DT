@@ -189,8 +189,8 @@ namespace DesignerTool.Common.ViewModels
             }
         }
 
-        private UserMessageType _notificationType;
-        public UserMessageType NotificationType
+        private ResultType _notificationType;
+        public ResultType NotificationType
         {
             get
             {
@@ -234,7 +234,7 @@ namespace DesignerTool.Common.ViewModels
                 savedMessage = "Successfully saved";
             }
 
-            this.ShowNotification(String.Format("{0} {1:HH:mm}", savedMessage, DateTime.Now), null, UserMessageType.Success);
+            this.ShowNotification(String.Format("{0} {1:HH:mm}", savedMessage, DateTime.Now), null, ResultType.Success);
         }
 
         public void ShowErrors(string errorMsg, List<string> lstErrors)
@@ -260,10 +260,10 @@ namespace DesignerTool.Common.ViewModels
                 errorMsg = "An error has occurred.";
             }
 
-            this.ShowNotification(errorMsg, extraInfo, UserMessageType.Error);
+            this.ShowNotification(errorMsg, extraInfo, ResultType.Error);
         }
 
-        public void ShowNotification(string heading, string extraText, UserMessageType msgType = UserMessageType.Information)
+        public void ShowNotification(string heading, string extraText, ResultType msgType = ResultType.Information)
         {
             this.NotificationText = heading;
             this.NotificationExtra = extraText;

@@ -1089,6 +1089,14 @@
         </Setter>
     </Style>
 
+    <Style x:Key="BtnBack" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Path Style="{StaticResource vcPrev}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="BtnPrev" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
         <Setter Property="Content">
             <Setter.Value>

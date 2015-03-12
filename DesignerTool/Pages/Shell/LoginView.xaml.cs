@@ -19,7 +19,7 @@ namespace DesignerTool.Pages.Shell
     /// </summary>
     public partial class LoginView : UserControl
     {
-        #region VM
+        #region ViewModel
 
         private LoginViewModel ViewModel
         {
@@ -35,15 +35,19 @@ namespace DesignerTool.Pages.Shell
 
         #endregion
 
+        #region Load
         public LoginView()
         {
             InitializeComponent();
         }
 
-        private void LoginView_Loaded(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            this.ViewModel.OnLoad();
+            this.Loaded -= this.Page_Loaded;
+            this.ViewModel.Load();
         }
+
+        #endregion
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {

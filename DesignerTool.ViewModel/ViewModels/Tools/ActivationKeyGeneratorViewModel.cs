@@ -26,6 +26,11 @@ namespace DesignerTool.Pages.Tools
 
         #region Properties
 
+        public override string Heading
+        {
+            get { return "Generate License Key"; }
+        }
+
         private string _activationKey;
         public string ActivationKey
         {
@@ -87,18 +92,18 @@ namespace DesignerTool.Pages.Tools
 
         #region Load & Refresh
 
-        public override void OnLoad()
+        public override void Load()
         {
-            base.OnLoad();
+            base.Load();
 
             this.Activation = new ActivationCode();
             this.Activation.IsExpiryMode = true;
             this.Periods = Enum.GetValues(typeof(PeriodType)).Cast<PeriodType>();
         }
 
-        public override void OnRefresh()
+        public override void Refresh()
         {
-            base.OnRefresh();
+            base.Refresh();
         }
 
         #endregion

@@ -1,8 +1,6 @@
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\obj\Debug\DesignerTool.VMTests.csprojResolveAssemblyReference.cache
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\DesignerTool.VMTests.dll.config
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\DesignerTool.VMTests.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\DesignerTool.VMTests.pdb
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\obj\Debug\DesignerTool.VMTests.dll
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\obj\Debug\DesignerTool.VMTests.pdb
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\DesignerTool.AppLogic.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\DesignerTool.Common.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\DesignerTool.DataAccess.dll
@@ -15,4 +13,6 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\DesignerTool
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\EntityFramework.xml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\DesignerTool.Packing.pdb
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\DesignerTool.VMTests.dll.config
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\obj\Debug\DesignerTool.VMTests.csprojResolveAssemblyReference.cache
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\obj\Debug\DesignerTool.VMTests.dll
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\obj\Debug\DesignerTool.VMTests.pdb

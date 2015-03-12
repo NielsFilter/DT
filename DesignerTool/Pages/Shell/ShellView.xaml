@@ -9,7 +9,7 @@
         xmlns:m="clr-namespace:DesignerTool.Styles.Wpf.Controls;assembly=DesignerTool.Styles.Wpf"
         WindowState="Maximized"
         Title="Designer Tool" Height="768" Width="1024"
-        Loaded="ShellView_Loaded"
+        Loaded="Page_Loaded"
         IsEnabled="{Binding IsEnabled}">
 
     <m:MetroWindow.DataContext>
@@ -41,22 +41,21 @@
             </StackPanel>
         </Border>
 
-        <Grid x:Name="grdTop" Margin="20,30,20,0" RenderTransformOrigin="0.5,0.5">
+        <Grid x:Name="grdTop" Margin="20,30,20,5" RenderTransformOrigin="0.5,0.5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-
-            <Grid Background="{Binding PanelMessageType, Converter={StaticResource stringToStyleConverter}}" Visibility="{Binding IsPanelMessageShow, Converter={StaticResource boolToVisibilityConverter}}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <TextBlock Style="{StaticResource TbHeading}" Text="{Binding PanelMessageHeader}" />
-            </Grid>
-
-            <!--<TextBlock Text="Backup System" Style="{StaticResource TbHeading}" VerticalAlignment="Top" />-->
+            <TextBlock Style="{StaticResource TbHeading}" Text="{Binding Heading}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource BlackBrush}" />
+            
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1"
                         Visibility="{Binding LoggedInUser, Source={x:Static vm:AppSession.Current}, Mode=OneWay, Converter={StaticResource hasValueToVisibilityConverter}}" >
+                
+
+
+                <Button Style="{DynamicResource BtnBack}"  ToolTip="Go back to previous page" 
+                        Visibility="{Binding CanGoBack, Converter={StaticResource boolToVisibilityConverter}}"
+                        Click="Back_Click"/>
                 <Button Style="{DynamicResource BtnHome}"  ToolTip="Go to Home Page" 
                         IsEnabled="{Binding CanGoHome, Mode=OneWay}"
                         Click="Home_Click"/>

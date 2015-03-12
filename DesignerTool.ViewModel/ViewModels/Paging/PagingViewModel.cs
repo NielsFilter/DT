@@ -218,7 +218,7 @@ namespace DesignerTool.Common.Mvvm.Paging
 
         #region Methods
 
-        public override void OnLoad()
+        public override void Load()
         {
             // Hook up commands
             this.GotoFirstPageCommand = new Command(() => this.CurrentPage = 1, () => this.TotalRecords != 0 && this.CurrentPage > 1);

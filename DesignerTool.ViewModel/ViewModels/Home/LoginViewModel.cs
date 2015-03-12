@@ -32,6 +32,11 @@ namespace DesignerTool.Pages.Shell
 
         #region Properties
 
+        public override string Heading
+        {
+            get { return "Login"; }
+        }
+
         private string _username;
         public string Username
         {
@@ -81,16 +86,16 @@ namespace DesignerTool.Pages.Shell
 
         #region Load & Refresh
 
-        public override void OnLoad()
+        public override void Load()
         {
-            base.OnLoad();
+            base.Load();
 
             this.Username = LocalSettings.Current.LastLoggedInUsername;
         }
 
-        public override void OnRefresh()
+        public override void Refresh()
         {
-            base.OnRefresh();
+            base.Refresh();
         }
 
         #endregion

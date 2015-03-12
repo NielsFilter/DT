@@ -42,15 +42,15 @@ namespace DesignerTool.Controls
 
         #region NotificationType
 
-        public UserMessageType NotificationType
+        public ResultType NotificationType
         {
-            get { return (UserMessageType)GetValue(NotificationTypeProperty); }
+            get { return (ResultType)GetValue(NotificationTypeProperty); }
             set { SetValue(NotificationTypeProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for NotificationType.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty NotificationTypeProperty =
-            DependencyProperty.Register("NotificationType", typeof(UserMessageType), typeof(NotificationPanel), new PropertyMetadata(UserMessageType.Information, notificationTypeChanged));
+            DependencyProperty.Register("NotificationType", typeof(ResultType), typeof(NotificationPanel), new PropertyMetadata(ResultType.Information, notificationTypeChanged));
 
         private static void notificationTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -60,21 +60,21 @@ namespace DesignerTool.Controls
                 return;
             }
 
-            UserMessageType notificationType = (UserMessageType)e.NewValue;
+            ResultType notificationType = (ResultType)e.NewValue;
 
             string styleName = INFORMATION_STYLE;
             string vectorName = INFORMATION_VECTOR;
             switch (notificationType)
             {
-                case UserMessageType.Success:
+                case ResultType.Success:
                     styleName = SUCCESS_STYLE;
                     vectorName = SUCCESS_VECTOR;
                     break;
-                case UserMessageType.Warning:
+                case ResultType.Warning:
                     styleName = WARNING_STYLE;
                     vectorName = WARNING_VECTOR;
                     break;
-                case UserMessageType.Error:
+                case ResultType.Error:
                     styleName = ERROR_STYLE;
                     vectorName = ERROR_VECTOR;
                     break;

@@ -34,6 +34,11 @@ namespace DesignerTool.Pages.Admin
 
         #region Properties
 
+        public override string Heading
+        {
+            get { return "User List"; }
+        }
+
         private User _selectedItem;
         public User SelectedItem
         {
@@ -118,9 +123,9 @@ namespace DesignerTool.Pages.Admin
         /// <summary>
         /// All initialization must happen here.
         /// </summary>
-        public override void OnLoad()
+        public override void Load()
         {
-            base.OnLoad();
+            base.Load();
 
             base.Pager.CurrentPageChanged += (e) => this.Refresh();
 
@@ -130,7 +135,7 @@ namespace DesignerTool.Pages.Admin
         /// <summary>
         /// This will be hit when a parent or "outside source" calls refresh
         /// </summary>
-        public override void OnRefresh()
+        public override void Refresh()
         {
             base.ShowLoading(() =>
             {
@@ -155,7 +160,7 @@ namespace DesignerTool.Pages.Admin
         public void ClearSearch()
         {
             base.Pager.SearchText = string.Empty;
-            this.OnRefresh();
+            this.Refresh();
         }
 
         public void AddNew()
@@ -178,14 +183,14 @@ namespace DesignerTool.Pages.Admin
                 var response = AppSession.Current.ShowMessage(
                     string.Format("Are you sure you want to delete the user '{0}'?", this.SelectedItem),
                     "Confirm delete",
-                    UserMessageType.Information,
+                    ResultType.Information,
                     UserMessageButtons.YesNo);
 
                 if (response == UserMessageResults.Yes)
                 {
                     this.rep.Delete(this.SelectedItem);
                     base.ShowSaved(String.Format("Successfully deleted"));
-                    this.OnRefresh();
+                    this.Refresh();
                 }
             }
         }

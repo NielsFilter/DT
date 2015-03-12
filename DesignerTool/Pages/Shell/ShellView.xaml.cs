@@ -37,6 +37,7 @@ namespace DesignerTool.Pages.Shell
 
         #endregion
 
+        #region Load
         public ShellView()
         {
             InitializeComponent();
@@ -61,10 +62,13 @@ namespace DesignerTool.Pages.Shell
             ThemeManager.ChangeAppStyle(Application.Current, accent, theme);
         }
 
-        private void ShellView_Loaded(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            this.Loaded -= this.Page_Loaded;
             this.ViewModel.Load();
         }
+        
+        #endregion
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
@@ -89,6 +93,11 @@ namespace DesignerTool.Pages.Shell
         private void ActivateLicense_Click(object sender, RoutedEventArgs e)
         {
             this.ViewModel.GoLicenseActivate();
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.GoBack();
         }
     }
 }

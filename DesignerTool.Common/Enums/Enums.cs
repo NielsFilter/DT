@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DesignerTool.Common.Enums
 {
-    public enum UserMessageType
+    public enum ResultType
     {
         [Notification(caption: "Success", message: "Save Successful.")]
         Success,
@@ -50,5 +50,13 @@ namespace DesignerTool.Common.Enums
         Month,
         [PeriodInfo("Day", "Days", "AddDays")]
         Day
+    }
+
+    public enum LicenseStateTypes
+    {
+        Valid,
+        Demo,
+        ExpiresSoon,
+        Expired
     }
 }

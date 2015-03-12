@@ -13,14 +13,18 @@ namespace DesignerTool.DataAccess.Data
         public int ValidateAndSave()
         {
             this.ChangeTracker.DetectChanges();
-            var validationExceptions = ((IObjectContextAdapter)this).ObjectContext.ObjectStateManager.GetObjectStateEntries(
-                                                                                                        System.Data.Entity.EntityState.Added |
-                                                                                                        System.Data.Entity.EntityState.Modified |
-                                                                                                        System.Data.Entity.EntityState.Deleted)
-                                            .Where(x => x.Entity is IValidatable)
-                                            .Select(x => ((IValidatable)x.Entity).ValidateAll());
+
+            var entities = ((IObjectContextAdapter)this).ObjectContext.ObjectStateManager.GetObjectStateEntries(
+                                                                                            System.Data.Entity.EntityState.Added |
+                                                                                            System.Data.Entity.EntityState.Modified |
+                                                                                            System.Data.Entity.EntityState.Deleted);
 
 
+
+            // Get all validatable entities
+            var validationExceptions = entities
+                .Where(x => x.Entity is IValidatable)
+                .Select(x => ((IValidatable)x.Entity).ValidateAll());
 
             if (validationExceptions.Any(e => e.Count > 0))
             {

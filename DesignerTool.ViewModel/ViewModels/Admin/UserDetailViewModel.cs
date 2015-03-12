@@ -40,6 +40,11 @@ namespace DesignerTool.Pages.Admin
 
         #region Properties
 
+        public override string Heading
+        {
+            get { return "User Detail"; }
+        }
+
         private long? _iD;
         public long? ID
         {
@@ -90,16 +95,24 @@ namespace DesignerTool.Pages.Admin
             get { return base.PagePermissions.CanModify; }
         }
 
+        public override bool CanGoBack
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         #endregion
 
-        #region Load & Refresh
+        #region Load, Refresh, Back
 
         /// <summary>
         /// All initialization must happen here.
         /// </summary>
-        public override void OnLoad()
+        public override void Load()
         {
-            base.OnLoad();
+            base.Load();
 
             base.ShowLoading(() =>
                 {
@@ -117,6 +130,12 @@ namespace DesignerTool.Pages.Admin
                         this.Model = User.New();
                     }
                 }, "Retrieving user details...");
+        }
+
+        public override void GoBack()
+        {
+            // Go back to list.
+            AppSession.Current.Navigate(new UserListViewModel(this.rep.Context));
         }
 
         #endregion

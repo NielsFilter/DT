@@ -23,21 +23,26 @@ namespace DesignerTool.Common.Mvvm.ViewModels
 
         #endregion
 
+        #region Properties
+
+        public virtual bool CanGoBack
+        {
+            get { return false; }
+        }
+
+        public virtual string Heading
+        {
+            get { return string.Empty; }
+        }
+
+        #endregion
+
         #region Load & Refresh
 
-        public void Load()
-        {
-            this.OnLoad();
-        }
-
-        public void Refresh()
-        {
-            this.OnRefresh();
-        }
-
         // Virtual methods
-        public virtual void OnLoad() { }
-        public virtual void OnRefresh() { }
+        public virtual void Load() { }
+        public virtual void Refresh() { }
+        public virtual void GoBack() { }
 
         #endregion
     }

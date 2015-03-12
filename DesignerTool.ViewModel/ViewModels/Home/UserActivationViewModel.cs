@@ -1,5 +1,6 @@
 ﻿using DesignerTool.AppLogic.Security;
 using DesignerTool.Common.Enums;
+using DesignerTool.Common.Exceptions;
 using DesignerTool.Common.Global;
 using DesignerTool.Common.Licensing;
 using DesignerTool.Common.Logging;
@@ -29,6 +30,11 @@ namespace DesignerTool.Pages.Shell
         #endregion
 
         #region Properties
+
+        public override string Heading
+        {
+            get { return "User License"; }
+        }
 
         private string _code;
         public string Code
@@ -61,12 +67,9 @@ namespace DesignerTool.Pages.Shell
             }
             set
             {
-                if (value != this._usedLicenseCodes)
-                {
-                    this._usedLicenseCodes = value;
-                    base.NotifyPropertyChanged("UsedLicenseCodes");
-                    base.NotifyPropertyChanged("CanActivateLicense");
-                }
+                this._usedLicenseCodes = value;
+                base.NotifyPropertyChanged("UsedLicenseCodes");
+                base.NotifyPropertyChanged("CanActivateLicense");
             }
         }
 
@@ -79,12 +82,25 @@ namespace DesignerTool.Pages.Shell
             }
             set
             {
-                if (value != this._myLicense)
+                if (this._myLicense != value)
                 {
                     this._myLicense = value;
                     base.NotifyPropertyChanged("MyLicense");
+                    base.NotifyPropertyChanged("CurrentLicenseState");
                     base.NotifyPropertyChanged("CurrentLicenseDisplay");
                 }
+            }
+        }
+
+        public LicenseStateTypes CurrentLicenseState
+        {
+            get
+            {
+                if (this.MyLicense == null)
+                {
+                    return LicenseStateTypes.Expired;
+                }
+                return this.MyLicense.State;
             }
         }
 
@@ -112,15 +128,15 @@ namespace DesignerTool.Pages.Shell
 
         #region Load & Refresh
 
-        public override void OnLoad()
+        public override void Load()
         {
-            base.OnLoad();
+            base.Load();
             this.Refresh();
         }
 
-        public override void OnRefresh()
+        public override void Refresh()
         {
-            base.OnRefresh();
+            base.Refresh();
 
             // Get current active license
             this.MyLicense = LicenseManager.Current.License;
@@ -137,30 +153,22 @@ namespace DesignerTool.Pages.Shell
         {
             try
             {
-                LicenseManager.Current.ApplyNewLicense(this.Code);
-
-                var updatedLicense = XML.Serialize(LicenseManager.TranslateCode(this.Code));
-                string xml = XML.Serialize(updatedLicense);
-
-                if(this.MyLicense == null)
+                if (String.IsNullOrWhiteSpace(this.Code))
                 {
-                    this.MyLicense = new License();
+                    base.ShowError("Could not apply License code.", "A valid license code is required.");
                 }
 
-                this.MyLicense.Code = Crypto.Encrypt(xml, ClientInfo.Code.ToString());
-                this.MyLicense.IsActive = true;
-
-                var usedLic = new ActiveLicense();
-                usedLic.AppliedDate = DateTime.Now;
-                usedLic.Code = this.Code;
-
-                LicenseManager.AddUsedLicense(usedLic);
-                this.rep.ValidateAndCommit();
+                LicenseManager.Current.ApplyLicense(this.Code);
 
                 // License updated successfully
-                LicenseManager.Current.Evaluate();
                 this.Refresh();
                 base.ShowSaved("License successfully applied");
+            }
+            catch (LicenseCodeUsedException ex)
+            {
+                // Code already used previously
+                Logger.Log("License code previously used", ex);
+                base.ShowError("Could not apply License code.", ex.Message);
             }
             catch (Exception ex)
             {

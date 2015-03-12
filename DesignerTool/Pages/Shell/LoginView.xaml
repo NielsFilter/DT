@@ -4,7 +4,7 @@
         xmlns:m="clr-namespace:DesignerTool.Styles.Wpf.Controls;assembly=DesignerTool.Styles.Wpf"
         xmlns:ap="clr-namespace:DesignerTool.Common.Mvvm.AttachedProperties;assembly=DesignerTool.Common"
         xmlns:ctrls="clr-namespace:DesignerTool.Controls;assembly=DesignerTool.Controls"
-        Loaded="LoginView_Loaded">
+        Loaded="Page_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -46,13 +46,6 @@
                 Style="{StaticResource BtnDefault}"
                 IsEnabled="{Binding CanLogin, Mode=OneWay}"
                 Click="Login_Click" />
-
-            <!-- Left -->
-            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="4" VerticalAlignment="Bottom">
-                <Path Style="{StaticResource vcLock}" />
-                <TextBlock Text="Login" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                       Style="{StaticResource TbHeading}" Margin="30,10"/>
-            </StackPanel>
 
         </Grid>
     </Grid>

@@ -45,6 +45,7 @@ namespace DesignerTool.Pages.Tools
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            this.Loaded -= this.Page_Loaded;
             this.ViewModel.Load();
         }
 

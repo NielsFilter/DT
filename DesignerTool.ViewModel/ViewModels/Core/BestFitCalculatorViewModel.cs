@@ -27,6 +27,11 @@ namespace DesignerTool.Pages.Core
 
         #region Properties
 
+        public override string Heading
+        {
+            get { return "Best Fit Calculator"; }
+        }
+
         private ObservableCollection<Board> _boards;
         public ObservableCollection<Board> Boards
         {
@@ -61,9 +66,9 @@ namespace DesignerTool.Pages.Core
         /// <summary>
         /// All initialization must happen here.
         /// </summary>
-        public override void OnLoad()
+        public override void Load()
         {
-            base.OnLoad();
+            base.Load();
 
             this.Boards = new ObservableCollection<Board>();
         }

@@ -47,7 +47,7 @@ namespace DesignerTool.VMTests
             Assert.AreEqual(vm, TestSession.Current.CurrentViewModel);
 
             // Error notifications shown
-            Assert.AreEqual(Common.Enums.UserMessageType.Error, vm.NotificationType);
+            Assert.AreEqual(Common.Enums.ResultType.Error, vm.NotificationType);
             Assert.AreEqual(true, vm.IsShowNotification);
         }
 
@@ -65,7 +65,7 @@ namespace DesignerTool.VMTests
             Assert.AreEqual(vm, TestSession.Current.CurrentViewModel);
 
             // Error notifications shown
-            Assert.AreEqual(Common.Enums.UserMessageType.Error, vm.NotificationType);
+            Assert.AreEqual(Common.Enums.ResultType.Error, vm.NotificationType);
             Assert.AreEqual(true, vm.IsShowNotification);
         }
 
@@ -83,7 +83,7 @@ namespace DesignerTool.VMTests
             Assert.AreEqual(vm, TestSession.Current.CurrentViewModel);
 
             // Error notifications shown
-            Assert.AreEqual(Common.Enums.UserMessageType.Error, vm.NotificationType);
+            Assert.AreEqual(Common.Enums.ResultType.Error, vm.NotificationType);
             Assert.AreEqual(true, vm.IsShowNotification);
         }
 

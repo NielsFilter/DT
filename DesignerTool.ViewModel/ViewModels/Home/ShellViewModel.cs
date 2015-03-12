@@ -1,4 +1,5 @@
 ﻿using DesignerTool.Common.Mvvm.Commands;
+using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Common.ViewModels;
 using DesignerTool.DataAccess.Data;
 using DesignerTool.Pages.Admin;
@@ -17,6 +18,7 @@ namespace DesignerTool.AppLogic.ViewModels.Home
             : base()
         {
             this.IsMenuVisible = true;
+            AppSession.Current.ViewModelNavigated += Current_ViewModelNavigated;
         }
 
         #endregion
@@ -65,11 +67,23 @@ namespace DesignerTool.AppLogic.ViewModels.Home
                     return false;
                 }
 
-                if (this.CurrentViewModel != null)
+                if (AppSession.Current.CurrentViewModel != null)
                 {
-                    return this.CurrentViewModel.GetType() != typeof(HomeViewModel); // check if already home
+                    return AppSession.Current.CurrentViewModel.GetType() != typeof(HomeViewModel); // check if already home
                 }
                 return true;
+            }
+        }
+
+        public override string Heading
+        {
+            get
+            {
+                if(AppSession.Current.CurrentViewModel != null)
+                {
+                    return AppSession.Current.CurrentViewModel.Heading;
+                }
+                return base.Heading;
             }
         }
 
@@ -77,9 +91,9 @@ namespace DesignerTool.AppLogic.ViewModels.Home
 
         #region Load & Refresh
 
-        public override void OnLoad()
+        public override void Load()
         {
-            base.OnLoad();
+            base.Load();
 
             AppSession.Current.ParentViewModel = this;
 
@@ -98,9 +112,9 @@ namespace DesignerTool.AppLogic.ViewModels.Home
             }
         }
 
-        public override void OnRefresh()
+        public override void Refresh()
         {
-            base.OnRefresh();
+            base.Refresh();
         }
 
         #endregion
@@ -120,6 +134,38 @@ namespace DesignerTool.AppLogic.ViewModels.Home
         #endregion
 
         #region Navigation
+
+        #region Back
+
+        public override bool CanGoBack
+        {
+            get
+            {
+                if (AppSession.Current.CurrentViewModel != null)
+                {
+                    return AppSession.Current.CurrentViewModel.CanGoBack;
+                }
+                return base.CanGoBack;
+            }
+        }
+
+        public override void GoBack()
+        {
+            if (AppSession.Current.CurrentViewModel != null)
+            {
+                AppSession.Current.CurrentViewModel.GoBack();
+            }
+        }
+
+        private void Current_ViewModelNavigated(ViewModelBase obj)
+        {
+            // Notify anyone checking on these properties.
+            base.NotifyPropertyChanged("CanGoHome");
+            base.NotifyPropertyChanged("CanGoBack");
+            base.NotifyPropertyChanged("Heading");
+        }
+
+        #endregion
 
         #region Home
 
