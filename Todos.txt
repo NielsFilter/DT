@@ -2,8 +2,8 @@ Functionality:
 ==============
 - License control (Red / Green / Yellow)
 - Add a Setting for warning expiry period.
-- Database Settings into a file (easier to manage)
-- Copy LocalDB to Application Folder and connect to that DB
+- Keep me logged in option (Setting)
+
 
 - LOW: LocalDB Detach (Investigate how EF does it / can do it)
 - LOW: Audit Trail

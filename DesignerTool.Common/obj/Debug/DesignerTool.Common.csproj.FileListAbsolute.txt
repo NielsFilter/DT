@@ -21,3 +21,4 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Common\bin\Debug\DesignerTool.
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Common\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Common\obj\Debug\DesignerTool.Common.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Common\obj\Debug\DesignerTool.Common.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Common\obj\Debug\DesignerTool.Common.csprojResolveAssemblyReference.cache

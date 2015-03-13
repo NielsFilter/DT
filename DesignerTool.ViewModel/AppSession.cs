@@ -53,7 +53,7 @@ namespace DesignerTool.AppLogic
 
         public virtual void Navigate(ViewModelBase viewModel)
         {
-            if(this.ViewModelNavigated != null)
+            if (this.ViewModelNavigated != null)
             {
                 this.ViewModelNavigated(viewModel);
             }
@@ -101,6 +101,8 @@ namespace DesignerTool.AppLogic
             }
         }
 
+        public bool IsNewInstallation { get; set; }
+
         #endregion
 
         #endregion
@@ -113,9 +115,18 @@ namespace DesignerTool.AppLogic
 
         #region Database Context
 
+        public string ConnectionString { get; set; }
+
         public virtual IDesignerToolContext CreateContext()
         {
-            return new DesignerToolDbEntities();
+            if (string.IsNullOrWhiteSpace(this.ConnectionString))
+            {
+                return new DesignerToolDbEntities();
+            }
+            else
+            {
+                return new DesignerToolDbEntities(this.ConnectionString);
+            }
         }
 
         #endregion

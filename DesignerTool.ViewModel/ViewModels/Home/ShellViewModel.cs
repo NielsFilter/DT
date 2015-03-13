@@ -87,6 +87,23 @@ namespace DesignerTool.AppLogic.ViewModels.Home
             }
         }
 
+        private bool _isProfileMenuOpen;
+        public bool IsProfileMenuOpen
+        {
+            get
+            {
+                return this._isProfileMenuOpen;
+            }
+            set
+            {
+                if (value != this._isProfileMenuOpen)
+                {
+                    this._isProfileMenuOpen = value;
+                    base.NotifyPropertyChanged("IsProfileMenuOpen");
+                }
+            }
+        }
+
         #endregion
 
         #region Load & Refresh
@@ -217,7 +234,19 @@ namespace DesignerTool.AppLogic.ViewModels.Home
 
         #endregion
 
+        public void GoUserProfile()
+        {
+            //TODO:
+        }
+
         #endregion
+
+        public void LogOut()
+        {
+            // Log user out of the system.
+            AppSession.Current.LoggedInUser = null;
+            AppSession.Current.Navigate(new LoginViewModel(AppSession.Current.CreateContext()));
+        }
     }
 }
 

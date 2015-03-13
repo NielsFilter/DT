@@ -14,23 +14,12 @@ namespace DesignerTool.DataAccess.Repositories
 
         }
 
-        #region Get
+        #region CRUD
 
-        public T GetValue<T>(string settingCode)
+        public void UpdateValue(string settingName, string value)
         {
-            var setting = this.GetSetting(settingCode);
-            if (setting == null)
-            {
-                return default(T);
-            }
-
-            return (T)Convert.ChangeType(setting.Value, typeof(T));
-        }
-
-        public SystemSetting GetSetting(string settingCode)
-        {
-            return base.Context.SystemSettings
-                .FirstOrDefault(x => x.Setting == settingCode);
+            var setting = base.Context.SystemSettings.First(s => s.Setting == settingName);
+            setting.Value = value;
         }
 
         #endregion

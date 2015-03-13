@@ -59,6 +59,7 @@
     <Compile Include="Security\Permission.cs" />
     <Compile Include="Security\PermissionChecker.cs" />
     <Compile Include="AppSession.cs" />
+    <Compile Include="Settings\SettingsManager.cs" />
     <Compile Include="ViewModels\Admin\UserDetailViewModel.cs" />
     <Compile Include="ViewModels\Admin\UserListViewModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />

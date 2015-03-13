@@ -8,26 +8,9 @@ namespace DesignerTool.Common.Settings
 {
     public class LocalSettings : LocalSettingsBase
     {
-        #region Singleton
-
-        public static LocalSettings _current;
-        public static LocalSettings Current
-        {
-            get
-            {
-                if (_current == null)
-                {
-                    _current = new LocalSettings();
-                }
-                return _current;
-            }
-        }
-
-        #endregion
-
         #region Ctors
 
-        private LocalSettings() : base()
+        public LocalSettings() : base()
         {
 
         }

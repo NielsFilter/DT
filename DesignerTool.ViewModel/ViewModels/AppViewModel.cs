@@ -1,25 +1,31 @@
 ﻿using DesignerTool.AppLogic.Security;
+using DesignerTool.AppLogic.Settings;
 using DesignerTool.Common.Enums;
 using DesignerTool.Common.Global;
 using DesignerTool.Common.Licensing;
 using DesignerTool.Common.Logging;
 using DesignerTool.Common.Utils;
+using DesignerTool.DataAccess.Connection;
 using DesignerTool.DataAccess.Data;
 using DesignerTool.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Shapes;
 
 namespace DesignerTool.AppLogic.ViewModels
 {
     public class AppViewModel
     {
+        private IDesignerToolContext _ctx;
         private DatabaseManagerRepository repDbMan;
         private SystemSettingsRepository repSettings;
+        private SettingsManager settMan;
 
         public AppViewModel(IDesignerToolContext ctx)
         {
+            this._ctx = ctx;
             this.repDbMan = new DatabaseManagerRepository(ctx);
             this.repSettings = new SystemSettingsRepository(ctx);
 
@@ -30,20 +36,20 @@ namespace DesignerTool.AppLogic.ViewModels
 
         public void Start()
         {
-            // 1. Set up application paths.
-            ApplicationPaths.CreateAppDirectories();
-
-            // 2. Test database connection
+            // 1. Test database connection
             if (!this.repDbMan.TestConnection())
             {
                 AppSession.Current.ShowMessage("Could not establish database connection.", "Database connection failed", ResultType.Error);
                 return;
             }
 
-            // 3. Setup ClientInfo
+            // 2. Load Settings
+            SettingsManager.Initialize(this._ctx);
+
+            // 4. Setup ClientInfo
             this.validateClientInfo();
 
-            // 4. Evaluate user license.
+            // 5. Evaluate user license.
             LicenseManager.Current.Evaluate();
         }
 
@@ -51,26 +57,15 @@ namespace DesignerTool.AppLogic.ViewModels
         {
             try
             {
-                string clientCodeSetting = "ClientCode";
-
-                ClientInfo.Code = this.repSettings.GetValue<int>(clientCodeSetting);
-                ClientInfo.IsNewInstallation = ClientInfo.Code == 0;
-                if (ClientInfo.IsNewInstallation)
+                AppSession.Current.IsNewInstallation = SettingsManager.Database.ClientCode == 0;
+                if (AppSession.Current.IsNewInstallation)
                 {
                     //This is a new Installation. So we need to create a new license (demo license).
-                    // 1. Create and Save a ClientCode for the new user.
-                    int code = new Random().Next(100000000, 999999999); // Client code is 9 digits long {000 000 000}
-                    var setting = this.repSettings.GetSetting(clientCodeSetting);
-                    if (setting == null)
-                    {
-                        throw new ApplicationException(String.Format("Could not find the system setting. Setting: {0}", clientCodeSetting));
-                    }
-                    setting.Value = code.ToString();
-                    this.repSettings.ValidateAndCommit();
-                    ClientInfo.Code = code;
-
+                    // 1. Generate a new ClientCode. Client code is 9 digits long {000 000 000}.
+                    SettingsManager.Database.ClientCode = new Random().Next(100000000, 999999999);
+                   
                     // 2. Apply Demo license.
-                    LicenseManager.Current.ApplyDemoLicense();
+                    LicenseManager.Current.ApplyDemoLicense(SettingsManager.Database.ClientCode);
                 }
             }
             catch (Exception ex)

@@ -10,6 +10,16 @@ namespace DesignerTool.DataAccess.Data
 {
     public partial class DesignerToolDbEntities : IDesignerToolContext
     {
+        #region Custom Ctors
+
+        public DesignerToolDbEntities(string connectionString)
+            : base(connectionString)
+        {
+
+        }
+
+        #endregion
+
         public int ValidateAndSave()
         {
             this.ChangeTracker.DetectChanges();

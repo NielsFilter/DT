@@ -1,5 +1,6 @@
 ﻿using DesignerTool.AppLogic;
 using DesignerTool.AppLogic.Security;
+using DesignerTool.AppLogic.Settings;
 using DesignerTool.AppLogic.ViewModels;
 using DesignerTool.Common.Global;
 using DesignerTool.Common.Licensing;
@@ -7,6 +8,7 @@ using DesignerTool.Common.Logging;
 using DesignerTool.Common.Mvvm;
 using DesignerTool.Common.Settings;
 using DesignerTool.Common.Utils;
+using DesignerTool.DataAccess.Connection;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -27,6 +29,13 @@ namespace DesignerTool
             // Need to start up the Context used in this Session.
             new WpfSession();
 
+            // 1. Set up application paths.
+            ApplicationPaths.Initialize();
+
+            // 2. Create Database Connection string
+            AppSession.Current.ConnectionString = ConnectionManager.GetEFConnectionString(ApplicationPaths.DatabaseFilePath);
+            
+            // 3. Start the application.
             var appVM = new AppViewModel(WpfSession.Current.CreateContext());
             appVM.Start();
 
@@ -75,8 +84,8 @@ namespace DesignerTool
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             // Save settings to local XML file.
-            LocalSettings.Current.saveToFile();
-
+            SettingsManager.Local.SaveToFile();
+            
             //TODO: LocalDB detach?
         }
 

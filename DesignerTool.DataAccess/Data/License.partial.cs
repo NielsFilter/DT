@@ -42,17 +42,17 @@ namespace DesignerTool.DataAccess.Data
         //TODO: Move validation fields to License Manager? Too much logic happening here in the Model...
         #region Validate License
 
-        public bool Validate(bool isDemo)
+        public bool Validate(bool isDemo, int clientCode)
         {
             bool isValid = true;
-            if (ClientInfo.Code == 0)
+            if (clientCode == 0)
             {
                 // Invalid client code
                 isValid = false;
             }
 
             // 1. Get and decrypt license info stored in the database
-            this.getLicenseInfo();
+            this.getLicenseInfo(clientCode);
 
             // 2. checks that no system date manipulation took place.
             this.verifyLicense(ref isValid);
@@ -74,12 +74,12 @@ namespace DesignerTool.DataAccess.Data
             return isValid && this.ExpiryDate >= DateTime.Now;
         }
 
-        private void getLicenseInfo()
+        private void getLicenseInfo(int clientCode)
         {
             try
             {
                 // Decrypt xml and read license info.
-                var xmlCode = Crypto.Decrypt(this.Code, ClientInfo.Code.ToString());
+                var xmlCode = Crypto.Decrypt(this.Code, clientCode.ToString());
                 this.DecryptedInfo = XML.Deserialize<LicenseInfoXml>(xmlCode);
             }
             catch (Exception ex)

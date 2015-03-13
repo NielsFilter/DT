@@ -99,5 +99,20 @@ namespace DesignerTool.Pages.Shell
         {
             this.ViewModel.GoBack();
         }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.LogOut();
+        }
+
+        private void ViewProfile_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.GoUserProfile();
+        }
+
+        private void ViewProfileMenu_Click(object sender, RoutedEventArgs e)
+        {
+            this.ctxViewProfile.IsOpen = true;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DesignerTool.Common.Enums;
+﻿using DesignerTool.AppLogic.Settings;
+using DesignerTool.Common.Enums;
 using DesignerTool.Common.Exceptions;
 using DesignerTool.Common.Global;
 using DesignerTool.Common.Licensing;
@@ -60,12 +61,9 @@ namespace DesignerTool.AppLogic.Security
         {
             try
             {
-                // Set this to nothing to force a fresh license instance load from the db.
-             //TODO:   this.ClearCache();
+                bool isDemo = GetUsedLicenseCodes().Count() == 0 || AppSession.Current.IsNewInstallation;
 
-                bool isDemo = GetUsedLicenseCodes().Count() == 0 || ClientInfo.IsNewInstallation;
-
-                if (this.License == null || !this.License.Validate(isDemo))
+                if (this.License == null || !this.License.Validate(isDemo, SettingsManager.Database.ClientCode))
                 {
                     // Invalid license
                     AppSession.Current.LicenseExpiry = null;
@@ -96,7 +94,7 @@ namespace DesignerTool.AppLogic.Security
 
         #region Apply Licenses
 
-        public void ApplyLicense(string code)
+        public void ApplyLicense(string code, int clientCode)
         {
             if(this.GetUsedLicenseCodes().Contains(code))
             {
@@ -105,7 +103,7 @@ namespace DesignerTool.AppLogic.Security
             }
 
             // Apply License from code.
-            this.applyLicense(LicenseManager.TranslateCode(code));
+            this.applyLicense(LicenseManager.TranslateCode(code), clientCode);
 
             // Add license code to the "used code" list.
             this.saveUsedCode(code);
@@ -115,14 +113,14 @@ namespace DesignerTool.AppLogic.Security
             this.Evaluate();
         }
 
-        public void ApplyDemoLicense()
+        public void ApplyDemoLicense(int clientCode)
         {
             // 1. Create a new License instance with 30 days trial and apply it.
-            this.applyLicense(this.createDemoLicense());
+            this.applyLicense(this.createDemoLicense(), clientCode);
             this.repLic.ValidateAndCommit();
         }
 
-        private void applyLicense(LicenseInfoXml licToXml)
+        private void applyLicense(LicenseInfoXml licToXml, int clientCode)
         {
             string xml = XML.Serialize(licToXml);
 
@@ -131,7 +129,7 @@ namespace DesignerTool.AppLogic.Security
                 this.License = new License();
                 this.repLic.AddNew(this.License);
             }
-            this.License.Code = Crypto.Encrypt(xml, ClientInfo.Code.ToString());
+            this.License.Code = Crypto.Encrypt(xml, clientCode.ToString());
             this.License.IsActive = true;
         }
 

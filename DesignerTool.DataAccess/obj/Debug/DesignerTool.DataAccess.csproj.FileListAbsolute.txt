@@ -9,3 +9,5 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\EntityFra
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\obj\Debug\DesignerTool.DataAccess.csprojResolveAssemblyReference.cache
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\obj\Debug\DesignerTool.DataAccess.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\obj\Debug\DesignerTool.DataAccess.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\Databases\DesignerToolDb.mdf
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\Databases\TestDesignerToolDb.mdf

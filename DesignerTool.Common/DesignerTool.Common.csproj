@@ -56,7 +56,7 @@
     <Compile Include="Enums\PeriodInfoAttribute.cs" />
     <Compile Include="Exceptions\LicenseCodeUsedException.cs" />
     <Compile Include="Exceptions\ModelValidationExceptions.cs" />
-    <Compile Include="Global\ClientInfo.cs" />
+    <Compile Include="Settings\DatabaseSettings.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Licensing\ActivationCode.cs" />
     <Compile Include="Licensing\ActivationCodeFormatter.cs" />
@@ -65,6 +65,7 @@
     <Compile Include="Converters\HasValueToVisibilityConverter.cs" />
     <Compile Include="Settings\LocalSettings.cs" />
     <Compile Include="Settings\LocalSettingsBase.cs" />
+    <Compile Include="Utils\Permissions.cs" />
     <Compile Include="ViewModels\IParentViewModel.cs" />
     <Compile Include="ViewModels\NotifyPropertyChangedBase.cs" />
     <Compile Include="Utils\LINQExtensions.cs" />

@@ -1,4 +1,5 @@
 ﻿using DesignerTool.Common.Global;
+using DesignerTool.Common.Logging;
 using DesignerTool.Common.Mvvm.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -134,7 +135,7 @@ namespace DesignerTool.Common.Settings
 
         #region Save
 
-        public void saveToFile()
+        public void SaveToFile()
         {
             try
             {
@@ -278,9 +279,10 @@ namespace DesignerTool.Common.Settings
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // Do not do anything here.
+                // Log and Suppress exception.
+                Logger.Log("Exception when saving xml local settings", ex);
             }
         }
 

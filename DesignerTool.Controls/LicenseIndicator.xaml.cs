@@ -147,7 +147,7 @@ namespace DesignerTool.Controls
                 Int32.TryParse(e.NewValue.ToString(), out display);
             }
 
-            currentCtrl.tbClientCode.Text = display.ToString("### ### ###");
+            currentCtrl.txtClientCode.Text = display.ToString("### ### ###");
         }
 
 

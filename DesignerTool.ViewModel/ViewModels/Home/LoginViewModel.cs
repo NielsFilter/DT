@@ -13,6 +13,7 @@ using DesignerTool.AppLogic.ViewModels.Home;
 using DesignerTool.Common.Settings;
 using DesignerTool.DataAccess.Repositories;
 using DesignerTool.DataAccess.Data;
+using DesignerTool.AppLogic.Settings;
 
 namespace DesignerTool.Pages.Shell
 {
@@ -90,7 +91,7 @@ namespace DesignerTool.Pages.Shell
         {
             base.Load();
 
-            this.Username = LocalSettings.Current.LastLoggedInUsername;
+            this.Username = SettingsManager.Local.LastLoggedInUsername;
         }
 
         public override void Refresh()
@@ -112,7 +113,9 @@ namespace DesignerTool.Pages.Shell
                         User user = this.rep.LoginUser(this.Username, this.Password);
                         if (user != null)
                         {
-                            LocalSettings.Current.LastLoggedInUsername = user.Username;
+                            SettingsManager.Local.LastLoggedInUsername = user.Username;
+                            SettingsManager.Database.LastLoginDateTime = DateTime.Now;
+
                             AppSession.Current.LoggedInUser = user;
                             AppSession.Current.Navigate(new HomeViewModel());
                         }

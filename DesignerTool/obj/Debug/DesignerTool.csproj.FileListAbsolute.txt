@@ -201,3 +201,5 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\DesignerTool.Propert
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\DesignerTool.csproj.GenerateResource.Cache
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\DesignerTool.exe
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\DesignerTool.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\Databases\DesignerToolDb.mdf
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\Databases\TestDesignerToolDb.mdf

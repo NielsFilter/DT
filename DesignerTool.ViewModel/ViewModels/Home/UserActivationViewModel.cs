@@ -1,4 +1,5 @@
 ﻿using DesignerTool.AppLogic.Security;
+using DesignerTool.AppLogic.Settings;
 using DesignerTool.Common.Enums;
 using DesignerTool.Common.Exceptions;
 using DesignerTool.Common.Global;
@@ -124,6 +125,11 @@ namespace DesignerTool.Pages.Shell
             }
         }
 
+        public int ClientCode
+        {
+            get { return SettingsManager.Database.ClientCode; }
+        }
+
         #endregion
 
         #region Load & Refresh
@@ -158,7 +164,7 @@ namespace DesignerTool.Pages.Shell
                     base.ShowError("Could not apply License code.", "A valid license code is required.");
                 }
 
-                LicenseManager.Current.ApplyLicense(this.Code);
+                LicenseManager.Current.ApplyLicense(this.Code, SettingsManager.Database.ClientCode);
 
                 // License updated successfully
                 this.Refresh();

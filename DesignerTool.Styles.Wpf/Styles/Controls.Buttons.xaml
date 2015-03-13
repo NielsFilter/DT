@@ -1159,6 +1159,14 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="BtnLogoff" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Path Style="{StaticResource vcSingleContact}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="0"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
 
     <!-- Chromeless buttons -->
     <Style x:Key="BtnClose" TargetType="Button" BasedOn="{StaticResource ChromelessButtonStyle}">

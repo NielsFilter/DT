@@ -18,41 +18,36 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="324*" />
-            <RowDefinition Height="149*" />
-            <RowDefinition Height="174*"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <Border Grid.Row="1" Visibility="{Binding IsSaveShow, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
-            <StackPanel>
-                <TextBlock Text="{Binding SaveMessageHeader, Mode=OneWay}"/>
-                <TextBlock Text="{Binding SaveMessage, Mode=OneWay}"/>
-            </StackPanel>
-        </Border>
-
-        <Border Grid.Row="1" Visibility="{Binding IsErrorShow, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
-            <StackPanel>
-                <TextBlock Text="{Binding ErrorMessageHeader, Mode=OneWay}"/>
-                <TextBlock Text="{Binding ErrorMessage, Mode=OneWay}"/>
-            </StackPanel>
-        </Border>
-
         <Grid x:Name="grdTop" Margin="20,30,20,5" RenderTransformOrigin="0.5,0.5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Style="{StaticResource TbHeading}" Text="{Binding Heading}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource BlackBrush}" />
-            
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1"
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0"
+                        Visibility="{Binding LoggedInUser, Source={x:Static vm:AppSession.Current}, Mode=OneWay, Converter={StaticResource hasValueToVisibilityConverter}}">
+                <Button Style="{DynamicResource BtnLogoff}" ToolTip="User profile" Click="ViewProfileMenu_Click">
+                    <Button.ContextMenu>
+                        <ContextMenu x:Name="ctxViewProfile">
+                            <MenuItem Header="View Profile" Click="ViewProfile_Click" />
+                            <Separator />
+                            <MenuItem Header="Log out" Click="Logout_Click" />
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+            </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1"
                         Visibility="{Binding LoggedInUser, Source={x:Static vm:AppSession.Current}, Mode=OneWay, Converter={StaticResource hasValueToVisibilityConverter}}" >
-                
-
-
                 <Button Style="{DynamicResource BtnBack}"  ToolTip="Go back to previous page" 
                         Visibility="{Binding CanGoBack, Converter={StaticResource boolToVisibilityConverter}}"
                         Click="Back_Click"/>
@@ -65,9 +60,8 @@
             </StackPanel>
         </Grid>
 
-
         <!-- Content - Pages are loaded into this content control -->
-        <m:TransitioningContentControl x:Name="contentMain" Grid.Row="1" Grid.RowSpan="3" Transition="RightReplace" />
+        <m:TransitioningContentControl x:Name="contentMain" Grid.Row="1" Transition="RightReplace" />
 
         <!-- Loading Bar -->
         <Grid Background="Transparent" Grid.RowSpan="4" Visibility="{Binding IsLoading, Converter={StaticResource boolToVisibilityConverter}, Mode=TwoWay}">
@@ -85,18 +79,20 @@
                   Header="Menu" Position="Right" Theme="Accent"
                   IsOpen="{Binding IsMenuVisible, Mode=TwoWay}">
 
-                    <StackPanel Orientation="Vertical" Width="200" Margin="15,5"
+                    <StackPanel Orientation="Vertical" Width="320" Margin="15,5"
                         Visibility="{Binding IsMenuVisible, Mode=TwoWay, Converter={StaticResource boolToVisibilityConverter}}">
 
                         <!-- User Module -->
-                        <TextBlock Text="User Module" Foreground="Beige" />
-                        <Button Content="System users" Click="Users_Click" />
-                        <Button Content="Generate Activation key" Click="GenerateActivationKey_Click" />
-                        <Button Content="Activate License" Click="ActivateLicense_Click" />
+                        <Label Style="{StaticResource LblMenuItem}" Margin="8,0" Content="System users" MouseDown="Users_Click" />
+                        <Label Style="{StaticResource LblMenuItem}" Margin="8,0" Content="Generate Activation key" MouseDown="GenerateActivationKey_Click" />
+                        <Label Style="{StaticResource LblMenuItem}" Margin="8,0" Content="Activate License" MouseDown="ActivateLicense_Click" />
                     </StackPanel>
 
                 </m:Flyout>
             </Grid>
         </Grid>
+        
+        <!-- Page Heading -->
+        <TextBlock Grid.Row="2" Style="{StaticResource TbHeading}" Margin="10" Text="{Binding Heading}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource BlackBrush}" />
     </Grid>
 </m:MetroWindow>

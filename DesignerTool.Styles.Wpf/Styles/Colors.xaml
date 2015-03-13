@@ -42,7 +42,7 @@
     <Color x:Key="SuccessColor">#FF7BA17B</Color>
     <Color x:Key="WarningColor">#FFA99F61</Color>
     <Color x:Key="ErrorColor">#FF9D5F5F</Color>
-    <Color x:Key="InformationColor">#FFFFFFFF</Color>
+    <Color x:Key="InformationColor">#FF90C7C9</Color>
 
     <!-- *************BRUSHES START************* -->
     <!--PROJECT TEMPLATE BRUSHES -->
