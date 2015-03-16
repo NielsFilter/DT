@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 
-namespace Mapper
+namespace DesignerTool.Packing
 {
     /// <summary>
     /// Implements a two dimensional dynamic array with elements of type T.

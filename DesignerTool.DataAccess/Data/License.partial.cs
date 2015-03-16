@@ -42,7 +42,7 @@ namespace DesignerTool.DataAccess.Data
         //TODO: Move validation fields to License Manager? Too much logic happening here in the Model...
         #region Validate License
 
-        public bool Validate(bool isDemo, int clientCode)
+        public bool Validate(bool isDemo, int clientCode, int expiryWarningDays)
         {
             bool isValid = true;
             if (clientCode == 0)
@@ -67,7 +67,7 @@ namespace DesignerTool.DataAccess.Data
             isValid = isValid && this.ExpiryDate >= DateTime.Now;
             
             // 4. Set the other license fields according above results.
-            this.calculateState(isValid, isDemo);
+            this.calculateState(isValid, isDemo, expiryWarningDays);
             this.calculateDisplayText();
 
             // Return result
@@ -98,7 +98,7 @@ namespace DesignerTool.DataAccess.Data
             }
         }
 
-        private void calculateState(bool isValid, bool isDemo)
+        private void calculateState(bool isValid, bool isDemo, int expiryWarningDays)
         {
             if (!isValid)
             {
@@ -114,9 +114,9 @@ namespace DesignerTool.DataAccess.Data
                     return;
                 }
 
-                bool isExpireSoon = false; // TODO: Check against setting of how when this should kick in.
-                if (isExpireSoon)
+                if (DateTime.Today.AddDays(expiryWarningDays) >= this.ExpiryDate.Date)
                 {
+                    // License is expiring soon (according to setting)
                     this.State = LicenseStateTypes.ExpiresSoon;
                 }
                 else

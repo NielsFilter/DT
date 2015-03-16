@@ -1,4 +1,5 @@
 ﻿using DesignerTool.Common.Mvvm.Views;
+using DesignerTool.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,10 +44,9 @@ namespace DesignerTool.Pages.Admin
             InitializeComponent();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        public override void PageLoaded()
         {
-            this.Loaded -= this.Page_Loaded;
-            this.ViewModel.Load();
+            this.ViewModel();
         }
 
         #endregion

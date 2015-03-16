@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Mapper
+namespace DesignerTool.Packing.Sheet
 {
     /// <summary>
     /// A canvas is a rectangle of a given size that lets you add smaller rectangle.

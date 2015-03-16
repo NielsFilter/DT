@@ -12,7 +12,7 @@ using DesignerTool.DataAccess.Data;
 using DesignerTool.DataAccess.Repositories;
 using DesignerTool.Common.Enums;
 
-namespace DesignerTool.Pages.Admin
+namespace DesignerTool.AppLogic.ViewModels.Admin
 {
     public class UserListViewModel : PageViewModel
     {

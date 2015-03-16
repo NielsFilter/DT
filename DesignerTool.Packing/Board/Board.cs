@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Mapper;
 
-namespace Mapper
+namespace DesignerTool.Packing.Board
 {
     public class Board : IBoard
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 
-namespace Mapper
+namespace DesignerTool.Packing.Sheet
 {
     /// <summary>
     /// This type of canvas places rectangles as far to the left as possible (lowest X).

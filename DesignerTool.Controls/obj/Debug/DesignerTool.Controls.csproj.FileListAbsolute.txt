@@ -83,3 +83,4 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerToo
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.pdb
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\bin\Debug\Databases\DesignerToolDb.mdf
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\bin\Debug\Databases\TestDesignerToolDb.mdf
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\bin\Debug\Databases\DesignerToolDb_log.ldf

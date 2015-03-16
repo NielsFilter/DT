@@ -2,11 +2,10 @@ Functionality:
 ==============
 - License control (Red / Green / Yellow)
 - Add a Setting for warning expiry period.
-- Keep me logged in option (Setting)
+- Forgot Password.
+- Custom Menus
 
 
-- LOW: LocalDB Detach (Investigate how EF does it / can do it)
-- LOW: Audit Trail
 - LOW: Unit Tests
 
 Refactor:

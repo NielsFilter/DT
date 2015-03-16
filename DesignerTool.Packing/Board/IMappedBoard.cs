@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Mapper
+namespace DesignerTool.Packing.Board
 {
     /// <summary>
     /// Defines an board that has been mapped to a specific location, for example onto a sheet.

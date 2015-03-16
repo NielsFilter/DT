@@ -53,6 +53,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseView.cs" />
     <Compile Include="LicenseIndicator.xaml.cs">
       <DependentUpon>LicenseIndicator.xaml</DependentUpon>
     </Compile>

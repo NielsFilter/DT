@@ -12,7 +12,7 @@ using System.Linq;
 using System.Security.Authentication;
 using System.Text;
 
-namespace DesignerTool.Pages.Admin
+namespace DesignerTool.AppLogic.ViewModels.Admin
 {
     public class UserDetailViewModel : PageViewModel
     {

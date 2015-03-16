@@ -2,8 +2,6 @@
 using DesignerTool.AppLogic.Security;
 using DesignerTool.Common.Enums;
 using DesignerTool.Common.Global;
-using DesignerTool.Common.Mvvm.Paging;
-using DesignerTool.Common.Mvvm.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DesignerTool.Common.ViewModels
+namespace DesignerTool.AppLogic.ViewModels.Base
 {
     public class PageViewModel : ViewModelBase
     {

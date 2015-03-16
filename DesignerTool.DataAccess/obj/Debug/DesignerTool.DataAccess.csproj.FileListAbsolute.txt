@@ -11,3 +11,4 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\obj\Debug\DesignerT
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\obj\Debug\DesignerTool.DataAccess.pdb
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\Databases\DesignerToolDb.mdf
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\Databases\TestDesignerToolDb.mdf
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\Databases\DesignerToolDb_log.ldf

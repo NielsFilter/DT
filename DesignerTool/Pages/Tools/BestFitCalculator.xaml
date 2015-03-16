@@ -1,0 +1,34 @@
+﻿<ctrls:BaseView x:Class="DesignerTool.Pages.Tools.BestFitCalculator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ctrls="clr-namespace:DesignerTool.Controls;assembly=DesignerTool.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DataGrid ItemsSource="{Binding Boards, Mode=TwoWay}" AutoGenerateColumns="False" CanUserAddRows="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Height" Binding="{Binding Height}"/>
+                <DataGridTextColumn Header="Width" Binding="{Binding Width}"/>
+                <DataGridTextColumn Header="Qty" Binding="{Binding Qty}"/>
+                <DataGridCheckBoxColumn Header="Must follow grain?" Binding="{Binding IsFollowsGrain}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--<Button Grid.Row="1" Content="Calculate" Command="{Binding CalculateCommand}" />-->
+        <StackPanel Grid.Row="1" >
+            <CheckBox x:Name="chkHasGrain" Content="Sheet Has Grain?" />
+        <Button Content="Refresh" Click="Test_Click" />
+        </StackPanel>
+
+        <WrapPanel x:Name="stackBoards" Margin="10" Grid.Row="2" Orientation="Vertical" />
+        <!--<Canvas Grid.Row="2" x:Name="cSheet" Height="300" Width="400" Background="Gray" />
+        <Canvas Grid.Row="3" x:Name="cSheet2" Height="300" Width="400" Background="DarkGray" />-->
+    </Grid>
+</ctrls:BaseView>

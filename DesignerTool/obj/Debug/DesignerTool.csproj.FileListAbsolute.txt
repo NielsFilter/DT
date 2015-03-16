@@ -203,3 +203,12 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\DesignerTool.exe
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\DesignerTool.pdb
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\Databases\DesignerToolDb.mdf
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\Databases\TestDesignerToolDb.mdf
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\bin\Debug\Databases\DesignerToolDb_log.ldf
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\ConfigurationView.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Shell\ConfigurationView.g.cs
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Core\ConfigurationView.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Core\HomeView.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Core\ConfigurationView.g.cs
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Core\HomeView.g.cs
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Core\UserActivation.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool\obj\Debug\Pages\Core\UserActivation.g.cs

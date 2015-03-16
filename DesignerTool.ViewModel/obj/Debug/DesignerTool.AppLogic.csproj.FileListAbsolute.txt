@@ -16,3 +16,4 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\obj\Debug\DesignerTo
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\obj\Debug\DesignerTool.AppLogic.pdb
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\Databases\DesignerToolDb.mdf
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\Databases\TestDesignerToolDb.mdf
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.ViewModel\bin\Debug\Databases\DesignerToolDb_log.ldf

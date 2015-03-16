@@ -63,7 +63,7 @@ namespace DesignerTool.AppLogic.Security
             {
                 bool isDemo = GetUsedLicenseCodes().Count() == 0 || AppSession.Current.IsNewInstallation;
 
-                if (this.License == null || !this.License.Validate(isDemo, SettingsManager.Database.ClientCode))
+                if (this.License == null || !this.License.Validate(isDemo, SettingsManager.Database.ClientCode, SettingsManager.Database.LicenseExpiryWarningDays))
                 {
                     // Invalid license
                     AppSession.Current.LicenseExpiry = null;

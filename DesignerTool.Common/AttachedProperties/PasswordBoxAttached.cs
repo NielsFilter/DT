@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DesignerTool.Common.Mvvm.AttachedProperties
+namespace DesignerTool.Common.AttachedProperties
 {
     public static class PasswordBoxAttached
     {

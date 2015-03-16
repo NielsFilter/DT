@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 
-namespace DesignerTool.Common.Mvvm.ViewModels
+namespace DesignerTool.AppLogic.ViewModels.Base
 {
     /// <summary>
     /// This is the base ViewModel which holds core ViewModel functionality, not specific to a model or a facade.

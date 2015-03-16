@@ -10,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace DesignerTool.Pages.Tools
+namespace DesignerTool.AppLogic.ViewModels.Tools
 {
     public class ActivationKeyGeneratorViewModel : PageViewModel
     {

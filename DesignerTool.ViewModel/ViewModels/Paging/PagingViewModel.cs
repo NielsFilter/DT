@@ -6,7 +6,7 @@ using System.Text;
 using DesignerTool.Common.Mvvm.Commands;
 using DesignerTool.Common.Mvvm.ViewModels;
 
-namespace DesignerTool.Common.Mvvm.Paging
+namespace DesignerTool.AppLogic.ViewModels.Paging
 {
     /// <summary>
     /// Utility class that helps coordinate paged access to a data store.

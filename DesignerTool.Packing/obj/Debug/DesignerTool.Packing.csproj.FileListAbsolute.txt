@@ -2,3 +2,4 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Packing\bin\Debug\DesignerTool
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Packing\bin\Debug\DesignerTool.Packing.pdb
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Packing\obj\Debug\DesignerTool.Packing.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Packing\obj\Debug\DesignerTool.Packing.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Packing\obj\Debug\DesignerTool.Packing.csprojResolveAssemblyReference.cache

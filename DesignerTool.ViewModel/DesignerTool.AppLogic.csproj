@@ -63,19 +63,20 @@
     <Compile Include="ViewModels\Admin\UserDetailViewModel.cs" />
     <Compile Include="ViewModels\Admin\UserListViewModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
+    <Compile Include="ViewModels\Base\IParentViewModel.cs" />
     <Compile Include="ViewModels\Base\PageViewModel.cs" />
-    <Compile Include="ViewModels\Core\BestFitCalculatorViewModel.cs" />
+    <Compile Include="ViewModels\Tools\BestFitCalculatorViewModel.cs" />
+    <Compile Include="ViewModels\Core\ConfigurationViewModel.cs" />
     <Compile Include="ViewModels\Panorama\IPanoramaTile.cs" />
     <Compile Include="ViewModels\Panorama\PanoramaGroup.cs" />
-    <Compile Include="ViewModels\Paging\CurrentPageChangedEventArgs.cs" />
     <Compile Include="ViewModels\Paging\PagingViewModel.cs" />
     <Compile Include="ViewModels\Panorama\PanoramaTileViewModel.cs" />
-    <Compile Include="ViewModels\Base\ShellBase.cs" />
+    <Compile Include="ViewModels\Shell\ShellViewModelBase.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
-    <Compile Include="ViewModels\Home\HomeViewModel.cs" />
-    <Compile Include="ViewModels\Home\LoginViewModel.cs" />
-    <Compile Include="ViewModels\Home\ShellViewModel.cs" />
-    <Compile Include="ViewModels\Home\UserActivationViewModel.cs" />
+    <Compile Include="ViewModels\Core\HomeViewModel.cs" />
+    <Compile Include="ViewModels\Core\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Shell\ShellViewModel.cs" />
+    <Compile Include="ViewModels\Core\UserActivationViewModel.cs" />
     <Compile Include="ViewModels\Tools\ActivationKeyGeneratorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

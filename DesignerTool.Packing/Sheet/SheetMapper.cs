@@ -5,7 +5,7 @@ using System.Text;
 using System.Diagnostics;
 using System.Drawing;
 
-namespace Mapper
+namespace DesignerTool.Packing.Sheet
 {
     public class SheetMapper<S> where S : class, ISheet, new()
     {

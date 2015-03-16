@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Mapper
+namespace DesignerTool.Packing.Board
 {
     /// <summary>
     /// Describes a board. Boards are "Cuttings" on Sheets.

@@ -71,27 +71,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Board.cs" />
     <Compile Include="Pages\Admin\UserDetail.xaml.cs">
       <DependentUpon>UserDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\UserList.xaml.cs">
       <DependentUpon>UserList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Core\BestFitCalculator.xaml.cs">
+    <Compile Include="Pages\Tools\BestFitCalculator.xaml.cs">
       <DependentUpon>BestFitCalculator.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Shell\UserActivation.xaml.cs">
+    <Compile Include="Pages\Core\ConfigurationView.xaml.cs">
+      <DependentUpon>ConfigurationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Core\UserActivation.xaml.cs">
       <DependentUpon>UserActivation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Tools\ActivationKeyGenerator.xaml.cs">
       <DependentUpon>ActivationKeyGenerator.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Shell\LoginView.xaml.cs">
+    <Compile Include="Pages\Core\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewMapper.cs" />
-    <Compile Include="Pages\Shell\HomeView.xaml.cs">
+    <Compile Include="Pages\Core\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Shell\ShellView.xaml.cs">
@@ -110,15 +111,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Core\BestFitCalculator.xaml">
+    <Page Include="Pages\Tools\BestFitCalculator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Shell\LoginView.xaml">
+    <Page Include="Pages\Core\ConfigurationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Shell\UserActivation.xaml">
+    <Page Include="Pages\Core\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Core\UserActivation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -126,7 +131,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Shell\HomeView.xaml">
+    <Page Include="Pages\Core\HomeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
