@@ -1,6 +1,9 @@
 ﻿using DesignerTool.AppLogic;
+using DesignerTool.AppLogic.ViewModels.Admin;
+using DesignerTool.AppLogic.ViewModels.Base;
+using DesignerTool.AppLogic.ViewModels.Core;
+using DesignerTool.AppLogic.ViewModels.Tools;
 using DesignerTool.Common.Enums;
-using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Pages.Admin;
 using DesignerTool.Pages.Core;
 using DesignerTool.Pages.Shell;
@@ -51,17 +54,24 @@ namespace DesignerTool
                     this._pageLookup = new Dictionary<Type, Type>();
 
                     // Core
+                    this._pageLookup.Add(typeof(ConfigurationViewModel), typeof(ConfigurationView));
+                    this._pageLookup.Add(typeof(DebtorDetailViewModel), typeof(DebtorDetailView));
+                    this._pageLookup.Add(typeof(DebtorListViewModel), typeof(DebtorListView));
                     this._pageLookup.Add(typeof(HomeViewModel), typeof(HomeView));
                     this._pageLookup.Add(typeof(LoginViewModel), typeof(LoginView));
+                    this._pageLookup.Add(typeof(SupplierDetailViewModel), typeof(SupplierDetailView));
+                    this._pageLookup.Add(typeof(SupplierListViewModel), typeof(SupplierListView));
+                    this._pageLookup.Add(typeof(UnitTypeDetailViewModel), typeof(UnitTypeDetailViewModel));
+                    this._pageLookup.Add(typeof(UnitTypeListViewModel), typeof(UnitTypeListView));
                     this._pageLookup.Add(typeof(UserActivationViewModel), typeof(UserActivation));
-                    this._pageLookup.Add(typeof(UserListViewModel), typeof(UserList));
-                    this._pageLookup.Add(typeof(UserDetailViewModel), typeof(UserDetail));
 
-                    // Calculator
-                    this._pageLookup.Add(typeof(BestFitCalculatorViewModel), typeof(BestFitCalculator));
+                    // Admin
+                    this._pageLookup.Add(typeof(UserDetailViewModel), typeof(UserDetail));
+                    this._pageLookup.Add(typeof(UserListViewModel), typeof(UserList));
 
                     // Tools
                     this._pageLookup.Add(typeof(ActivationKeyGeneratorViewModel), typeof(ActivationKeyGenerator));
+                    this._pageLookup.Add(typeof(BestFitCalculatorViewModel), typeof(BestFitCalculator));
                 }
                 return this._pageLookup;
             }

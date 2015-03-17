@@ -1,6 +1,6 @@
 ﻿using DesignerTool.AppLogic;
+using DesignerTool.AppLogic.ViewModels.Base;
 using DesignerTool.Common.Enums;
-using DesignerTool.Common.Mvvm.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

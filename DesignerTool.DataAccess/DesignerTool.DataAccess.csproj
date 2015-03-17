@@ -70,7 +70,21 @@
       <DependentUpon>DesignerToolModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\BaseModel.cs" />
-    <Compile Include="Data\DesignerToolDbEntities.partial.cs" />
+    <Compile Include="Data\Contact.cs">
+      <DependentUpon>DesignerToolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Custom\ActiveLicense.partial.cs" />
+    <Compile Include="Data\Custom\Contact.partial.cs" />
+    <Compile Include="Data\Custom\SystemSetting.partial.cs" />
+    <Compile Include="Data\Debtor.cs">
+      <DependentUpon>DesignerToolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Custom\Debtor.partial.cs" />
+    <Compile Include="Data\DebtorContact.cs">
+      <DependentUpon>DesignerToolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Custom\DebtorContact.partial.cs" />
+    <Compile Include="Data\Custom\DesignerToolDbEntities.partial.cs" />
     <Compile Include="Data\DesignerToolModel.Context.cs">
       <DependentUpon>DesignerToolModel.Context.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -90,23 +104,34 @@
     <Compile Include="Data\License.cs">
       <DependentUpon>DesignerToolModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\License.partial.cs" />
-    <Compile Include="Data\Person.cs">
+    <Compile Include="Data\Custom\License.partial.cs" />
+    <Compile Include="Data\Supplier.cs">
       <DependentUpon>DesignerToolModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Person.partial.cs" />
+    <Compile Include="Data\Custom\Supplier.partial.cs" />
+    <Compile Include="Data\SupplierContact.cs">
+      <DependentUpon>DesignerToolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Custom\SupplierContact.partial.cs" />
     <Compile Include="Data\SystemSetting.cs">
       <DependentUpon>DesignerToolModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\UnitType.cs">
+      <DependentUpon>DesignerToolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Custom\UnitType.partial.cs" />
     <Compile Include="Data\User.cs">
       <DependentUpon>DesignerToolModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\User.partial.cs" />
+    <Compile Include="Data\Custom\User.partial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\DatabaseManagerRepository.cs" />
+    <Compile Include="Repositories\DebtorRepository.cs" />
+    <Compile Include="Repositories\SupplierRepository.cs" />
     <Compile Include="Repositories\SystemSettingsRepository.cs" />
     <Compile Include="Repositories\LicenseRepository.cs" />
+    <Compile Include="Repositories\UnitTypeRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Validation\IValidatable.cs" />
   </ItemGroup>
@@ -117,6 +142,7 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="Data\DesignerToolModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DesignerToolModel.edmx</DependentUpon>

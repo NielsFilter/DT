@@ -1,19 +1,11 @@
 ﻿using DesignerTool.AppLogic;
-using DesignerTool.AppLogic.Security;
 using DesignerTool.AppLogic.Settings;
 using DesignerTool.AppLogic.ViewModels;
 using DesignerTool.Common.Global;
-using DesignerTool.Common.Licensing;
 using DesignerTool.Common.Logging;
-using DesignerTool.Common.Mvvm;
-using DesignerTool.Common.Settings;
-using DesignerTool.Common.Utils;
 using DesignerTool.DataAccess.Connection;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace DesignerTool
@@ -28,6 +20,7 @@ namespace DesignerTool
         {
             // Need to start up the Context used in this Session.
             new WpfSession();
+            WpfSession.Current.UISyncContext = TaskScheduler.FromCurrentSynchronizationContext();
 
             // 1. Set up application paths.
             ApplicationPaths.Initialize();

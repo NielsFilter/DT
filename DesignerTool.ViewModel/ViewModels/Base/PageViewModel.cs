@@ -1,5 +1,6 @@
 ﻿using DesignerTool.AppLogic;
 using DesignerTool.AppLogic.Security;
+using DesignerTool.AppLogic.ViewModels.Paging;
 using DesignerTool.Common.Enums;
 using DesignerTool.Common.Global;
 using System;
@@ -14,7 +15,7 @@ namespace DesignerTool.AppLogic.ViewModels.Base
 {
     public class PageViewModel : ViewModelBase
     {
-        private const int PAGE_SIZE = 20;
+        private const int PAGE_SIZE = 3;
 
         #region ctors
 
@@ -109,7 +110,7 @@ namespace DesignerTool.AppLogic.ViewModels.Base
                 runningTasks.Add(
                     // This task is simply to provide a delay for the loading message.
                     Task.Factory.StartNew(() => Thread.Sleep((int)loadingDelay), delayCts.Token) // Delay for a period
-                        .ContinueWith((prevTask) => controlLoadDel(true), delayCts.Token, TaskContinuationOptions.None, TaskScheduler.FromCurrentSynchronizationContext())); // Once the delay is over, show the loading
+                        .ContinueWith((prevTask) => controlLoadDel(true), delayCts.Token, TaskContinuationOptions.None, AppSession.Current.UISyncContext)); // Once the delay is over, show the loading
             }
 
             runningTasks.Add(

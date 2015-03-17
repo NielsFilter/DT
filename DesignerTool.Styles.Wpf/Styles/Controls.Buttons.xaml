@@ -1089,25 +1089,17 @@
         </Setter>
     </Style>
 
-    <Style x:Key="BtnBack" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
-        <Setter Property="Content">
-            <Setter.Value>
-                <Path Style="{StaticResource vcPrev}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10"/>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style x:Key="BtnPrev" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
         <Setter Property="Content">
             <Setter.Value>
-                <Path Style="{StaticResource vcPrev}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10"/>
+                <Path Style="{StaticResource vcPrev}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="6,10,10,10"/>
             </Setter.Value>
         </Setter>
     </Style>
     <Style x:Key="BtnNext" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
         <Setter Property="Content">
             <Setter.Value>
-                <Path Style="{StaticResource vcNext}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10"/>
+                <Path Style="{StaticResource vcNext}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10,10,6,10"/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -1125,6 +1117,9 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!-- Currently this is the same style as the BtnPrev. Reason for splitting is so that a change to BtnBack style does not affect BtnPrev (and vice versa)-->
+    <Style x:Key="BtnBack" TargetType="Button" BasedOn="{StaticResource BtnPrev}"></Style>
 
     <Style x:Key="BtnRefresh" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
         <Setter Property="Padding" Value="5" />
@@ -1159,14 +1154,23 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="BtnLogoff" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
+    <Style x:Key="BtnProfile" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
         <Setter Property="Content">
             <Setter.Value>
-                <Path Style="{StaticResource vcSingleContact}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="0"/>
+                <Path Style="{StaticResource vcSingleContact}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="10"/>
             </Setter.Value>
         </Setter>
     </Style>
-    
+    <Style x:Key="BtnLicense" TargetType="Button" BasedOn="{StaticResource BtnCircle}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Path Style="{StaticResource vcLicense}" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}}" Margin="15,10,15,5"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
 
     <!-- Chromeless buttons -->
     <Style x:Key="BtnClose" TargetType="Button" BasedOn="{StaticResource ChromelessButtonStyle}">

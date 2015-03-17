@@ -1,14 +1,12 @@
 ﻿using DesignerTool.AppLogic.Security;
 using DesignerTool.AppLogic.Settings;
+using DesignerTool.AppLogic.ViewModels.Base;
 using DesignerTool.Common.Enums;
 using DesignerTool.Common.Exceptions;
 using DesignerTool.Common.Global;
 using DesignerTool.Common.Licensing;
 using DesignerTool.Common.Logging;
-using DesignerTool.Common.Mvvm.Commands;
-using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Common.Utils;
-using DesignerTool.Common.ViewModels;
 using DesignerTool.DataAccess.Data;
 using DesignerTool.DataAccess.Repositories;
 using System;
@@ -113,7 +111,7 @@ namespace DesignerTool.AppLogic.ViewModels.Core
                 {
                     return "No license";
                 }
-                return this.MyLicense.CurrentLicenseText;
+                return this.MyLicense.LicenseDisplay;
             }
         }
 
@@ -136,8 +134,15 @@ namespace DesignerTool.AppLogic.ViewModels.Core
 
         public override void Load()
         {
-            base.Load();
+            LicenseManager.Current.LicenseChanged += current_LicenseChanged;
             this.Refresh();
+        }
+
+        private void current_LicenseChanged()
+        {
+            this.Refresh();
+            base.NotifyPropertyChanged("CurrentLicenseState");
+            base.NotifyPropertyChanged("CurrentLicenseDisplay");
         }
 
         public override void Refresh()
@@ -167,7 +172,6 @@ namespace DesignerTool.AppLogic.ViewModels.Core
                 LicenseManager.Current.ApplyLicense(this.Code, SettingsManager.Database.ClientCode);
 
                 // License updated successfully
-                this.Refresh();
                 base.ShowSaved("License successfully applied");
             }
             catch (LicenseCodeUsedException ex)

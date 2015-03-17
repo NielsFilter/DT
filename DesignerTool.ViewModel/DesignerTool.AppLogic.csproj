@@ -65,6 +65,12 @@
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="ViewModels\Base\IParentViewModel.cs" />
     <Compile Include="ViewModels\Base\PageViewModel.cs" />
+    <Compile Include="ViewModels\Core\DebtorDetailViewModel.cs" />
+    <Compile Include="ViewModels\Core\UnitTypeDetailViewModel.cs" />
+    <Compile Include="ViewModels\Core\SupplierDetailViewModel.cs" />
+    <Compile Include="ViewModels\Core\DebtorListViewModel.cs" />
+    <Compile Include="ViewModels\Core\UnitTypeListViewModel.cs" />
+    <Compile Include="ViewModels\Core\SupplierListViewModel.cs" />
     <Compile Include="ViewModels\Tools\BestFitCalculatorViewModel.cs" />
     <Compile Include="ViewModels\Core\ConfigurationViewModel.cs" />
     <Compile Include="ViewModels\Panorama\IPanoramaTile.cs" />

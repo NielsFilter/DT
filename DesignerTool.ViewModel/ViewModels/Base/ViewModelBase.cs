@@ -1,4 +1,5 @@
-﻿using DesignerTool.Common.Global;
+﻿using DesignerTool.Common.Base;
+using DesignerTool.Common.Global;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

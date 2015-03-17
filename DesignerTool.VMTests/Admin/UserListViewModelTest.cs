@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DesignerTool.Pages.Admin;
 using DesignerTool.Common.Enums;
 using DesignerTool.DataAccess.Data;
 using System.Security.Authentication;
+using DesignerTool.AppLogic.ViewModels.Admin;
 
 namespace DesignerTool.VMTests.Admin
 {

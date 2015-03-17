@@ -1,4 +1,4 @@
-﻿using DesignerTool.Common.Mvvm.Views;
+﻿using DesignerTool.AppLogic.ViewModels.Admin;
 using DesignerTool.Controls;
 using System;
 using System.Collections.Generic;
@@ -46,7 +46,7 @@ namespace DesignerTool.Pages.Admin
 
         public override void PageLoaded()
         {
-            this.ViewModel();
+            this.ViewModel.Load();
         }
 
         #endregion

@@ -374,11 +374,8 @@ namespace DesignerTool.Controls.Panorama
             if (Math.Abs(delta.X) < PixelsToMoveToBeConsideredClick &&
                 Math.Abs(delta.Y) < PixelsToMoveToBeConsideredClick && tile != null)
             {
-                //Ok, its a click ask the tile to do its job
-                if (tile.TileClickedCommand.CanExecute(null))
-                {
-                    tile.TileClickedCommand.Execute(null);
-                }
+                //It's a click ask the tile to do its job
+                tile.TileClicked();
             }
 
             base.OnPreviewMouseUp(e);

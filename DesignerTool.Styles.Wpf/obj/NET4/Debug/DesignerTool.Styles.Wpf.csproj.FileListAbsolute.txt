@@ -44,7 +44,6 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Styl
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Styles\Controls.Slider.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Styles\Controls.Toolbar.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Styles\Controls.Tooltip.baml
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Styles\Converters.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Styles\FlatSlider.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Styles\General.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Styles\Shared.baml
@@ -98,6 +97,7 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Styl
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Styles\Controls.TabControl.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Styles\Controls.TextBox.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Styles\Controls.TreeView.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Styles\Converters.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Styles\ValidationErrorTemplate.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Styles\VS\Window.baml
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Styles.Wpf\obj\NET4\Debug\Themes\Dialogs\BaseMetroDialog.baml

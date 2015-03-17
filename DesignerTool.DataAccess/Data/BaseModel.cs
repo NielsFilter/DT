@@ -1,4 +1,4 @@
-﻿using DesignerTool.Common.Mvvm.ViewModels;
+﻿using DesignerTool.Common.Base;
 using DesignerTool.DataAccess.Validation;
 using System;
 using System.Collections.Generic;

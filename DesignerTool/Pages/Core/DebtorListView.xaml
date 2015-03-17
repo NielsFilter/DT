@@ -1,0 +1,52 @@
+﻿<ctrls:BaseView x:Class="DesignerTool.Pages.Core.DebtorListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ctrls="clr-namespace:DesignerTool.Controls;assembly=DesignerTool.Controls"
+             xmlns:m="clr-namespace:DesignerTool.Styles.Wpf.Controls;assembly=DesignerTool.Styles.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid x:Name="Root" Style="{StaticResource GrdContent}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,10">
+            <Button Style="{StaticResource BtnRefresh}" ToolTip="Refresh" Click="Refresh_Click" />
+            <Button Style="{StaticResource BtnAdd}" ToolTip="Add New" Click="AddNew_Click" />
+            <Button Style="{StaticResource BtnEdit}" IsEnabled="{Binding CanEdit}" ToolTip="Edit" Click="Edit_Click" />
+            <Button Style="{StaticResource BtnDelete}" IsEnabled="{Binding CanDelete}" ToolTip="Delete" Click="Delete_Click" />
+        </StackPanel>
+
+        <TextBox Grid.Row="0" Style="{StaticResource TxtDefault}" Width="300" FontSize="16"
+                 HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5"
+                 m:TextboxHelper.Watermark="Type to search..."
+                 TextChanged="Search_TextChanged"
+                 Text="{Binding Pager.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        </TextBox>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <!-- List -->
+            <DataGrid Grid.Row="0" x:Name="dgList" AutoGenerateColumns="False" Style="{StaticResource MetroDataGrid}"
+                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                  ItemsSource="{Binding ListPaged}"
+                  MouseDoubleClick="dgList_DoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Debtor" />
+                    <DataGridTextColumn Binding="{Binding IsActive, Converter={StaticResource boolToCustomTextConverter}, ConverterParameter='Active|Inactive'}" Header="Status" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Paging -->
+            <ctrls:Paging Pager="{Binding Pager}" HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Bottom"  />
+        </Grid>
+
+    </Grid>
+</ctrls:BaseView>

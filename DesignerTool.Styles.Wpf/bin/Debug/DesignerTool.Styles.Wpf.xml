@@ -1186,9 +1186,97 @@
             <param name = "bg">The bg.</param>
             <returns></returns>
         </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.BoolToCustomTextConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts Boolean to custom text passed as a parameter.
+            The pipe character "|" must be used to split the true and false text representations
+            </summary>
+            <remarks>
+            If no parameter is passed, then "Yes" or "No" is returned.
+            </remarks>
+            <example>
+            If "Active|Inactive" is passed as a parameter.
+            True: "Active" is returned, if False: "Inactive" is returned.
+            </example>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.BoolToCustomTextConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convert back, but its not implemented as it's not yet needed
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.BoolToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts Boolean to Visibility.
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.BoolToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convert back, but its not implemented as it's not yet needed
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.BoolToYesNoButtonStyleConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts Boolean to "Yes" or "No" string.
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.BoolToYesNoButtonStyleConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convert back, but its not implemented as it's not yet needed
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.BoolToYesNoConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts Boolean to "Yes" or "No" string.
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.BoolToYesNoConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convert back, but its not implemented as it's not yet needed
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.BoolToYesNoPathStyleConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts Boolean to "Yes" or "No" string.
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.BoolToYesNoPathStyleConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convert back, but its not implemented as it's not yet needed
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.HasValueToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts object's value to Visibility.
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.HasValueToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convert back, but its not implemented as it's not yet needed
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.InvertBoolConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts Boolean to it's inverse value (i.e. true returns false and vice versa)
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.InvertBoolConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts Boolean back it's inverse value (i.e. true returns false and vice versa)
+            </summary>
+        </member>
         <member name="T:DesignerTool.Styles.Wpf.Converters.IsNullConverter">
             <summary>
             Converts the value from true to false and false to true.
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.LicenseStateToBrushConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts Boolean to Visibility.
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.LicenseStateToBrushConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convert back, but its not implemented as it's not yet needed
             </summary>
         </member>
         <member name="T:DesignerTool.Styles.Wpf.Controls.Planerator">
@@ -1470,6 +1558,71 @@
             <param name="reference">The main element which is used to perform
             hit testing.</param>
             <param name="point">The position to be evaluated on the origin.</param>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.StringCaseConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts String To Upper or Lower case.
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.StringCaseConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convert back, but its not implemented as it's not yet needed
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.StringToDecryptConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts Encrypted String to Plain Text.
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.StringToDecryptConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convert back to the Encrypted string from plain text
+            </summary>
+        </member>
+        <member name="T:DesignerTool.Styles.Wpf.Converters.StringToLowerConverter">
+            <summary>
+            Converts string to lower case
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.StringToLowerConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts string to lower case
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.StringToLowerConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convert back, but its not implemented as it's not yet needed
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.StringToStyleConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts Boolean to Visibility.
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.StringToStyleConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convert back, but its not implemented as it's not yet needed
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.StringToUpperConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts string to upper case
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.StringToUpperConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convert back, but its not implemented as it's not yet needed
+            </summary>
+        </member>
+        <member name="T:DesignerTool.Styles.Wpf.Converters.ThicknessToDoubleConverter">
+            <summary>
+            Converts Thickness to double value.
+            </summary>
+        </member>
+        <member name="M:DesignerTool.Styles.Wpf.Converters.ThicknessToDoubleConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convert back, but its not implemented as it's not yet needed
+            </summary>
         </member>
         <member name="F:Standard.IID.ApplicationAssociationRegistration">
             <summary>IID_IApplicationAssociationRegistration</summary>

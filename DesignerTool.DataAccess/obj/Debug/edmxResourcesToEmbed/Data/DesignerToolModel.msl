@@ -19,17 +19,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="People">
-      <EntityTypeMapping TypeName="DesignerToolDbModel.Person">
-        <MappingFragment StoreEntitySet="Person">
-          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-          <ScalarProperty Name="FirstNames" ColumnName="FirstNames" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SystemSettings">
       <EntityTypeMapping TypeName="DesignerToolDbModel.SystemSetting">
         <MappingFragment StoreEntitySet="SystemSetting">
@@ -48,6 +37,81 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Role" ColumnName="Role" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="DesignerToolDbModel.Contact">
+        <MappingFragment StoreEntitySet="Contact">
+          <ScalarProperty Name="Fax5" ColumnName="Fax5" />
+          <ScalarProperty Name="Fax4" ColumnName="Fax4" />
+          <ScalarProperty Name="Fax3" ColumnName="Fax3" />
+          <ScalarProperty Name="Fax2" ColumnName="Fax2" />
+          <ScalarProperty Name="Fax1" ColumnName="Fax1" />
+          <ScalarProperty Name="Telephone5" ColumnName="Telephone5" />
+          <ScalarProperty Name="Telephone4" ColumnName="Telephone4" />
+          <ScalarProperty Name="Telephone3" ColumnName="Telephone3" />
+          <ScalarProperty Name="Telephone2" ColumnName="Telephone2" />
+          <ScalarProperty Name="Telephone1" ColumnName="Telephone1" />
+          <ScalarProperty Name="Cellphone5" ColumnName="Cellphone5" />
+          <ScalarProperty Name="Cellphone4" ColumnName="Cellphone4" />
+          <ScalarProperty Name="Cellphone3" ColumnName="Cellphone3" />
+          <ScalarProperty Name="Cellphone2" ColumnName="Cellphone2" />
+          <ScalarProperty Name="Cellphone1" ColumnName="Cellphone1" />
+          <ScalarProperty Name="EmailAddress5" ColumnName="EmailAddress5" />
+          <ScalarProperty Name="EmailAddress4" ColumnName="EmailAddress4" />
+          <ScalarProperty Name="EmailAddress3" ColumnName="EmailAddress3" />
+          <ScalarProperty Name="EmailAddress2" ColumnName="EmailAddress2" />
+          <ScalarProperty Name="EmailAddress1" ColumnName="EmailAddress1" />
+          <ScalarProperty Name="Person" ColumnName="Person" />
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Debtors">
+      <EntityTypeMapping TypeName="DesignerToolDbModel.Debtor">
+        <MappingFragment StoreEntitySet="Debtor">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DebtorID" ColumnName="DebtorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DebtorContacts">
+      <EntityTypeMapping TypeName="DesignerToolDbModel.DebtorContact">
+        <MappingFragment StoreEntitySet="DebtorContact">
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="DebtorID" ColumnName="DebtorID" />
+          <ScalarProperty Name="DebtorContactID" ColumnName="DebtorContactID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="DesignerToolDbModel.Supplier">
+        <MappingFragment StoreEntitySet="Supplier">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupplierContacts">
+      <EntityTypeMapping TypeName="DesignerToolDbModel.SupplierContact">
+        <MappingFragment StoreEntitySet="SupplierContact">
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+          <ScalarProperty Name="SupplierContactID" ColumnName="SupplierContactID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnitTypes">
+      <EntityTypeMapping TypeName="DesignerToolDbModel.UnitType">
+        <MappingFragment StoreEntitySet="UnitType">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UnitTypeID" ColumnName="UnitTypeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

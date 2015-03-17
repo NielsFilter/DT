@@ -10,9 +10,14 @@ namespace DesignerTool.DataAccess.Data
     {
         DbSet<ActiveLicense> ActiveLicenses { get; set; }
         DbSet<License> Licenses { get; set; }
-        DbSet<Person> People { get; set; }
         DbSet<SystemSetting> SystemSettings { get; set; }
         DbSet<User> Users { get; set; }
+        DbSet<Contact> Contacts { get; set; }
+        DbSet<Debtor> Debtors { get; set; }
+        DbSet<DebtorContact> DebtorContacts { get; set; }
+        DbSet<Supplier> Suppliers { get; set; }
+        DbSet<SupplierContact> SupplierContacts { get; set; }
+        DbSet<UnitType> UnitTypes { get; set; }
 
         int ValidateAndSave();
         int SaveChanges();

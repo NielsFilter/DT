@@ -1,4 +1,5 @@
-﻿using DesignerTool.AppLogic.ViewModels.Home;
+﻿using DesignerTool.AppLogic.ViewModels.Shell;
+using DesignerTool.Common.Enums;
 using DesignerTool.Styles.Wpf;
 using DesignerTool.Styles.Wpf.Controls;
 using System;
@@ -21,6 +22,7 @@ namespace DesignerTool.Pages.Shell
     /// </summary>
     public partial class ShellView : MetroWindow
     {
+
         #region ViewModel
 
         private ShellViewModel ViewModel
@@ -38,6 +40,7 @@ namespace DesignerTool.Pages.Shell
         #endregion
 
         #region Load
+
         public ShellView()
         {
             InitializeComponent();
@@ -92,7 +95,7 @@ namespace DesignerTool.Pages.Shell
 
         private void ActivateLicense_Click(object sender, RoutedEventArgs e)
         {
-            this.ViewModel.GoLicenseActivate();
+            this.ViewModel.GoUserLicense();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -113,6 +116,26 @@ namespace DesignerTool.Pages.Shell
         private void ViewProfileMenu_Click(object sender, RoutedEventArgs e)
         {
             this.ctxViewProfile.IsOpen = true;
+        }
+
+        private void License_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.GoUserLicense();
+        }
+
+        private void Debtors_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.ViewModel.GoDebtors();
+        }
+
+        private void Suppliers_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.ViewModel.GoSuppliers();
+        }
+
+        private void UnitTypes_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.ViewModel.GoUnitTypes();
         }
     }
 }

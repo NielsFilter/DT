@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Common.Enums;
-using DesignerTool.Pages.Shell;
-using DesignerTool.Common.ViewModels;
 using DesignerTool.Common.Global;
 using DesignerTool.AppLogic;
+using DesignerTool.AppLogic.ViewModels.Base;
 
 namespace DesignerTool.AppLogic.ViewModels.Shell
 {

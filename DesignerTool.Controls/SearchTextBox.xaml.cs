@@ -1,5 +1,4 @@
-﻿using DesignerTool.Common.Mvvm.Commands;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -56,14 +55,15 @@ namespace DesignerTool.Controls
 
         #region SearchCommand
 
-        public Command SearchCommand
+        //TODO: Remove Command
+        public ICommand SearchCommand
         {
-            get { return (Command)GetValue(SearchCommandProperty); }
+            get { return (ICommand)GetValue(SearchCommandProperty); }
             set { SetValue(SearchCommandProperty, value); }
         }
 
         public static readonly DependencyProperty SearchCommandProperty =
-            DependencyProperty.Register("SearchCommand", typeof(Command), typeof(SearchTextBox), new UIPropertyMetadata(null));
+            DependencyProperty.Register("SearchCommand", typeof(ICommand), typeof(SearchTextBox), new UIPropertyMetadata(null));
 
         #endregion
 

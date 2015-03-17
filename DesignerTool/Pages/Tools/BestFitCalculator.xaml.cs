@@ -1,9 +1,7 @@
 ﻿using DesignerTool.AppLogic.ViewModels.Tools;
-using DesignerTool.Common.Mvvm.Views;
 using DesignerTool.Controls;
 using DesignerTool.Packing.Board;
 using DesignerTool.Packing.Sheet;
-using Mapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;

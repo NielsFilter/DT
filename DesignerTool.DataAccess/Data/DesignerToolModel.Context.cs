@@ -27,8 +27,13 @@ namespace DesignerTool.DataAccess.Data
     
         public virtual DbSet<ActiveLicense> ActiveLicenses { get; set; }
         public virtual DbSet<License> Licenses { get; set; }
-        public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<SystemSetting> SystemSettings { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<Debtor> Debtors { get; set; }
+        public virtual DbSet<DebtorContact> DebtorContacts { get; set; }
+        public virtual DbSet<Supplier> Suppliers { get; set; }
+        public virtual DbSet<SupplierContact> SupplierContacts { get; set; }
+        public virtual DbSet<UnitType> UnitTypes { get; set; }
     }
 }

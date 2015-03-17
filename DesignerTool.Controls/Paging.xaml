@@ -15,13 +15,13 @@
                     <Setter Property="Width" Value="40" />
                 </Style>
             </StackPanel.Resources>
-            <Button Style="{StaticResource BtnFirst}" Command="{Binding Path=Pager.GotoFirstPageCommand}" />
-            <Button Style="{StaticResource BtnPrev}" Command="{Binding Path=Pager.GotoPreviousPageCommand}" />
-            <TextBlock Text="Page" FontFamily="Calibri" FontWeight="Bold" FontSize="26" Foreground="Black" />
-            <TextBlock Text="{Binding Pager.CurrentPage, ValidatesOnExceptions=True}" FontFamily="Calibri" FontWeight="Bold" FontSize="26" Foreground="Black" />
-            <TextBlock Text="{Binding Pager.PageCount, StringFormat=of {0}}" FontFamily="Calibri" FontWeight="Bold" FontSize="26" Foreground="Black" />
-            <Button Style="{StaticResource BtnNext}" Command="{Binding Pager.GotoNextPageCommand}" />
-            <Button Style="{StaticResource BtnLast}" Command="{Binding Pager.GotoLastPageCommand}" />
+            <Button Style="{StaticResource BtnFirst}" Click="GoToFirstPage_Click" IsEnabled="{Binding Pager.CanGoFirstPage}" />
+            <Button Style="{StaticResource BtnPrev}" Click="GoToPrevPage_Click" IsEnabled="{Binding Pager.CanGoPreviousPage}" />
+            <TextBlock Text="Page" FontFamily="Calibri" FontWeight="Bold" FontSize="26" Foreground="{DynamicResource BlackBrush}" />
+            <TextBlock Text="{Binding Pager.CurrentPage, ValidatesOnExceptions=True}" FontFamily="Calibri" FontWeight="Bold" FontSize="26" Foreground="{DynamicResource BlackBrush}" />
+            <TextBlock Text="{Binding Pager.PageCount, StringFormat=of {0}}" FontFamily="Calibri" FontWeight="Bold" FontSize="26" Foreground="{DynamicResource BlackBrush}" />
+            <Button Style="{StaticResource BtnNext}" Click="GoToNextPage_Click" IsEnabled="{Binding Pager.CanGoNextPage}" />
+            <Button Style="{StaticResource BtnLast}" Click="GoToLastPage_Click" IsEnabled="{Binding Pager.CanGoLastPage}" />
         </StackPanel>
     </Viewbox>
 </UserControl>

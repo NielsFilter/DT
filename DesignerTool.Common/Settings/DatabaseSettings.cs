@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DesignerTool.Common.Global
+namespace DesignerTool.Common.Settings
 {
     public class DatabaseSettings
     {

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:ap="clr-namespace:DesignerTool.Common.Mvvm.AttachedProperties;assembly=DesignerTool.Common"
+             xmlns:m="clr-namespace:DesignerTool.Styles.Wpf.Controls;assembly=DesignerTool.Styles.Wpf"
+             xmlns:ap="clr-namespace:DesignerTool.Common.AttachedProperties;assembly=DesignerTool.Common"
              xmlns:ctrls="clr-namespace:DesignerTool.Controls;assembly=DesignerTool.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -29,7 +30,10 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="Username" Style="{StaticResource TbDefault}" Margin="{StaticResource DetailMargins}" />
-            <TextBox Grid.Column="1" Text="{Binding Model.Username, Mode=TwoWay, ValidatesOnDataErrors=True}" Margin="{StaticResource DetailMargins}"/>
+            <TextBox Grid.Column="1" Style="{StaticResource TxtDefault}"
+                     Text="{Binding Model.Username, Mode=TwoWay, ValidatesOnDataErrors=True}"
+                     Margin="{StaticResource DetailMargins}"
+                     m:TextboxHelper.Watermark="Username"/>
 
             <TextBlock Grid.Row="1" Text="Password" Style="{StaticResource TbDefault}" Margin="{StaticResource DetailMargins}"/>
             <PasswordBox Grid.Column="1" Grid.Row="1" Margin="{StaticResource DetailMargins}"

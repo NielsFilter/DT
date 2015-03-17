@@ -1,4 +1,4 @@
-﻿using DesignerTool.Common.Mvvm.Paging;
+﻿using DesignerTool.AppLogic.ViewModels.Paging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,5 +65,25 @@ namespace DesignerTool.Controls
         #endregion
 
         #endregion
+
+        private void GoToFirstPage_Click(object sender, RoutedEventArgs e)
+        {
+            this.Pager.GoToFirstPage();
+        }
+
+        private void GoToPrevPage_Click(object sender, RoutedEventArgs e)
+        {
+            this.Pager.GoToPreviousPage();
+        }
+
+        private void GoToNextPage_Click(object sender, RoutedEventArgs e)
+        {
+            this.Pager.GoToNextPage();
+        }
+
+        private void GoToLastPage_Click(object sender, RoutedEventArgs e)
+        {
+            this.Pager.GoToLastPage();
+        }
     }
 }

@@ -1,7 +1,4 @@
-﻿using DesignerTool.Common.Mvvm.Commands;
-using DesignerTool.Common.Mvvm.ViewModels;
-using DesignerTool.Common.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -11,6 +8,7 @@ using System.Security.Authentication;
 using DesignerTool.DataAccess.Data;
 using DesignerTool.DataAccess.Repositories;
 using DesignerTool.Common.Enums;
+using DesignerTool.AppLogic.ViewModels.Base;
 
 namespace DesignerTool.AppLogic.ViewModels.Admin
 {
@@ -85,23 +83,6 @@ namespace DesignerTool.AppLogic.ViewModels.Admin
             get { return System.Windows.Data.CollectionViewSource.GetDefaultView(this.List); }
         }
 
-        //private string _searchText;
-        //public string SearchText
-        //{
-        //    get
-        //    {
-        //        return this._searchText;
-        //    }
-        //    set
-        //    {
-        //        if (value != this._searchText)
-        //        {
-        //            this._searchText = value;
-        //            base.NotifyPropertyChanged("SearchText");
-        //        }
-        //    }
-        //}
-
         public bool CanDelete
         {
             get { return base.PagePermissions.CanDelete && this.SelectedItem != null; }
@@ -118,17 +99,14 @@ namespace DesignerTool.AppLogic.ViewModels.Admin
 
         #endregion
 
-        #region Overrides
+        #region Load & Refresh
 
         /// <summary>
         /// All initialization must happen here.
         /// </summary>
         public override void Load()
         {
-            base.Load();
-
-            base.Pager.CurrentPageChanged += (e) => this.Refresh();
-
+            this.Pager.CurrentPageChanged += (e) => this.Refresh();
             this.Refresh();
         }
 

@@ -1,12 +1,11 @@
-﻿using DesignerTool.Common.Mvvm.Commands;
-using DesignerTool.Common.Mvvm.ViewModels;
-using DesignerTool.Common.ViewModels;
+﻿using DesignerTool.AppLogic.Security;
+using DesignerTool.AppLogic.ViewModels.Admin;
+using DesignerTool.AppLogic.ViewModels.Base;
+using DesignerTool.AppLogic.ViewModels.Core;
+using DesignerTool.AppLogic.ViewModels.Tools;
+using DesignerTool.Common.Enums;
 using DesignerTool.DataAccess.Data;
-using DesignerTool.Pages.Admin;
-using DesignerTool.Pages.Core;
-using DesignerTool.Pages.Shell;
-using DesignerTool.Pages.Tools;
-using DesignerTool.ViewModels;
+using System;
 
 namespace DesignerTool.AppLogic.ViewModels.Shell
 {
@@ -104,13 +103,62 @@ namespace DesignerTool.AppLogic.ViewModels.Shell
             }
         }
 
+        private LicenseStateTypes _currentLicenseState;
+        public LicenseStateTypes CurrentLicenseState
+        {
+            get
+            {
+                return this._currentLicenseState;
+            }
+            set
+            {
+                if (value != this._currentLicenseState)
+                {
+                    this._currentLicenseState = value;
+                    base.NotifyPropertyChanged("CurrentLicenseState");
+                    base.NotifyPropertyChanged("CurrentLicenseInfo");
+                }
+            }
+        }
+
+        public string CurrentLicenseInfo
+        {
+            get
+            {
+                string info = string.Empty;
+                switch (this.CurrentLicenseState)
+                {
+                    case LicenseStateTypes.Valid:
+                        info = "License is valid.";
+                        break;
+                    case LicenseStateTypes.Demo:
+                        info = "Demo License.";
+                        break;
+                    case LicenseStateTypes.ExpiresSoon:
+                        info = "License is valid but expires soon.";
+                        break;
+                    case LicenseStateTypes.Expired:
+                        info = "License is invalid or has expired.";
+                        break;
+                }
+                return info;
+            }
+        }
+
+        #endregion
+
+        #region Events
+
+        public event Action LicenseChanged;
+
         #endregion
 
         #region Load & Refresh
 
         public override void Load()
         {
-            base.Load();
+            LicenseManager.Current.LicenseChanged += Current_LicenseChanged;
+            this.CurrentLicenseState = LicenseManager.Current.License.State;
 
             AppSession.Current.ParentViewModel = this;
 
@@ -184,59 +232,54 @@ namespace DesignerTool.AppLogic.ViewModels.Shell
 
         #endregion
 
-        #region Home
-
         public void GoHome()
         {
             AppSession.Current.Navigate(this.HomeViewModel);
         }
-
-        #endregion
-
-        #region Login
 
         public void GoLogin()
         {
             AppSession.Current.Navigate(new LoginViewModel(AppSession.Current.CreateContext()));
         }
 
-        #endregion
-
-        #region Admin
-
         public void GoUsers()
         {
             AppSession.Current.Navigate(new UserListViewModel(AppSession.Current.CreateContext()));
         }
-
-        #endregion
-
-        #region License & Activation
 
         public void GoGenerateLicenseKey()
         {
             AppSession.Current.Navigate(new ActivationKeyGeneratorViewModel());
         }
 
-        public void GoLicenseActivate()
+        public void GoUserLicense()
         {
             AppSession.Current.Navigate(new UserActivationViewModel(AppSession.Current.CreateContext()));
         }
-
-        #endregion
-
-        #region Best Fit Calculator
 
         public void GoBestFitCalculator()
         {
             AppSession.Current.Navigate(new BestFitCalculatorViewModel());
         }
 
-        #endregion
-
         public void GoUserProfile()
         {
             //TODO:
+        }
+
+        public void GoDebtors()
+        {
+            AppSession.Current.Navigate(new DebtorListViewModel(AppSession.Current.CreateContext()));
+        }
+
+        public void GoSuppliers()
+        {
+            AppSession.Current.Navigate(new SupplierListViewModel(AppSession.Current.CreateContext()));
+        }
+
+        public void GoUnitTypes()
+        {
+            AppSession.Current.Navigate(new UnitTypeListViewModel(AppSession.Current.CreateContext()));
         }
 
         #endregion
@@ -246,6 +289,15 @@ namespace DesignerTool.AppLogic.ViewModels.Shell
             // Log user out of the system.
             AppSession.Current.LoggedInUser = null;
             AppSession.Current.Navigate(new LoginViewModel(AppSession.Current.CreateContext()));
+        }
+
+        public void Current_LicenseChanged()
+        {
+            if (this.LicenseChanged != null)
+            {
+                this.LicenseChanged();
+            }
+            this.CurrentLicenseState = LicenseManager.Current.License.State;
         }
     }
 }

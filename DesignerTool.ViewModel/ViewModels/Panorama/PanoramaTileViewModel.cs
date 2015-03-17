@@ -1,5 +1,4 @@
-﻿using DesignerTool.Common.Mvvm.Commands;
-using DesignerTool.Common.Mvvm.ViewModels;
+﻿using DesignerTool.AppLogic.ViewModels.Base;
 using System;
 
 namespace DesignerTool.AppLogic.ViewModels.Panorama
@@ -8,29 +7,29 @@ namespace DesignerTool.AppLogic.ViewModels.Panorama
     {
         #region Constructors
 
-        public PanoramaTileViewModel(string heading)
+        public PanoramaTileViewModel(string groupHeading)
             : base()
         {
             this.WidthInBlocks = 1; // Default
-            this.Heading = heading;
+            this.GroupHeading = groupHeading;
         }
 
-        public PanoramaTileViewModel(string heading, string description)
-            : this(heading)
+        public PanoramaTileViewModel(string groupHeading, string description)
+            : this(groupHeading)
         {
             this.Description = description;
         }
 
-        public PanoramaTileViewModel(string heading, string description, string vectorStyleName, string imageUrl, object context)
-            : this(heading, description)
+        public PanoramaTileViewModel(string groupHeading, string description, string vectorStyleName, string imageUrl, object context)
+            : this(groupHeading, description)
         {
             this.VectorStyleName = vectorStyleName;
             this.ImageUrl = imageUrl;
             this.Context = context;
         }
 
-        public PanoramaTileViewModel(string heading, string description, string vectorStyleName, string imageUrl, Action tileSelectedAction)
-            : this(heading, description)
+        public PanoramaTileViewModel(string groupHeading, string description, string vectorStyleName, string imageUrl, Action tileSelectedAction)
+            : this(groupHeading, description)
         {
             this.VectorStyleName = vectorStyleName;
             this.ImageUrl = imageUrl;
@@ -45,35 +44,24 @@ namespace DesignerTool.AppLogic.ViewModels.Panorama
 
         #endregion
 
-        //#region Commands
-
-        public Command TileClickedCommand { get; set; }
-
-        //public override void OnWireCommands()
-        //{
-        //    this.TileClickedCommand = new Command(this.tileClicked);
-        //}
-
-        //#endregion
-
         #region Properties
 
         public Action TileSelectedAction { get; set; }
         public object Context { get; private set; }
 
-        private string _heading;
-        public string Heading
+        private string _groupHeading;
+        public string GroupHeading
         {
             get
             {
-                return this._heading;
+                return this._groupHeading;
             }
             set
             {
-                if (value != this._heading)
+                if (value != this._groupHeading)
                 {
-                    this._heading = value;
-                    base.NotifyPropertyChanged("Heading");
+                    this._groupHeading = value;
+                    base.NotifyPropertyChanged("GroupHeading");
                 }
             }
         }
@@ -162,9 +150,7 @@ namespace DesignerTool.AppLogic.ViewModels.Panorama
 
         #endregion
 
-        #region Private Methods
-
-        public void tileClicked()
+        public void TileClicked()
         {
             if (this.TileSelectedAction != null)
             {
@@ -176,7 +162,5 @@ namespace DesignerTool.AppLogic.ViewModels.Panorama
                 this.TileSelected(this.Context);
             }
         }
-
-        #endregion
     }
 }

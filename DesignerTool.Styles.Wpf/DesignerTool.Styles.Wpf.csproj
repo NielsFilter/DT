@@ -146,8 +146,16 @@
     </Compile>
     <Compile Include="Controls\WindowCommandsOverlayBehavior.cs" />
     <Compile Include="Converters\BackgroundToForegroundConverter.cs" />
+    <Compile Include="Converters\BoolToCustomTextConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\BoolToYesNoButtonStyleConverter.cs" />
+    <Compile Include="Converters\BoolToYesNoConverter.cs" />
+    <Compile Include="Converters\BoolToYesNoPathStyleConverter.cs" />
+    <Compile Include="Converters\HasValueToVisibilityConverter.cs" />
+    <Compile Include="Converters\InvertBoolConverter.cs" />
     <Compile Include="Converters\IsNullConverter.cs" />
     <Compile Include="Converters\FontSizeOffsetConverter.cs" />
+    <Compile Include="Converters\LicenseStateToBrushConverter.cs" />
     <Compile Include="Converters\MetroTabItemCloseButtonWidthConverter.cs" />
     <Compile Include="Converters\OffOnConverter.cs" />
     <Compile Include="Controls\Planerator.cs" />
@@ -160,6 +168,11 @@
     <Compile Include="Controls\TreeHelper.cs" />
     <Compile Include="Controls\VisualStates.cs" />
     <Compile Include="Converters\ResizeModeMinMaxButtonVisibilityConverter.cs" />
+    <Compile Include="Converters\StringCaseConverter.cs" />
+    <Compile Include="Converters\StringToDecryptConverter.cs" />
+    <Compile Include="Converters\StringToLowerConverter.cs" />
+    <Compile Include="Converters\StringToStyleConverter.cs" />
+    <Compile Include="Converters\StringToUpperConverter.cs" />
     <Compile Include="Converters\ThicknessToDoubleConverter.cs" />
     <Compile Include="Converters\TreeViewMarginConverter.cs" />
     <Compile Include="Microsoft.Windows.Shell\Standard\ComGuids.cs" />

@@ -1,7 +1,5 @@
-﻿using DesignerTool.Common.Mvvm.Commands;
-using DesignerTool.Common.Mvvm.ViewModels;
-using DesignerTool.Common.ViewModels;
-using Mapper;
+﻿using DesignerTool.AppLogic.ViewModels.Base;
+using DesignerTool.Packing.Board;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -44,7 +42,7 @@ namespace DesignerTool.AppLogic.ViewModels.Tools
                     base.NotifyPropertyChanged("Boards");
                 }
             }
-        }
+        }        
 
         #endregion
 

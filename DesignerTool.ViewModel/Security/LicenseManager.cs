@@ -1,10 +1,10 @@
 ﻿using DesignerTool.AppLogic.Settings;
+using DesignerTool.Common.Base;
 using DesignerTool.Common.Enums;
 using DesignerTool.Common.Exceptions;
 using DesignerTool.Common.Global;
 using DesignerTool.Common.Licensing;
 using DesignerTool.Common.Logging;
-using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Common.Utils;
 using DesignerTool.DataAccess.Data;
 using DesignerTool.DataAccess.Repositories;
@@ -26,6 +26,12 @@ namespace DesignerTool.AppLogic.Security
         {
             this.repLic = new LicenseRepository(ctx);
         }
+
+        #endregion
+
+        #region Events
+
+        public event Action LicenseChanged;
 
         #endregion
 
@@ -62,8 +68,9 @@ namespace DesignerTool.AppLogic.Security
             try
             {
                 bool isDemo = GetUsedLicenseCodes().Count() == 0 || AppSession.Current.IsNewInstallation;
+                bool isValid = this.validate(isDemo);
 
-                if (this.License == null || !this.License.Validate(isDemo, SettingsManager.Database.ClientCode, SettingsManager.Database.LicenseExpiryWarningDays))
+                if (this.License == null || !isValid)
                 {
                     // Invalid license
                     AppSession.Current.LicenseExpiry = null;
@@ -73,12 +80,129 @@ namespace DesignerTool.AppLogic.Security
                     // Valid license
                     AppSession.Current.LicenseExpiry = this.License.ExpiryDate;
                 }
+
+                // 4. Set the other license fields according above results.
+                this.calculateState(isValid, isDemo);
+                this.calculateDisplayText();
+
+                // Notify that the license has been re-evaluated and changed. This allows any VM's to update action regarding licenses.
+                if (this.LicenseChanged != null)
+                {
+                    this.LicenseChanged();
+                }
             }
             catch (Exception ex)
             {
                 Logger.Log("LicenseManager.Evaluate() exception.", ex);
                 AppSession.Current.LicenseExpiry = null;
             }
+        }
+
+        private bool validate(bool isDemo)
+        {
+            // 1. Check that a valid ClientCode exists.
+            if (SettingsManager.Database.ClientCode == 0)
+            {
+                // Invalid client code
+                this.License.ExpiryDate = DateTime.MinValue;
+                return false;
+            }
+
+            // 2. Get and decrypt license info stored in the database
+            var licInfo = this.getLicenseInfo();
+            if (licInfo == null)
+            {
+                // No valid license found. Expiry date = Min Date
+                this.License.ExpiryDate = DateTime.MinValue;
+                return false;
+            }
+
+            // 3. Verify whether date manipulation took place.
+            if (!validateTimeManipulation(licInfo.CreatedDate))
+            {
+                // DateTime was manipulated.
+                return false;
+            }
+
+            // 4. Set expiry date according to the active license found.
+            this.License.ExpiryDate = licInfo.ExpiryDate;
+
+            // If we got here and the license expiry date is in the future, then license is valid.
+            return this.License.ExpiryDate >= DateTime.Now;
+        }
+
+        private LicenseInfoXml getLicenseInfo()
+        {
+            try
+            {
+                // Decrypt xml and read license info.
+                var xmlCode = Crypto.Decrypt(this.License.Code, SettingsManager.Database.ClientCode.ToString());
+                return XML.Deserialize<LicenseInfoXml>(xmlCode);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("Could not decrypt and read license info.", ex);
+                return null;
+            }
+        }
+
+        private void calculateState(bool isValid, bool isDemo)
+        {
+            if (!isValid)
+            {
+                // Expired
+                this.License.State = LicenseStateTypes.Expired;
+            }
+            else
+            {
+                // Valid license. Determine demo / valid / expire soon.
+                if (isDemo)
+                {
+                    this.License.State = LicenseStateTypes.Demo;
+                    return;
+                }
+
+                if (DateTime.Today.AddDays(SettingsManager.Database.LicenseExpiryWarningDays) >= this.License.ExpiryDate.Date)
+                {
+                    // License is expiring soon (according to setting)
+                    this.License.State = LicenseStateTypes.ExpiresSoon;
+                }
+                else
+                {
+                    this.License.State = LicenseStateTypes.Valid;
+                }
+            }
+        }
+
+        private void calculateDisplayText()
+        {
+            // License Text
+            if (this.License.State == LicenseStateTypes.Valid)
+            {
+                this.License.LicenseDisplay = String.Format("License is valid until {0}", this.License.ExpiryDate.ToLongDateString());
+            }
+            else if (this.License.State == LicenseStateTypes.ExpiresSoon)
+            {
+                this.License.LicenseDisplay = String.Format("License is valid but expires soon, on {0}", this.License.ExpiryDate.ToLongDateString());
+            }
+            else if (this.License.State == LicenseStateTypes.Demo)
+            {
+                this.License.LicenseDisplay = String.Format("This is a demo License which expires on {0}", this.License.ExpiryDate.ToLongDateString());
+            }
+            else
+            {
+                this.License.LicenseDisplay = "This license is either invalid or has expired.";
+            }
+        }
+
+        /// <summary>
+        /// Validates that the user did not manipulate the date and time settings to extend licensed functionality.
+        /// </summary>
+        /// <returns>True = no tampering / manipulation found. False = manipulation found.</returns>
+        private bool validateTimeManipulation(DateTime createdDate)
+        {
+            // Check that last login date is before the current date.
+            return DateTime.Now > SettingsManager.Database.LastLoginDateTime && createdDate <= DateTime.Now;
         }
 
         #endregion
@@ -96,7 +220,7 @@ namespace DesignerTool.AppLogic.Security
 
         public void ApplyLicense(string code, int clientCode)
         {
-            if(this.GetUsedLicenseCodes().Contains(code))
+            if (this.GetUsedLicenseCodes().Contains(code))
             {
                 // Code already been used.
                 throw new LicenseCodeUsedException(String.Format("The license code '{0}' has already been used and activated.", code));

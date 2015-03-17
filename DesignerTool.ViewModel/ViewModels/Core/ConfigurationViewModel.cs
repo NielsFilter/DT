@@ -1,4 +1,4 @@
-﻿using DesignerTool.Common.ViewModels;
+﻿using DesignerTool.AppLogic.ViewModels.Base;
 using DesignerTool.DataAccess.Data;
 using System;
 using System.Collections.Generic;

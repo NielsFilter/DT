@@ -77,6 +77,24 @@
     <Compile Include="Pages\Admin\UserList.xaml.cs">
       <DependentUpon>UserList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Core\UnitTypeDetailView.xaml.cs">
+      <DependentUpon>UnitTypeDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Core\UnitTypeListView.xaml.cs">
+      <DependentUpon>UnitTypeListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Core\DebtorListView.xaml.cs">
+      <DependentUpon>DebtorListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Core\SupplierListView.xaml.cs">
+      <DependentUpon>SupplierListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Core\DebtorDetailView.xaml.cs">
+      <DependentUpon>DebtorDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Core\SupplierDetailView.xaml.cs">
+      <DependentUpon>SupplierDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Tools\BestFitCalculator.xaml.cs">
       <DependentUpon>BestFitCalculator.xaml</DependentUpon>
     </Compile>
@@ -108,6 +126,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Admin\UserList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Core\UnitTypeDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Core\UnitTypeListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Core\DebtorListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Core\SupplierListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Core\DebtorDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Core\SupplierDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

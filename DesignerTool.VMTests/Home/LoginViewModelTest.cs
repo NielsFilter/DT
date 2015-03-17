@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DesignerTool.Pages.Shell;
 using DesignerTool.DataAccess.Data;
+using DesignerTool.AppLogic.ViewModels.Core;
 
 namespace DesignerTool.VMTests
 {

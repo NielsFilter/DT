@@ -1,5 +1,5 @@
-﻿using DesignerTool.Common.Enums;
-using DesignerTool.Common.Mvvm.ViewModels;
+﻿using DesignerTool.Common.Base;
+using DesignerTool.Common.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

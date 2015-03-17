@@ -1,9 +1,7 @@
-﻿using DesignerTool.Common.Enums;
+﻿using DesignerTool.AppLogic.ViewModels.Base;
+using DesignerTool.Common.Enums;
 using DesignerTool.Common.Licensing;
-using DesignerTool.Common.Mvvm.Commands;
-using DesignerTool.Common.Mvvm.ViewModels;
 using DesignerTool.Common.Utils;
-using DesignerTool.Common.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;

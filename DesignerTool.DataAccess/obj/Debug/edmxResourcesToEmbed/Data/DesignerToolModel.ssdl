@@ -8,6 +8,50 @@
     <Property Name="AppliedDate" Type="datetime" Nullable="false" />
     <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ContactID" />
+    </Key>
+    <Property Name="ContactID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Person" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="EmailAddress1" Type="nvarchar" MaxLength="255" />
+    <Property Name="EmailAddress2" Type="nvarchar" MaxLength="255" />
+    <Property Name="EmailAddress3" Type="nvarchar" MaxLength="255" />
+    <Property Name="EmailAddress4" Type="nvarchar" MaxLength="255" />
+    <Property Name="EmailAddress5" Type="nvarchar" MaxLength="255" />
+    <Property Name="Cellphone1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Cellphone2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Cellphone3" Type="nvarchar" MaxLength="50" />
+    <Property Name="Cellphone4" Type="nvarchar" MaxLength="50" />
+    <Property Name="Cellphone5" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telephone1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telephone2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telephone3" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telephone4" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telephone5" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fax1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fax2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fax3" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fax4" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fax5" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Debtor">
+    <Key>
+      <PropertyRef Name="DebtorID" />
+    </Key>
+    <Property Name="DebtorID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DebtorContact">
+    <Key>
+      <PropertyRef Name="DebtorContactID" />
+    </Key>
+    <Property Name="DebtorContactID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DebtorID" Type="bigint" Nullable="false" />
+    <Property Name="ContactID" Type="bigint" Nullable="false" />
+  </EntityType>
   <EntityType Name="License">
     <Key>
       <PropertyRef Name="LicenseID" />
@@ -16,15 +60,21 @@
     <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="Person">
+  <EntityType Name="Supplier">
     <Key>
-      <PropertyRef Name="PersonID" />
+      <PropertyRef Name="SupplierID" />
     </Key>
-    <Property Name="PersonID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FirstNames" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="LastName" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="UserID" Type="bigint" Nullable="false" />
+    <Property Name="SupplierID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SupplierContact">
+    <Key>
+      <PropertyRef Name="SupplierContactID" />
+    </Key>
+    <Property Name="SupplierContactID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SupplierID" Type="bigint" Nullable="false" />
+    <Property Name="ContactID" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="SystemSetting">
     <Key>
@@ -34,6 +84,15 @@
     <Property Name="Setting" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="500" />
     <Property Name="Value" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="UnitType">
+    <Key>
+      <PropertyRef Name="UnitTypeID" />
+    </Key>
+    <Property Name="UnitTypeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -45,27 +104,80 @@
     <Property Name="Role" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
-  <Association Name="FK_Person_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="Person" Type="Self.Person" Multiplicity="*" />
+  <Association Name="FK_DebtorContact_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="DebtorContact" Type="Self.DebtorContact" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="UserID" />
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactID" />
       </Principal>
-      <Dependent Role="Person">
-        <PropertyRef Name="UserID" />
+      <Dependent Role="DebtorContact">
+        <PropertyRef Name="ContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DebtorContact_Debtor">
+    <End Role="Debtor" Type="Self.Debtor" Multiplicity="1" />
+    <End Role="DebtorContact" Type="Self.DebtorContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Debtor">
+        <PropertyRef Name="DebtorID" />
+      </Principal>
+      <Dependent Role="DebtorContact">
+        <PropertyRef Name="DebtorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplierContact_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="SupplierContact" Type="Self.SupplierContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactID" />
+      </Principal>
+      <Dependent Role="SupplierContact">
+        <PropertyRef Name="ContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplierContact_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="SupplierContact" Type="Self.SupplierContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="SupplierID" />
+      </Principal>
+      <Dependent Role="SupplierContact">
+        <PropertyRef Name="SupplierID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="DesignerToolDbModelStoreContainer">
     <EntitySet Name="ActiveLicense" EntityType="Self.ActiveLicense" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Debtor" EntityType="Self.Debtor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DebtorContact" EntityType="Self.DebtorContact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="License" EntityType="Self.License" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SupplierContact" EntityType="Self.SupplierContact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SystemSetting" EntityType="Self.SystemSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UnitType" EntityType="Self.UnitType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Person_User" Association="Self.FK_Person_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="Person" EntitySet="Person" />
+    <AssociationSet Name="FK_DebtorContact_Contact" Association="Self.FK_DebtorContact_Contact">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="DebtorContact" EntitySet="DebtorContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DebtorContact_Debtor" Association="Self.FK_DebtorContact_Debtor">
+      <End Role="Debtor" EntitySet="Debtor" />
+      <End Role="DebtorContact" EntitySet="DebtorContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplierContact_Contact" Association="Self.FK_SupplierContact_Contact">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="SupplierContact" EntitySet="SupplierContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplierContact_Supplier" Association="Self.FK_SupplierContact_Supplier">
+      <End Role="Supplier" EntitySet="Supplier" />
+      <End Role="SupplierContact" EntitySet="SupplierContact" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

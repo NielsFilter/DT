@@ -81,6 +81,8 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerToo
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.csproj.GenerateResource.Cache
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\DesignerTool.Controls.pdb
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\LicenseIndicatorIcon.baml
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\obj\Debug\LicenseIndicatorIcon.g.cs
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\bin\Debug\Databases\DesignerToolDb.mdf
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\bin\Debug\Databases\TestDesignerToolDb.mdf
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\bin\Debug\Databases\DesignerToolDb_log.ldf
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.Controls\bin\Debug\Databases\TestDesignerToolDb.mdf

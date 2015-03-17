@@ -1,3 +1,6 @@
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\Databases\DesignerToolDb.mdf
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\Databases\DesignerToolDb_log.ldf
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\Databases\TestDesignerToolDb.mdf
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\DesignerTool.VMTests.dll.config
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\DesignerTool.VMTests.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\DesignerTool.VMTests.pdb
@@ -16,6 +19,3 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\DesignerTool
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\obj\Debug\DesignerTool.VMTests.csprojResolveAssemblyReference.cache
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\obj\Debug\DesignerTool.VMTests.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\obj\Debug\DesignerTool.VMTests.pdb
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\Databases\DesignerToolDb.mdf
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\Databases\TestDesignerToolDb.mdf
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.VMTests\bin\Debug\Databases\DesignerToolDb_log.ldf

@@ -1,10 +1,9 @@
-﻿using System;
+﻿using DesignerTool.AppLogic.ViewModels.Base;
+using DesignerTool.Common.EventArguments;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
-using DesignerTool.Common.Mvvm.Commands;
-using DesignerTool.Common.Mvvm.ViewModels;
 
 namespace DesignerTool.AppLogic.ViewModels.Paging
 {
@@ -21,8 +20,6 @@ namespace DesignerTool.AppLogic.ViewModels.Paging
         /// <param name="pageSize">The size of each page.</param>
         public PagingViewModel(int pageSize)
         {
-            Contract.Requires(pageSize > 0);
-
             this._pageSize = pageSize;
         }
 
@@ -47,10 +44,10 @@ namespace DesignerTool.AppLogic.ViewModels.Paging
         /// </summary>
         public event Action<CurrentPageChangedEventArgs> CurrentPageChanged;
 
-        public Command GotoFirstPageCommand { get; private set; }
-        public Command GotoPreviousPageCommand { get; private set; }
-        public Command GotoNextPageCommand { get; private set; }
-        public Command GotoLastPageCommand { get; private set; }
+        public System.Windows.Input.ICommand GotoFirstPageCommand { get; private set; }
+        public System.Windows.Input.ICommand GotoPreviousPageCommand { get; private set; }
+        public System.Windows.Input.ICommand GotoNextPageCommand { get; private set; }
+        public System.Windows.Input.ICommand GotoLastPageCommand { get; private set; }
 
         #endregion
 
@@ -67,14 +64,12 @@ namespace DesignerTool.AppLogic.ViewModels.Paging
             {
                 return this._totalRecords;
             }
-
             set
             {
-                Contract.Requires(value >= 0);
-
                 this._totalRecords = value;
                 this.NotifyPropertyChanged("TotalRecords");
                 this.NotifyPropertyChanged("PageCount");
+                this.setNavigationEnabledState();
 
                 if (this.CurrentPage > this.PageCount)
                 {
@@ -90,19 +85,13 @@ namespace DesignerTool.AppLogic.ViewModels.Paging
         /// <value>The size of the page.</value>
         public int PageSize
         {
-            get
-            {
-                return this._pageSize;
-            }
-
+            get { return this._pageSize; }
             set
             {
-                Contract.Requires(value > 0);
-
                 var oldStartIndex = this.CurrentPageStartIndex;
                 this._pageSize = value;
                 this.NotifyPropertyChanged("PageSize");
-                this.NotifyPropertyChanged("this.PageCount");
+                this.NotifyPropertyChanged("PageCount");
                 this.NotifyPropertyChanged("CurrentPageStartIndex");
 
                 if (oldStartIndex >= 0)
@@ -120,18 +109,11 @@ namespace DesignerTool.AppLogic.ViewModels.Paging
         {
             get
             {
-                Contract.Ensures(Contract.Result<int>() == 0 || this._totalRecords > 0);
-                Contract.Ensures(Contract.Result<int>() > 0 || this._totalRecords == 0);
-
                 if (this._totalRecords == 0)
                 {
                     return 0;
                 }
-
-                var ceil = (int)Math.Ceiling((double)this._totalRecords / this._pageSize);
-
-                Contract.Assume(ceil > 0); // Math.Ceiling makes the static checker unable to prove the postcondition without help
-                return ceil;
+                return (int)Math.Ceiling((double)this._totalRecords / this._pageSize);
             }
         }
 
@@ -148,13 +130,10 @@ namespace DesignerTool.AppLogic.ViewModels.Paging
             }
             set
             {
-                Contract.Requires(value == 0 || this.PageCount != 0);
-                Contract.Requires(value > 0 || this.PageCount == 0);
-                Contract.Requires(value <= this.PageCount);
-
                 this._currentPage = value;
                 this.NotifyPropertyChanged("CurrentPage");
                 this.NotifyPropertyChanged("CurrentPageStartIndex");
+                this.setNavigationEnabledState();
 
                 var handler = this.CurrentPageChanged;
                 if (handler != null)
@@ -172,9 +151,11 @@ namespace DesignerTool.AppLogic.ViewModels.Paging
         {
             get
             {
-                Contract.Ensures(Contract.Result<int>() == -1 || this.PageCount != 0);
-                Contract.Ensures(Contract.Result<int>() >= 0 || this.PageCount == 0);
-                Contract.Ensures(Contract.Result<int>() < this.TotalRecords);
+                if (this.CurrentPage <= 0)
+                {
+                    return 0;
+                }
+
                 return (this.CurrentPage - 1) * this.PageSize;
             }
         }
@@ -203,30 +184,73 @@ namespace DesignerTool.AppLogic.ViewModels.Paging
         /// <returns>The number of the page in which the item with the specified index belongs.</returns>
         private int GetPageFromIndex(int itemIndex)
         {
-            Contract.Requires(itemIndex >= 0);
-            Contract.Requires(itemIndex < this._totalRecords);
-            Contract.Ensures(Contract.Result<int>() >= 1);
-            Contract.Ensures(Contract.Result<int>() <= this.PageCount);
-
-            var result = (int)Math.Floor((double)itemIndex / this.PageSize) + 1;
-            Contract.Assume(result >= 1); // Math.Floor makes the static checker unable to prove the postcondition without help
-            Contract.Assume(result <= this.PageCount); // Ditto
-            return result;
+            return (int)Math.Floor((double)itemIndex / this.PageSize) + 1;
         }
 
-        #endregion
-
-        #region Methods
-
-        public override void Load()
+        public bool CanGoFirstPage
         {
-            // Hook up commands
-            this.GotoFirstPageCommand = new Command(() => this.CurrentPage = 1, () => this.TotalRecords != 0 && this.CurrentPage > 1);
-            this.GotoLastPageCommand = new Command(() => this.CurrentPage = this.PageCount, () => this.TotalRecords != 0 && this.CurrentPage < this.PageCount);
-            this.GotoNextPageCommand = new Command(() => ++this.CurrentPage, () => this.TotalRecords != 0 && this.CurrentPage < this.PageCount);
-            this.GotoPreviousPageCommand = new Command(() => --this.CurrentPage, () => this.TotalRecords != 0 && this.CurrentPage > 1);
+            get { return this.TotalRecords != 0 && this.CurrentPage > 1; }
+        }
+
+        public bool CanGoLastPage
+        {
+            get { return this.TotalRecords != 0 && this.CurrentPage < this.PageCount; }
+        }
+
+        public bool CanGoNextPage
+        {
+            get { return this.TotalRecords != 0 && this.CurrentPage < this.PageCount; }
+        }
+
+        public bool CanGoPreviousPage
+        {
+            get { return this.TotalRecords != 0 && this.CurrentPage > 1; }
         }
 
         #endregion
+
+        #region Page Navigation
+
+        public void GoToFirstPage()
+        {
+            if (this.CanGoFirstPage)
+            {
+                this.CurrentPage = 1;
+            }
+        }
+
+        public void GoToLastPage()
+        {
+            if (this.CanGoLastPage)
+            {
+                this.CurrentPage = this.PageCount;
+            }
+        }
+
+        public void GoToNextPage()
+        {
+            if (this.CanGoNextPage)
+            {
+                ++this.CurrentPage;
+            }
+        }
+
+        public void GoToPreviousPage()
+        {
+            if (this.CanGoPreviousPage)
+            {
+                --this.CurrentPage;
+            }
+        }
+
+        #endregion
+
+        private void setNavigationEnabledState()
+        {
+            this.NotifyPropertyChanged("CanGoFirstPage");
+            this.NotifyPropertyChanged("CanGoLastPage");
+            this.NotifyPropertyChanged("CanGoNextPage");
+            this.NotifyPropertyChanged("CanGoPreviousPage");
+        }
     }
 }

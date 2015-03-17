@@ -1,5 +1,4 @@
-﻿using DesignerTool.AppLogic.ViewModels.Home;
-using System;
+﻿using DesignerTool.AppLogic.ViewModels.Core;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

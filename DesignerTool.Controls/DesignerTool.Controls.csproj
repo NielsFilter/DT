@@ -57,6 +57,9 @@
     <Compile Include="LicenseIndicator.xaml.cs">
       <DependentUpon>LicenseIndicator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LicenseIndicatorIcon.xaml.cs">
+      <DependentUpon>LicenseIndicatorIcon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoadingLabel.xaml.cs">
       <DependentUpon>LoadingLabel.xaml</DependentUpon>
     </Compile>
@@ -70,6 +73,10 @@
       <DependentUpon>SearchTextBox.xaml</DependentUpon>
     </Compile>
     <Page Include="LicenseIndicator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LicenseIndicatorIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

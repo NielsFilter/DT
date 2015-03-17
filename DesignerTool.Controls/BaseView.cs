@@ -5,7 +5,6 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using DesignerTool.Common.Mvvm.Commands;
 
 namespace DesignerTool.Controls
 {

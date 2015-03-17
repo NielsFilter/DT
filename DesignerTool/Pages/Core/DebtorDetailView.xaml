@@ -1,0 +1,48 @@
+﻿<ctrls:BaseView x:Class="DesignerTool.Pages.Core.DebtorDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:m="clr-namespace:DesignerTool.Styles.Wpf.Controls;assembly=DesignerTool.Styles.Wpf"
+             xmlns:ap="clr-namespace:DesignerTool.Common.AttachedProperties;assembly=DesignerTool.Common"
+             xmlns:ctrls="clr-namespace:DesignerTool.Controls;assembly=DesignerTool.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ctrls:NotificationPanel MainText="{Binding NotificationText}" ExtraInfo="{Binding NotificationExtra}" NotificationType="{Binding NotificationType}" IsPanelShow="{Binding IsShowNotification, Mode=TwoWay}"/>
+
+        <Grid Style="{StaticResource GrdContent}" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Supplier" Style="{StaticResource TbDefault}" Margin="{StaticResource DetailMargins}" />
+            <TextBox Grid.Column="1" Style="{StaticResource TxtDefault}"
+                     Text="{Binding Model.Name, Mode=TwoWay, ValidatesOnDataErrors=True}"
+                     Margin="{StaticResource DetailMargins}"
+                     m:TextboxHelper.Watermark="Debtor's name"/>
+
+            <TextBlock Grid.Row="1"  Text="Is Active" Style="{StaticResource TbDefault}" Margin="{StaticResource DetailMargins}"/>
+            <CheckBox Grid.Column="1" Grid.Row="1" Margin="{StaticResource DetailMargins}"
+                  IsChecked="{Binding Model.IsActive, Mode=TwoWay}" />
+
+            <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Content="Save" IsDefault="True"
+                Style="{StaticResource BtnDefault}"                    
+                Click="Save_Click"
+                IsEnabled="{Binding CanSave, Mode=OneWay}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</ctrls:BaseView>

@@ -1,3 +1,7 @@
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\Databases\DesignerToolDb.mdf
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\Databases\DesignerToolDb_log.ldf
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\Databases\TestDesignerToolDb.mdf
+C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\DesignerTool.DataAccess.dll.config
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\DesignerTool.DataAccess.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\DesignerTool.DataAccess.pdb
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\DesignerTool.Common.dll
@@ -9,6 +13,3 @@ C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\EntityFra
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\obj\Debug\DesignerTool.DataAccess.csprojResolveAssemblyReference.cache
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\obj\Debug\DesignerTool.DataAccess.dll
 C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\obj\Debug\DesignerTool.DataAccess.pdb
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\Databases\DesignerToolDb.mdf
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\Databases\TestDesignerToolDb.mdf
-C:\Users\nfilter\Documents\GitHub\DT\DesignerTool.DataAccess\bin\Debug\Databases\DesignerToolDb_log.ldf

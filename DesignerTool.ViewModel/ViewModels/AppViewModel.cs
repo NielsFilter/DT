@@ -21,7 +21,6 @@ namespace DesignerTool.AppLogic.ViewModels
         private IDesignerToolContext _ctx;
         private DatabaseManagerRepository repDbMan;
         private SystemSettingsRepository repSettings;
-        private SettingsManager settMan;
 
         public AppViewModel(IDesignerToolContext ctx)
         {

@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ctrls="clr-namespace:DesignerTool.Controls;assembly=DesignerTool.Controls"
-        xmlns:vmHome="clr-namespace:DesignerTool.AppLogic.ViewModels.Home;assembly=DesignerTool.AppLogic"
+        xmlns:vmHome="clr-namespace:DesignerTool.AppLogic.ViewModels.Shell;assembly=DesignerTool.AppLogic"
         xmlns:vm="clr-namespace:DesignerTool.AppLogic;assembly=DesignerTool.AppLogic"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -34,7 +34,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0"
                         Visibility="{Binding LoggedInUser, Source={x:Static vm:AppSession.Current}, Mode=OneWay, Converter={StaticResource hasValueToVisibilityConverter}}">
-                <Button Style="{DynamicResource BtnLogoff}" ToolTip="User profile" Click="ViewProfileMenu_Click">
+                <Button Style="{DynamicResource BtnProfile}" ToolTip="User profile" Click="ViewProfileMenu_Click">
                     <Button.ContextMenu>
                         <ContextMenu x:Name="ctxViewProfile">
                             <MenuItem Header="View Profile" Click="ViewProfile_Click" />
@@ -43,10 +43,14 @@
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>
+                <Button x:Name="btnLicense" Style="{DynamicResource BtnLicense}"
+                        Foreground="{Binding CurrentLicenseState, Converter={StaticResource licenseStateToBrushConverter}}"
+                        ToolTip="{Binding CurrentLicenseInfo}"
+                        Click="License_Click" />
             </StackPanel>
 
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1"
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1"
                         Visibility="{Binding LoggedInUser, Source={x:Static vm:AppSession.Current}, Mode=OneWay, Converter={StaticResource hasValueToVisibilityConverter}}" >
                 <Button Style="{DynamicResource BtnBack}"  ToolTip="Go back to previous page" 
                         Visibility="{Binding CanGoBack, Converter={StaticResource boolToVisibilityConverter}}"
@@ -85,7 +89,9 @@
                         <!-- User Module -->
                         <Label Style="{StaticResource LblMenuItem}" Margin="8,0" Content="System users" MouseDown="Users_Click" />
                         <Label Style="{StaticResource LblMenuItem}" Margin="8,0" Content="Generate Activation key" MouseDown="GenerateActivationKey_Click" />
-                        <Label Style="{StaticResource LblMenuItem}" Margin="8,0" Content="Activate License" MouseDown="ActivateLicense_Click" />
+                        <Label Style="{StaticResource LblMenuItem}" Margin="8,0" Content="Debtors" MouseDown="Debtors_Click" />
+                        <Label Style="{StaticResource LblMenuItem}" Margin="8,0" Content="Suppliers" MouseDown="Suppliers_Click" />
+                        <Label Style="{StaticResource LblMenuItem}" Margin="8,0" Content="Unit Types" MouseDown="UnitTypes_Click" />
                     </StackPanel>
 
                 </m:Flyout>

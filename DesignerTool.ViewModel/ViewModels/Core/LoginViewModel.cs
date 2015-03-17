@@ -1,19 +1,15 @@
 ﻿using DesignerTool.AppLogic;
-using DesignerTool.Common.Mvvm.Commands;
-using DesignerTool.Common.Mvvm.ViewModels;
-using DesignerTool.Common.ViewModels;
-using DesignerTool.Pages.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using DesignerTool.AppLogic.ViewModels.Home;
 using DesignerTool.Common.Settings;
 using DesignerTool.DataAccess.Repositories;
 using DesignerTool.DataAccess.Data;
 using DesignerTool.AppLogic.Settings;
+using DesignerTool.AppLogic.ViewModels.Base;
 
 namespace DesignerTool.AppLogic.ViewModels.Core
 {

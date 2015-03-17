@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
-namespace System.Linq
+namespace System.Linq // Keep this namespace System.Linq, as it is an addition to the existing Linq Extensions.
 {
     public static class LINQExtensions
     {
@@ -12,6 +12,10 @@ namespace System.Linq
             if (enumerable == null)
             {
                 return null;
+            }
+            else if(enumerable.Count() == 0)
+            {
+                return new ObservableCollection<T>();
             }
             return new ObservableCollection<T>(enumerable);
         }

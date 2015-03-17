@@ -1,6 +1,6 @@
-﻿using DesignerTool.Common.Global;
+﻿using DesignerTool.Common.Base;
+using DesignerTool.Common.Global;
 using DesignerTool.Common.Logging;
-using DesignerTool.Common.Mvvm.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

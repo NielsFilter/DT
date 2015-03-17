@@ -1,8 +1,6 @@
 ﻿using DesignerTool.AppLogic;
+using DesignerTool.AppLogic.ViewModels.Base;
 using DesignerTool.AppLogic.ViewModels.Panorama;
-using DesignerTool.Common.Mvvm.ViewModels;
-using DesignerTool.Common.ViewModels;
-using DesignerTool.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,7 +98,7 @@ namespace DesignerTool.AppLogic.ViewModels.Core
 
         private List<IPanoramaTile> otherModule()
         {
-            PanoramaTileViewModel tile = null;
+            //PanoramaTileViewModel tile = null;
             List<IPanoramaTile> otherModuleTiles = new List<IPanoramaTile>();
 
             //// Lorem ipsum

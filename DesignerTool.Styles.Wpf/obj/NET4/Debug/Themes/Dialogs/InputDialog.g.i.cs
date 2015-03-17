@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DesignerTool.Common.Mvvm.AttachedProperties;
+using DesignerTool.Common.AttachedProperties;
 using DesignerTool.Styles.Wpf.Behaviours;
 using DesignerTool.Styles.Wpf.Controls;
 using DesignerTool.Styles.Wpf.Controls.Dialogs;

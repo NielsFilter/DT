@@ -1,5 +1,4 @@
 ﻿using DesignerTool.AppLogic.ViewModels.Core;
-using DesignerTool.Common.Mvvm.Views;
 using DesignerTool.Controls;
 using System;
 using System.Collections.Generic;

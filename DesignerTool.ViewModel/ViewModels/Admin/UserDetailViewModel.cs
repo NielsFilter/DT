@@ -1,9 +1,7 @@
 ﻿using DesignerTool.AppLogic;
+using DesignerTool.AppLogic.ViewModels.Base;
 using DesignerTool.Common.Enums;
 using DesignerTool.Common.Exceptions;
-using DesignerTool.Common.Mvvm.Commands;
-using DesignerTool.Common.Mvvm.ViewModels;
-using DesignerTool.Common.ViewModels;
 using DesignerTool.DataAccess.Data;
 using DesignerTool.DataAccess.Repositories;
 using System;
@@ -129,7 +127,7 @@ namespace DesignerTool.AppLogic.ViewModels.Admin
                         // New record. Set defaults
                         this.Model = User.New();
                     }
-                }, "Retrieving user details...");
+                }, "Loading user details...");
         }
 
         public override void GoBack()
@@ -175,7 +173,7 @@ namespace DesignerTool.AppLogic.ViewModels.Admin
                         base.ShowError("Save Failed. " + ex.Message);
                     }
                 }
-            }, "Saving user details");
+            }, "Saving supplier details");
         }
 
         private void toggleValidation(bool isValidateEnabled)

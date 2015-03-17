@@ -1,7 +1,7 @@
-﻿using DesignerTool.Common.Enums;
-using DesignerTool.Pages.Admin;
-using DesignerTool.Pages.Core;
-using DesignerTool.Pages.Shell;
+﻿using DesignerTool.AppLogic.ViewModels.Admin;
+using DesignerTool.AppLogic.ViewModels.Core;
+using DesignerTool.AppLogic.ViewModels.Tools;
+using DesignerTool.Common.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

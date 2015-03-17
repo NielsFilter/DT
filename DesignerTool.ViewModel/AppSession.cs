@@ -1,13 +1,14 @@
-﻿using DesignerTool.Common.Enums;
+﻿using DesignerTool.AppLogic.ViewModels.Base;
+using DesignerTool.Common.Base;
+using DesignerTool.Common.Enums;
 using DesignerTool.Common.Logging;
-using DesignerTool.Common.Mvvm.ViewModels;
-using DesignerTool.Common.ViewModels;
 using DesignerTool.DataAccess.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DesignerTool.AppLogic
 {
@@ -104,6 +105,8 @@ namespace DesignerTool.AppLogic
         public bool IsNewInstallation { get; set; }
 
         #endregion
+
+        public TaskScheduler UISyncContext { get; set; }
 
         #endregion
 

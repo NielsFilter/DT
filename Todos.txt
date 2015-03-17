@@ -1,7 +1,5 @@
 Functionality:
 ==============
-- License control (Red / Green / Yellow)
-- Add a Setting for warning expiry period.
 - Forgot Password.
 - Custom Menus
 
@@ -10,7 +8,6 @@ Functionality:
 
 Refactor:
 ========
-- Update Namespaces
 - Clear Compiler Warnings
 - Remove unneccassary ResourceDictionaries
 - Work through all the TODOs

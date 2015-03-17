@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using DesignerTool.Packing.Board;
 
 namespace DesignerTool.Packing.Sheet
 {
